@@ -1,0 +1,39 @@
+{
+  "$comment": "System level: the apps, the shared code and the shared datasets of this monorepo (ADR-0010, ADR-0013). Each app's internal components are in apps/<app>/docs/architecture/components.json. Validated and rendered into architecture.md by tools/monorepo/system-map.sh; schema in docs/architecture/metrics/README.md#components-files.",
+  "components": [
+    {
+      "name": "downloader",
+      "kind": "app",
+      "responsibility": "_TBD: one sentence; refined by /spec._",
+      "paths": [
+        "apps/downloader/**"
+      ],
+      "mayDependOn": [],
+      "reads": [],
+      "writes": []
+    },
+    {
+      "name": "assistant",
+      "kind": "app",
+      "responsibility": "_TBD: one sentence; refined by /spec._",
+      "paths": [
+        "apps/assistant/**"
+      ],
+      "mayDependOn": [],
+      "reads": [],
+      "writes": []
+    },
+    {
+      "name": "reviewer",
+      "kind": "app",
+      "responsibility": "_TBD: one sentence; refined by /spec._",
+      "paths": [
+        "apps/reviewer/**"
+      ],
+      "mayDependOn": [],
+      "reads": [],
+      "writes": []
+    }
+  ],
+  "datasets": []
+}

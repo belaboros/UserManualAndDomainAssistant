@@ -1,0 +1,4 @@
+{
+  "$comment": "Logical components inside the downloader app. Paths are relative to the repository root and must stay under apps/downloader/. Dependencies on shared code are declared at system level (root docs/architecture/components.json) and may be listed here as external.",
+  "components": []
+}

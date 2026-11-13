@@ -1,0 +1,13 @@
+# Written by Copier; do not edit by hand. Used by `copier update`.
+_commit: 16e9a1d
+_src_path: gh:belaboros/sdd-template-for-monorepo-with-claude
+copyright_holder: belaboros
+description: An experimental system that harvests user manuals into a reviewed glossary,
+    ontology and knowledge graph, answers questions from them, and lets a domain admin
+    govern them with an AI-driven reviewer.
+github_owner: belaboros
+initial_apps: downloader,assistant,reviewer
+license: Apache-2.0
+project_name: UserManualAndDomainAssistant
+project_slug: UserManualAndDomainAssistant
+visibility: public

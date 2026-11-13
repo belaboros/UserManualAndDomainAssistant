@@ -1,0 +1,4 @@
+{
+  "$comment": "Logical components inside the reviewer app. Paths are relative to the repository root and must stay under apps/reviewer/. Dependencies on shared code are declared at system level (root docs/architecture/components.json) and may be listed here as external.",
+  "components": []
+}
