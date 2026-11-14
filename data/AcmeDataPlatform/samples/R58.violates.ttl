@@ -1,0 +1,4 @@
+# R58: a subscription request for no platform resource.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:request1 a adp:SubscriptionRequest .

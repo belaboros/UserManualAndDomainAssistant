@@ -1,0 +1,5 @@
+# R2: a platform service owned by a product team.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:svcCompute a adp:PlatformService ; adp:ownedBy adp:salesTeam .
+adp:salesTeam a adp:ProductTeam .

@@ -1,0 +1,15 @@
+# R45: a data pipeline that is neither an ingestion nor a processing pipeline.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:svcStorage a adp:PlatformService ; adp:serviceOwnedBy adp:storageTeam .
+adp:storageTeam a adp:PlatformTeam .
+adp:salesTeam a adp:ProductTeam .
+adp:hrTeam a adp:ProductTeam .
+adp:orderManagement a adp:DataSource .
+adp:crmCustomers a adp:DataProduct ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV .
+adp:crmCustomersContract a adp:DataContract, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:crmCustomersPipeline a adp:DataPipeline, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:populates adp:crmCustomersAsset .
+adp:crmCustomersCluster a adp:ComputeClusterDefinition, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:crmCustomersWorkspace a adp:WorkspaceInfraDefinition, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:crmCustomersAsset a adp:DataAsset, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:inLayer adp:RAW .
+adp:crmCustomersHealth a adp:Dashboard, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .

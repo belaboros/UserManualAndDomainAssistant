@@ -1,0 +1,10 @@
+# R78: a regular SELECT permission in PRD on a resource restricted in PRD.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesOwner a adp:DataProductOwner .
+adp:hrOwner a adp:ProductOwner .
+adp:crmCustomers a adp:DataProduct ; adp:hasProductOwner adp:salesOwner .
+adp:crmCustomersAsset a adp:DataAsset ; adp:belongsTo adp:crmCustomers .
+adp:restriction1 a adp:AccessRestriction ; adp:restricts adp:crmCustomers ; adp:restrictedIn adp:PRD ; adp:setBy adp:salesOwner .
+adp:bobUser a adp:UserPrincipal .
+adp:permission1 a adp:Permission ; adp:grantedTo adp:bobUser ; adp:permissionOn adp:crmCustomersAsset ; adp:inEnvironment adp:PRD ; adp:grantsPrivilege adp:SELECT .

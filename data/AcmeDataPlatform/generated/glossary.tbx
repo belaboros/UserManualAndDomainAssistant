@@ -13,6 +13,1418 @@
   </tbxHeader>
   <text>
     <body>
+      <conceptEntry id="DataPlatform">
+        <note>kind: concept</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S1</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The kind of thing AcmeDataPlatform is.</descrip>
+          <termSec>
+            <term>data platform</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="PlatformService">
+        <note>kind: concept</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S1, S2, S3, S4, S6</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>platform service</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="PlatformResource">
+        <note>kind: concept</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S1, S4, S5, S7, S8, S9, S11, S14, S15</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>platform resource</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="DataProduct">
+        <note>kind: concept</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S9, S18</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>data product</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Dashboard">
+        <note>kind: concept</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S9, S18</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>dashboard</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="MLModel">
+        <note>kind: concept</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S9, S18</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>ML model</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="AIModel">
+        <note>kind: concept</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S9, S18</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>AI model</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="AIAnalyticalApplication">
+        <note>kind: concept</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S9</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>AI/analytical application</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="SubPlatformResource">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S18</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A platform resource that belongs to a parent platform resource and cannot live on its own.</descrip>
+          <termSec>
+            <term>sub platform resource</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>nested platform resource</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="DataContract">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S20</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>contract</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="DataPipeline">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S20</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>data pipeline</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ComputeClusterDefinition">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S20</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>compute cluster definition</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="WorkspaceInfraDefinition">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S20</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>workspace infra definition</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="DataAsset">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S20</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A part of a data product holding its data; typically tables and views in case of structured data products.</descrip>
+          <termSec>
+            <term>data asset</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ParentDataProduct">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S24</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A data product another data product depends on.</descrip>
+          <termSec>
+            <term>parent data product</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>upstream data product</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ChildDataProduct">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S24</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A data product that depends on one or more parent data products.</descrip>
+          <termSec>
+            <term>child data product</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>downstream data product</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Table">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S20</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>table</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="View">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S20</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>view</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="IngestionDataPipeline">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S25, S30</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A data pipeline that ingests data from an (internal or external) source service or data source and stores it unchanged in the RAW layer.</descrip>
+          <termSec>
+            <term>ingestion data pipeline</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ProcessingDataPipeline">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S25, S30</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A data pipeline that performs transformations (cleansing, curation, filtering, enrichment, aggregation) across the RAW-&gt;CURATED-&gt;SERVING medallion layers.</descrip>
+          <termSec>
+            <term>processing data pipeline</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="DataSource">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S25</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">An internal or external service or data source that an ingestion data pipeline ingests data from.</descrip>
+          <termSec>
+            <term>data source</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>source service</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="MedallionLayer">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S25</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>medallion layer</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Principal">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S33</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">Someone or something that consumes platform resources: a user principal or a service principal.</descrip>
+          <termSec>
+            <term>principal</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="UserPrincipal">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S33, S34</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The identity of a user or group of users who can look at dashboards and use AI/analytical applications.</descrip>
+          <termSec>
+            <term>user principal</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>human user</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ServicePrincipal">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S33, S34</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The identity of an application, data pipeline or other automation which is not performed by a human.</descrip>
+          <termSec>
+            <term>service principal</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>application consumer</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ExternalApplication">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S35</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">An application that runs outside of the data platform and consumes the externally exposed/shared platform resources.</descrip>
+          <termSec>
+            <term>external application</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ProductOwner">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S37, S50</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The member of the owner product team who owns a platform resource on its behalf.</descrip>
+          <termSec>
+            <term>product owner</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="DataProductOwner">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S36</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The product owner of a data product.</descrip>
+          <termSec>
+            <term>data product owner</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Catalog">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S38, S49</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">Where the platform resources of one environment are exposed (findable) for anyone inside ACME company; there is a catalog per environment.</descrip>
+          <termSec>
+            <term>catalog</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="SubscriptionRequest">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S40, S41</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A request by a product owner to consume an existing platform resource, to build a new platform resource or to consume it by another application.</descrip>
+          <termSec>
+            <term>subscription request</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="SubscriptionStatus">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S41</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>subscription status</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Employee">
+        <note>kind: concept</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S50</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A person working for ACME company, e.g. a product owner or data product owner.</descrip>
+          <termSec>
+            <term>employee</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Developer">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S53</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">An employee who develops a consumer application or other platform resource.</descrip>
+          <termSec>
+            <term>developer</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Permission">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S52</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">Access for a user principal to tables/views in one environment, e.g. SELECT; access for users can be differentiated per environment.</descrip>
+          <termSec>
+            <term>permission</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ElevatedPermission">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S53</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A time-limited permission a developer of the consumer application requests to run SELECT commands on tables/views in their data product or in the parent data products, for incident resolution or debugging.</descrip>
+          <termSec>
+            <term>elevated permission</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Privilege">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S52, S53</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>privilege</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Purpose">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S53</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>purpose</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="AccessRestriction">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S55, S56</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A limit a product owner intentionally sets on the default read access of the owner team's members to their own platform resource, in some environments (e.g. not in PRD, which contains sensitive/PII information).</descrip>
+          <termSec>
+            <term>access restriction</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Team">
+        <note>kind: concept</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S10</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>team</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="PlatformTeam">
+        <note>kind: concept</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S1, S3, S10</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>platform team</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ProductTeam">
+        <note>kind: concept</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S1, S4, S5, S10</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>product team</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Environment">
+        <note>kind: concept</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S1, S6, S7, S8</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>environment</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="AcmeDataPlatform">
+        <note>kind: individual</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S1, S2</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>AcmeDataPlatform</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="EXP">
+        <note>kind: individual</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S1, S7, S8, S11, S12</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The environment for experimentation.</descrip>
+          <termSec>
+            <term>EXP</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="DEV">
+        <note>kind: individual</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S1, S7, S8, S11</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>DEV</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ACC">
+        <note>kind: individual</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S1, S8, S13, S14</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>ACC</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="PRD">
+        <note>kind: individual</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S1, S8, S14</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>PRD</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="RAW">
+        <note>kind: individual</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S25</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>RAW</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="CURATED">
+        <note>kind: individual</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S25</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>CURATED</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="SERVING">
+        <note>kind: individual</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S25</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>SERVING</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Pending">
+        <note>kind: individual</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S41</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>pending</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Approved">
+        <note>kind: individual</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S41</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>approved</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Rejected">
+        <note>kind: individual</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S41</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>rejected</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="CatalogEXP">
+        <note>kind: individual</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S49</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>EXP catalog</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="CatalogDEV">
+        <note>kind: individual</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S49</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>DEV catalog</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="CatalogACC">
+        <note>kind: individual</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S49</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>ACC catalog</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="CatalogPRD">
+        <note>kind: individual</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S49</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>PRD catalog</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="SELECT">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S52, S53</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>SELECT</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="IncidentResolution">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S53</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>incident resolution</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Debugging">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S53</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>debugging</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="VIEW">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S55, S57</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>VIEW</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="consistsOf">
+        <note>kind: relation</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S2</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>consists of</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ownedBy">
+        <note>kind: relation</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S3, S5</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The team that owns a platform service (a platform team) or a platform resource (the product team that created it).</descrip>
+          <termSec>
+            <term>owned by</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="serviceOwnedBy">
+        <note>kind: relation</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S3</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The platform team that owns a platform service.</descrip>
+          <termSec>
+            <term>owned by</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="resourceOwnedBy">
+        <note>kind: relation</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S5</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The product team that owns a platform resource: the team which created it.</descrip>
+          <termSec>
+            <term>owned by</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="uses">
+        <note>kind: relation</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S4</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>uses</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="subscribesTo">
+        <note>kind: relation</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S21</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>subscribes to</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="createdBy">
+        <note>kind: relation</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S4, S5</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>created by</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="createdWith">
+        <note>kind: relation</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S4, S10</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>created with</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="deployedTo">
+        <note>kind: relation</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S6, S10</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>deployed to</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="createdIn">
+        <note>kind: relation</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S7, S11</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>created in</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="promotedTo">
+        <note>kind: relation</note>
+        <note>level: 1</note>
+        <note>status: confirmed</note>
+        <note>source: S8</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>promoted to</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="hasSubResource">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S18</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>consists of</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>has sub platform resource</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="belongsTo">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S18</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>belongs to</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="dependsOn">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S24, S29</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The lineage between data products: a child (downstream) data product depends on its parent (upstream) data products.</descrip>
+          <termSec>
+            <term>depends on</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>lineage</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="populates">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S24</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>populates</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="reads">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S24</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>reads</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ingestsFrom">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S25</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>ingests from</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="inLayer">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S25</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>in layer</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="nextLayer">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S25</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>next layer</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="consumes">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S28, S29, S32</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A dashboard, AI/analytical application or data product consumes an independent (upstream/parent) data product, ML model or AI model that is deployed separately; it is not a sub platform resource.</descrip>
+          <termSec>
+            <term>consumes</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>references</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>uses</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="userConsumes">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S33</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>consumes</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="serviceConsumes">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S33</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>consumes</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="userUses">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S34</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>uses</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="identityOf">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S34</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>represents the identity of</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="hasProductOwner">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S36, S37</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>has product owner</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="memberOf">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S36, S37, S51</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>member of</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="exposedIn">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S38, S49</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>exposed in</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>findable in</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="requestedBy">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S40</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>created by</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="requestFor">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S40</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>subscribes to</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="requestConsumer">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S40, S42</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The new platform resource or the other application that will consume the subscribed platform resource.</descrip>
+          <termSec>
+            <term>consumer</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="receivedBy">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S41</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>received by</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="hasStatus">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S41</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>has status</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="hasAccessTo">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S39, S42</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A consumer application (or platform resource) that may use/consume/access a platform resource after an approved subscription request.</descrip>
+          <termSec>
+            <term>has access to</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="catalogOf">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S49</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>catalog of</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="hasUserPrincipal">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S50</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>has user principal</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="externalAppOwner">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S48</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>has product owner</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="includesMember">
+        <note>kind: relation</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S51</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The team members a product owner includes in a subscription request, so that they get access as well.</descrip>
+          <termSec>
+            <term>includes</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="developerOf">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S53</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>developer of</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="grantedTo">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S52, S53</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>granted to</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="permissionOn">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S52, S53</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>on</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="inEnvironment">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S52</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>in environment</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="grantsPrivilege">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S52, S53</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>grants</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="forPurpose">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S53</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>for purpose</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="restricts">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S55</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>restricts</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="restrictedIn">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S55</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>restricted in</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="setBy">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S55, S56</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>set by</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="viewPermissionOn">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S55, S57</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>to view</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="externallyShared">
+        <note>kind: property</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S35</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">Whether a platform resource is exposed/shared to external applications.</descrip>
+          <termSec>
+            <term>externally shared</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>externally exposed</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="exposedInCatalog">
+        <note>kind: property</note>
+        <note>level: 2</note>
+        <note>status: confirmed</note>
+        <note>source: S38, S49</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">Whether a platform resource is exposed in the catalogs of its environments: yes by default, can be turned off.</descrip>
+          <termSec>
+            <term>exposed in catalog</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="validUntil">
+        <note>kind: property</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S53</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>valid until</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
     </body>
   </text>
 </tbx>

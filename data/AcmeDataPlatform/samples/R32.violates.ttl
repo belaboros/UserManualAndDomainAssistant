@@ -1,0 +1,22 @@
+# R32: a pipeline populating the asset of another data product.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:svcStorage a adp:PlatformService ; adp:serviceOwnedBy adp:storageTeam .
+adp:storageTeam a adp:PlatformTeam .
+adp:salesTeam a adp:ProductTeam .
+adp:salesOrders a adp:DataProduct ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV .
+adp:salesOrdersContract a adp:DataContract, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrdersPipeline a adp:DataPipeline, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrdersCluster a adp:ComputeClusterDefinition, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrdersWorkspace a adp:WorkspaceInfraDefinition, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrdersAsset a adp:DataAsset, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrdersHealth a adp:Dashboard, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:crmCustomers a adp:DataProduct ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV .
+adp:crmCustomersContract a adp:DataContract, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:crmCustomersPipeline a adp:DataPipeline, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:crmCustomersCluster a adp:ComputeClusterDefinition, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:crmCustomersWorkspace a adp:WorkspaceInfraDefinition, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:crmCustomersAsset a adp:DataAsset, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:crmCustomersHealth a adp:Dashboard, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:crmCustomersPipeline adp:populates adp:crmCustomersAsset .
+adp:salesOrdersPipeline adp:populates adp:salesOrdersAsset, adp:crmCustomersAsset .

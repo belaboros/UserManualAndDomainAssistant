@@ -1,0 +1,13 @@
+# R20: a data product without a compute cluster definition.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:svcStorage a adp:PlatformService ; adp:serviceOwnedBy adp:storageTeam .
+adp:storageTeam a adp:PlatformTeam .
+adp:salesTeam a adp:ProductTeam .
+adp:salesOrders a adp:DataProduct ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ;
+    adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV .
+adp:salesOrdersContract a adp:DataContract, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrdersPipeline a adp:DataPipeline, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrdersWorkspace a adp:WorkspaceInfraDefinition, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrdersAsset a adp:DataAsset, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrdersHealth a adp:Dashboard, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .

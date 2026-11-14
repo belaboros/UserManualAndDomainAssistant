@@ -1,0 +1,6 @@
+# R16: a sub-resource nested two levels deep is promoted with the top-level resource.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesApp a adp:AIAnalyticalApplication ; adp:promotedTo adp:ACC .
+adp:salesAppData a adp:DataProduct, adp:SubPlatformResource ; adp:belongsTo adp:salesApp .
+adp:salesAppDataContract a adp:DataContract, adp:SubPlatformResource ; adp:belongsTo adp:salesAppData .

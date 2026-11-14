@@ -1,0 +1,19 @@
+# Hand-written OWL axioms the YAML cannot express (merged into generated/ontology.*). Format:
+# tools/domain-model/README.md.
+@prefix adp: <https://example.org/acme/data-platform#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# S9, S15, S20: the currently available kinds of platform resource (closed list): the end-to-end
+# kinds (S9, S15) and the parts of a data product (S20).
+adp:PlatformResource owl:equivalentClass [
+    a owl:Class ;
+    owl:unionOf ( adp:DataProduct adp:Dashboard adp:MLModel adp:AIModel adp:AIAnalyticalApplication
+        adp:DataContract adp:DataPipeline adp:ComputeClusterDefinition adp:WorkspaceInfraDefinition adp:DataAsset )
+] .
+
+# S30: each data pipeline can do only one of those things: ingest or process.
+adp:DataPipeline owl:equivalentClass [
+    a owl:Class ;
+    owl:unionOf ( adp:IngestionDataPipeline adp:ProcessingDataPipeline )
+] .

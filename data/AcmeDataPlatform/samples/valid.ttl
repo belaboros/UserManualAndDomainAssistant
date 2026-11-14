@@ -1,0 +1,111 @@
+# A small consistent world (S3-S28): one service, its teams, data products with lineage,
+# an application with nested resources, and a dashboard of another team consuming a data product.
+@prefix adp: <https://example.org/acme/data-platform#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+adp:svcStorage a adp:PlatformService ; adp:serviceOwnedBy adp:storageTeam .
+adp:storageTeam a adp:PlatformTeam .
+adp:salesTeam a adp:ProductTeam .
+adp:hrTeam a adp:ProductTeam .
+adp:orderManagement a adp:DataSource .
+adp:svcStorage adp:deployedTo adp:EXP, adp:DEV, adp:ACC, adp:PRD .
+adp:AcmeDataPlatform adp:consistsOf adp:svcStorage .
+
+# S20, S25: crmCustomers is ingested (RAW); salesOrders is built from it (S24, CURATED) and promoted to PRD.
+adp:crmCustomers a adp:DataProduct ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV .
+adp:crmCustomersContract a adp:DataContract, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:crmCustomersPipeline a adp:IngestionDataPipeline, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:ingestsFrom adp:orderManagement ; adp:populates adp:crmCustomersAsset .
+adp:crmCustomersCluster a adp:ComputeClusterDefinition, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:crmCustomersWorkspace a adp:WorkspaceInfraDefinition, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:crmCustomersAsset a adp:DataAsset, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:inLayer adp:RAW .
+adp:crmCustomersHealth a adp:Dashboard, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrders a adp:DataProduct ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV ; adp:promotedTo adp:ACC, adp:PRD .
+adp:salesOrdersContract a adp:DataContract, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrdersPipeline a adp:ProcessingDataPipeline, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:reads adp:crmCustomersAsset ; adp:populates adp:salesOrdersAsset .
+adp:salesOrdersCluster a adp:ComputeClusterDefinition, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrdersWorkspace a adp:WorkspaceInfraDefinition, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrdersAsset a adp:DataAsset, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:inLayer adp:CURATED .
+adp:salesOrdersHealth a adp:Dashboard, adp:SubPlatformResource ; adp:belongsTo adp:salesOrders ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesOrders adp:dependsOn adp:crmCustomers .
+
+# S8: a dashboard created in EXP and promoted to DEV and ACC; S28: it consumes a data product of another team.
+adp:hrDashboard a adp:Dashboard ; adp:createdBy adp:hrTeam ; adp:resourceOwnedBy adp:hrTeam ; adp:createdWith adp:svcStorage ; adp:createdIn adp:EXP ; adp:promotedTo adp:DEV ; adp:promotedTo adp:ACC .
+adp:hrDashboard adp:consumes adp:salesOrders .
+
+# S18, S27: an application with a nested dashboard and a nested data product (which has its own parts).
+adp:salesApp a adp:AIAnalyticalApplication ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV .
+adp:salesDash a adp:Dashboard, adp:SubPlatformResource ; adp:belongsTo adp:salesApp ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesAppData a adp:DataProduct, adp:SubPlatformResource ; adp:belongsTo adp:salesApp ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesAppDataContract a adp:DataContract, adp:SubPlatformResource ; adp:belongsTo adp:salesAppData ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesAppDataPipeline a adp:IngestionDataPipeline, adp:SubPlatformResource ; adp:belongsTo adp:salesAppData ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:ingestsFrom adp:orderManagement ; adp:populates adp:salesAppDataAsset .
+adp:salesAppDataCluster a adp:ComputeClusterDefinition, adp:SubPlatformResource ; adp:belongsTo adp:salesAppData ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesAppDataWorkspace a adp:WorkspaceInfraDefinition, adp:SubPlatformResource ; adp:belongsTo adp:salesAppData ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesAppDataAsset a adp:DataAsset, adp:SubPlatformResource ; adp:belongsTo adp:salesAppData ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:inLayer adp:RAW .
+adp:salesAppDataHealth a adp:Dashboard, adp:SubPlatformResource ; adp:belongsTo adp:salesAppData ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+
+# S33: a human user reads the HR dashboard; the billing application's service principal consumes salesOrders.
+adp:alice a adp:UserPrincipal ; adp:userConsumes adp:hrDashboard .
+adp:billingApp a adp:ServicePrincipal ; adp:serviceConsumes adp:salesOrders .
+
+# S34: alice also uses the sales application; the application's own identity consumes crmCustomers.
+adp:alice adp:userUses adp:salesApp .
+adp:salesAppIdentity a adp:ServicePrincipal ; adp:identityOf adp:salesApp ; adp:serviceConsumes adp:crmCustomers .
+
+# S35: an external billing system consumes salesOrders, which is externally shared.
+adp:externalBilling a adp:ExternalApplication .
+adp:billingApp adp:identityOf adp:externalBilling .
+adp:salesOrders adp:externallyShared true .
+
+# S36-S38: product owners, members of the owner teams; exposure in the catalogs is derived (R68).
+adp:salesOwner a adp:DataProductOwner ; adp:memberOf adp:salesTeam .
+adp:hrOwner a adp:ProductOwner ; adp:memberOf adp:hrTeam .
+adp:crmCustomers adp:hasProductOwner adp:salesOwner .
+adp:salesOrders adp:hasProductOwner adp:salesOwner .
+adp:salesApp adp:hasProductOwner adp:salesOwner .
+adp:hrDashboard adp:hasProductOwner adp:hrOwner .
+
+# S40-S42: the HR dashboard consumes salesOrders (another team) after an approved subscription request.
+adp:request1 a adp:SubscriptionRequest ; adp:requestedBy adp:hrOwner ; adp:requestFor adp:salesOrders ;
+    adp:requestConsumer adp:hrDashboard ; adp:receivedBy adp:salesOwner ; adp:hasStatus adp:Approved .
+# S44: the external billing application consumes salesOrders after an approved request.
+adp:billingOwner a adp:ProductOwner ; adp:hasUserPrincipal adp:billingOwnerUser .
+adp:externalBilling adp:externalAppOwner adp:billingOwner .
+adp:request2 a adp:SubscriptionRequest ; adp:requestedBy adp:billingOwner ; adp:requestFor adp:salesOrders ;
+    adp:requestConsumer adp:externalBilling ; adp:receivedBy adp:salesOwner ; adp:hasStatus adp:Approved .
+
+# S50: every employee has exactly one user principal.
+adp:salesOwner adp:hasUserPrincipal adp:salesOwnerUser .
+adp:hrOwner adp:hasUserPrincipal adp:hrOwnerUser .
+adp:salesOwnerUser a adp:UserPrincipal .
+adp:hrOwnerUser a adp:UserPrincipal .
+adp:billingOwnerUser a adp:UserPrincipal .
+
+# S46, S47: same-team consumption needs an approved request too; the same data product owner
+# creates and approves it (salesOrders consumes its parent; salesApp consumes crmCustomers).
+adp:request3 a adp:SubscriptionRequest ; adp:requestedBy adp:salesOwner ; adp:requestFor adp:crmCustomers ;
+    adp:requestConsumer adp:salesOrders ; adp:receivedBy adp:salesOwner ; adp:hasStatus adp:Approved .
+adp:request4 a adp:SubscriptionRequest ; adp:requestedBy adp:salesOwner ; adp:requestFor adp:crmCustomers ;
+    adp:requestConsumer adp:salesApp ; adp:receivedBy adp:salesOwner ; adp:hasStatus adp:Approved .
+
+# S51: alice (HR team) is included in the approved request for the HR dashboard, so she gets access
+# to salesOrders too (R70); she consumes her own team's dashboard without a request.
+adp:aliceEmployee a adp:Employee ; adp:memberOf adp:hrTeam ; adp:hasUserPrincipal adp:alice .
+adp:request1 adp:includesMember adp:aliceEmployee .
+
+# S52, S53: a SELECT permission in DEV, and an elevated one in PRD for an incident.
+adp:dana a adp:Developer ; adp:memberOf adp:salesTeam ; adp:developerOf adp:salesOrders ; adp:hasUserPrincipal adp:danaUser .
+adp:danaUser a adp:UserPrincipal .
+adp:permission1 a adp:Permission ; adp:grantedTo adp:alice ; adp:permissionOn adp:crmCustomersAsset ;
+    adp:inEnvironment adp:DEV ; adp:grantsPrivilege adp:SELECT .
+adp:permission2 a adp:ElevatedPermission ; adp:grantedTo adp:danaUser ; adp:permissionOn adp:crmCustomersAsset ;
+    adp:inEnvironment adp:PRD ; adp:grantsPrivilege adp:SELECT ; adp:forPurpose adp:IncidentResolution ;
+    adp:validUntil "2026-11-15T18:00:00"^^xsd:dateTime .
+
+# S55: by default the owner team reads its own resources; the product owner restricts crmCustomers in PRD,
+# so only the elevated permission above applies there.
+adp:restriction1 a adp:AccessRestriction ; adp:restricts adp:crmCustomers ; adp:restrictedIn adp:PRD ; adp:setBy adp:salesOwner .
+# S57: the HR dashboard's owner restricts it in PRD; alice may view it in ACC.
+adp:restriction2 a adp:AccessRestriction ; adp:restricts adp:hrDashboard ; adp:restrictedIn adp:PRD ; adp:setBy adp:hrOwner .
+adp:permission3 a adp:Permission ; adp:grantedTo adp:alice ; adp:viewPermissionOn adp:hrDashboard ;
+    adp:inEnvironment adp:ACC ; adp:grantsPrivilege adp:VIEW .
+

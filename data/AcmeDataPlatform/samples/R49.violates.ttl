@@ -1,0 +1,5 @@
+# R49: a user principal consuming a data product directly.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:crmCustomers a adp:DataProduct .
+adp:alice a adp:UserPrincipal ; adp:userConsumes adp:crmCustomers .

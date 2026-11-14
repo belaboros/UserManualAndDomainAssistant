@@ -1,0 +1,4 @@
+# R59: a subscription request without a consumer.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:request1 a adp:SubscriptionRequest .

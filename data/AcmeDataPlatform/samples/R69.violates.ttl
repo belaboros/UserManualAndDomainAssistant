@@ -1,0 +1,4 @@
+# R69: an employee without a user principal.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:hrOwner a adp:ProductOwner .

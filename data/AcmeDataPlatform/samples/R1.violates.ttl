@@ -1,0 +1,4 @@
+# R1: a platform service without an owner.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:svcCompute a adp:PlatformService .

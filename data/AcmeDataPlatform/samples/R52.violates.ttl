@@ -1,0 +1,6 @@
+# R52: an external application consuming a data product that is not externally shared.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:crmCustomers a adp:DataProduct .
+adp:externalBilling a adp:ExternalApplication .
+adp:billingApp a adp:ServicePrincipal ; adp:identityOf adp:externalBilling ; adp:serviceConsumes adp:crmCustomers .

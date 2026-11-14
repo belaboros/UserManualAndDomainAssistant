@@ -1,0 +1,7 @@
+# R65: an external application consuming a data product without an approved subscription request.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesTeam a adp:ProductTeam .
+adp:salesOrders a adp:DataProduct ; adp:resourceOwnedBy adp:salesTeam ; adp:externallyShared true .
+adp:externalBilling a adp:ExternalApplication .
+adp:billingApp a adp:ServicePrincipal ; adp:identityOf adp:externalBilling ; adp:serviceConsumes adp:salesOrders .

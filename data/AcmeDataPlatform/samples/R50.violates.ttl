@@ -1,0 +1,5 @@
+# R50: a service principal consuming a dashboard.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:hrDashboard a adp:Dashboard .
+adp:billingApp a adp:ServicePrincipal ; adp:serviceConsumes adp:hrDashboard .

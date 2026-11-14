@@ -2,15 +2,1708 @@
 # (data properties) and rules of AcmeDataPlatform (idea 0001). Format: tools/domain-model/README.md.
 # level: 1 core | 2 main | 3 detailed (cumulative). New items get working_level.
 # status: confirmed = the expert's own words; draft = wording proposed by Claude, not yet confirmed.
-# Modelling of level 1 resumes in the idea-0001 session (S1–S10 are recorded, not yet modelled).
+# Level 1 is complete (2026-11-14); the working level is 2. Drafts await the expert's confirmation.
 namespace: https://example.org/acme/data-platform#
 prefix: adp
 label: AcmeDataPlatform
 language: en
-working_level: 1
+working_level: 2
 
-concepts: []
-individuals: []
-relations: []
-properties: []
-rules: []
+concepts:
+  - id: DataPlatform
+    label: data platform
+    level: 1
+    status: confirmed
+    source: [S1]
+    definition: "The kind of thing AcmeDataPlatform is."
+
+  - id: PlatformService
+    label: platform service
+    level: 1
+    status: confirmed
+    source: [S1, S2, S3, S4, S6]
+
+  - id: PlatformResource
+    label: platform resource
+    level: 1
+    status: confirmed
+    source: [S1, S4, S5, S7, S8, S9, S11, S14, S15]
+
+  - id: DataProduct
+    label: data product
+    parent: PlatformResource
+    disjoint_with: [Dashboard, MLModel, AIModel, AIAnalyticalApplication]
+    level: 1
+    status: confirmed
+    source: [S9, S18]
+
+  - id: Dashboard
+    label: dashboard
+    parent: PlatformResource
+    disjoint_with: [MLModel, AIModel, AIAnalyticalApplication]
+    level: 1
+    status: confirmed
+    source: [S9, S18]
+
+  - id: MLModel
+    label: ML model
+    parent: PlatformResource
+    disjoint_with: [AIModel, AIAnalyticalApplication]
+    level: 1
+    status: confirmed
+    source: [S9, S18]
+
+  - id: AIModel
+    label: AI model
+    parent: PlatformResource
+    disjoint_with: [AIAnalyticalApplication]
+    level: 1
+    status: confirmed
+    source: [S9, S18]
+
+  - id: AIAnalyticalApplication
+    label: AI/analytical application
+    parent: PlatformResource
+    level: 1
+    status: confirmed
+    source: [S9]
+
+  - id: SubPlatformResource
+    label: sub platform resource
+    synonyms: [nested platform resource]
+    parent: PlatformResource
+    definition: "A platform resource that belongs to a parent platform resource and cannot live on its own."
+    level: 2
+    status: confirmed
+    source: [S18]
+
+  - id: DataContract
+    label: contract
+    parent: SubPlatformResource
+    disjoint_with: [DataPipeline, ComputeClusterDefinition, WorkspaceInfraDefinition, DataAsset, DataProduct, Dashboard, MLModel, AIModel, AIAnalyticalApplication]
+    level: 2
+    status: confirmed
+    source: [S20]
+
+  - id: DataPipeline
+    label: data pipeline
+    parent: SubPlatformResource
+    disjoint_with: [ComputeClusterDefinition, WorkspaceInfraDefinition, DataAsset, DataProduct, Dashboard, MLModel, AIModel, AIAnalyticalApplication]
+    level: 2
+    status: confirmed
+    source: [S20]
+
+  - id: ComputeClusterDefinition
+    label: compute cluster definition
+    parent: SubPlatformResource
+    disjoint_with: [WorkspaceInfraDefinition, DataAsset, DataProduct, Dashboard, MLModel, AIModel, AIAnalyticalApplication]
+    level: 2
+    status: confirmed
+    source: [S20]
+
+  - id: WorkspaceInfraDefinition
+    label: workspace infra definition
+    parent: SubPlatformResource
+    disjoint_with: [DataAsset, DataProduct, Dashboard, MLModel, AIModel, AIAnalyticalApplication]
+    level: 2
+    status: confirmed
+    source: [S20]
+
+  - id: DataAsset
+    label: data asset
+    definition: "A part of a data product holding its data; typically tables and views in case of structured data products."
+    parent: SubPlatformResource
+    disjoint_with: [DataProduct, Dashboard, MLModel, AIModel, AIAnalyticalApplication]
+    level: 2
+    status: confirmed
+    source: [S20]
+
+  - id: ParentDataProduct
+    label: parent data product
+    synonyms: [upstream data product]
+    parent: DataProduct
+    definition: "A data product another data product depends on."
+    level: 2
+    status: confirmed
+    source: [S24]
+
+  - id: ChildDataProduct
+    label: child data product
+    synonyms: [downstream data product]
+    parent: DataProduct
+    definition: "A data product that depends on one or more parent data products."
+    level: 2
+    status: confirmed
+    source: [S24]
+
+  - id: Table
+    label: table
+    parent: DataAsset
+    disjoint_with: [View]
+    level: 3
+    status: confirmed
+    source: [S20]
+
+  - id: View
+    label: view
+    parent: DataAsset
+    level: 3
+    status: confirmed
+    source: [S20]
+
+  - id: IngestionDataPipeline
+    label: ingestion data pipeline
+    parent: DataPipeline
+    disjoint_with: [ProcessingDataPipeline]
+    definition: "A data pipeline that ingests data from an (internal or external) source service or data source and stores it unchanged in the RAW layer."
+    level: 2
+    status: confirmed
+    source: [S25, S30]
+
+  - id: ProcessingDataPipeline
+    label: processing data pipeline
+    parent: DataPipeline
+    definition: "A data pipeline that performs transformations (cleansing, curation, filtering, enrichment, aggregation) across the RAW->CURATED->SERVING medallion layers."
+    level: 2
+    status: confirmed
+    source: [S25, S30]
+
+  - id: DataSource
+    label: data source
+    synonyms: [source service]
+    definition: "An internal or external service or data source that an ingestion data pipeline ingests data from."
+    level: 2
+    status: confirmed
+    source: [S25]
+
+  - id: MedallionLayer
+    label: medallion layer
+    level: 2
+    status: confirmed
+    source: [S25]
+
+  - id: Principal
+    label: principal
+    definition: "Someone or something that consumes platform resources: a user principal or a service principal."
+    level: 2
+    status: confirmed
+    source: [S33]
+
+  - id: UserPrincipal
+    label: user principal
+    synonyms: [human user]
+    parent: Principal
+    disjoint_with: [ServicePrincipal]
+    definition: "The identity of a user or group of users who can look at dashboards and use AI/analytical applications."
+    level: 2
+    status: confirmed
+    source: [S33, S34]
+
+  - id: ServicePrincipal
+    label: service principal
+    synonyms: [application consumer]
+    parent: Principal
+    definition: "The identity of an application, data pipeline or other automation which is not performed by a human."
+    level: 2
+    status: confirmed
+    source: [S33, S34]
+
+  - id: ExternalApplication
+    label: external application
+    definition: "An application that runs outside of the data platform and consumes the externally exposed/shared platform resources."
+    level: 3
+    status: confirmed
+    source: [S35]
+
+  - id: ProductOwner
+    label: product owner
+    parent: Employee
+    definition: "The member of the owner product team who owns a platform resource on its behalf."
+    level: 2
+    status: confirmed
+    source: [S37, S50]
+
+  - id: DataProductOwner
+    label: data product owner
+    parent: ProductOwner
+    definition: "The product owner of a data product."
+    level: 2
+    status: confirmed
+    source: [S36]
+
+  - id: Catalog
+    label: catalog
+    definition: "Where the platform resources of one environment are exposed (findable) for anyone inside ACME company; there is a catalog per environment."
+    level: 2
+    status: confirmed
+    source: [S38, S49]
+
+  - id: SubscriptionRequest
+    label: subscription request
+    definition: "A request by a product owner to consume an existing platform resource, to build a new platform resource or to consume it by another application."
+    level: 2
+    status: confirmed
+    source: [S40, S41]
+
+  - id: SubscriptionStatus
+    label: subscription status
+    level: 2
+    status: confirmed
+    source: [S41]
+
+  - id: Employee
+    label: employee
+    definition: "A person working for ACME company, e.g. a product owner or data product owner."
+    level: 2
+    status: confirmed
+    source: [S50]
+
+  - id: Developer
+    label: developer
+    parent: Employee
+    definition: "An employee who develops a consumer application or other platform resource."
+    level: 3
+    status: confirmed
+    source: [S53]
+
+  - id: Permission
+    label: permission
+    definition: "Access for a user principal to tables/views in one environment, e.g. SELECT; access for users can be differentiated per environment."
+    level: 3
+    status: confirmed
+    source: [S52]
+
+  - id: ElevatedPermission
+    label: elevated permission
+    parent: Permission
+    definition: "A time-limited permission a developer of the consumer application requests to run SELECT commands on tables/views in their data product or in the parent data products, for incident resolution or debugging."
+    level: 3
+    status: confirmed
+    source: [S53]
+
+  - id: Privilege
+    label: privilege
+    level: 3
+    status: confirmed
+    source: [S52, S53]
+
+  - id: Purpose
+    label: purpose
+    level: 3
+    status: confirmed
+    source: [S53]
+
+  - id: AccessRestriction
+    label: access restriction
+    definition: "A limit a product owner intentionally sets on the default read access of the owner team's members to their own platform resource, in some environments (e.g. not in PRD, which contains sensitive/PII information)."
+    level: 3
+    status: confirmed
+    source: [S55, S56]
+
+  - id: Team
+    label: team
+    level: 1
+    status: confirmed
+    source: [S10]
+
+  - id: PlatformTeam
+    label: platform team
+    parent: Team
+    disjoint_with: [ProductTeam]
+    level: 1
+    status: confirmed
+    source: [S1, S3, S10]
+
+  - id: ProductTeam
+    label: product team
+    parent: Team
+    level: 1
+    status: confirmed
+    source: [S1, S4, S5, S10]
+
+  - id: Environment
+    label: environment
+    level: 1
+    status: confirmed
+    source: [S1, S6, S7, S8]
+
+individuals:
+  - id: AcmeDataPlatform
+    label: AcmeDataPlatform
+    types: [DataPlatform]
+    level: 1
+    status: confirmed
+    source: [S1, S2]
+
+  - id: EXP
+    label: EXP
+    types: [Environment]
+    definition: "The environment for experimentation."
+    level: 1
+    status: confirmed
+    source: [S1, S7, S8, S11, S12]
+
+  - id: DEV
+    label: DEV
+    types: [Environment]
+    level: 1
+    status: confirmed
+    source: [S1, S7, S8, S11]
+
+  - id: ACC
+    label: ACC
+    types: [Environment]
+    level: 1
+    status: confirmed
+    source: [S1, S8, S13, S14]
+
+  - id: PRD
+    label: PRD
+    types: [Environment]
+    level: 1
+    status: confirmed
+    source: [S1, S8, S14]
+
+  - id: RAW
+    label: RAW
+    types: [MedallionLayer]
+    facts: {nextLayer: [CURATED]}
+    level: 2
+    status: confirmed
+    source: [S25]
+
+  - id: CURATED
+    label: CURATED
+    types: [MedallionLayer]
+    facts: {nextLayer: [SERVING]}
+    level: 2
+    status: confirmed
+    source: [S25]
+
+  - id: SERVING
+    label: SERVING
+    types: [MedallionLayer]
+    level: 2
+    status: confirmed
+    source: [S25]
+
+  - id: Pending
+    label: pending
+    types: [SubscriptionStatus]
+    level: 2
+    status: confirmed
+    source: [S41]
+
+  - id: Approved
+    label: approved
+    types: [SubscriptionStatus]
+    level: 2
+    status: confirmed
+    source: [S41]
+
+  - id: Rejected
+    label: rejected
+    types: [SubscriptionStatus]
+    level: 2
+    status: confirmed
+    source: [S41]
+
+  - id: CatalogEXP
+    label: EXP catalog
+    types: [Catalog]
+    facts: {catalogOf: [EXP]}
+    level: 2
+    status: confirmed
+    source: [S49]
+
+  - id: CatalogDEV
+    label: DEV catalog
+    types: [Catalog]
+    facts: {catalogOf: [DEV]}
+    level: 2
+    status: confirmed
+    source: [S49]
+
+  - id: CatalogACC
+    label: ACC catalog
+    types: [Catalog]
+    facts: {catalogOf: [ACC]}
+    level: 2
+    status: confirmed
+    source: [S49]
+
+  - id: CatalogPRD
+    label: PRD catalog
+    types: [Catalog]
+    facts: {catalogOf: [PRD]}
+    level: 2
+    status: confirmed
+    source: [S49]
+
+  - id: SELECT
+    label: SELECT
+    types: [Privilege]
+    level: 3
+    status: confirmed
+    source: [S52, S53]
+
+  - id: IncidentResolution
+    label: incident resolution
+    types: [Purpose]
+    level: 3
+    status: confirmed
+    source: [S53]
+
+  - id: Debugging
+    label: debugging
+    types: [Purpose]
+    level: 3
+    status: confirmed
+    source: [S53]
+
+  - id: VIEW
+    label: VIEW
+    types: [Privilege]
+    level: 3
+    status: confirmed
+    source: [S55, S57]
+
+relations:
+  - id: consistsOf
+    label: consists of
+    domain: DataPlatform
+    range: PlatformService
+    cardinality: "1..*"
+    level: 1
+    status: confirmed
+    source: [S2]
+
+  - id: ownedBy
+    label: owned by
+    range: Team
+    definition: "The team that owns a platform service (a platform team) or a platform resource (the product team that created it)."
+    level: 1
+    status: confirmed
+    source: [S3, S5]
+
+  - id: serviceOwnedBy
+    label: owned by
+    definition: "The platform team that owns a platform service."
+    domain: PlatformService
+    range: PlatformTeam
+    parent: ownedBy
+    cardinality: "1"
+    level: 1
+    status: confirmed
+    source: [S3]
+
+  - id: resourceOwnedBy
+    label: owned by
+    definition: "The product team that owns a platform resource: the team which created it."
+    domain: PlatformResource
+    range: ProductTeam
+    parent: ownedBy
+    cardinality: "1"
+    level: 1
+    status: confirmed
+    source: [S5]
+
+  - id: uses
+    label: uses
+    domain: ProductTeam
+    range: PlatformService
+    level: 1
+    status: confirmed
+    source: [S4]
+
+  - id: subscribesTo
+    label: subscribes to
+    domain: ProductTeam
+    range: PlatformResource
+    cardinality: "*"
+    level: 1
+    status: confirmed
+    source: [S21]
+
+  - id: createdBy
+    label: created by
+    domain: PlatformResource
+    range: ProductTeam
+    cardinality: "1"
+    level: 1
+    status: confirmed
+    source: [S4, S5]
+
+  - id: createdWith
+    label: created with
+    domain: PlatformResource
+    range: PlatformService
+    cardinality: "1..*"
+    level: 1
+    status: confirmed
+    source: [S4, S10]
+
+  - id: deployedTo
+    label: deployed to
+    domain: PlatformService
+    range: Environment
+    cardinality: "*"
+    level: 1
+    status: confirmed
+    source: [S6, S10]
+
+  - id: createdIn
+    label: created in
+    domain: PlatformResource
+    range: Environment
+    cardinality: "1"
+    level: 1
+    status: confirmed
+    source: [S7, S11]
+
+  - id: promotedTo
+    label: promoted to
+    domain: PlatformResource
+    range: Environment
+    cardinality: "*"
+    level: 1
+    status: confirmed
+    source: [S8]
+
+  - id: hasSubResource
+    label: consists of
+    synonyms: [has sub platform resource]
+    domain: PlatformResource
+    range: SubPlatformResource
+    inverse: belongsTo
+    cardinality: "*"
+    level: 2
+    status: confirmed
+    source: [S18]
+
+  - id: belongsTo
+    label: belongs to
+    domain: SubPlatformResource
+    range: PlatformResource
+    inverse: hasSubResource
+    cardinality: "1"
+    characteristics: [functional, irreflexive]
+    level: 2
+    status: confirmed
+    source: [S18]
+
+  - id: dependsOn
+    label: depends on
+    synonyms: [lineage]
+    definition: "The lineage between data products: a child (downstream) data product depends on its parent (upstream) data products."
+    domain: DataProduct
+    range: DataProduct
+    parent: consumes
+    cardinality: "*"
+    level: 2
+    status: confirmed
+    source: [S24, S29]
+
+  - id: populates
+    label: populates
+    domain: DataPipeline
+    range: DataAsset
+    cardinality: "1..*"
+    level: 2
+    status: confirmed
+    source: [S24]
+
+  - id: reads
+    label: reads
+    domain: DataPipeline
+    range: DataAsset
+    cardinality: "*"
+    level: 2
+    status: confirmed
+    source: [S24]
+
+  - id: ingestsFrom
+    label: ingests from
+    domain: IngestionDataPipeline
+    range: DataSource
+    cardinality: "1..*"
+    level: 2
+    status: confirmed
+    source: [S25]
+
+  - id: inLayer
+    label: in layer
+    domain: DataAsset
+    range: MedallionLayer
+    cardinality: "1"
+    level: 2
+    status: confirmed
+    source: [S25]
+
+  - id: nextLayer
+    label: next layer
+    domain: MedallionLayer
+    range: MedallionLayer
+    cardinality: "0..1"
+    level: 2
+    status: confirmed
+    source: [S25]
+
+  - id: consumes
+    label: consumes
+    synonyms: [references, uses]
+    definition: "A dashboard, AI/analytical application or data product consumes an independent (upstream/parent) data product, ML model or AI model that is deployed separately; it is not a sub platform resource."
+    domain: PlatformResource
+    range: PlatformResource
+    cardinality: "*"
+    level: 2
+    status: confirmed
+    source: [S28, S29, S32]
+
+  - id: userConsumes
+    label: consumes
+    domain: UserPrincipal
+    range: Dashboard
+    cardinality: "*"
+    level: 2
+    status: confirmed
+    source: [S33]
+
+  - id: serviceConsumes
+    label: consumes
+    domain: ServicePrincipal
+    range: PlatformResource
+    cardinality: "*"
+    level: 2
+    status: confirmed
+    source: [S33]
+
+  - id: userUses
+    label: uses
+    domain: UserPrincipal
+    range: AIAnalyticalApplication
+    cardinality: "*"
+    level: 3
+    status: confirmed
+    source: [S34]
+
+  - id: identityOf
+    label: represents the identity of
+    domain: ServicePrincipal
+    level: 3
+    status: confirmed
+    source: [S34]
+
+  - id: hasProductOwner
+    label: has product owner
+    domain: PlatformResource
+    range: ProductOwner
+    cardinality: "0..1"
+    level: 2
+    status: confirmed
+    source: [S36, S37]
+
+  - id: memberOf
+    label: member of
+    domain: Employee
+    range: ProductTeam
+    level: 2
+    status: confirmed
+    source: [S36, S37, S51]
+
+  - id: exposedIn
+    label: exposed in
+    synonyms: [findable in]
+    domain: PlatformResource
+    range: Catalog
+    cardinality: "*"
+    level: 2
+    status: confirmed
+    source: [S38, S49]
+
+  - id: requestedBy
+    label: created by
+    domain: SubscriptionRequest
+    range: ProductOwner
+    cardinality: "1"
+    level: 2
+    status: confirmed
+    source: [S40]
+
+  - id: requestFor
+    label: subscribes to
+    domain: SubscriptionRequest
+    range: PlatformResource
+    cardinality: "1"
+    level: 2
+    status: confirmed
+    source: [S40]
+
+  - id: requestConsumer
+    label: consumer
+    definition: "The new platform resource or the other application that will consume the subscribed platform resource."
+    domain: SubscriptionRequest
+    cardinality: "1"
+    level: 2
+    status: confirmed
+    source: [S40, S42]
+
+  - id: receivedBy
+    label: received by
+    domain: SubscriptionRequest
+    range: ProductOwner
+    cardinality: "1"
+    level: 2
+    status: confirmed
+    source: [S41]
+
+  - id: hasStatus
+    label: has status
+    domain: SubscriptionRequest
+    range: SubscriptionStatus
+    cardinality: "1"
+    level: 2
+    status: confirmed
+    source: [S41]
+
+  - id: hasAccessTo
+    label: has access to
+    definition: "A consumer application (or platform resource) that may use/consume/access a platform resource after an approved subscription request."
+    range: PlatformResource
+    level: 2
+    status: confirmed
+    source: [S39, S42]
+
+  - id: catalogOf
+    label: catalog of
+    domain: Catalog
+    range: Environment
+    cardinality: "1"
+    level: 2
+    status: confirmed
+    source: [S49]
+
+  - id: hasUserPrincipal
+    label: has user principal
+    domain: Employee
+    range: UserPrincipal
+    cardinality: "1"
+    level: 2
+    status: confirmed
+    source: [S50]
+
+  - id: externalAppOwner
+    label: has product owner
+    domain: ExternalApplication
+    range: ProductOwner
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S48]
+
+  - id: includesMember
+    label: includes
+    definition: "The team members a product owner includes in a subscription request, so that they get access as well."
+    domain: SubscriptionRequest
+    range: Employee
+    cardinality: "*"
+    level: 2
+    status: confirmed
+    source: [S51]
+
+  - id: developerOf
+    label: developer of
+    domain: Developer
+    range: PlatformResource
+    cardinality: "*"
+    level: 3
+    status: confirmed
+    source: [S53]
+
+  - id: grantedTo
+    label: granted to
+    domain: Permission
+    range: UserPrincipal
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S52, S53]
+
+  - id: permissionOn
+    label: "on"
+    domain: Permission
+    range: DataAsset
+    cardinality: "1..*"
+    level: 3
+    status: confirmed
+    source: [S52, S53]
+
+  - id: inEnvironment
+    label: in environment
+    domain: Permission
+    range: Environment
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S52]
+
+  - id: grantsPrivilege
+    label: grants
+    domain: Permission
+    range: Privilege
+    cardinality: "1..*"
+    level: 3
+    status: confirmed
+    source: [S52, S53]
+
+  - id: forPurpose
+    label: for purpose
+    domain: ElevatedPermission
+    range: Purpose
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S53]
+
+  - id: restricts
+    label: restricts
+    domain: AccessRestriction
+    range: PlatformResource
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S55]
+
+  - id: restrictedIn
+    label: restricted in
+    domain: AccessRestriction
+    range: Environment
+    cardinality: "1..*"
+    level: 3
+    status: confirmed
+    source: [S55]
+
+  - id: setBy
+    label: set by
+    domain: AccessRestriction
+    range: ProductOwner
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S55, S56]
+
+  - id: viewPermissionOn
+    label: to view
+    domain: Permission
+    range: Dashboard
+    cardinality: "*"
+    level: 3
+    status: confirmed
+    source: [S55, S57]
+
+properties:
+  - id: externallyShared
+    label: externally shared
+    synonyms: [externally exposed]
+    domain: PlatformResource
+    datatype: boolean
+    cardinality: "0..1"
+    definition: "Whether a platform resource is exposed/shared to external applications."
+    level: 3
+    status: confirmed
+    source: [S35]
+  - id: exposedInCatalog
+    label: exposed in catalog
+    domain: PlatformResource
+    datatype: boolean
+    cardinality: "0..1"
+    definition: "Whether a platform resource is exposed in the catalogs of its environments: yes by default, can be turned off."
+    level: 2
+    status: confirmed
+    source: [S38, S49]
+
+  - id: validUntil
+    label: valid until
+    domain: ElevatedPermission
+    datatype: dateTime
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S53]
+
+rules:
+  - id: R1
+    level: 1
+    status: confirmed
+    source: [S3]
+    statement: "Each platform service is owned by exactly one team."
+    cardinality: {focus: PlatformService, path: ownedBy, min: 1, max: 1}
+
+  - id: R2
+    level: 1
+    status: confirmed
+    source: [S3]
+    statement: "The owner of a platform service is a platform team."
+    sparql:
+      focus: PlatformService
+      select: |
+        SELECT $this WHERE { $this adp:ownedBy ?team . FILTER NOT EXISTS { ?team a adp:PlatformTeam } }
+
+  - id: R3
+    level: 1
+    status: confirmed
+    source: [S10, S54]
+    statement: "Each (top-level or nested) platform resource is created with one or more platform services."
+    cardinality: {focus: PlatformResource, path: createdWith, min: 1}
+
+  - id: R4
+    level: 1
+    status: confirmed
+    source: [S5]
+    statement: "Each platform resource is created by exactly one team."
+    cardinality: {focus: PlatformResource, path: createdBy, min: 1, max: 1}
+
+  - id: R5
+    level: 1
+    status: confirmed
+    source: [S4, S5]
+    statement: "A platform resource is created by a product team, never by a platform team."
+    sparql:
+      focus: PlatformResource
+      select: |
+        SELECT $this WHERE { $this adp:createdBy ?team . ?team a adp:PlatformTeam . }
+
+  - id: R6
+    level: 1
+    status: confirmed
+    source: [S5]
+    statement: "A platform resource is owned by the product team which created it."
+    equal: {focus: PlatformResource, left: ownedBy, right: createdBy}
+
+  - id: R7
+    level: 1
+    status: confirmed
+    source: [S7, S11]
+    statement: "A platform resource is created in exactly one environment."
+    cardinality: {focus: PlatformResource, path: createdIn, min: 1, max: 1}
+
+  - id: R8
+    level: 1
+    status: confirmed
+    source: [S7, S11, S13]
+    statement: "A platform resource is created in the EXP or in the DEV environment."
+    values: {focus: PlatformResource, path: createdIn, in: [EXP, DEV]}
+
+  - id: R9
+    level: 1
+    status: confirmed
+    source: [S8, S11, S12]
+    statement: "A platform resource can only be promoted to DEV, ACC or PRD."
+    values: {focus: PlatformResource, path: promotedTo, in: [DEV, ACC, PRD]}
+
+  - id: R10
+    level: 1
+    status: confirmed
+    source: [S8, S11]
+    statement: "A platform resource promoted to DEV was created in EXP."
+    implies:
+      focus: PlatformResource
+      if: {path: promotedTo, has_value: DEV}
+      then: {path: createdIn, has_value: EXP}
+
+  - id: R11
+    level: 1
+    status: confirmed
+    source: [S8, S11, S13]
+    statement: "A platform resource promoted to ACC was created in or promoted to DEV first."
+    implies:
+      focus: PlatformResource
+      if: {path: promotedTo, has_value: ACC}
+      then: {path: "createdIn|promotedTo", has_value: DEV}
+
+  - id: R12
+    level: 1
+    status: confirmed
+    source: [S8, S11, S14]
+    statement: "A platform resource promoted to PRD was promoted to ACC first."
+    implies:
+      focus: PlatformResource
+      if: {path: promotedTo, has_value: PRD}
+      then: {path: promotedTo, has_value: ACC}
+
+  - id: R13
+    level: 2
+    status: confirmed
+    source: [S18]
+    statement: "A sub platform resource belongs to exactly one parent platform resource; it cannot live on its own."
+    cardinality: {focus: SubPlatformResource, path: belongsTo, min: 1, max: 1}
+
+  - id: R14
+    level: 2
+    status: confirmed
+    source: [S18, S27]
+    statement: "A sub platform resource is created by the same product team as its parent platform resource."
+    equal: {focus: SubPlatformResource, left: createdBy, right: belongsTo/createdBy}
+
+  - id: R15
+    level: 2
+    status: confirmed
+    source: [S18, S19, S27]
+    statement: "A sub platform resource is created in the environment of its parent platform resource."
+    derive:
+      focus: SubPlatformResource
+      add: {predicate: createdIn, object: belongsTo+/createdIn}
+
+  - id: R16
+    level: 2
+    status: confirmed
+    source: [S19, S27]
+    statement: "A sub platform resource is promoted with its parent platform resource."
+    derive:
+      focus: SubPlatformResource
+      add: {predicate: promotedTo, object: belongsTo+/promotedTo}
+
+  - id: R17
+    level: 2
+    status: confirmed
+    source: [S19]
+    statement: "A sub platform resource is never promoted on its own: it is in exactly the environments its parent was promoted to."
+    equal: {focus: SubPlatformResource, left: promotedTo, right: belongsTo/promotedTo}
+
+  - id: R18
+    level: 2
+    status: confirmed
+    source: [S20]
+    statement: "A data product consists of a contract."
+    cardinality: {focus: DataProduct, path: ^belongsTo, class: DataContract, min: 1}
+
+  - id: R19
+    level: 2
+    status: confirmed
+    source: [S20]
+    statement: "A data product consists of a data pipeline."
+    cardinality: {focus: DataProduct, path: ^belongsTo, class: DataPipeline, min: 1}
+
+  - id: R20
+    level: 2
+    status: confirmed
+    source: [S20]
+    statement: "A data product consists of a compute cluster definition."
+    cardinality: {focus: DataProduct, path: ^belongsTo, class: ComputeClusterDefinition, min: 1}
+
+  - id: R21
+    level: 2
+    status: confirmed
+    source: [S20]
+    statement: "A data product consists of a workspace infra definition."
+    cardinality: {focus: DataProduct, path: ^belongsTo, class: WorkspaceInfraDefinition, min: 1}
+
+  - id: R22
+    level: 2
+    status: confirmed
+    source: [S20]
+    statement: "A data product consists of at least one data asset."
+    cardinality: {focus: DataProduct, path: ^belongsTo, class: DataAsset, min: 1}
+
+  - id: R23
+    level: 2
+    status: confirmed
+    source: [S20]
+    statement: "A data product consists of at least one dashboard showing its health."
+    cardinality: {focus: DataProduct, path: ^belongsTo, class: Dashboard, min: 1}
+
+  - id: R24
+    level: 2
+    status: confirmed
+    source: [S20, S22]
+    statement: "A data product consists only of the sub platform resources listed for it."
+    sparql:
+      focus: DataProduct
+      select: |
+        SELECT $this WHERE {
+          ?sub adp:belongsTo $this .
+          FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:DataContract, adp:DataPipeline, adp:ComputeClusterDefinition, adp:WorkspaceInfraDefinition, adp:DataAsset, adp:Dashboard)) }
+        }
+
+  - id: R25
+    level: 2
+    status: confirmed
+    source: [S20]
+    statement: "A AI/analytical application consists only of the sub platform resources listed for it."
+    sparql:
+      focus: AIAnalyticalApplication
+      select: |
+        SELECT $this WHERE {
+          ?sub adp:belongsTo $this .
+          FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:Dashboard, adp:DataProduct, adp:MLModel, adp:AIModel)) }
+        }
+
+  - id: R26
+    level: 2
+    status: confirmed
+    source: [S20]
+    statement: "A dashboard consists only of the sub platform resources listed for it."
+    sparql:
+      focus: Dashboard
+      select: |
+        SELECT $this WHERE {
+          ?sub adp:belongsTo $this .
+          FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:DataProduct, adp:MLModel, adp:AIModel)) }
+        }
+
+  - id: R27
+    level: 2
+    status: confirmed
+    source: [S23]
+    statement: "An ML model consists only of data products."
+    sparql:
+      focus: MLModel
+      select: |
+        SELECT $this WHERE {
+          ?sub adp:belongsTo $this .
+          FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:DataProduct)) }
+        }
+
+  - id: R28
+    level: 2
+    status: confirmed
+    source: [S23]
+    statement: "An AI model consists only of data products."
+    sparql:
+      focus: AIModel
+      select: |
+        SELECT $this WHERE {
+          ?sub adp:belongsTo $this .
+          FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:DataProduct)) }
+        }
+
+  - id: R29
+    level: 2
+    status: confirmed
+    source: [S24]
+    statement: "A data product that depends on another data product is a child data product."
+    derive:
+      focus: DataProduct
+      if: {path: dependsOn, min: 1}
+      add: {predicate: a, object: ChildDataProduct}
+
+  - id: R30
+    level: 2
+    status: confirmed
+    source: [S24]
+    statement: "A data product another data product depends on is a parent data product."
+    derive:
+      focus: DataProduct
+      if: {path: ^dependsOn, min: 1}
+      add: {predicate: a, object: ParentDataProduct}
+
+  - id: R31
+    level: 2
+    status: confirmed
+    source: [S24]
+    statement: "A data asset is always built by a data pipeline."
+    cardinality: {focus: DataAsset, path: ^populates, min: 1}
+
+  - id: R32
+    level: 2
+    status: confirmed
+    source: [S24]
+    statement: "A data pipeline populates only the data assets of its own data product."
+    sparql:
+      focus: DataPipeline
+      select: |
+        SELECT $this WHERE {
+          $this adp:populates ?asset .
+          FILTER NOT EXISTS { $this adp:belongsTo ?product . ?asset adp:belongsTo ?product . }
+        }
+
+  - id: R33
+    level: 2
+    status: confirmed
+    source: [S24, S25]
+    statement: "A data pipeline reads only data assets of its own data product or of the parent data products of its data product."
+    sparql:
+      focus: DataPipeline
+      select: |
+        SELECT $this WHERE {
+          $this adp:reads ?asset .
+          FILTER NOT EXISTS {
+            $this adp:belongsTo ?product .
+            { ?asset adp:belongsTo ?product } UNION { ?product adp:dependsOn ?parent . ?asset adp:belongsTo ?parent }
+          }
+        }
+
+  - id: R34
+    level: 2
+    status: confirmed
+    source: [S25]
+    statement: "The ingestion produces a data asset in the RAW layer."
+    implies:
+      focus: DataAsset
+      if: {path: ^populates, class: IngestionDataPipeline}
+      then: {path: inLayer, has_value: RAW}
+
+  - id: R35
+    level: 2
+    status: confirmed
+    source: [S25]
+    statement: "A processing data pipeline populates only data assets in the CURATED or SERVING layer."
+    values: {focus: ProcessingDataPipeline, path: populates/inLayer, in: [CURATED, SERVING]}
+
+  - id: R36
+    level: 2
+    status: confirmed
+    source: [S25]
+    statement: "Each data asset is in exactly one medallion layer."
+    cardinality: {focus: DataAsset, path: inLayer, min: 1, max: 1}
+
+  - id: R37
+    level: 2
+    status: confirmed
+    source: [S25]
+    statement: "An ingestion data pipeline ingests data from at least one source service or data source."
+    cardinality: {focus: IngestionDataPipeline, path: ingestsFrom, min: 1}
+
+  - id: R38
+    level: 2
+    status: confirmed
+    source: [S25]
+    statement: "A data product is created via ingestion or from parent data products."
+    sparql:
+      focus: DataProduct
+      select: |
+        SELECT $this WHERE {
+          FILTER NOT EXISTS { ?pipeline adp:belongsTo $this . ?pipeline a adp:IngestionDataPipeline . }
+          FILTER NOT EXISTS { $this adp:dependsOn ?parent . }
+        }
+
+  - id: R39
+    level: 2
+    status: confirmed
+    source: [S26]
+    statement: "Lineage is a directed acyclic graph: a data product never depends on itself, directly or indirectly."
+    sparql:
+      focus: DataProduct
+      select: |
+        SELECT $this WHERE { $this adp:dependsOn+ $this . }
+
+  - id: R40
+    level: 2
+    status: confirmed
+    source: [S27]
+    statement: "Nesting has no cycles: a platform resource never belongs to itself, directly or indirectly."
+    sparql:
+      focus: SubPlatformResource
+      select: |
+        SELECT $this WHERE { $this adp:belongsTo+ $this . }
+
+  - id: R41
+    level: 2
+    status: confirmed
+    source: [S28, S29, S32]
+    statement: "Only dashboards, AI/analytical applications and data products consume other platform resources."
+    sparql:
+      focus: PlatformResource
+      select: |
+        SELECT $this WHERE {
+          $this adp:consumes ?used .
+          FILTER NOT EXISTS { $this a ?kind . FILTER (?kind IN (adp:Dashboard, adp:AIAnalyticalApplication, adp:DataProduct)) }
+        }
+
+  - id: R42
+    level: 2
+    status: confirmed
+    source: [S28, S33]
+    statement: "Only data products, ML models and AI models are consumed."
+    sparql:
+      focus: PlatformResource
+      select: |
+        SELECT $this WHERE {
+          $this adp:consumes ?used .
+          FILTER NOT EXISTS { ?used a ?kind . FILTER (?kind IN (adp:DataProduct, adp:MLModel, adp:AIModel)) }
+        }
+
+  - id: R43
+    level: 2
+    status: confirmed
+    source: [S28, S32]
+    statement: "A consumed platform resource is not a sub platform resource: it is deployed separately and can live independently."
+    sparql:
+      focus: PlatformResource
+      select: |
+        SELECT $this WHERE { $this adp:consumes ?used . ?used a adp:SubPlatformResource . }
+
+  - id: R44
+    level: 2
+    status: confirmed
+    source: [S29]
+    statement: "The data products a data product consumes are its parent (upstream) data products."
+    equal: {focus: DataProduct, left: consumes, right: dependsOn}
+
+  - id: R45
+    level: 2
+    status: confirmed
+    source: [S30]
+    statement: "Each data pipeline is either an ingestion data pipeline or a processing data pipeline."
+    sparql:
+      focus: DataPipeline
+      select: |
+        SELECT $this WHERE {
+          FILTER NOT EXISTS { $this a ?kind . FILTER (?kind IN (adp:IngestionDataPipeline, adp:ProcessingDataPipeline)) }
+        }
+
+  - id: R46
+    level: 2
+    status: confirmed
+    source: [S30]
+    statement: "An ingestion data pipeline does not transform data: it reads no data assets."
+    cardinality: {focus: IngestionDataPipeline, path: reads, max: 0}
+
+  - id: R47
+    level: 2
+    status: confirmed
+    source: [S30]
+    statement: "A processing data pipeline is not allowed to ingest."
+    cardinality: {focus: ProcessingDataPipeline, path: ingestsFrom, max: 0}
+
+  - id: R48
+    level: 2
+    status: confirmed
+    source: [S31]
+    statement: "A contract, data pipeline, compute cluster definition, workspace infra definition or data asset has no sub platform resources."
+    sparql:
+      focus: SubPlatformResource
+      select: |
+        SELECT $this WHERE {
+          ?sub adp:belongsTo $this .
+          $this a ?kind . FILTER (?kind IN (adp:DataContract, adp:DataPipeline, adp:ComputeClusterDefinition, adp:WorkspaceInfraDefinition, adp:DataAsset))
+        }
+
+  - id: R49
+    level: 2
+    status: confirmed
+    source: [S33]
+    statement: "User principals consume only dashboards."
+    sparql:
+      focus: UserPrincipal
+      select: |
+        SELECT $this WHERE {
+          $this adp:userConsumes ?used .
+          ?used a ?kind . FILTER (?kind IN (adp:DataProduct, adp:MLModel, adp:AIModel, adp:AIAnalyticalApplication, adp:DataContract, adp:DataPipeline, adp:ComputeClusterDefinition, adp:WorkspaceInfraDefinition, adp:DataAsset))
+        }
+
+  - id: R50
+    level: 2
+    status: confirmed
+    source: [S33]
+    statement: "Service principals consume only data products, ML models and AI models."
+    sparql:
+      focus: ServicePrincipal
+      select: |
+        SELECT $this WHERE {
+          $this adp:serviceConsumes ?used .
+          FILTER NOT EXISTS { ?used a ?kind . FILTER (?kind IN (adp:DataProduct, adp:MLModel, adp:AIModel)) }
+        }
+
+  - id: R52
+    level: 3
+    status: confirmed
+    source: [S35]
+    statement: "An external application consumes only externally exposed/shared platform resources."
+    sparql:
+      focus: ServicePrincipal
+      select: |
+        SELECT $this WHERE {
+          $this adp:identityOf ?app . ?app a adp:ExternalApplication .
+          $this adp:serviceConsumes ?resource .
+          FILTER NOT EXISTS { ?resource adp:externallyShared true }
+        }
+
+  - id: R53
+    level: 2
+    status: confirmed
+    source: [S36, S37, S43]
+    statement: "Each top-level platform resource (not a sub platform resource) has a product owner or data product owner."
+    sparql:
+      focus: PlatformResource
+      select: |
+        SELECT $this WHERE {
+          FILTER NOT EXISTS { $this a adp:SubPlatformResource }
+          FILTER NOT EXISTS { $this adp:hasProductOwner ?owner }
+        }
+
+  - id: R54
+    level: 2
+    status: confirmed
+    source: [S43]
+    statement: "Each top-level platform resource has at most one product owner; with R53: exactly one."
+    sparql:
+      focus: PlatformResource
+      select: |
+        SELECT $this WHERE {
+          FILTER NOT EXISTS { $this a adp:SubPlatformResource }
+          $this adp:hasProductOwner ?first, ?second .
+          FILTER (?first != ?second)
+        }
+
+  - id: R55
+    level: 2
+    status: confirmed
+    source: [S36]
+    statement: "The product owner of a data product is a data product owner."
+    values: {focus: DataProduct, path: hasProductOwner, class: DataProductOwner}
+
+  - id: R56
+    level: 2
+    status: confirmed
+    source: [S36, S37]
+    statement: "The product owner of a platform resource is a member of the owner product team."
+    sparql:
+      focus: PlatformResource
+      select: |
+        SELECT $this WHERE {
+          $this adp:hasProductOwner ?owner ; adp:resourceOwnedBy ?team .
+          FILTER NOT EXISTS { ?owner adp:memberOf ?team }
+        }
+
+  - id: R57
+    level: 2
+    status: confirmed
+    source: [S40]
+    statement: "A subscription request is created by exactly one product owner."
+    cardinality: {focus: SubscriptionRequest, path: requestedBy, min: 1, max: 1}
+
+  - id: R58
+    level: 2
+    status: confirmed
+    source: [S40]
+    statement: "A subscription request is for exactly one existing platform resource."
+    cardinality: {focus: SubscriptionRequest, path: requestFor, min: 1, max: 1}
+
+  - id: R59
+    level: 2
+    status: confirmed
+    source: [S40, S42]
+    statement: "A subscription request names exactly one consumer: the new platform resource or the other application."
+    cardinality: {focus: SubscriptionRequest, path: requestConsumer, min: 1, max: 1}
+
+  - id: R60
+    level: 2
+    status: confirmed
+    source: [S40, S45]
+    statement: "A subscription request for a new data product, application or other platform resource is created by its owner."
+    sparql:
+      focus: SubscriptionRequest
+      select: |
+        SELECT $this WHERE {
+          $this adp:requestedBy ?requester ; adp:requestConsumer ?consumer .
+          ?consumer a adp:PlatformResource .
+          FILTER NOT EXISTS { ?consumer adp:hasProductOwner ?requester }
+        }
+
+  - id: R61
+    level: 2
+    status: confirmed
+    source: [S41]
+    statement: "The product owner of the subscribed platform resource receives the subscription request."
+    equal: {focus: SubscriptionRequest, left: receivedBy, right: requestFor/hasProductOwner}
+
+  - id: R62
+    level: 2
+    status: confirmed
+    source: [S41]
+    statement: "A subscription request is pending, approved or rejected."
+    values: {focus: SubscriptionRequest, path: hasStatus, in: [Pending, Approved, Rejected]}
+
+  - id: R63
+    level: 2
+    status: confirmed
+    source: [S42]
+    statement: "After approval the subscribed platform resource is accessible for the consumer application and its owner team."
+    sparql:
+      focus: SubscriptionRequest
+      construct: |
+        CONSTRUCT { ?consumer adp:hasAccessTo ?resource . ?team adp:subscribesTo ?resource . }
+        WHERE {
+          $this adp:hasStatus adp:Approved ; adp:requestFor ?resource ; adp:requestConsumer ?consumer .
+          OPTIONAL { ?consumer adp:resourceOwnedBy ?team }
+        }
+
+  - id: R64
+    level: 2
+    status: confirmed
+    source: [S39, S42, S44, S46, S47]
+    statement: "A platform resource consumes another platform resource only after an approved subscription request, also when both are created by the same product team."
+    sparql:
+      focus: PlatformResource
+      select: |
+        SELECT $this WHERE {
+          $this adp:consumes ?resource .
+          FILTER NOT EXISTS { $this adp:hasAccessTo ?resource }
+        }
+
+  - id: R65
+    level: 3
+    status: confirmed
+    source: [S39, S44, S46, S47]
+    statement: "An application (internal or external) consumes a platform resource only after an approved subscription request, also when it is created by the same product team."
+    sparql:
+      focus: ServicePrincipal
+      select: |
+        SELECT $this WHERE {
+          $this adp:serviceConsumes ?resource .
+          FILTER NOT EXISTS { $this adp:identityOf ?app . ?app adp:hasAccessTo ?resource . }
+        }
+
+  - id: R66
+    level: 3
+    status: confirmed
+    source: [S48]
+    statement: "Each external application has exactly one product owner."
+    cardinality: {focus: ExternalApplication, path: externalAppOwner, min: 1, max: 1}
+
+  - id: R67
+    level: 3
+    status: confirmed
+    source: [S48]
+    statement: "A subscription request for an external application is created by its product owner."
+    sparql:
+      focus: SubscriptionRequest
+      select: |
+        SELECT $this WHERE {
+          $this adp:requestedBy ?requester ; adp:requestConsumer ?app .
+          ?app a adp:ExternalApplication .
+          FILTER NOT EXISTS { ?app adp:externalAppOwner ?requester }
+        }
+
+  - id: R68
+    level: 2
+    status: confirmed
+    source: [S38, S49]
+    statement: "By default a platform resource is exposed (automatically) in the catalog of each environment it is in, unless exposure is turned off."
+    sparql:
+      focus: PlatformResource
+      construct: |
+        CONSTRUCT { $this adp:exposedIn ?catalog . }
+        WHERE {
+          $this adp:createdIn|adp:promotedTo ?environment .
+          ?catalog adp:catalogOf ?environment .
+          FILTER NOT EXISTS { $this adp:exposedInCatalog false }
+        }
+
+  - id: R69
+    level: 2
+    status: confirmed
+    source: [S50]
+    statement: "Each employee has exactly one user principal."
+    cardinality: {focus: Employee, path: hasUserPrincipal, min: 1, max: 1}
+
+  - id: R70
+    level: 2
+    status: confirmed
+    source: [S51]
+    statement: "After approval the team members included in a subscription request get access to the subscribed platform resource as well."
+    sparql:
+      focus: SubscriptionRequest
+      construct: |
+        CONSTRUCT { ?user adp:hasAccessTo ?resource . }
+        WHERE {
+          $this adp:hasStatus adp:Approved ; adp:requestFor ?resource ; adp:includesMember ?member .
+          ?member adp:hasUserPrincipal ?user .
+        }
+
+  - id: R71
+    level: 2
+    status: confirmed
+    source: [S51]
+    statement: "The members included in a subscription request are members of the consumer's owner team."
+    sparql:
+      focus: SubscriptionRequest
+      select: |
+        SELECT $this WHERE {
+          $this adp:includesMember ?member ; adp:requestConsumer ?consumer .
+          ?consumer adp:resourceOwnedBy ?team .
+          FILTER NOT EXISTS { ?member adp:memberOf ?team }
+        }
+
+  - id: R72
+    level: 2
+    status: confirmed
+    source: [S51, S55]
+    statement: "A user principal consumes a platform resource of another team only after being included in an approved subscription request."
+    sparql:
+      focus: UserPrincipal
+      select: |
+        SELECT $this WHERE {
+          $this adp:userConsumes ?resource .
+          ?resource adp:resourceOwnedBy ?team .
+          FILTER NOT EXISTS { ?member adp:hasUserPrincipal $this ; adp:memberOf ?team . }
+          FILTER NOT EXISTS { $this adp:hasAccessTo ?resource }
+        }
+
+  - id: R73
+    level: 3
+    status: confirmed
+    source: [S53]
+    statement: "An elevated permission is time-limited: it has exactly one end time."
+    cardinality: {focus: ElevatedPermission, path: validUntil, min: 1, max: 1}
+
+  - id: R74
+    level: 3
+    status: confirmed
+    source: [S53]
+    statement: "An elevated permission is for incident resolution or debugging."
+    values: {focus: ElevatedPermission, path: forPurpose, in: [IncidentResolution, Debugging]}
+
+  - id: R75
+    level: 3
+    status: confirmed
+    source: [S53]
+    statement: "An elevated permission covers only tables/views in the developer's own data product or in the parent data products."
+    sparql:
+      focus: ElevatedPermission
+      select: |
+        SELECT $this WHERE {
+          $this adp:grantedTo ?user ; adp:permissionOn ?asset .
+          FILTER NOT EXISTS {
+            ?developer adp:hasUserPrincipal ?user ; adp:developerOf ?resource .
+            { ?asset adp:belongsTo ?resource } UNION { ?resource adp:consumes ?parent . ?asset adp:belongsTo ?parent }
+          }
+        }
+
+  - id: R77
+    level: 3
+    status: confirmed
+    source: [S55, S56]
+    statement: "An access restriction is set by the product owner of the restricted platform resource."
+    equal: {focus: AccessRestriction, left: setBy, right: restricts/hasProductOwner}
+
+  - id: R78
+    level: 3
+    status: confirmed
+    source: [S53, S55]
+    statement: "In an environment where the product owner restricted a platform resource, users get only elevated permissions on its tables/views."
+    sparql:
+      focus: Permission
+      select: |
+        SELECT $this WHERE {
+          $this adp:inEnvironment ?environment ; adp:permissionOn ?asset .
+          ?asset adp:belongsTo ?resource .
+          ?restriction adp:restricts ?resource ; adp:restrictedIn ?environment .
+          FILTER NOT EXISTS { $this a adp:ElevatedPermission }
+        }
+
+  - id: R79
+    level: 3
+    status: confirmed
+    source: [S55, S57]
+    statement: "In an environment where the product owner restricted a dashboard (or the platform resource it belongs to), users get only elevated permissions to view it."
+    sparql:
+      focus: Permission
+      select: |
+        SELECT $this WHERE {
+          $this adp:inEnvironment ?environment ; adp:viewPermissionOn ?dashboard .
+          { ?restriction adp:restricts ?dashboard } UNION { ?dashboard adp:belongsTo ?resource . ?restriction adp:restricts ?resource }
+          ?restriction adp:restrictedIn ?environment .
+          FILTER NOT EXISTS { $this a adp:ElevatedPermission }
+        }

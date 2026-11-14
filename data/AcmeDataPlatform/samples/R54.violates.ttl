@@ -1,0 +1,4 @@
+# R54: a dashboard with two product owners.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:hrDashboard a adp:Dashboard ; adp:hasProductOwner adp:ann, adp:bob .

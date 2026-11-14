@@ -1,0 +1,8 @@
+# R28: an AI model with a nested ML model.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:svcStorage a adp:PlatformService ; adp:serviceOwnedBy adp:storageTeam .
+adp:storageTeam a adp:PlatformTeam .
+adp:salesTeam a adp:ProductTeam .
+adp:chatModel a adp:AIModel ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV .
+adp:chatModelMl a adp:MLModel, adp:SubPlatformResource ; adp:belongsTo adp:chatModel ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .

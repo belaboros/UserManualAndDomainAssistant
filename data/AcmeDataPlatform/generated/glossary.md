@@ -4,4 +4,116 @@
 
 Every concept, individual, relation and property, sorted by term.
 
-_No terms yet._
+| Term | Id | Kind | Synonyms | Definition | Level | Status | Sources |
+|---|---|---|---|---|---|---|---|
+| ACC | `ACC` | individual |  |  | 1 | confirmed | S1, S8, S13, S14 |
+| ACC catalog | `CatalogACC` | individual |  |  | 2 | confirmed | S49 |
+| access restriction | `AccessRestriction` | concept |  | A limit a product owner intentionally sets on the default read access of the owner team's members to their own platform resource, in some environments (e.g. not in PRD, which contains sensitive/PII information). | 3 | confirmed | S55, S56 |
+| AcmeDataPlatform | `AcmeDataPlatform` | individual |  |  | 1 | confirmed | S1, S2 |
+| AI model | `AIModel` | concept |  |  | 1 | confirmed | S9, S18 |
+| AI/analytical application | `AIAnalyticalApplication` | concept |  |  | 1 | confirmed | S9 |
+| approved | `Approved` | individual |  |  | 2 | confirmed | S41 |
+| belongs to | `belongsTo` | relation |  |  | 2 | confirmed | S18 |
+| catalog | `Catalog` | concept |  | Where the platform resources of one environment are exposed (findable) for anyone inside ACME company; there is a catalog per environment. | 2 | confirmed | S38, S49 |
+| catalog of | `catalogOf` | relation |  |  | 2 | confirmed | S49 |
+| child data product | `ChildDataProduct` | concept | downstream data product | A data product that depends on one or more parent data products. | 2 | confirmed | S24 |
+| compute cluster definition | `ComputeClusterDefinition` | concept |  |  | 2 | confirmed | S20 |
+| consists of | `consistsOf` | relation |  |  | 1 | confirmed | S2 |
+| consists of | `hasSubResource` | relation | has sub platform resource |  | 2 | confirmed | S18 |
+| consumer | `requestConsumer` | relation |  | The new platform resource or the other application that will consume the subscribed platform resource. | 2 | confirmed | S40, S42 |
+| consumes | `consumes` | relation | references, uses | A dashboard, AI/analytical application or data product consumes an independent (upstream/parent) data product, ML model or AI model that is deployed separately; it is not a sub platform resource. | 2 | confirmed | S28, S29, S32 |
+| consumes | `serviceConsumes` | relation |  |  | 2 | confirmed | S33 |
+| consumes | `userConsumes` | relation |  |  | 2 | confirmed | S33 |
+| contract | `DataContract` | concept |  |  | 2 | confirmed | S20 |
+| created by | `createdBy` | relation |  |  | 1 | confirmed | S4, S5 |
+| created by | `requestedBy` | relation |  |  | 2 | confirmed | S40 |
+| created in | `createdIn` | relation |  |  | 1 | confirmed | S7, S11 |
+| created with | `createdWith` | relation |  |  | 1 | confirmed | S4, S10 |
+| CURATED | `CURATED` | individual |  |  | 2 | confirmed | S25 |
+| dashboard | `Dashboard` | concept |  |  | 1 | confirmed | S9, S18 |
+| data asset | `DataAsset` | concept |  | A part of a data product holding its data; typically tables and views in case of structured data products. | 2 | confirmed | S20 |
+| data pipeline | `DataPipeline` | concept |  |  | 2 | confirmed | S20 |
+| data platform | `DataPlatform` | concept |  | The kind of thing AcmeDataPlatform is. | 1 | confirmed | S1 |
+| data product | `DataProduct` | concept |  |  | 1 | confirmed | S9, S18 |
+| data product owner | `DataProductOwner` | concept |  | The product owner of a data product. | 2 | confirmed | S36 |
+| data source | `DataSource` | concept | source service | An internal or external service or data source that an ingestion data pipeline ingests data from. | 2 | confirmed | S25 |
+| debugging | `Debugging` | individual |  |  | 3 | confirmed | S53 |
+| depends on | `dependsOn` | relation | lineage | The lineage between data products: a child (downstream) data product depends on its parent (upstream) data products. | 2 | confirmed | S24, S29 |
+| deployed to | `deployedTo` | relation |  |  | 1 | confirmed | S6, S10 |
+| DEV | `DEV` | individual |  |  | 1 | confirmed | S1, S7, S8, S11 |
+| DEV catalog | `CatalogDEV` | individual |  |  | 2 | confirmed | S49 |
+| developer | `Developer` | concept |  | An employee who develops a consumer application or other platform resource. | 3 | confirmed | S53 |
+| developer of | `developerOf` | relation |  |  | 3 | confirmed | S53 |
+| elevated permission | `ElevatedPermission` | concept |  | A time-limited permission a developer of the consumer application requests to run SELECT commands on tables/views in their data product or in the parent data products, for incident resolution or debugging. | 3 | confirmed | S53 |
+| employee | `Employee` | concept |  | A person working for ACME company, e.g. a product owner or data product owner. | 2 | confirmed | S50 |
+| environment | `Environment` | concept |  |  | 1 | confirmed | S1, S6, S7, S8 |
+| EXP | `EXP` | individual |  | The environment for experimentation. | 1 | confirmed | S1, S7, S8, S11, S12 |
+| EXP catalog | `CatalogEXP` | individual |  |  | 2 | confirmed | S49 |
+| exposed in | `exposedIn` | relation | findable in |  | 2 | confirmed | S38, S49 |
+| exposed in catalog | `exposedInCatalog` | property |  | Whether a platform resource is exposed in the catalogs of its environments: yes by default, can be turned off. | 2 | confirmed | S38, S49 |
+| external application | `ExternalApplication` | concept |  | An application that runs outside of the data platform and consumes the externally exposed/shared platform resources. | 3 | confirmed | S35 |
+| externally shared | `externallyShared` | property | externally exposed | Whether a platform resource is exposed/shared to external applications. | 3 | confirmed | S35 |
+| for purpose | `forPurpose` | relation |  |  | 3 | confirmed | S53 |
+| granted to | `grantedTo` | relation |  |  | 3 | confirmed | S52, S53 |
+| grants | `grantsPrivilege` | relation |  |  | 3 | confirmed | S52, S53 |
+| has access to | `hasAccessTo` | relation |  | A consumer application (or platform resource) that may use/consume/access a platform resource after an approved subscription request. | 2 | confirmed | S39, S42 |
+| has product owner | `externalAppOwner` | relation |  |  | 3 | confirmed | S48 |
+| has product owner | `hasProductOwner` | relation |  |  | 2 | confirmed | S36, S37 |
+| has status | `hasStatus` | relation |  |  | 2 | confirmed | S41 |
+| has user principal | `hasUserPrincipal` | relation |  |  | 2 | confirmed | S50 |
+| in environment | `inEnvironment` | relation |  |  | 3 | confirmed | S52 |
+| in layer | `inLayer` | relation |  |  | 2 | confirmed | S25 |
+| incident resolution | `IncidentResolution` | individual |  |  | 3 | confirmed | S53 |
+| includes | `includesMember` | relation |  | The team members a product owner includes in a subscription request, so that they get access as well. | 2 | confirmed | S51 |
+| ingestion data pipeline | `IngestionDataPipeline` | concept |  | A data pipeline that ingests data from an (internal or external) source service or data source and stores it unchanged in the RAW layer. | 2 | confirmed | S25, S30 |
+| ingests from | `ingestsFrom` | relation |  |  | 2 | confirmed | S25 |
+| medallion layer | `MedallionLayer` | concept |  |  | 2 | confirmed | S25 |
+| member of | `memberOf` | relation |  |  | 2 | confirmed | S36, S37, S51 |
+| ML model | `MLModel` | concept |  |  | 1 | confirmed | S9, S18 |
+| next layer | `nextLayer` | relation |  |  | 2 | confirmed | S25 |
+| on | `permissionOn` | relation |  |  | 3 | confirmed | S52, S53 |
+| owned by | `ownedBy` | relation |  | The team that owns a platform service (a platform team) or a platform resource (the product team that created it). | 1 | confirmed | S3, S5 |
+| owned by | `resourceOwnedBy` | relation |  | The product team that owns a platform resource: the team which created it. | 1 | confirmed | S5 |
+| owned by | `serviceOwnedBy` | relation |  | The platform team that owns a platform service. | 1 | confirmed | S3 |
+| parent data product | `ParentDataProduct` | concept | upstream data product | A data product another data product depends on. | 2 | confirmed | S24 |
+| pending | `Pending` | individual |  |  | 2 | confirmed | S41 |
+| permission | `Permission` | concept |  | Access for a user principal to tables/views in one environment, e.g. SELECT; access for users can be differentiated per environment. | 3 | confirmed | S52 |
+| platform resource | `PlatformResource` | concept |  |  | 1 | confirmed | S1, S4, S5, S7, S8, S9, S11, S14, S15 |
+| platform service | `PlatformService` | concept |  |  | 1 | confirmed | S1, S2, S3, S4, S6 |
+| platform team | `PlatformTeam` | concept |  |  | 1 | confirmed | S1, S3, S10 |
+| populates | `populates` | relation |  |  | 2 | confirmed | S24 |
+| PRD | `PRD` | individual |  |  | 1 | confirmed | S1, S8, S14 |
+| PRD catalog | `CatalogPRD` | individual |  |  | 2 | confirmed | S49 |
+| principal | `Principal` | concept |  | Someone or something that consumes platform resources: a user principal or a service principal. | 2 | confirmed | S33 |
+| privilege | `Privilege` | concept |  |  | 3 | confirmed | S52, S53 |
+| processing data pipeline | `ProcessingDataPipeline` | concept |  | A data pipeline that performs transformations (cleansing, curation, filtering, enrichment, aggregation) across the RAW->CURATED->SERVING medallion layers. | 2 | confirmed | S25, S30 |
+| product owner | `ProductOwner` | concept |  | The member of the owner product team who owns a platform resource on its behalf. | 2 | confirmed | S37, S50 |
+| product team | `ProductTeam` | concept |  |  | 1 | confirmed | S1, S4, S5, S10 |
+| promoted to | `promotedTo` | relation |  |  | 1 | confirmed | S8 |
+| purpose | `Purpose` | concept |  |  | 3 | confirmed | S53 |
+| RAW | `RAW` | individual |  |  | 2 | confirmed | S25 |
+| reads | `reads` | relation |  |  | 2 | confirmed | S24 |
+| received by | `receivedBy` | relation |  |  | 2 | confirmed | S41 |
+| rejected | `Rejected` | individual |  |  | 2 | confirmed | S41 |
+| represents the identity of | `identityOf` | relation |  |  | 3 | confirmed | S34 |
+| restricted in | `restrictedIn` | relation |  |  | 3 | confirmed | S55 |
+| restricts | `restricts` | relation |  |  | 3 | confirmed | S55 |
+| SELECT | `SELECT` | individual |  |  | 3 | confirmed | S52, S53 |
+| service principal | `ServicePrincipal` | concept | application consumer | The identity of an application, data pipeline or other automation which is not performed by a human. | 2 | confirmed | S33, S34 |
+| SERVING | `SERVING` | individual |  |  | 2 | confirmed | S25 |
+| set by | `setBy` | relation |  |  | 3 | confirmed | S55, S56 |
+| sub platform resource | `SubPlatformResource` | concept | nested platform resource | A platform resource that belongs to a parent platform resource and cannot live on its own. | 2 | confirmed | S18 |
+| subscribes to | `requestFor` | relation |  |  | 2 | confirmed | S40 |
+| subscribes to | `subscribesTo` | relation |  |  | 1 | confirmed | S21 |
+| subscription request | `SubscriptionRequest` | concept |  | A request by a product owner to consume an existing platform resource, to build a new platform resource or to consume it by another application. | 2 | confirmed | S40, S41 |
+| subscription status | `SubscriptionStatus` | concept |  |  | 2 | confirmed | S41 |
+| table | `Table` | concept |  |  | 3 | confirmed | S20 |
+| team | `Team` | concept |  |  | 1 | confirmed | S10 |
+| to view | `viewPermissionOn` | relation |  |  | 3 | confirmed | S55, S57 |
+| user principal | `UserPrincipal` | concept | human user | The identity of a user or group of users who can look at dashboards and use AI/analytical applications. | 2 | confirmed | S33, S34 |
+| uses | `userUses` | relation |  |  | 3 | confirmed | S34 |
+| uses | `uses` | relation |  |  | 1 | confirmed | S4 |
+| valid until | `validUntil` | property |  |  | 3 | confirmed | S53 |
+| VIEW | `VIEW` | individual |  |  | 3 | confirmed | S55, S57 |
+| view | `View` | concept |  |  | 3 | confirmed | S20 |
+| workspace infra definition | `WorkspaceInfraDefinition` | concept |  |  | 2 | confirmed | S20 |

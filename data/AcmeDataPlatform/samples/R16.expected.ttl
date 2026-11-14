@@ -1,0 +1,3 @@
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesDash adp:promotedTo adp:ACC .

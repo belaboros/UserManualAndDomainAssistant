@@ -1,0 +1,8 @@
+# R5: a resource created by a platform team.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:svcStorage a adp:PlatformService ; adp:serviceOwnedBy adp:storageTeam .
+adp:storageTeam a adp:PlatformTeam .
+adp:salesTeam a adp:ProductTeam .
+adp:hrTeam a adp:ProductTeam .
+adp:salesOrders a adp:DataProduct ; adp:createdBy adp:storageTeam ; adp:ownedBy adp:storageTeam ; adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV .

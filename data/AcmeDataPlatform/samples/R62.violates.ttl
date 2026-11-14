@@ -1,0 +1,12 @@
+# R62: a subscription request with an unknown status.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesTeam a adp:ProductTeam .
+adp:hrTeam a adp:ProductTeam .
+adp:salesOwner a adp:DataProductOwner ; adp:memberOf adp:salesTeam .
+adp:hrOwner a adp:ProductOwner ; adp:memberOf adp:hrTeam .
+adp:salesOrders a adp:DataProduct ; adp:resourceOwnedBy adp:salesTeam ; adp:hasProductOwner adp:salesOwner .
+adp:hrDashboard a adp:Dashboard ; adp:resourceOwnedBy adp:hrTeam ; adp:hasProductOwner adp:hrOwner .
+adp:request1 a adp:SubscriptionRequest ; adp:requestedBy adp:hrOwner ; adp:requestFor adp:salesOrders ;
+    adp:requestConsumer adp:hrDashboard ; adp:receivedBy adp:salesOwner ; adp:hasStatus adp:Withdrawn .
+adp:Withdrawn a adp:SubscriptionStatus .

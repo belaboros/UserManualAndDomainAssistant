@@ -4,27 +4,865 @@
 
 For **everything that exists in the domain**. Levels are cumulative: this view holds the whole domain.
 
-Contents: 0 concepts, 0 individuals, 0 relations, 0 properties, 0 rules. Items marked _(draft)_ are proposed wording, not yet confirmed.
+Contents: 42 concepts, 19 individuals, 47 relations, 3 properties, 77 rules. Items marked _(draft)_ are proposed wording, not yet confirmed.
 
 ## Glossary
 
-_No terms yet._
+| Term | Id | Kind | Synonyms | Definition | Level | Status | Sources |
+|---|---|---|---|---|---|---|---|
+| ACC | `ACC` | individual |  |  | 1 | confirmed | S1, S8, S13, S14 |
+| ACC catalog | `CatalogACC` | individual |  |  | 2 | confirmed | S49 |
+| access restriction | `AccessRestriction` | concept |  | A limit a product owner intentionally sets on the default read access of the owner team's members to their own platform resource, in some environments (e.g. not in PRD, which contains sensitive/PII information). | 3 | confirmed | S55, S56 |
+| AcmeDataPlatform | `AcmeDataPlatform` | individual |  |  | 1 | confirmed | S1, S2 |
+| AI model | `AIModel` | concept |  |  | 1 | confirmed | S9, S18 |
+| AI/analytical application | `AIAnalyticalApplication` | concept |  |  | 1 | confirmed | S9 |
+| approved | `Approved` | individual |  |  | 2 | confirmed | S41 |
+| belongs to | `belongsTo` | relation |  |  | 2 | confirmed | S18 |
+| catalog | `Catalog` | concept |  | Where the platform resources of one environment are exposed (findable) for anyone inside ACME company; there is a catalog per environment. | 2 | confirmed | S38, S49 |
+| catalog of | `catalogOf` | relation |  |  | 2 | confirmed | S49 |
+| child data product | `ChildDataProduct` | concept | downstream data product | A data product that depends on one or more parent data products. | 2 | confirmed | S24 |
+| compute cluster definition | `ComputeClusterDefinition` | concept |  |  | 2 | confirmed | S20 |
+| consists of | `consistsOf` | relation |  |  | 1 | confirmed | S2 |
+| consists of | `hasSubResource` | relation | has sub platform resource |  | 2 | confirmed | S18 |
+| consumer | `requestConsumer` | relation |  | The new platform resource or the other application that will consume the subscribed platform resource. | 2 | confirmed | S40, S42 |
+| consumes | `consumes` | relation | references, uses | A dashboard, AI/analytical application or data product consumes an independent (upstream/parent) data product, ML model or AI model that is deployed separately; it is not a sub platform resource. | 2 | confirmed | S28, S29, S32 |
+| consumes | `serviceConsumes` | relation |  |  | 2 | confirmed | S33 |
+| consumes | `userConsumes` | relation |  |  | 2 | confirmed | S33 |
+| contract | `DataContract` | concept |  |  | 2 | confirmed | S20 |
+| created by | `createdBy` | relation |  |  | 1 | confirmed | S4, S5 |
+| created by | `requestedBy` | relation |  |  | 2 | confirmed | S40 |
+| created in | `createdIn` | relation |  |  | 1 | confirmed | S7, S11 |
+| created with | `createdWith` | relation |  |  | 1 | confirmed | S4, S10 |
+| CURATED | `CURATED` | individual |  |  | 2 | confirmed | S25 |
+| dashboard | `Dashboard` | concept |  |  | 1 | confirmed | S9, S18 |
+| data asset | `DataAsset` | concept |  | A part of a data product holding its data; typically tables and views in case of structured data products. | 2 | confirmed | S20 |
+| data pipeline | `DataPipeline` | concept |  |  | 2 | confirmed | S20 |
+| data platform | `DataPlatform` | concept |  | The kind of thing AcmeDataPlatform is. | 1 | confirmed | S1 |
+| data product | `DataProduct` | concept |  |  | 1 | confirmed | S9, S18 |
+| data product owner | `DataProductOwner` | concept |  | The product owner of a data product. | 2 | confirmed | S36 |
+| data source | `DataSource` | concept | source service | An internal or external service or data source that an ingestion data pipeline ingests data from. | 2 | confirmed | S25 |
+| debugging | `Debugging` | individual |  |  | 3 | confirmed | S53 |
+| depends on | `dependsOn` | relation | lineage | The lineage between data products: a child (downstream) data product depends on its parent (upstream) data products. | 2 | confirmed | S24, S29 |
+| deployed to | `deployedTo` | relation |  |  | 1 | confirmed | S6, S10 |
+| DEV | `DEV` | individual |  |  | 1 | confirmed | S1, S7, S8, S11 |
+| DEV catalog | `CatalogDEV` | individual |  |  | 2 | confirmed | S49 |
+| developer | `Developer` | concept |  | An employee who develops a consumer application or other platform resource. | 3 | confirmed | S53 |
+| developer of | `developerOf` | relation |  |  | 3 | confirmed | S53 |
+| elevated permission | `ElevatedPermission` | concept |  | A time-limited permission a developer of the consumer application requests to run SELECT commands on tables/views in their data product or in the parent data products, for incident resolution or debugging. | 3 | confirmed | S53 |
+| employee | `Employee` | concept |  | A person working for ACME company, e.g. a product owner or data product owner. | 2 | confirmed | S50 |
+| environment | `Environment` | concept |  |  | 1 | confirmed | S1, S6, S7, S8 |
+| EXP | `EXP` | individual |  | The environment for experimentation. | 1 | confirmed | S1, S7, S8, S11, S12 |
+| EXP catalog | `CatalogEXP` | individual |  |  | 2 | confirmed | S49 |
+| exposed in | `exposedIn` | relation | findable in |  | 2 | confirmed | S38, S49 |
+| exposed in catalog | `exposedInCatalog` | property |  | Whether a platform resource is exposed in the catalogs of its environments: yes by default, can be turned off. | 2 | confirmed | S38, S49 |
+| external application | `ExternalApplication` | concept |  | An application that runs outside of the data platform and consumes the externally exposed/shared platform resources. | 3 | confirmed | S35 |
+| externally shared | `externallyShared` | property | externally exposed | Whether a platform resource is exposed/shared to external applications. | 3 | confirmed | S35 |
+| for purpose | `forPurpose` | relation |  |  | 3 | confirmed | S53 |
+| granted to | `grantedTo` | relation |  |  | 3 | confirmed | S52, S53 |
+| grants | `grantsPrivilege` | relation |  |  | 3 | confirmed | S52, S53 |
+| has access to | `hasAccessTo` | relation |  | A consumer application (or platform resource) that may use/consume/access a platform resource after an approved subscription request. | 2 | confirmed | S39, S42 |
+| has product owner | `externalAppOwner` | relation |  |  | 3 | confirmed | S48 |
+| has product owner | `hasProductOwner` | relation |  |  | 2 | confirmed | S36, S37 |
+| has status | `hasStatus` | relation |  |  | 2 | confirmed | S41 |
+| has user principal | `hasUserPrincipal` | relation |  |  | 2 | confirmed | S50 |
+| in environment | `inEnvironment` | relation |  |  | 3 | confirmed | S52 |
+| in layer | `inLayer` | relation |  |  | 2 | confirmed | S25 |
+| incident resolution | `IncidentResolution` | individual |  |  | 3 | confirmed | S53 |
+| includes | `includesMember` | relation |  | The team members a product owner includes in a subscription request, so that they get access as well. | 2 | confirmed | S51 |
+| ingestion data pipeline | `IngestionDataPipeline` | concept |  | A data pipeline that ingests data from an (internal or external) source service or data source and stores it unchanged in the RAW layer. | 2 | confirmed | S25, S30 |
+| ingests from | `ingestsFrom` | relation |  |  | 2 | confirmed | S25 |
+| medallion layer | `MedallionLayer` | concept |  |  | 2 | confirmed | S25 |
+| member of | `memberOf` | relation |  |  | 2 | confirmed | S36, S37, S51 |
+| ML model | `MLModel` | concept |  |  | 1 | confirmed | S9, S18 |
+| next layer | `nextLayer` | relation |  |  | 2 | confirmed | S25 |
+| on | `permissionOn` | relation |  |  | 3 | confirmed | S52, S53 |
+| owned by | `ownedBy` | relation |  | The team that owns a platform service (a platform team) or a platform resource (the product team that created it). | 1 | confirmed | S3, S5 |
+| owned by | `resourceOwnedBy` | relation |  | The product team that owns a platform resource: the team which created it. | 1 | confirmed | S5 |
+| owned by | `serviceOwnedBy` | relation |  | The platform team that owns a platform service. | 1 | confirmed | S3 |
+| parent data product | `ParentDataProduct` | concept | upstream data product | A data product another data product depends on. | 2 | confirmed | S24 |
+| pending | `Pending` | individual |  |  | 2 | confirmed | S41 |
+| permission | `Permission` | concept |  | Access for a user principal to tables/views in one environment, e.g. SELECT; access for users can be differentiated per environment. | 3 | confirmed | S52 |
+| platform resource | `PlatformResource` | concept |  |  | 1 | confirmed | S1, S4, S5, S7, S8, S9, S11, S14, S15 |
+| platform service | `PlatformService` | concept |  |  | 1 | confirmed | S1, S2, S3, S4, S6 |
+| platform team | `PlatformTeam` | concept |  |  | 1 | confirmed | S1, S3, S10 |
+| populates | `populates` | relation |  |  | 2 | confirmed | S24 |
+| PRD | `PRD` | individual |  |  | 1 | confirmed | S1, S8, S14 |
+| PRD catalog | `CatalogPRD` | individual |  |  | 2 | confirmed | S49 |
+| principal | `Principal` | concept |  | Someone or something that consumes platform resources: a user principal or a service principal. | 2 | confirmed | S33 |
+| privilege | `Privilege` | concept |  |  | 3 | confirmed | S52, S53 |
+| processing data pipeline | `ProcessingDataPipeline` | concept |  | A data pipeline that performs transformations (cleansing, curation, filtering, enrichment, aggregation) across the RAW->CURATED->SERVING medallion layers. | 2 | confirmed | S25, S30 |
+| product owner | `ProductOwner` | concept |  | The member of the owner product team who owns a platform resource on its behalf. | 2 | confirmed | S37, S50 |
+| product team | `ProductTeam` | concept |  |  | 1 | confirmed | S1, S4, S5, S10 |
+| promoted to | `promotedTo` | relation |  |  | 1 | confirmed | S8 |
+| purpose | `Purpose` | concept |  |  | 3 | confirmed | S53 |
+| RAW | `RAW` | individual |  |  | 2 | confirmed | S25 |
+| reads | `reads` | relation |  |  | 2 | confirmed | S24 |
+| received by | `receivedBy` | relation |  |  | 2 | confirmed | S41 |
+| rejected | `Rejected` | individual |  |  | 2 | confirmed | S41 |
+| represents the identity of | `identityOf` | relation |  |  | 3 | confirmed | S34 |
+| restricted in | `restrictedIn` | relation |  |  | 3 | confirmed | S55 |
+| restricts | `restricts` | relation |  |  | 3 | confirmed | S55 |
+| SELECT | `SELECT` | individual |  |  | 3 | confirmed | S52, S53 |
+| service principal | `ServicePrincipal` | concept | application consumer | The identity of an application, data pipeline or other automation which is not performed by a human. | 2 | confirmed | S33, S34 |
+| SERVING | `SERVING` | individual |  |  | 2 | confirmed | S25 |
+| set by | `setBy` | relation |  |  | 3 | confirmed | S55, S56 |
+| sub platform resource | `SubPlatformResource` | concept | nested platform resource | A platform resource that belongs to a parent platform resource and cannot live on its own. | 2 | confirmed | S18 |
+| subscribes to | `requestFor` | relation |  |  | 2 | confirmed | S40 |
+| subscribes to | `subscribesTo` | relation |  |  | 1 | confirmed | S21 |
+| subscription request | `SubscriptionRequest` | concept |  | A request by a product owner to consume an existing platform resource, to build a new platform resource or to consume it by another application. | 2 | confirmed | S40, S41 |
+| subscription status | `SubscriptionStatus` | concept |  |  | 2 | confirmed | S41 |
+| table | `Table` | concept |  |  | 3 | confirmed | S20 |
+| team | `Team` | concept |  |  | 1 | confirmed | S10 |
+| to view | `viewPermissionOn` | relation |  |  | 3 | confirmed | S55, S57 |
+| user principal | `UserPrincipal` | concept | human user | The identity of a user or group of users who can look at dashboards and use AI/analytical applications. | 2 | confirmed | S33, S34 |
+| uses | `userUses` | relation |  |  | 3 | confirmed | S34 |
+| uses | `uses` | relation |  |  | 1 | confirmed | S4 |
+| valid until | `validUntil` | property |  |  | 3 | confirmed | S53 |
+| VIEW | `VIEW` | individual |  |  | 3 | confirmed | S55, S57 |
+| view | `View` | concept |  |  | 3 | confirmed | S20 |
+| workspace infra definition | `WorkspaceInfraDefinition` | concept |  |  | 2 | confirmed | S20 |
 
 ## Taxonomy (is-a)
 
-_No concepts yet._
+- data platform (`DataPlatform`)
+- platform service (`PlatformService`)
+- platform resource (`PlatformResource`)
+  - data product (`DataProduct`)
+    - parent data product (`ParentDataProduct`)
+    - child data product (`ChildDataProduct`)
+  - dashboard (`Dashboard`)
+  - ML model (`MLModel`)
+  - AI model (`AIModel`)
+  - AI/analytical application (`AIAnalyticalApplication`)
+  - sub platform resource (`SubPlatformResource`)
+    - contract (`DataContract`)
+    - data pipeline (`DataPipeline`)
+      - ingestion data pipeline (`IngestionDataPipeline`)
+      - processing data pipeline (`ProcessingDataPipeline`)
+    - compute cluster definition (`ComputeClusterDefinition`)
+    - workspace infra definition (`WorkspaceInfraDefinition`)
+    - data asset (`DataAsset`)
+      - table (`Table`)
+      - view (`View`)
+- data source (`DataSource`)
+- medallion layer (`MedallionLayer`)
+- principal (`Principal`)
+  - user principal (`UserPrincipal`)
+  - service principal (`ServicePrincipal`)
+- external application (`ExternalApplication`)
+- catalog (`Catalog`)
+- subscription request (`SubscriptionRequest`)
+- subscription status (`SubscriptionStatus`)
+- employee (`Employee`)
+  - product owner (`ProductOwner`)
+    - data product owner (`DataProductOwner`)
+  - developer (`Developer`)
+- permission (`Permission`)
+  - elevated permission (`ElevatedPermission`)
+- privilege (`Privilege`)
+- purpose (`Purpose`)
+- access restriction (`AccessRestriction`)
+- team (`Team`)
+  - platform team (`PlatformTeam`)
+  - product team (`ProductTeam`)
+- environment (`Environment`)
 
 ## Relations
 
-_None yet._
+| Relation | Id | Domain | Range | Cardinality | Inverse | Super-relation | Characteristics | Level |
+|---|---|---|---|---|---|---|---|---|
+| consists of | `consistsOf` | `DataPlatform` | `PlatformService` | 1..* |  |  |  | 1 |
+| owned by | `ownedBy` |  | `Team` |  |  |  |  | 1 |
+| owned by | `serviceOwnedBy` | `PlatformService` | `PlatformTeam` | 1 |  | `ownedBy` |  | 1 |
+| owned by | `resourceOwnedBy` | `PlatformResource` | `ProductTeam` | 1 |  | `ownedBy` |  | 1 |
+| uses | `uses` | `ProductTeam` | `PlatformService` |  |  |  |  | 1 |
+| subscribes to | `subscribesTo` | `ProductTeam` | `PlatformResource` | * |  |  |  | 1 |
+| created by | `createdBy` | `PlatformResource` | `ProductTeam` | 1 |  |  |  | 1 |
+| created with | `createdWith` | `PlatformResource` | `PlatformService` | 1..* |  |  |  | 1 |
+| deployed to | `deployedTo` | `PlatformService` | `Environment` | * |  |  |  | 1 |
+| created in | `createdIn` | `PlatformResource` | `Environment` | 1 |  |  |  | 1 |
+| promoted to | `promotedTo` | `PlatformResource` | `Environment` | * |  |  |  | 1 |
+| consists of | `hasSubResource` | `PlatformResource` | `SubPlatformResource` | * | `belongsTo` |  |  | 2 |
+| belongs to | `belongsTo` | `SubPlatformResource` | `PlatformResource` | 1 | `hasSubResource` |  | functional, irreflexive | 2 |
+| depends on | `dependsOn` | `DataProduct` | `DataProduct` | * |  | `consumes` |  | 2 |
+| populates | `populates` | `DataPipeline` | `DataAsset` | 1..* |  |  |  | 2 |
+| reads | `reads` | `DataPipeline` | `DataAsset` | * |  |  |  | 2 |
+| ingests from | `ingestsFrom` | `IngestionDataPipeline` | `DataSource` | 1..* |  |  |  | 2 |
+| in layer | `inLayer` | `DataAsset` | `MedallionLayer` | 1 |  |  |  | 2 |
+| next layer | `nextLayer` | `MedallionLayer` | `MedallionLayer` | 0..1 |  |  |  | 2 |
+| consumes | `consumes` | `PlatformResource` | `PlatformResource` | * |  |  |  | 2 |
+| consumes | `userConsumes` | `UserPrincipal` | `Dashboard` | * |  |  |  | 2 |
+| consumes | `serviceConsumes` | `ServicePrincipal` | `PlatformResource` | * |  |  |  | 2 |
+| uses | `userUses` | `UserPrincipal` | `AIAnalyticalApplication` | * |  |  |  | 3 |
+| represents the identity of | `identityOf` | `ServicePrincipal` |  |  |  |  |  | 3 |
+| has product owner | `hasProductOwner` | `PlatformResource` | `ProductOwner` | 0..1 |  |  |  | 2 |
+| member of | `memberOf` | `Employee` | `ProductTeam` |  |  |  |  | 2 |
+| exposed in | `exposedIn` | `PlatformResource` | `Catalog` | * |  |  |  | 2 |
+| created by | `requestedBy` | `SubscriptionRequest` | `ProductOwner` | 1 |  |  |  | 2 |
+| subscribes to | `requestFor` | `SubscriptionRequest` | `PlatformResource` | 1 |  |  |  | 2 |
+| consumer | `requestConsumer` | `SubscriptionRequest` |  | 1 |  |  |  | 2 |
+| received by | `receivedBy` | `SubscriptionRequest` | `ProductOwner` | 1 |  |  |  | 2 |
+| has status | `hasStatus` | `SubscriptionRequest` | `SubscriptionStatus` | 1 |  |  |  | 2 |
+| has access to | `hasAccessTo` |  | `PlatformResource` |  |  |  |  | 2 |
+| catalog of | `catalogOf` | `Catalog` | `Environment` | 1 |  |  |  | 2 |
+| has user principal | `hasUserPrincipal` | `Employee` | `UserPrincipal` | 1 |  |  |  | 2 |
+| has product owner | `externalAppOwner` | `ExternalApplication` | `ProductOwner` | 1 |  |  |  | 3 |
+| includes | `includesMember` | `SubscriptionRequest` | `Employee` | * |  |  |  | 2 |
+| developer of | `developerOf` | `Developer` | `PlatformResource` | * |  |  |  | 3 |
+| granted to | `grantedTo` | `Permission` | `UserPrincipal` | 1 |  |  |  | 3 |
+| on | `permissionOn` | `Permission` | `DataAsset` | 1..* |  |  |  | 3 |
+| in environment | `inEnvironment` | `Permission` | `Environment` | 1 |  |  |  | 3 |
+| grants | `grantsPrivilege` | `Permission` | `Privilege` | 1..* |  |  |  | 3 |
+| for purpose | `forPurpose` | `ElevatedPermission` | `Purpose` | 1 |  |  |  | 3 |
+| restricts | `restricts` | `AccessRestriction` | `PlatformResource` | 1 |  |  |  | 3 |
+| restricted in | `restrictedIn` | `AccessRestriction` | `Environment` | 1..* |  |  |  | 3 |
+| set by | `setBy` | `AccessRestriction` | `ProductOwner` | 1 |  |  |  | 3 |
+| to view | `viewPermissionOn` | `Permission` | `Dashboard` | * |  |  |  | 3 |
 
 ## Properties
 
-_None yet._
+| Property | Id | Domain | Datatype | Cardinality | Level |
+|---|---|---|---|---|---|
+| externally shared | `externallyShared` | `PlatformResource` | `xsd:boolean` | 0..1 | 3 |
+| exposed in catalog | `exposedInCatalog` | `PlatformResource` | `xsd:boolean` | 0..1 | 2 |
+| valid until | `validUntil` | `ElevatedPermission` | `xsd:dateTime` | 1 | 3 |
 
 ## Rules
 
-_No rules yet._
+### R1 · Each platform service is owned by exactly one team.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 1 · **Status:** confirmed · **Sources:** S3
+- each `PlatformService` has at least 1 and at most 1 `ownedBy` value(s)
+
+### R2 · The owner of a platform service is a platform team.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 1 · **Status:** confirmed · **Sources:** S3
+- SPARQL SELECT (each result is a violation) on each `PlatformService`
+
+```sparql
+SELECT $this WHERE { $this adp:ownedBy ?team . FILTER NOT EXISTS { ?team a adp:PlatformTeam } }
+```
+
+### R3 · Each (top-level or nested) platform resource is created with one or more platform services.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 1 · **Status:** confirmed · **Sources:** S10, S54
+- each `PlatformResource` has at least 1 and  `createdWith` value(s)
+
+### R4 · Each platform resource is created by exactly one team.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 1 · **Status:** confirmed · **Sources:** S5
+- each `PlatformResource` has at least 1 and at most 1 `createdBy` value(s)
+
+### R5 · A platform resource is created by a product team, never by a platform team.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 1 · **Status:** confirmed · **Sources:** S4, S5
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE { $this adp:createdBy ?team . ?team a adp:PlatformTeam . }
+```
+
+### R6 · A platform resource is owned by the product team which created it.
+
+- **Kind:** constraint · **Pattern:** `equal` · **Level:** 1 · **Status:** confirmed · **Sources:** S5
+- for each `PlatformResource`, `ownedBy` and `createdBy` have the same values
+
+### R7 · A platform resource is created in exactly one environment.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 1 · **Status:** confirmed · **Sources:** S7, S11
+- each `PlatformResource` has at least 1 and at most 1 `createdIn` value(s)
+
+### R8 · A platform resource is created in the EXP or in the DEV environment.
+
+- **Kind:** constraint · **Pattern:** `values` · **Level:** 1 · **Status:** confirmed · **Sources:** S7, S11, S13
+- every `createdIn` value of a `PlatformResource` is one of `EXP`, `DEV`
+
+### R9 · A platform resource can only be promoted to DEV, ACC or PRD.
+
+- **Kind:** constraint · **Pattern:** `values` · **Level:** 1 · **Status:** confirmed · **Sources:** S8, S11, S12
+- every `promotedTo` value of a `PlatformResource` is one of `DEV`, `ACC`, `PRD`
+
+### R10 · A platform resource promoted to DEV was created in EXP.
+
+- **Kind:** constraint · **Pattern:** `implies` · **Level:** 1 · **Status:** confirmed · **Sources:** S8, S11
+- if a `PlatformResource` has `DEV` as `promotedTo`, then it has `EXP` as `createdIn`
+
+### R11 · A platform resource promoted to ACC was created in or promoted to DEV first.
+
+- **Kind:** constraint · **Pattern:** `implies` · **Level:** 1 · **Status:** confirmed · **Sources:** S8, S11, S13
+- if a `PlatformResource` has `ACC` as `promotedTo`, then it has `DEV` as `createdIn|promotedTo`
+
+### R12 · A platform resource promoted to PRD was promoted to ACC first.
+
+- **Kind:** constraint · **Pattern:** `implies` · **Level:** 1 · **Status:** confirmed · **Sources:** S8, S11, S14
+- if a `PlatformResource` has `PRD` as `promotedTo`, then it has `ACC` as `promotedTo`
+
+### R13 · A sub platform resource belongs to exactly one parent platform resource; it cannot live on its own.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S18
+- each `SubPlatformResource` has at least 1 and at most 1 `belongsTo` value(s)
+
+### R14 · A sub platform resource is created by the same product team as its parent platform resource.
+
+- **Kind:** constraint · **Pattern:** `equal` · **Level:** 2 · **Status:** confirmed · **Sources:** S18, S27
+- for each `SubPlatformResource`, `createdBy` and `belongsTo/createdBy` have the same values
+
+### R15 · A sub platform resource is created in the environment of its parent platform resource.
+
+- **Kind:** derivation · **Pattern:** `derive` · **Level:** 2 · **Status:** confirmed · **Sources:** S18, S19, S27
+- each `SubPlatformResource` gets `createdIn` → `belongsTo+/createdIn`
+
+### R16 · A sub platform resource is promoted with its parent platform resource.
+
+- **Kind:** derivation · **Pattern:** `derive` · **Level:** 2 · **Status:** confirmed · **Sources:** S19, S27
+- each `SubPlatformResource` gets `promotedTo` → `belongsTo+/promotedTo`
+
+### R17 · A sub platform resource is never promoted on its own: it is in exactly the environments its parent was promoted to.
+
+- **Kind:** constraint · **Pattern:** `equal` · **Level:** 2 · **Status:** confirmed · **Sources:** S19
+- for each `SubPlatformResource`, `promotedTo` and `belongsTo/promotedTo` have the same values
+
+### R18 · A data product consists of a contract.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- each `DataProduct` has at least 1 and  `^belongsTo` value(s) of class `DataContract`
+
+### R19 · A data product consists of a data pipeline.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- each `DataProduct` has at least 1 and  `^belongsTo` value(s) of class `DataPipeline`
+
+### R20 · A data product consists of a compute cluster definition.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- each `DataProduct` has at least 1 and  `^belongsTo` value(s) of class `ComputeClusterDefinition`
+
+### R21 · A data product consists of a workspace infra definition.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- each `DataProduct` has at least 1 and  `^belongsTo` value(s) of class `WorkspaceInfraDefinition`
+
+### R22 · A data product consists of at least one data asset.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- each `DataProduct` has at least 1 and  `^belongsTo` value(s) of class `DataAsset`
+
+### R23 · A data product consists of at least one dashboard showing its health.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- each `DataProduct` has at least 1 and  `^belongsTo` value(s) of class `Dashboard`
+
+### R24 · A data product consists only of the sub platform resources listed for it.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S20, S22
+- SPARQL SELECT (each result is a violation) on each `DataProduct`
+
+```sparql
+SELECT $this WHERE {
+  ?sub adp:belongsTo $this .
+  FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:DataContract, adp:DataPipeline, adp:ComputeClusterDefinition, adp:WorkspaceInfraDefinition, adp:DataAsset, adp:Dashboard)) }
+}
+```
+
+### R25 · A AI/analytical application consists only of the sub platform resources listed for it.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- SPARQL SELECT (each result is a violation) on each `AIAnalyticalApplication`
+
+```sparql
+SELECT $this WHERE {
+  ?sub adp:belongsTo $this .
+  FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:Dashboard, adp:DataProduct, adp:MLModel, adp:AIModel)) }
+}
+```
+
+### R26 · A dashboard consists only of the sub platform resources listed for it.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- SPARQL SELECT (each result is a violation) on each `Dashboard`
+
+```sparql
+SELECT $this WHERE {
+  ?sub adp:belongsTo $this .
+  FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:DataProduct, adp:MLModel, adp:AIModel)) }
+}
+```
+
+### R27 · An ML model consists only of data products.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S23
+- SPARQL SELECT (each result is a violation) on each `MLModel`
+
+```sparql
+SELECT $this WHERE {
+  ?sub adp:belongsTo $this .
+  FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:DataProduct)) }
+}
+```
+
+### R28 · An AI model consists only of data products.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S23
+- SPARQL SELECT (each result is a violation) on each `AIModel`
+
+```sparql
+SELECT $this WHERE {
+  ?sub adp:belongsTo $this .
+  FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:DataProduct)) }
+}
+```
+
+### R29 · A data product that depends on another data product is a child data product.
+
+- **Kind:** derivation · **Pattern:** `derive` · **Level:** 2 · **Status:** confirmed · **Sources:** S24
+- each `DataProduct` that has at least 1 `dependsOn` value(s) is also a `ChildDataProduct`
+
+### R30 · A data product another data product depends on is a parent data product.
+
+- **Kind:** derivation · **Pattern:** `derive` · **Level:** 2 · **Status:** confirmed · **Sources:** S24
+- each `DataProduct` that has at least 1 `^dependsOn` value(s) is also a `ParentDataProduct`
+
+### R31 · A data asset is always built by a data pipeline.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S24
+- each `DataAsset` has at least 1 and  `^populates` value(s)
+
+### R32 · A data pipeline populates only the data assets of its own data product.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S24
+- SPARQL SELECT (each result is a violation) on each `DataPipeline`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:populates ?asset .
+  FILTER NOT EXISTS { $this adp:belongsTo ?product . ?asset adp:belongsTo ?product . }
+}
+```
+
+### R33 · A data pipeline reads only data assets of its own data product or of the parent data products of its data product.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S24, S25
+- SPARQL SELECT (each result is a violation) on each `DataPipeline`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:reads ?asset .
+  FILTER NOT EXISTS {
+    $this adp:belongsTo ?product .
+    { ?asset adp:belongsTo ?product } UNION { ?product adp:dependsOn ?parent . ?asset adp:belongsTo ?parent }
+  }
+}
+```
+
+### R34 · The ingestion produces a data asset in the RAW layer.
+
+- **Kind:** constraint · **Pattern:** `implies` · **Level:** 2 · **Status:** confirmed · **Sources:** S25
+- if a `DataAsset` has a `^populates` value of class `IngestionDataPipeline`, then it has `RAW` as `inLayer`
+
+### R35 · A processing data pipeline populates only data assets in the CURATED or SERVING layer.
+
+- **Kind:** constraint · **Pattern:** `values` · **Level:** 2 · **Status:** confirmed · **Sources:** S25
+- every `populates/inLayer` value of a `ProcessingDataPipeline` is one of `CURATED`, `SERVING`
+
+### R36 · Each data asset is in exactly one medallion layer.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S25
+- each `DataAsset` has at least 1 and at most 1 `inLayer` value(s)
+
+### R37 · An ingestion data pipeline ingests data from at least one source service or data source.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S25
+- each `IngestionDataPipeline` has at least 1 and  `ingestsFrom` value(s)
+
+### R38 · A data product is created via ingestion or from parent data products.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S25
+- SPARQL SELECT (each result is a violation) on each `DataProduct`
+
+```sparql
+SELECT $this WHERE {
+  FILTER NOT EXISTS { ?pipeline adp:belongsTo $this . ?pipeline a adp:IngestionDataPipeline . }
+  FILTER NOT EXISTS { $this adp:dependsOn ?parent . }
+}
+```
+
+### R39 · Lineage is a directed acyclic graph: a data product never depends on itself, directly or indirectly.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S26
+- SPARQL SELECT (each result is a violation) on each `DataProduct`
+
+```sparql
+SELECT $this WHERE { $this adp:dependsOn+ $this . }
+```
+
+### R40 · Nesting has no cycles: a platform resource never belongs to itself, directly or indirectly.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S27
+- SPARQL SELECT (each result is a violation) on each `SubPlatformResource`
+
+```sparql
+SELECT $this WHERE { $this adp:belongsTo+ $this . }
+```
+
+### R41 · Only dashboards, AI/analytical applications and data products consume other platform resources.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S28, S29, S32
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:consumes ?used .
+  FILTER NOT EXISTS { $this a ?kind . FILTER (?kind IN (adp:Dashboard, adp:AIAnalyticalApplication, adp:DataProduct)) }
+}
+```
+
+### R42 · Only data products, ML models and AI models are consumed.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S28, S33
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:consumes ?used .
+  FILTER NOT EXISTS { ?used a ?kind . FILTER (?kind IN (adp:DataProduct, adp:MLModel, adp:AIModel)) }
+}
+```
+
+### R43 · A consumed platform resource is not a sub platform resource: it is deployed separately and can live independently.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S28, S32
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE { $this adp:consumes ?used . ?used a adp:SubPlatformResource . }
+```
+
+### R44 · The data products a data product consumes are its parent (upstream) data products.
+
+- **Kind:** constraint · **Pattern:** `equal` · **Level:** 2 · **Status:** confirmed · **Sources:** S29
+- for each `DataProduct`, `consumes` and `dependsOn` have the same values
+
+### R45 · Each data pipeline is either an ingestion data pipeline or a processing data pipeline.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S30
+- SPARQL SELECT (each result is a violation) on each `DataPipeline`
+
+```sparql
+SELECT $this WHERE {
+  FILTER NOT EXISTS { $this a ?kind . FILTER (?kind IN (adp:IngestionDataPipeline, adp:ProcessingDataPipeline)) }
+}
+```
+
+### R46 · An ingestion data pipeline does not transform data: it reads no data assets.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S30
+- each `IngestionDataPipeline` has  and at most 0 `reads` value(s)
+
+### R47 · A processing data pipeline is not allowed to ingest.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S30
+- each `ProcessingDataPipeline` has  and at most 0 `ingestsFrom` value(s)
+
+### R48 · A contract, data pipeline, compute cluster definition, workspace infra definition or data asset has no sub platform resources.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S31
+- SPARQL SELECT (each result is a violation) on each `SubPlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  ?sub adp:belongsTo $this .
+  $this a ?kind . FILTER (?kind IN (adp:DataContract, adp:DataPipeline, adp:ComputeClusterDefinition, adp:WorkspaceInfraDefinition, adp:DataAsset))
+}
+```
+
+### R49 · User principals consume only dashboards.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S33
+- SPARQL SELECT (each result is a violation) on each `UserPrincipal`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:userConsumes ?used .
+  ?used a ?kind . FILTER (?kind IN (adp:DataProduct, adp:MLModel, adp:AIModel, adp:AIAnalyticalApplication, adp:DataContract, adp:DataPipeline, adp:ComputeClusterDefinition, adp:WorkspaceInfraDefinition, adp:DataAsset))
+}
+```
+
+### R50 · Service principals consume only data products, ML models and AI models.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S33
+- SPARQL SELECT (each result is a violation) on each `ServicePrincipal`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:serviceConsumes ?used .
+  FILTER NOT EXISTS { ?used a ?kind . FILTER (?kind IN (adp:DataProduct, adp:MLModel, adp:AIModel)) }
+}
+```
+
+### R52 · An external application consumes only externally exposed/shared platform resources.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S35
+- SPARQL SELECT (each result is a violation) on each `ServicePrincipal`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:identityOf ?app . ?app a adp:ExternalApplication .
+  $this adp:serviceConsumes ?resource .
+  FILTER NOT EXISTS { ?resource adp:externallyShared true }
+}
+```
+
+### R53 · Each top-level platform resource (not a sub platform resource) has a product owner or data product owner.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S36, S37, S43
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  FILTER NOT EXISTS { $this a adp:SubPlatformResource }
+  FILTER NOT EXISTS { $this adp:hasProductOwner ?owner }
+}
+```
+
+### R54 · Each top-level platform resource has at most one product owner; with R53: exactly one.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S43
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  FILTER NOT EXISTS { $this a adp:SubPlatformResource }
+  $this adp:hasProductOwner ?first, ?second .
+  FILTER (?first != ?second)
+}
+```
+
+### R55 · The product owner of a data product is a data product owner.
+
+- **Kind:** constraint · **Pattern:** `values` · **Level:** 2 · **Status:** confirmed · **Sources:** S36
+- every `hasProductOwner` value of a `DataProduct` is of class `DataProductOwner`
+
+### R56 · The product owner of a platform resource is a member of the owner product team.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S36, S37
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:hasProductOwner ?owner ; adp:resourceOwnedBy ?team .
+  FILTER NOT EXISTS { ?owner adp:memberOf ?team }
+}
+```
+
+### R57 · A subscription request is created by exactly one product owner.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S40
+- each `SubscriptionRequest` has at least 1 and at most 1 `requestedBy` value(s)
+
+### R58 · A subscription request is for exactly one existing platform resource.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S40
+- each `SubscriptionRequest` has at least 1 and at most 1 `requestFor` value(s)
+
+### R59 · A subscription request names exactly one consumer: the new platform resource or the other application.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S40, S42
+- each `SubscriptionRequest` has at least 1 and at most 1 `requestConsumer` value(s)
+
+### R60 · A subscription request for a new data product, application or other platform resource is created by its owner.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S40, S45
+- SPARQL SELECT (each result is a violation) on each `SubscriptionRequest`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:requestedBy ?requester ; adp:requestConsumer ?consumer .
+  ?consumer a adp:PlatformResource .
+  FILTER NOT EXISTS { ?consumer adp:hasProductOwner ?requester }
+}
+```
+
+### R61 · The product owner of the subscribed platform resource receives the subscription request.
+
+- **Kind:** constraint · **Pattern:** `equal` · **Level:** 2 · **Status:** confirmed · **Sources:** S41
+- for each `SubscriptionRequest`, `receivedBy` and `requestFor/hasProductOwner` have the same values
+
+### R62 · A subscription request is pending, approved or rejected.
+
+- **Kind:** constraint · **Pattern:** `values` · **Level:** 2 · **Status:** confirmed · **Sources:** S41
+- every `hasStatus` value of a `SubscriptionRequest` is one of `Pending`, `Approved`, `Rejected`
+
+### R63 · After approval the subscribed platform resource is accessible for the consumer application and its owner team.
+
+- **Kind:** derivation · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S42
+- SPARQL CONSTRUCT (derived triples) on each `SubscriptionRequest`
+
+```sparql
+CONSTRUCT { ?consumer adp:hasAccessTo ?resource . ?team adp:subscribesTo ?resource . }
+WHERE {
+  $this adp:hasStatus adp:Approved ; adp:requestFor ?resource ; adp:requestConsumer ?consumer .
+  OPTIONAL { ?consumer adp:resourceOwnedBy ?team }
+}
+```
+
+### R64 · A platform resource consumes another platform resource only after an approved subscription request, also when both are created by the same product team.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S39, S42, S44, S46, S47
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:consumes ?resource .
+  FILTER NOT EXISTS { $this adp:hasAccessTo ?resource }
+}
+```
+
+### R65 · An application (internal or external) consumes a platform resource only after an approved subscription request, also when it is created by the same product team.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S39, S44, S46, S47
+- SPARQL SELECT (each result is a violation) on each `ServicePrincipal`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:serviceConsumes ?resource .
+  FILTER NOT EXISTS { $this adp:identityOf ?app . ?app adp:hasAccessTo ?resource . }
+}
+```
+
+### R66 · Each external application has exactly one product owner.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 3 · **Status:** confirmed · **Sources:** S48
+- each `ExternalApplication` has at least 1 and at most 1 `externalAppOwner` value(s)
+
+### R67 · A subscription request for an external application is created by its product owner.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S48
+- SPARQL SELECT (each result is a violation) on each `SubscriptionRequest`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:requestedBy ?requester ; adp:requestConsumer ?app .
+  ?app a adp:ExternalApplication .
+  FILTER NOT EXISTS { ?app adp:externalAppOwner ?requester }
+}
+```
+
+### R68 · By default a platform resource is exposed (automatically) in the catalog of each environment it is in, unless exposure is turned off.
+
+- **Kind:** derivation · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S38, S49
+- SPARQL CONSTRUCT (derived triples) on each `PlatformResource`
+
+```sparql
+CONSTRUCT { $this adp:exposedIn ?catalog . }
+WHERE {
+  $this adp:createdIn|adp:promotedTo ?environment .
+  ?catalog adp:catalogOf ?environment .
+  FILTER NOT EXISTS { $this adp:exposedInCatalog false }
+}
+```
+
+### R69 · Each employee has exactly one user principal.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S50
+- each `Employee` has at least 1 and at most 1 `hasUserPrincipal` value(s)
+
+### R70 · After approval the team members included in a subscription request get access to the subscribed platform resource as well.
+
+- **Kind:** derivation · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S51
+- SPARQL CONSTRUCT (derived triples) on each `SubscriptionRequest`
+
+```sparql
+CONSTRUCT { ?user adp:hasAccessTo ?resource . }
+WHERE {
+  $this adp:hasStatus adp:Approved ; adp:requestFor ?resource ; adp:includesMember ?member .
+  ?member adp:hasUserPrincipal ?user .
+}
+```
+
+### R71 · The members included in a subscription request are members of the consumer's owner team.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S51
+- SPARQL SELECT (each result is a violation) on each `SubscriptionRequest`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:includesMember ?member ; adp:requestConsumer ?consumer .
+  ?consumer adp:resourceOwnedBy ?team .
+  FILTER NOT EXISTS { ?member adp:memberOf ?team }
+}
+```
+
+### R72 · A user principal consumes a platform resource of another team only after being included in an approved subscription request.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S51, S55
+- SPARQL SELECT (each result is a violation) on each `UserPrincipal`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:userConsumes ?resource .
+  ?resource adp:resourceOwnedBy ?team .
+  FILTER NOT EXISTS { ?member adp:hasUserPrincipal $this ; adp:memberOf ?team . }
+  FILTER NOT EXISTS { $this adp:hasAccessTo ?resource }
+}
+```
+
+### R73 · An elevated permission is time-limited: it has exactly one end time.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 3 · **Status:** confirmed · **Sources:** S53
+- each `ElevatedPermission` has at least 1 and at most 1 `validUntil` value(s)
+
+### R74 · An elevated permission is for incident resolution or debugging.
+
+- **Kind:** constraint · **Pattern:** `values` · **Level:** 3 · **Status:** confirmed · **Sources:** S53
+- every `forPurpose` value of a `ElevatedPermission` is one of `IncidentResolution`, `Debugging`
+
+### R75 · An elevated permission covers only tables/views in the developer's own data product or in the parent data products.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S53
+- SPARQL SELECT (each result is a violation) on each `ElevatedPermission`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:grantedTo ?user ; adp:permissionOn ?asset .
+  FILTER NOT EXISTS {
+    ?developer adp:hasUserPrincipal ?user ; adp:developerOf ?resource .
+    { ?asset adp:belongsTo ?resource } UNION { ?resource adp:consumes ?parent . ?asset adp:belongsTo ?parent }
+  }
+}
+```
+
+### R77 · An access restriction is set by the product owner of the restricted platform resource.
+
+- **Kind:** constraint · **Pattern:** `equal` · **Level:** 3 · **Status:** confirmed · **Sources:** S55, S56
+- for each `AccessRestriction`, `setBy` and `restricts/hasProductOwner` have the same values
+
+### R78 · In an environment where the product owner restricted a platform resource, users get only elevated permissions on its tables/views.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S53, S55
+- SPARQL SELECT (each result is a violation) on each `Permission`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:inEnvironment ?environment ; adp:permissionOn ?asset .
+  ?asset adp:belongsTo ?resource .
+  ?restriction adp:restricts ?resource ; adp:restrictedIn ?environment .
+  FILTER NOT EXISTS { $this a adp:ElevatedPermission }
+}
+```
+
+### R79 · In an environment where the product owner restricted a dashboard (or the platform resource it belongs to), users get only elevated permissions to view it.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S55, S57
+- SPARQL SELECT (each result is a violation) on each `Permission`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:inEnvironment ?environment ; adp:viewPermissionOn ?dashboard .
+  { ?restriction adp:restricts ?dashboard } UNION { ?dashboard adp:belongsTo ?resource . ?restriction adp:restricts ?resource }
+  ?restriction adp:restrictedIn ?environment .
+  FILTER NOT EXISTS { $this a adp:ElevatedPermission }
+}
+```
 
 
 ## Diagrams
@@ -33,12 +871,187 @@ _No rules yet._
 
 ```mermaid
 flowchart BT
-    empty["no concepts yet"]
+    DataPlatform["data platform"]
+    PlatformService["platform service"]
+    PlatformResource["platform resource"]
+    DataProduct["data product"]
+    Dashboard["dashboard"]
+    MLModel["ML model"]
+    AIModel["AI model"]
+    AIAnalyticalApplication["AI/analytical application"]
+    SubPlatformResource["sub platform resource"]
+    DataContract["contract"]
+    DataPipeline["data pipeline"]
+    ComputeClusterDefinition["compute cluster definition"]
+    WorkspaceInfraDefinition["workspace infra definition"]
+    DataAsset["data asset"]
+    ParentDataProduct["parent data product"]
+    ChildDataProduct["child data product"]
+    Table["table"]
+    View["view"]
+    IngestionDataPipeline["ingestion data pipeline"]
+    ProcessingDataPipeline["processing data pipeline"]
+    DataSource["data source"]
+    MedallionLayer["medallion layer"]
+    Principal["principal"]
+    UserPrincipal["user principal"]
+    ServicePrincipal["service principal"]
+    ExternalApplication["external application"]
+    ProductOwner["product owner"]
+    DataProductOwner["data product owner"]
+    Catalog["catalog"]
+    SubscriptionRequest["subscription request"]
+    SubscriptionStatus["subscription status"]
+    Employee["employee"]
+    Developer["developer"]
+    Permission["permission"]
+    ElevatedPermission["elevated permission"]
+    Privilege["privilege"]
+    Purpose["purpose"]
+    AccessRestriction["access restriction"]
+    Team["team"]
+    PlatformTeam["platform team"]
+    ProductTeam["product team"]
+    Environment["environment"]
+    DataProduct --> PlatformResource
+    Dashboard --> PlatformResource
+    MLModel --> PlatformResource
+    AIModel --> PlatformResource
+    AIAnalyticalApplication --> PlatformResource
+    SubPlatformResource --> PlatformResource
+    DataContract --> SubPlatformResource
+    DataPipeline --> SubPlatformResource
+    ComputeClusterDefinition --> SubPlatformResource
+    WorkspaceInfraDefinition --> SubPlatformResource
+    DataAsset --> SubPlatformResource
+    ParentDataProduct --> DataProduct
+    ChildDataProduct --> DataProduct
+    Table --> DataAsset
+    View --> DataAsset
+    IngestionDataPipeline --> DataPipeline
+    ProcessingDataPipeline --> DataPipeline
+    UserPrincipal --> Principal
+    ServicePrincipal --> Principal
+    ProductOwner --> Employee
+    DataProductOwner --> ProductOwner
+    Developer --> Employee
+    ElevatedPermission --> Permission
+    PlatformTeam --> Team
+    ProductTeam --> Team
 ```
 
 ### Ontology graph
 
 ```mermaid
 flowchart LR
-    empty["no concepts yet"]
+    DataPlatform["data platform"]
+    PlatformService["platform service"]
+    PlatformResource["platform resource"]
+    DataProduct["data product"]
+    Dashboard["dashboard"]
+    MLModel["ML model"]
+    AIModel["AI model"]
+    AIAnalyticalApplication["AI/analytical application"]
+    SubPlatformResource["sub platform resource"]
+    DataContract["contract"]
+    DataPipeline["data pipeline"]
+    ComputeClusterDefinition["compute cluster definition"]
+    WorkspaceInfraDefinition["workspace infra definition"]
+    DataAsset["data asset"]
+    ParentDataProduct["parent data product"]
+    ChildDataProduct["child data product"]
+    Table["table"]
+    View["view"]
+    IngestionDataPipeline["ingestion data pipeline"]
+    ProcessingDataPipeline["processing data pipeline"]
+    DataSource["data source"]
+    MedallionLayer["medallion layer"]
+    Principal["principal"]
+    UserPrincipal["user principal"]
+    ServicePrincipal["service principal"]
+    ExternalApplication["external application"]
+    ProductOwner["product owner"]
+    DataProductOwner["data product owner"]
+    Catalog["catalog"]
+    SubscriptionRequest["subscription request"]
+    SubscriptionStatus["subscription status"]
+    Employee["employee"]
+    Developer["developer"]
+    Permission["permission"]
+    ElevatedPermission["elevated permission"]
+    Privilege["privilege"]
+    Purpose["purpose"]
+    AccessRestriction["access restriction"]
+    Team["team"]
+    PlatformTeam["platform team"]
+    ProductTeam["product team"]
+    Environment["environment"]
+    DataPlatform -->|"consists of"| PlatformService
+    PlatformService -->|"owned by"| PlatformTeam
+    PlatformResource -->|"owned by"| ProductTeam
+    ProductTeam -->|"uses"| PlatformService
+    ProductTeam -->|"subscribes to"| PlatformResource
+    PlatformResource -->|"created by"| ProductTeam
+    PlatformResource -->|"created with"| PlatformService
+    PlatformService -->|"deployed to"| Environment
+    PlatformResource -->|"created in"| Environment
+    PlatformResource -->|"promoted to"| Environment
+    PlatformResource -->|"consists of"| SubPlatformResource
+    SubPlatformResource -->|"belongs to"| PlatformResource
+    DataProduct -->|"depends on"| DataProduct
+    DataPipeline -->|"populates"| DataAsset
+    DataPipeline -->|"reads"| DataAsset
+    IngestionDataPipeline -->|"ingests from"| DataSource
+    DataAsset -->|"in layer"| MedallionLayer
+    MedallionLayer -->|"next layer"| MedallionLayer
+    PlatformResource -->|"consumes"| PlatformResource
+    UserPrincipal -->|"consumes"| Dashboard
+    ServicePrincipal -->|"consumes"| PlatformResource
+    UserPrincipal -->|"uses"| AIAnalyticalApplication
+    PlatformResource -->|"has product owner"| ProductOwner
+    Employee -->|"member of"| ProductTeam
+    PlatformResource -->|"exposed in"| Catalog
+    SubscriptionRequest -->|"created by"| ProductOwner
+    SubscriptionRequest -->|"subscribes to"| PlatformResource
+    SubscriptionRequest -->|"received by"| ProductOwner
+    SubscriptionRequest -->|"has status"| SubscriptionStatus
+    Catalog -->|"catalog of"| Environment
+    Employee -->|"has user principal"| UserPrincipal
+    ExternalApplication -->|"has product owner"| ProductOwner
+    SubscriptionRequest -->|"includes"| Employee
+    Developer -->|"developer of"| PlatformResource
+    Permission -->|"granted to"| UserPrincipal
+    Permission -->|"on"| DataAsset
+    Permission -->|"in environment"| Environment
+    Permission -->|"grants"| Privilege
+    ElevatedPermission -->|"for purpose"| Purpose
+    AccessRestriction -->|"restricts"| PlatformResource
+    AccessRestriction -->|"restricted in"| Environment
+    AccessRestriction -->|"set by"| ProductOwner
+    Permission -->|"to view"| Dashboard
+    DataProduct -.->|"is a"| PlatformResource
+    Dashboard -.->|"is a"| PlatformResource
+    MLModel -.->|"is a"| PlatformResource
+    AIModel -.->|"is a"| PlatformResource
+    AIAnalyticalApplication -.->|"is a"| PlatformResource
+    SubPlatformResource -.->|"is a"| PlatformResource
+    DataContract -.->|"is a"| SubPlatformResource
+    DataPipeline -.->|"is a"| SubPlatformResource
+    ComputeClusterDefinition -.->|"is a"| SubPlatformResource
+    WorkspaceInfraDefinition -.->|"is a"| SubPlatformResource
+    DataAsset -.->|"is a"| SubPlatformResource
+    ParentDataProduct -.->|"is a"| DataProduct
+    ChildDataProduct -.->|"is a"| DataProduct
+    Table -.->|"is a"| DataAsset
+    View -.->|"is a"| DataAsset
+    IngestionDataPipeline -.->|"is a"| DataPipeline
+    ProcessingDataPipeline -.->|"is a"| DataPipeline
+    UserPrincipal -.->|"is a"| Principal
+    ServicePrincipal -.->|"is a"| Principal
+    ProductOwner -.->|"is a"| Employee
+    DataProductOwner -.->|"is a"| ProductOwner
+    Developer -.->|"is a"| Employee
+    ElevatedPermission -.->|"is a"| Permission
+    PlatformTeam -.->|"is a"| Team
+    ProductTeam -.->|"is a"| Team
 ```

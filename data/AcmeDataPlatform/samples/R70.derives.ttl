@@ -1,0 +1,10 @@
+# R70: bob is included in an approved request.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesTeam a adp:ProductTeam .
+adp:hrTeam a adp:ProductTeam .
+adp:salesOrders a adp:DataProduct ; adp:resourceOwnedBy adp:salesTeam .
+adp:hrDashboard a adp:Dashboard ; adp:resourceOwnedBy adp:hrTeam .
+adp:bob a adp:Employee ; adp:memberOf adp:salesTeam ; adp:hasUserPrincipal adp:bobUser .
+adp:bobUser a adp:UserPrincipal .
+adp:request1 a adp:SubscriptionRequest ; adp:requestFor adp:salesOrders ; adp:requestConsumer adp:hrDashboard ; adp:hasStatus adp:Approved ; adp:includesMember adp:bob .

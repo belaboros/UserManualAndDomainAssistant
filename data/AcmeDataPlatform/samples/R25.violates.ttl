@@ -1,0 +1,9 @@
+# R25: an AI/analytical application with a contract as sub platform resource.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:svcStorage a adp:PlatformService ; adp:serviceOwnedBy adp:storageTeam .
+adp:storageTeam a adp:PlatformTeam .
+adp:salesTeam a adp:ProductTeam .
+adp:salesApp a adp:AIAnalyticalApplication ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ;
+    adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV .
+adp:salesAppContract a adp:DataContract, adp:SubPlatformResource ; adp:belongsTo adp:salesApp ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .

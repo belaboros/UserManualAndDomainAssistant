@@ -1,0 +1,5 @@
+# R55: a data product whose product owner is not a data product owner.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesOrders a adp:DataProduct ; adp:hasProductOwner adp:hrOwner .
+adp:hrOwner a adp:ProductOwner .

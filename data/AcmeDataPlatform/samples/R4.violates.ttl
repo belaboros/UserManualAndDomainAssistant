@@ -1,0 +1,8 @@
+# R4: a resource without a creator.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:svcStorage a adp:PlatformService ; adp:serviceOwnedBy adp:storageTeam .
+adp:storageTeam a adp:PlatformTeam .
+adp:salesTeam a adp:ProductTeam .
+adp:hrTeam a adp:ProductTeam .
+adp:salesOrders a adp:DataProduct ; adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV .

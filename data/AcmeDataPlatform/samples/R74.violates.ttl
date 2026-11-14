@@ -1,0 +1,14 @@
+# R74: an elevated permission for another purpose.
+@prefix adp: <https://example.org/acme/data-platform#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+adp:salesTeam a adp:ProductTeam .
+adp:crmCustomers a adp:DataProduct .
+adp:crmCustomersAsset a adp:DataAsset ; adp:belongsTo adp:crmCustomers .
+adp:salesOrders a adp:DataProduct ; adp:dependsOn adp:crmCustomers .
+adp:billing a adp:DataProduct .
+adp:billingAsset a adp:DataAsset ; adp:belongsTo adp:billing .
+adp:dana a adp:Developer ; adp:developerOf adp:salesOrders ; adp:hasUserPrincipal adp:danaUser .
+adp:danaUser a adp:UserPrincipal .
+adp:permission2 a adp:ElevatedPermission ; adp:grantedTo adp:danaUser ; adp:permissionOn adp:crmCustomersAsset ; adp:inEnvironment adp:PRD ; adp:grantsPrivilege adp:SELECT ; adp:forPurpose adp:Reporting ; adp:validUntil "2026-11-15T18:00:00"^^xsd:dateTime .
+adp:Reporting a adp:Purpose .

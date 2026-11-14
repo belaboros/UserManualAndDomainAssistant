@@ -1,0 +1,9 @@
+# R79: a regular permission to view, in PRD, the health dashboard of a data product restricted in PRD.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesOwner a adp:DataProductOwner .
+adp:crmCustomers a adp:DataProduct ; adp:hasProductOwner adp:salesOwner .
+adp:crmCustomersHealth a adp:Dashboard, adp:SubPlatformResource ; adp:belongsTo adp:crmCustomers .
+adp:restriction1 a adp:AccessRestriction ; adp:restricts adp:crmCustomers ; adp:restrictedIn adp:PRD ; adp:setBy adp:salesOwner .
+adp:bobUser a adp:UserPrincipal .
+adp:permission1 a adp:Permission ; adp:grantedTo adp:bobUser ; adp:viewPermissionOn adp:crmCustomersHealth ; adp:inEnvironment adp:PRD ; adp:grantsPrivilege adp:VIEW .

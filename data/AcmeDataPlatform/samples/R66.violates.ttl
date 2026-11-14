@@ -1,0 +1,4 @@
+# R66: an external application without a product owner.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:externalBilling a adp:ExternalApplication .

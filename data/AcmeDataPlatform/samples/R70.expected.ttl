@@ -1,0 +1,3 @@
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:bobUser adp:hasAccessTo adp:salesOrders .

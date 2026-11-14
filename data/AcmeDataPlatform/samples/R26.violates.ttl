@@ -1,0 +1,9 @@
+# R26: a dashboard with a data pipeline as sub platform resource.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:svcStorage a adp:PlatformService ; adp:serviceOwnedBy adp:storageTeam .
+adp:storageTeam a adp:PlatformTeam .
+adp:salesTeam a adp:ProductTeam .
+adp:kpiDash a adp:Dashboard ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ;
+    adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV .
+adp:kpiDashPipeline a adp:DataPipeline, adp:SubPlatformResource ; adp:belongsTo adp:kpiDash ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .

@@ -4,4 +4,637 @@
 
 Each rule is checked or applied by its shape `<prefix>:<RuleId>_shape` in `rules.shacl.ttl`.
 
-_No rules yet._
+### R1 · Each platform service is owned by exactly one team.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 1 · **Status:** confirmed · **Sources:** S3
+- each `PlatformService` has at least 1 and at most 1 `ownedBy` value(s)
+
+### R2 · The owner of a platform service is a platform team.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 1 · **Status:** confirmed · **Sources:** S3
+- SPARQL SELECT (each result is a violation) on each `PlatformService`
+
+```sparql
+SELECT $this WHERE { $this adp:ownedBy ?team . FILTER NOT EXISTS { ?team a adp:PlatformTeam } }
+```
+
+### R3 · Each (top-level or nested) platform resource is created with one or more platform services.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 1 · **Status:** confirmed · **Sources:** S10, S54
+- each `PlatformResource` has at least 1 and  `createdWith` value(s)
+
+### R4 · Each platform resource is created by exactly one team.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 1 · **Status:** confirmed · **Sources:** S5
+- each `PlatformResource` has at least 1 and at most 1 `createdBy` value(s)
+
+### R5 · A platform resource is created by a product team, never by a platform team.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 1 · **Status:** confirmed · **Sources:** S4, S5
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE { $this adp:createdBy ?team . ?team a adp:PlatformTeam . }
+```
+
+### R6 · A platform resource is owned by the product team which created it.
+
+- **Kind:** constraint · **Pattern:** `equal` · **Level:** 1 · **Status:** confirmed · **Sources:** S5
+- for each `PlatformResource`, `ownedBy` and `createdBy` have the same values
+
+### R7 · A platform resource is created in exactly one environment.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 1 · **Status:** confirmed · **Sources:** S7, S11
+- each `PlatformResource` has at least 1 and at most 1 `createdIn` value(s)
+
+### R8 · A platform resource is created in the EXP or in the DEV environment.
+
+- **Kind:** constraint · **Pattern:** `values` · **Level:** 1 · **Status:** confirmed · **Sources:** S7, S11, S13
+- every `createdIn` value of a `PlatformResource` is one of `EXP`, `DEV`
+
+### R9 · A platform resource can only be promoted to DEV, ACC or PRD.
+
+- **Kind:** constraint · **Pattern:** `values` · **Level:** 1 · **Status:** confirmed · **Sources:** S8, S11, S12
+- every `promotedTo` value of a `PlatformResource` is one of `DEV`, `ACC`, `PRD`
+
+### R10 · A platform resource promoted to DEV was created in EXP.
+
+- **Kind:** constraint · **Pattern:** `implies` · **Level:** 1 · **Status:** confirmed · **Sources:** S8, S11
+- if a `PlatformResource` has `DEV` as `promotedTo`, then it has `EXP` as `createdIn`
+
+### R11 · A platform resource promoted to ACC was created in or promoted to DEV first.
+
+- **Kind:** constraint · **Pattern:** `implies` · **Level:** 1 · **Status:** confirmed · **Sources:** S8, S11, S13
+- if a `PlatformResource` has `ACC` as `promotedTo`, then it has `DEV` as `createdIn|promotedTo`
+
+### R12 · A platform resource promoted to PRD was promoted to ACC first.
+
+- **Kind:** constraint · **Pattern:** `implies` · **Level:** 1 · **Status:** confirmed · **Sources:** S8, S11, S14
+- if a `PlatformResource` has `PRD` as `promotedTo`, then it has `ACC` as `promotedTo`
+
+### R13 · A sub platform resource belongs to exactly one parent platform resource; it cannot live on its own.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S18
+- each `SubPlatformResource` has at least 1 and at most 1 `belongsTo` value(s)
+
+### R14 · A sub platform resource is created by the same product team as its parent platform resource.
+
+- **Kind:** constraint · **Pattern:** `equal` · **Level:** 2 · **Status:** confirmed · **Sources:** S18, S27
+- for each `SubPlatformResource`, `createdBy` and `belongsTo/createdBy` have the same values
+
+### R15 · A sub platform resource is created in the environment of its parent platform resource.
+
+- **Kind:** derivation · **Pattern:** `derive` · **Level:** 2 · **Status:** confirmed · **Sources:** S18, S19, S27
+- each `SubPlatformResource` gets `createdIn` → `belongsTo+/createdIn`
+
+### R16 · A sub platform resource is promoted with its parent platform resource.
+
+- **Kind:** derivation · **Pattern:** `derive` · **Level:** 2 · **Status:** confirmed · **Sources:** S19, S27
+- each `SubPlatformResource` gets `promotedTo` → `belongsTo+/promotedTo`
+
+### R17 · A sub platform resource is never promoted on its own: it is in exactly the environments its parent was promoted to.
+
+- **Kind:** constraint · **Pattern:** `equal` · **Level:** 2 · **Status:** confirmed · **Sources:** S19
+- for each `SubPlatformResource`, `promotedTo` and `belongsTo/promotedTo` have the same values
+
+### R18 · A data product consists of a contract.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- each `DataProduct` has at least 1 and  `^belongsTo` value(s) of class `DataContract`
+
+### R19 · A data product consists of a data pipeline.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- each `DataProduct` has at least 1 and  `^belongsTo` value(s) of class `DataPipeline`
+
+### R20 · A data product consists of a compute cluster definition.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- each `DataProduct` has at least 1 and  `^belongsTo` value(s) of class `ComputeClusterDefinition`
+
+### R21 · A data product consists of a workspace infra definition.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- each `DataProduct` has at least 1 and  `^belongsTo` value(s) of class `WorkspaceInfraDefinition`
+
+### R22 · A data product consists of at least one data asset.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- each `DataProduct` has at least 1 and  `^belongsTo` value(s) of class `DataAsset`
+
+### R23 · A data product consists of at least one dashboard showing its health.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- each `DataProduct` has at least 1 and  `^belongsTo` value(s) of class `Dashboard`
+
+### R24 · A data product consists only of the sub platform resources listed for it.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S20, S22
+- SPARQL SELECT (each result is a violation) on each `DataProduct`
+
+```sparql
+SELECT $this WHERE {
+  ?sub adp:belongsTo $this .
+  FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:DataContract, adp:DataPipeline, adp:ComputeClusterDefinition, adp:WorkspaceInfraDefinition, adp:DataAsset, adp:Dashboard)) }
+}
+```
+
+### R25 · A AI/analytical application consists only of the sub platform resources listed for it.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- SPARQL SELECT (each result is a violation) on each `AIAnalyticalApplication`
+
+```sparql
+SELECT $this WHERE {
+  ?sub adp:belongsTo $this .
+  FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:Dashboard, adp:DataProduct, adp:MLModel, adp:AIModel)) }
+}
+```
+
+### R26 · A dashboard consists only of the sub platform resources listed for it.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S20
+- SPARQL SELECT (each result is a violation) on each `Dashboard`
+
+```sparql
+SELECT $this WHERE {
+  ?sub adp:belongsTo $this .
+  FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:DataProduct, adp:MLModel, adp:AIModel)) }
+}
+```
+
+### R27 · An ML model consists only of data products.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S23
+- SPARQL SELECT (each result is a violation) on each `MLModel`
+
+```sparql
+SELECT $this WHERE {
+  ?sub adp:belongsTo $this .
+  FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:DataProduct)) }
+}
+```
+
+### R28 · An AI model consists only of data products.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S23
+- SPARQL SELECT (each result is a violation) on each `AIModel`
+
+```sparql
+SELECT $this WHERE {
+  ?sub adp:belongsTo $this .
+  FILTER NOT EXISTS { ?sub a ?kind . FILTER (?kind IN (adp:DataProduct)) }
+}
+```
+
+### R29 · A data product that depends on another data product is a child data product.
+
+- **Kind:** derivation · **Pattern:** `derive` · **Level:** 2 · **Status:** confirmed · **Sources:** S24
+- each `DataProduct` that has at least 1 `dependsOn` value(s) is also a `ChildDataProduct`
+
+### R30 · A data product another data product depends on is a parent data product.
+
+- **Kind:** derivation · **Pattern:** `derive` · **Level:** 2 · **Status:** confirmed · **Sources:** S24
+- each `DataProduct` that has at least 1 `^dependsOn` value(s) is also a `ParentDataProduct`
+
+### R31 · A data asset is always built by a data pipeline.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S24
+- each `DataAsset` has at least 1 and  `^populates` value(s)
+
+### R32 · A data pipeline populates only the data assets of its own data product.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S24
+- SPARQL SELECT (each result is a violation) on each `DataPipeline`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:populates ?asset .
+  FILTER NOT EXISTS { $this adp:belongsTo ?product . ?asset adp:belongsTo ?product . }
+}
+```
+
+### R33 · A data pipeline reads only data assets of its own data product or of the parent data products of its data product.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S24, S25
+- SPARQL SELECT (each result is a violation) on each `DataPipeline`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:reads ?asset .
+  FILTER NOT EXISTS {
+    $this adp:belongsTo ?product .
+    { ?asset adp:belongsTo ?product } UNION { ?product adp:dependsOn ?parent . ?asset adp:belongsTo ?parent }
+  }
+}
+```
+
+### R34 · The ingestion produces a data asset in the RAW layer.
+
+- **Kind:** constraint · **Pattern:** `implies` · **Level:** 2 · **Status:** confirmed · **Sources:** S25
+- if a `DataAsset` has a `^populates` value of class `IngestionDataPipeline`, then it has `RAW` as `inLayer`
+
+### R35 · A processing data pipeline populates only data assets in the CURATED or SERVING layer.
+
+- **Kind:** constraint · **Pattern:** `values` · **Level:** 2 · **Status:** confirmed · **Sources:** S25
+- every `populates/inLayer` value of a `ProcessingDataPipeline` is one of `CURATED`, `SERVING`
+
+### R36 · Each data asset is in exactly one medallion layer.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S25
+- each `DataAsset` has at least 1 and at most 1 `inLayer` value(s)
+
+### R37 · An ingestion data pipeline ingests data from at least one source service or data source.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S25
+- each `IngestionDataPipeline` has at least 1 and  `ingestsFrom` value(s)
+
+### R38 · A data product is created via ingestion or from parent data products.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S25
+- SPARQL SELECT (each result is a violation) on each `DataProduct`
+
+```sparql
+SELECT $this WHERE {
+  FILTER NOT EXISTS { ?pipeline adp:belongsTo $this . ?pipeline a adp:IngestionDataPipeline . }
+  FILTER NOT EXISTS { $this adp:dependsOn ?parent . }
+}
+```
+
+### R39 · Lineage is a directed acyclic graph: a data product never depends on itself, directly or indirectly.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S26
+- SPARQL SELECT (each result is a violation) on each `DataProduct`
+
+```sparql
+SELECT $this WHERE { $this adp:dependsOn+ $this . }
+```
+
+### R40 · Nesting has no cycles: a platform resource never belongs to itself, directly or indirectly.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S27
+- SPARQL SELECT (each result is a violation) on each `SubPlatformResource`
+
+```sparql
+SELECT $this WHERE { $this adp:belongsTo+ $this . }
+```
+
+### R41 · Only dashboards, AI/analytical applications and data products consume other platform resources.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S28, S29, S32
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:consumes ?used .
+  FILTER NOT EXISTS { $this a ?kind . FILTER (?kind IN (adp:Dashboard, adp:AIAnalyticalApplication, adp:DataProduct)) }
+}
+```
+
+### R42 · Only data products, ML models and AI models are consumed.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S28, S33
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:consumes ?used .
+  FILTER NOT EXISTS { ?used a ?kind . FILTER (?kind IN (adp:DataProduct, adp:MLModel, adp:AIModel)) }
+}
+```
+
+### R43 · A consumed platform resource is not a sub platform resource: it is deployed separately and can live independently.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S28, S32
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE { $this adp:consumes ?used . ?used a adp:SubPlatformResource . }
+```
+
+### R44 · The data products a data product consumes are its parent (upstream) data products.
+
+- **Kind:** constraint · **Pattern:** `equal` · **Level:** 2 · **Status:** confirmed · **Sources:** S29
+- for each `DataProduct`, `consumes` and `dependsOn` have the same values
+
+### R45 · Each data pipeline is either an ingestion data pipeline or a processing data pipeline.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S30
+- SPARQL SELECT (each result is a violation) on each `DataPipeline`
+
+```sparql
+SELECT $this WHERE {
+  FILTER NOT EXISTS { $this a ?kind . FILTER (?kind IN (adp:IngestionDataPipeline, adp:ProcessingDataPipeline)) }
+}
+```
+
+### R46 · An ingestion data pipeline does not transform data: it reads no data assets.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S30
+- each `IngestionDataPipeline` has  and at most 0 `reads` value(s)
+
+### R47 · A processing data pipeline is not allowed to ingest.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S30
+- each `ProcessingDataPipeline` has  and at most 0 `ingestsFrom` value(s)
+
+### R48 · A contract, data pipeline, compute cluster definition, workspace infra definition or data asset has no sub platform resources.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S31
+- SPARQL SELECT (each result is a violation) on each `SubPlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  ?sub adp:belongsTo $this .
+  $this a ?kind . FILTER (?kind IN (adp:DataContract, adp:DataPipeline, adp:ComputeClusterDefinition, adp:WorkspaceInfraDefinition, adp:DataAsset))
+}
+```
+
+### R49 · User principals consume only dashboards.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S33
+- SPARQL SELECT (each result is a violation) on each `UserPrincipal`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:userConsumes ?used .
+  ?used a ?kind . FILTER (?kind IN (adp:DataProduct, adp:MLModel, adp:AIModel, adp:AIAnalyticalApplication, adp:DataContract, adp:DataPipeline, adp:ComputeClusterDefinition, adp:WorkspaceInfraDefinition, adp:DataAsset))
+}
+```
+
+### R50 · Service principals consume only data products, ML models and AI models.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S33
+- SPARQL SELECT (each result is a violation) on each `ServicePrincipal`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:serviceConsumes ?used .
+  FILTER NOT EXISTS { ?used a ?kind . FILTER (?kind IN (adp:DataProduct, adp:MLModel, adp:AIModel)) }
+}
+```
+
+### R52 · An external application consumes only externally exposed/shared platform resources.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S35
+- SPARQL SELECT (each result is a violation) on each `ServicePrincipal`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:identityOf ?app . ?app a adp:ExternalApplication .
+  $this adp:serviceConsumes ?resource .
+  FILTER NOT EXISTS { ?resource adp:externallyShared true }
+}
+```
+
+### R53 · Each top-level platform resource (not a sub platform resource) has a product owner or data product owner.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S36, S37, S43
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  FILTER NOT EXISTS { $this a adp:SubPlatformResource }
+  FILTER NOT EXISTS { $this adp:hasProductOwner ?owner }
+}
+```
+
+### R54 · Each top-level platform resource has at most one product owner; with R53: exactly one.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S43
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  FILTER NOT EXISTS { $this a adp:SubPlatformResource }
+  $this adp:hasProductOwner ?first, ?second .
+  FILTER (?first != ?second)
+}
+```
+
+### R55 · The product owner of a data product is a data product owner.
+
+- **Kind:** constraint · **Pattern:** `values` · **Level:** 2 · **Status:** confirmed · **Sources:** S36
+- every `hasProductOwner` value of a `DataProduct` is of class `DataProductOwner`
+
+### R56 · The product owner of a platform resource is a member of the owner product team.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S36, S37
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:hasProductOwner ?owner ; adp:resourceOwnedBy ?team .
+  FILTER NOT EXISTS { ?owner adp:memberOf ?team }
+}
+```
+
+### R57 · A subscription request is created by exactly one product owner.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S40
+- each `SubscriptionRequest` has at least 1 and at most 1 `requestedBy` value(s)
+
+### R58 · A subscription request is for exactly one existing platform resource.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S40
+- each `SubscriptionRequest` has at least 1 and at most 1 `requestFor` value(s)
+
+### R59 · A subscription request names exactly one consumer: the new platform resource or the other application.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S40, S42
+- each `SubscriptionRequest` has at least 1 and at most 1 `requestConsumer` value(s)
+
+### R60 · A subscription request for a new data product, application or other platform resource is created by its owner.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S40, S45
+- SPARQL SELECT (each result is a violation) on each `SubscriptionRequest`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:requestedBy ?requester ; adp:requestConsumer ?consumer .
+  ?consumer a adp:PlatformResource .
+  FILTER NOT EXISTS { ?consumer adp:hasProductOwner ?requester }
+}
+```
+
+### R61 · The product owner of the subscribed platform resource receives the subscription request.
+
+- **Kind:** constraint · **Pattern:** `equal` · **Level:** 2 · **Status:** confirmed · **Sources:** S41
+- for each `SubscriptionRequest`, `receivedBy` and `requestFor/hasProductOwner` have the same values
+
+### R62 · A subscription request is pending, approved or rejected.
+
+- **Kind:** constraint · **Pattern:** `values` · **Level:** 2 · **Status:** confirmed · **Sources:** S41
+- every `hasStatus` value of a `SubscriptionRequest` is one of `Pending`, `Approved`, `Rejected`
+
+### R63 · After approval the subscribed platform resource is accessible for the consumer application and its owner team.
+
+- **Kind:** derivation · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S42
+- SPARQL CONSTRUCT (derived triples) on each `SubscriptionRequest`
+
+```sparql
+CONSTRUCT { ?consumer adp:hasAccessTo ?resource . ?team adp:subscribesTo ?resource . }
+WHERE {
+  $this adp:hasStatus adp:Approved ; adp:requestFor ?resource ; adp:requestConsumer ?consumer .
+  OPTIONAL { ?consumer adp:resourceOwnedBy ?team }
+}
+```
+
+### R64 · A platform resource consumes another platform resource only after an approved subscription request, also when both are created by the same product team.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S39, S42, S44, S46, S47
+- SPARQL SELECT (each result is a violation) on each `PlatformResource`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:consumes ?resource .
+  FILTER NOT EXISTS { $this adp:hasAccessTo ?resource }
+}
+```
+
+### R65 · An application (internal or external) consumes a platform resource only after an approved subscription request, also when it is created by the same product team.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S39, S44, S46, S47
+- SPARQL SELECT (each result is a violation) on each `ServicePrincipal`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:serviceConsumes ?resource .
+  FILTER NOT EXISTS { $this adp:identityOf ?app . ?app adp:hasAccessTo ?resource . }
+}
+```
+
+### R66 · Each external application has exactly one product owner.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 3 · **Status:** confirmed · **Sources:** S48
+- each `ExternalApplication` has at least 1 and at most 1 `externalAppOwner` value(s)
+
+### R67 · A subscription request for an external application is created by its product owner.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S48
+- SPARQL SELECT (each result is a violation) on each `SubscriptionRequest`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:requestedBy ?requester ; adp:requestConsumer ?app .
+  ?app a adp:ExternalApplication .
+  FILTER NOT EXISTS { ?app adp:externalAppOwner ?requester }
+}
+```
+
+### R68 · By default a platform resource is exposed (automatically) in the catalog of each environment it is in, unless exposure is turned off.
+
+- **Kind:** derivation · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S38, S49
+- SPARQL CONSTRUCT (derived triples) on each `PlatformResource`
+
+```sparql
+CONSTRUCT { $this adp:exposedIn ?catalog . }
+WHERE {
+  $this adp:createdIn|adp:promotedTo ?environment .
+  ?catalog adp:catalogOf ?environment .
+  FILTER NOT EXISTS { $this adp:exposedInCatalog false }
+}
+```
+
+### R69 · Each employee has exactly one user principal.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 2 · **Status:** confirmed · **Sources:** S50
+- each `Employee` has at least 1 and at most 1 `hasUserPrincipal` value(s)
+
+### R70 · After approval the team members included in a subscription request get access to the subscribed platform resource as well.
+
+- **Kind:** derivation · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S51
+- SPARQL CONSTRUCT (derived triples) on each `SubscriptionRequest`
+
+```sparql
+CONSTRUCT { ?user adp:hasAccessTo ?resource . }
+WHERE {
+  $this adp:hasStatus adp:Approved ; adp:requestFor ?resource ; adp:includesMember ?member .
+  ?member adp:hasUserPrincipal ?user .
+}
+```
+
+### R71 · The members included in a subscription request are members of the consumer's owner team.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S51
+- SPARQL SELECT (each result is a violation) on each `SubscriptionRequest`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:includesMember ?member ; adp:requestConsumer ?consumer .
+  ?consumer adp:resourceOwnedBy ?team .
+  FILTER NOT EXISTS { ?member adp:memberOf ?team }
+}
+```
+
+### R72 · A user principal consumes a platform resource of another team only after being included in an approved subscription request.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 2 · **Status:** confirmed · **Sources:** S51, S55
+- SPARQL SELECT (each result is a violation) on each `UserPrincipal`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:userConsumes ?resource .
+  ?resource adp:resourceOwnedBy ?team .
+  FILTER NOT EXISTS { ?member adp:hasUserPrincipal $this ; adp:memberOf ?team . }
+  FILTER NOT EXISTS { $this adp:hasAccessTo ?resource }
+}
+```
+
+### R73 · An elevated permission is time-limited: it has exactly one end time.
+
+- **Kind:** constraint · **Pattern:** `cardinality` · **Level:** 3 · **Status:** confirmed · **Sources:** S53
+- each `ElevatedPermission` has at least 1 and at most 1 `validUntil` value(s)
+
+### R74 · An elevated permission is for incident resolution or debugging.
+
+- **Kind:** constraint · **Pattern:** `values` · **Level:** 3 · **Status:** confirmed · **Sources:** S53
+- every `forPurpose` value of a `ElevatedPermission` is one of `IncidentResolution`, `Debugging`
+
+### R75 · An elevated permission covers only tables/views in the developer's own data product or in the parent data products.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S53
+- SPARQL SELECT (each result is a violation) on each `ElevatedPermission`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:grantedTo ?user ; adp:permissionOn ?asset .
+  FILTER NOT EXISTS {
+    ?developer adp:hasUserPrincipal ?user ; adp:developerOf ?resource .
+    { ?asset adp:belongsTo ?resource } UNION { ?resource adp:consumes ?parent . ?asset adp:belongsTo ?parent }
+  }
+}
+```
+
+### R77 · An access restriction is set by the product owner of the restricted platform resource.
+
+- **Kind:** constraint · **Pattern:** `equal` · **Level:** 3 · **Status:** confirmed · **Sources:** S55, S56
+- for each `AccessRestriction`, `setBy` and `restricts/hasProductOwner` have the same values
+
+### R78 · In an environment where the product owner restricted a platform resource, users get only elevated permissions on its tables/views.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S53, S55
+- SPARQL SELECT (each result is a violation) on each `Permission`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:inEnvironment ?environment ; adp:permissionOn ?asset .
+  ?asset adp:belongsTo ?resource .
+  ?restriction adp:restricts ?resource ; adp:restrictedIn ?environment .
+  FILTER NOT EXISTS { $this a adp:ElevatedPermission }
+}
+```
+
+### R79 · In an environment where the product owner restricted a dashboard (or the platform resource it belongs to), users get only elevated permissions to view it.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S55, S57
+- SPARQL SELECT (each result is a violation) on each `Permission`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:inEnvironment ?environment ; adp:viewPermissionOn ?dashboard .
+  { ?restriction adp:restricts ?dashboard } UNION { ?dashboard adp:belongsTo ?resource . ?restriction adp:restricts ?resource }
+  ?restriction adp:restrictedIn ?environment .
+  FILTER NOT EXISTS { $this a adp:ElevatedPermission }
+}
+```

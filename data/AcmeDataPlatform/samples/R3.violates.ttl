@@ -1,0 +1,5 @@
+# R3: a resource created with no platform service.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesTeam a adp:ProductTeam .
+adp:salesOrders a adp:DataProduct ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdIn adp:DEV .

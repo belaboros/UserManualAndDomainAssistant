@@ -1,0 +1,10 @@
+# R72: bob (sales team) consumes the HR dashboard without access.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesTeam a adp:ProductTeam .
+adp:hrTeam a adp:ProductTeam .
+adp:salesOrders a adp:DataProduct ; adp:resourceOwnedBy adp:salesTeam .
+adp:hrDashboard a adp:Dashboard ; adp:resourceOwnedBy adp:hrTeam .
+adp:bob a adp:Employee ; adp:memberOf adp:salesTeam ; adp:hasUserPrincipal adp:bobUser .
+adp:bobUser a adp:UserPrincipal .
+adp:bobUser adp:userConsumes adp:hrDashboard .

@@ -372,3 +372,286 @@
 **Options offered:** Any environment, independently; Same promotion paths; Not EXP
 **A:** Any environment, independently
 **Effect:** (to apply) `PlatformService deployedTo Environment` 0..4, no ordering rule; promotion paths apply to platform resources only.
+
+### 2026-11-14 · idea · Note N4 (Claude)
+**Asked by:** user ("Let's do modelling now. I want to see partial results.")
+**Effect:** Level 1 modelled from S1–S10 with the spec-0002 generator, in three passes (concepts, relations, rules): 12 concepts, 5 individuals, 8 relations, 12 rules (R1–R12), each constraint rule with a violating sample. Q44–Q46 applied (`createdWith` 1..*, Team ⊃ PlatformTeam ⊥ ProductTeam, `deployedTo` with no ordering rule). R5 is a SPARQL check because the `createdBy` range makes a `class` check unfalsifiable under RDFS inference. Drafts (Claude's wording or interpretation, to confirm): concept `DataPlatform`, relation `createdIn` (exactly one), rules R7 and R9–R12 (promotion paths, S8).
+
+### 2026-11-14 · idea · Q47
+**Asked by:** Claude
+**Q:** [Claude] Draft `data platform` (concept): AcmeDataPlatform is one instance of a kind called "data platform". Is that right, or should AcmeDataPlatform be a concept itself?
+**Options offered:** free answer (in chat)
+**A:** "correct."
+**Effect:** `DataPlatform` confirmed.
+
+### 2026-11-14 · idea · Q48
+**Asked by:** Claude
+**Q:** [Claude] Draft `created in` / R7: "A platform resource is created in exactly one environment." Is it always exactly one?
+**Options offered:** free answer (in chat)
+**A:** "A platform resource is either created in EXP environment first and then promoted to DEV, ACC and PRD. Or it is created in DEV and promoted to ACC and PRD."
+**Effect:** Recorded as S11. `createdIn` (exactly 1) and R7 confirmed; S11 added to the sources of R8–R12.
+
+### 2026-11-14 · idea · Q49
+**Asked by:** Claude
+**Q:** [Claude] Draft R9: "A platform resource can only be promoted to DEV, ACC or PRD", i.e. nothing is ever promoted into EXP. Correct?
+**Options offered:** free answer (in chat)
+**A:** "Correct. EXP is the environment for experimentation. This is an environment for teams who do not know what they want or how they want to implement it. Or just want to learn the new technologies."
+**Effect:** Recorded as S12. R9 confirmed; EXP gets the definition "The environment for experimentation."
+
+### 2026-11-14 · idea · Q50
+**Asked by:** Claude
+**Q:** [Claude] Draft R10: "A platform resource promoted to DEV was created in EXP." Correct?
+**Options offered:** free answer (in chat)
+**A:** "correct. See the extra information I added for point #3."
+**Effect:** R10 confirmed.
+
+### 2026-11-14 · idea · Q51
+**Asked by:** Claude
+**Q:** [Claude] Draft R11: "A platform resource promoted to ACC was created in or promoted to DEV first." Correct?
+**Options offered:** free answer (in chat)
+**A:** "Correct. Only automated CI/CD pipelines are allowed to deploy anything to ACC environment. Creating platform resources manually in ACC environment is not allowed and prevented by policy."
+**Effect:** Recorded as S13. R11 confirmed; S13 added to R8's sources (no creation in ACC). "Automated CI/CD pipeline" not modelled yet (open, see Q54).
+
+### 2026-11-14 · idea · Q52
+**Asked by:** Claude
+**Q:** [Claude] Draft R12: "A platform resource promoted to PRD was promoted to ACC first." Correct?
+**Options offered:** free answer (in chat)
+**A:** "Yes. Platform resources have to be promoted to ACC first then some of the modifications can be promoted further to PRD environment."
+**Effect:** Recorded as S14. R12 confirmed; reaching PRD stays optional (no rule requires it).
+
+### 2026-11-14 · idea · Q53
+**Asked by:** Claude
+**Q:** [Claude] S9 resource kinds: is the list complete (every resource is one of the five), and can one resource be two kinds at once?
+**Options offered:** free answer (in chat)
+**A:** "Those are all the currently available platform resources related to end-to-end use-cases. But you are right those platform resources may consist of multiple sub-components. I will create those statements for level-2."
+**Effect:** Recorded as S15. Closed list: `ontology.axioms.ttl` makes PlatformResource the union of the five kinds. Whether the kinds are mutually exclusive is still open (Q55). Sub-components follow at level 2.
+
+### 2026-11-14 · idea · Q54
+**Asked by:** Claude
+**Q:** [Claude] S13 introduces "automated CI/CD pipelines". Should it be a level-1 concept now, or wait for level 2?
+**Options offered:** level 1 now; level 2 with the sub-components (in chat)
+**A:** "CI/CD pipeline will be introduced for level-2. It is only needed for teams which need to build something."
+**Effect:** Recorded as S16. No CI/CD pipeline concept at level 1.
+
+### 2026-11-14 · idea · Q55
+**Asked by:** Claude
+**Q:** [Claude] Can one platform resource be two kinds at once (e.g. a data product that is also a dashboard)? If not, the five kinds become mutually exclusive.
+**Options offered:** mutually exclusive; may overlap (in chat)
+**A:** "They are not mutually exclusive. Example. An "analytical application" may come with a business "dashboard" as well."
+**Effect:** Recorded as S17. No disjointness between the five kinds (model unchanged). The example describes composition (an application *with* a dashboard), which Claude raised back as a follow-up (Q57).
+
+### 2026-11-14 · idea · Q56 (user)
+**Asked by:** user
+**Q:** "What is your suggestion to modell that a dashboard can be a (top-level) platform resource as well as a (sub / nested) platform resource?"
+**A (Claude):** Treat "top-level" and "nested" as roles, not kinds: keep one `Dashboard` class and add a part-of relation between platform resources (e.g. `hasComponent`, "consists of"), so a dashboard is nested when some resource has it as a component and top-level otherwise. Optionally derive the roles: `NestedPlatformResource` (OWL: is a component of some platform resource) and `TopLevelPlatformResource` (a SPARQL rule, because "not part of anything" cannot be inferred under OWL's open world). Rejected: separate classes per role (duplicates every kind) and a "component usage" object (only needed if a nesting carries its own data). Proposed for level 2, with the sub-components (S15).
+**Effect:** Proposal only; awaiting the expert's decision.
+
+### 2026-11-14 · idea · Q57
+**Asked by:** Claude
+**Q:** [Claude] Your example ("an analytical application may come with a business dashboard") reads like composition: two resources, one containing the other. Which is it?
+**Options offered:** 1. Composition only (each resource is exactly one kind; nesting via "consists of"); 2. Both (nesting, and one resource can also be two kinds)
+**A:** "Let's go with composition for level-2. A platform resource may consist of multiple (nested / sub) platform resourcs. The (nested / sub) platform resources belong to their (parent) platform resource and cannot live on their own and they are created/owned by the same product team."
+**Effect:** Recorded as S18. Option 1: the five resource kinds are now mutually exclusive (OWL disjointness, level 1; supersedes the Q55 effect). Level 2: concept `SubPlatformResource` ("sub platform resource", synonym "nested platform resource"), relations `hasSubResource` ("consists of") and its inverse `belongsTo` (exactly 1, functional, irreflexive), rules R13 (exactly one parent) and R14 (same creator as the parent; ownership follows through R6). Level-1 view unchanged.
+
+### 2026-11-14 · idea · Q58
+**Asked by:** Claude
+**Q:** [Claude] Do sub platform resources follow their parent's lifecycle (same environment, promoted together) or have their own (created and promoted separately)?
+**Options offered:** 1. Follow the parent; 2. Own lifecycle
+**A:** "Yes, nested platform resources are promoted with their parent platform resource. In fact, promoting a data product from DEV to ACC means: - promote the contract - promote the data pipeline - the data asset will be automatically built from parent/upstream data products automatically. This is also a level-2 information."
+**Effect:** Recorded as S19. Option 1, level 2: derivation rules R15 (a sub-resource gets its parent's creation environment) and R16 (its parent's promotions), constraint R17 (never promoted on its own). R3 (created with ≥1 platform service) still applies to sub-resources: dropping it for them would make a level-1 rule depend on a level-2 concept. Contract, data pipeline, data asset and "upstream" not modelled yet (Q59, Q60).
+
+### 2026-11-14 · idea · Note N5 (user)
+**Asked by:** user ("Add a relation to level-1: Each "platform service" is owned by a "platform team".")
+**Effect:** Same content as S3, which was modelled only through the domain-less `ownedBy` (not drawn in the ontology graph). New level-1 relation `serviceOwnedBy` ("owned by", PlatformService → PlatformTeam, exactly 1, sub-relation of `ownedBy`), source S3. R2 became a SPARQL check, because the new range makes a `class` check unfalsifiable under RDFS inference (as with R5). Samples state service owners with `serviceOwnedBy`.
+
+### 2026-11-14 · idea · Q59
+**Asked by:** Claude
+**Q:** [Claude] Are contract, data pipeline and data asset sub platform resources (then the closed list of five kinds covers only top-level resources), or a separate concept "data product part"?
+**Options offered:** 1. Separate concept "data product part"; 2. Sub platform resources
+**A:** "Extra info for level-2: (nested/sub) platform resources of a data product: contract, data pipeline, compute cluster definition, workspace infra definition, data asset(s) (typically tables and views in case of structured data products), dashboards which show the health of the data product, all mandatory. Of an analytical/AI application: dashboard(s), data product, ML model, AI model, all optional. Of a dashboard: data product, ML model, AI model, all optional. Extra info for level-1: Product teams can subscribe to platform resources." (verbatim in S20, S21)
+**Effect:** Option 2. Level 2: concepts DataContract ("contract"), DataPipeline, ComputeClusterDefinition, WorkspaceInfraDefinition, DataAsset, each a kind of sub platform resource and disjoint from every other kind; the closed list in `ontology.axioms.ttl` now has ten kinds. Rules R18–R23 (the six mandatory parts of a data product, confirmed) and R24–R26 (only the listed sub-resources are allowed for a data product, an application and a dashboard; draft, Claude's reading of the lists). Level 1: relation `subscribesTo` (ProductTeam → PlatformResource, S21). Tables and views not modelled ("typically"). R24–R26 use `FILTER IN`, since SHACL forbids `VALUES` in SPARQL constraints.
+
+### 2026-11-14 · idea · Q60
+**Asked by:** Claude
+**Q:** [Claude] "The data asset will be automatically built from parent/upstream data products": does "parent" mean the data products it reads data from (upstream), or the composition parent (S18)?
+**Options offered:** upstream; composition parent (in chat)
+**A:** "Level-2: - a "data product" may depend on parent/upstream data product(s). Such a data product is also called as a child/downstream data product of its parent(s). - the parent/child relationship between the data products is called as "lineage" - the data asset is always built by a "data pipeline". The data pipeline reads the content of the data asset(s) of the parent data products and populates the data assets of the child data product."
+**Effect:** Recorded as S24. Level 2: relation `dependsOn` ("depends on", synonym "lineage"); concepts `ParentDataProduct` (upstream) and `ChildDataProduct` (downstream), derived by R29/R30; relations `populates` and `reads` (DataPipeline → DataAsset); rules R31 (every data asset is populated by a pipeline), R32 (a pipeline populates only its own data product's assets), R33 (it reads only assets of its data product's parents).
+
+### 2026-11-14 · idea · Q61
+**Asked by:** Claude
+**Q:** [Claude] Drafts R24–R26: are the listed sub-resources the only ones allowed for a data product, an AI/analytical application and a dashboard?
+**Options offered:** free answer (in chat)
+**A:** "R24: yes, those are the only (nested/sub) platform resources of a data product. R25: correct R26: correct"
+**Effect:** R24 (source S22), R25, R26 confirmed.
+
+### 2026-11-14 · idea · Q62
+**Asked by:** Claude
+**Q:** [Claude] ML/AI models and the part kinds: can they have sub-resources?
+**Options offered:** free answer (in chat)
+**A:** "ML/AI models may contain a data product (optional)"
+**Effect:** Recorded as S23. Rules R27 (an ML model consists only of data products) and R28 (same for AI models). The part kinds (contract, pipeline, …) got no rule: not answered.
+
+### 2026-11-14 · idea · Q63
+**Asked by:** Claude
+**Q:** [Claude] Should `table` and `view` be kinds of data asset at level 2 or 3, or be left out ("typically")?
+**Options offered:** level 2; level 3; leave out
+**A:** "Level-3."
+**Effect:** Concepts `Table` and `View` (disjoint), kinds of data asset, level 3, source S20.
+
+### 2026-11-14 · idea · Q64
+**Asked by:** Claude
+**Q:** [Claude] Add a level-1 relation "platform resource → owned by → product team", so resource ownership is drawn in the graph?
+**Options offered:** yes; no
+**A:** "yes. Let's add "created by" and "owned by" relations"
+**Effect:** New relation `resourceOwnedBy` ("owned by", PlatformResource → ProductTeam, exactly 1, sub-relation of `ownedBy`, source S5). "created by" already existed (`createdBy`, level 1). Samples state resource owners with `resourceOwnedBy`.
+
+### 2026-11-14 · idea · Q65
+**Asked by:** Claude
+**Q:** [Claude] R33 lets a pipeline read only from parent data products, so a data product without parents reads nothing. Correct, or do some data products load from sources outside the platform?
+**Options offered:** free answer (in chat)
+**A:** Ingestion: "data products can be created via ingestion. An "ingestion data pipeline" ingests data from an (internal or external) source service or data source. … the ingestion produces a data asset in the RAW layer. then one or more "processing data pipelines" perform some of the transformations … across the RAW->CURATED->SERVING medallion layers. Data products can be created also from parent/upstream data products." (verbatim in S25)
+**Effect:** Recorded as S25. Level 2: concepts IngestionDataPipeline, ProcessingDataPipeline (kinds of data pipeline, disjoint), DataSource (synonym "source service"), MedallionLayer with individuals RAW → CURATED → SERVING (`nextLayer`); relations `ingestsFrom`, `inLayer` (draft); rules R34 (ingested asset is RAW), R35 (processing populates only CURATED/SERVING, draft), R36 (one layer per asset, draft), R37 (ingestion has a source), R38 (ingested or built from parents, draft). R33 widened: a pipeline also reads its own data product's assets.
+
+### 2026-11-14 · idea · Q66
+**Asked by:** Claude
+**Q:** [Claude] May lineage contain cycles?
+**Options offered:** yes; no (then a rule forbids cycles)
+**A:** "Level-2: Yes, lineage is a DAG (Directed Acyclic Graph) and cannot contain cycles/loops."
+**Effect:** Recorded as S26. Rule R39 (no data product depends on itself, directly or indirectly).
+
+### 2026-11-14 · idea · Q67
+**Asked by:** Claude
+**Q:** [Claude] May the part kinds (contract, data pipeline, …) have sub-resources of their own?
+**Options offered:** free answer (in chat)
+**A:** "Level-2: An "analytical/AI application" can contain a "data product" as a (nested/sub) platform resource, and the data product also has its own (nested/sub) platform resources. But there is no circular dependency in this nested structure and all the (nested/sub) platform resources of a (top-level) platform resource are created and owned by the same product team." Plus, unprompted: "A dashboard, "Analytical/AI application" may also consume/reference/use to a "data product", "ML model", "AI model" created by another product team. In this case they are no nested/sub platform resources, but referenced upstream/parent platform resources, which are deployed separately and can live independently." (verbatim in S27, S28)
+**Effect:** Recorded as S27, S28. Rule R40 (nesting has no cycles); R14 cites S27; R15/R16 now follow the whole nesting chain (`belongsTo+`), so deeply nested resources get the top-level resource's environments. Relation `consumes` (synonyms references, uses); rules R41 (only dashboards and applications consume, draft), R42 (only data products, ML and AI models are consumed, draft), R43 (a consumed resource is not a sub-resource). Whether the part kinds may have sub-resources is still unanswered.
+
+### 2026-11-14 · idea · Q68
+**Asked by:** Claude
+**Q:** [Claude] Draft R41: "Only dashboards and AI/analytical applications consume other platform resources."
+**Options offered:** free answer (in chat)
+**A:** "R41: correction: data products may also consume other data products, those are the parent/upstream data products."
+**Effect:** Recorded as S29. R41 confirmed with data products added; `dependsOn` is now a sub-relation of `consumes`; new rule R44 (the data products a data product consumes are exactly its parents). Drafts R35, R36, R38 and R42 were not answered and stay draft.
+
+### 2026-11-14 · idea · Q69
+**Asked by:** Claude
+**Q:** [Claude] Ingestion and processing data pipelines are mutually exclusive. Can one pipeline both ingest and transform?
+**Options offered:** free answer (in chat)
+**A:** "No. An ingestion data pipeline only ingests and stores everything in the RAW layer as raw/unchenged data. i.e.: transformations are not allowed. A processing data pipeline is not allowed to ingest. And each data pipeline can do only one of those things."
+**Effect:** Recorded as S30. Disjointness confirmed; closed list in `ontology.axioms.ttl` (a data pipeline is an ingestion or a processing pipeline); rules R45 (every pipeline is one of the two), R46 (ingestion reads no data assets), R47 (processing does not ingest).
+
+### 2026-11-14 · idea · Q70
+**Asked by:** Claude
+**Q:** [Claude] May a contract, pipeline, compute cluster definition, workspace infra definition or data asset have sub-resources of its own?
+**Options offered:** free answer (in chat)
+**A:** "there are no nested/sub resources under a data pipeline, contract, ..."
+**Effect:** Recorded as S31. Rule R48.
+
+### 2026-11-14 · idea · Q71
+**Asked by:** Claude
+**Q:** [Claude] May a dashboard also consume a data product of its own team without nesting it?
+**Options offered:** yes; no
+**A:** "yes, A dashboard can also consum an independent parent/upstream data product (created by a the same or another product team)."
+**Effect:** Recorded as S32. No team restriction on `consumes` (model unchanged); R41, R43 and `consumes` cite S32.
+
+### 2026-11-14 · idea · Q72
+**Asked by:** Claude
+**Q:** [Claude] Drafts R36 (each data asset is in exactly one medallion layer), R35 (processing populates only CURATED or SERVING), R38 (a data product is created via ingestion or from parents), R42 (only data products, ML models and AI models are consumed).
+**Options offered:** free answer (in chat)
+**A:** "R36: Yes, each data asset is in exactly one medallion layer. R35 correct R38 corect R42: Dashboards can be consumed by human users: (user principlas). Data products, ML models and AI models are consumed by downstream/child application consumers (service principals)."
+**Effect:** R35, R36 (with `inLayer`), R38, R42 confirmed; R42 cites S33. Recorded S33. Level 2: concepts `UserPrincipal` (synonym "human user") and `ServicePrincipal` (synonym "application consumer"), disjoint, under a parent `Principal` (draft, Claude's term); relations `userConsumes` (→ Dashboard) and `serviceConsumes` (→ PlatformResource); rules R49 (user principals consume only dashboards) and R50 (service principals consume only data products, ML and AI models).
+
+### 2026-11-14 · idea · Q73
+**Asked by:** Claude
+**Q:** [Claude] Draft `principal` (Claude's term for the parent of user and service principal): keep, rename or drop? And can one principal be both a user principal and a service principal?
+**Options offered:** keep / rename / drop; mutually exclusive or not
+**A:** "keep the "principal" term. I will add details on it later." / "mutually exclusive"
+**Effect:** `Principal` confirmed; UserPrincipal ⊥ ServicePrincipal confirmed (already modelled).
+
+### 2026-11-14 · idea · Q74
+**Asked by:** Claude
+**Q:** [Claude] Should a service principal be linked to the application it acts for, and can that application be outside the platform?
+**Options offered:** free answer (in chat)
+**A:** "Level-3: A "Service principal" represents the identity of an application, data pipeline or other automation whch is not performed by a human. A "user principla" represents the identity of a user or group of users who can look at dashboards, use "analytical/AI applications""
+**Effect:** Recorded as S34. Definitions of UserPrincipal and ServicePrincipal now in these words. Level 3: relations `userUses` (UserPrincipal → AIAnalyticalApplication) and `identityOf` ("represents the identity of", ServicePrincipal →, no range); concept `Automation` (draft); rule R51 (draft: the identity is of an AI/analytical application, a data pipeline or an automation). R49 (level 2) unchanged. Whether "application" means only AI/analytical applications, and whether it can be outside the platform, is still open.
+
+### 2026-11-14 · idea · Q75
+**Asked by:** Claude
+**Q:** [Claude] Draft `automation` (concept): a concept, or only part of the service principal's definition? Draft R51: does "application" mean only AI/analytical applications on the platform, or also applications outside it?
+**Options offered:** concept / part of the definition; inside only / also outside
+**A:** "part of the definition." / "R51: level-3: yes, "application" can be either an internal "analytical/AI application" which runs inside the AcmeDataPlatform and consumes the platform resources, or an external application that runs outside of the data platform and consumes the "externally exposed/shared" platform resources."
+**Effect:** Recorded as S35. Concept `Automation` removed. R51 removed: "other automation" is open-ended, so the kinds a service principal may represent cannot be checked. Level 3: concept `ExternalApplication`; data property `externallyShared` (boolean, synonym "externally exposed") on platform resources; rule R52 (an external application's service principal consumes only externally shared platform resources).
+
+### 2026-11-14 · idea · Q76
+**Asked by:** Claude
+**Q:** [Claude] "Externally shared": a yes/no property of a platform resource (simpler), or a concept "externally shared platform resource" (only worth it if shared resources have their own relations)?
+**Options offered:** yes/no property; concept
+**A:** "R52: make "externally shared" a yes/no property."
+**Effect:** Confirms the modelled data property `externallyShared` (boolean); no change.
+
+### 2026-11-14 · idea · Note N6 (user)
+**Asked by:** user ("Extra statements for level-2: …", seven statements, verbatim in S36–S42)
+**Effect:** Level 2: concepts ProductOwner, DataProductOwner (a kind of product owner, Claude's reading of "(Data)ProductOwner"), Catalog, SubscriptionRequest, SubscriptionStatus with individuals Approved, Rejected and Pending (draft); relations hasProductOwner, memberOf, exposedIn ("findable in"), requestedBy, requestFor, requestConsumer, receivedBy, hasStatus, hasAccessTo; rules R53 (draft: every platform resource that is not a sub-resource has a product owner), R54–R59, R60 (draft: the requester is the consumer's product owner), R61, R62 (draft: status values), R63 (derivation: approval grants access to the consumer and makes its owner team subscribe), R64 (cross-team consumption needs an approved request). "By default" exposure in catalogs is not enforced by a rule (open).
+
+### 2026-11-14 · idea · Q77
+**Asked by:** Claude
+**Q:** [Claude] Drafts R53 (every platform resource that is not a sub-resource has a product owner), `pending` / R62 (pending, approved or rejected), R60 (the requester is the consumer's product owner); and R54, R64 as modelled.
+**Options offered:** free answer (in chat)
+**A:** "R54: correction: each (top-level) platform resource has exactly one ProductOwner or DataProductOwner. R64: correction: A platform resource can be consumed by a team/app (different than the owner team) only after an approved subscription request. R53: correction: each platform resource (which is not a sub platform resource has exactly one product owner. R62: the "PENDING" term is correct R60: SubscriptionRequest to a platform resource for a new data product, application or other platform resource is created by the owner of that new application, dataproduct or platform resource."
+**Effect:** Recorded as S43–S45. R53 + R54 now mean exactly one product owner per top-level platform resource (R54 no longer limits sub-resources). R60, R62 and `Pending` confirmed. R64 reworded (platform resources of another team); new rule R65 for applications of another team and external applications, at level 3 because it needs `identityOf` (level 3, S34).
+
+### 2026-11-14 · idea · Q78
+**Asked by:** Claude
+**Q:** [Claude] (R64 / R65 as modelled after Q77: cross-team consumption needs an approved subscription request.)
+**Options offered:** free answer (in chat)
+**A:** "R64: correction: any platform resource can be consumed by a new application, child data product or child platform resource after approved subscription request. Special case: a product team creats a data product "A". If the same product team creates a new child platform resource or application which needs to consume the "A" data product. Approved subscription is needed ieven in this case. But in this case the same DataProductOwner will be the approver as well as the consumer."
+**Effect:** Recorded as S46, S47. R64 and R65 drop the same-team exemption: every consumption (including lineage) needs an approved request; the same data product owner may create and receive it.
+
+### 2026-11-14 · idea · Q79
+**Asked by:** Claude
+**Q:** [Claude] Open points: 1. Who owns an external application and creates its requests? 2. Is there one catalog per environment, and can exposure be turned off? 3. Should a product owner also be a user principal?
+**Options offered:** free answer (in chat)
+**A:** "1. Each external application (which runs outside of the AcmeDataPlatform) has exactly one product owner. That product owner can create subscription request to platform resources. 2. There is a catalog per environment. Exposure can be turned off. 3. Yes, each employee (ProductOwners, DataProductOwners or other employees) has a exactly one user principal."
+**Effect:** Recorded as S48–S50. Level 3: relation `externalAppOwner`, rules R66 (exactly one product owner per external application) and R67 (it creates the requests). Level 2: individuals CatalogEXP/DEV/ACC/PRD (`catalogOf`), data property `exposedInCatalog` (yes by default), derivation R68 (a resource is exposed in the catalog of each of its environments unless turned off); concept `Employee` (parent of ProductOwner), relation `hasUserPrincipal`, rule R69 (exactly one user principal per employee).
+
+### 2026-11-14 · idea · Q80 (user)
+**Asked by:** user
+**Q:** "Which files are overlapping? Do you recommend keeping all the overlapping files or does it make sense to get rid of some of them?"
+**A (Claude):** The sources don't overlap (except the intended copy of answers as statements). The generated files overlap in four groups: the three OWL serialisations (same triples); glossary.md / glossary.tbx / SKOS labels; rules.md / rules.shacl.ttl; level-3.md ⊇ glossary.md + rules.md + diagrams.md. Recommendation: keep all of them while the expert compares formats (the goal of Q2); then drop the ones nobody uses, first `ontology.owl.rdf`, then `glossary.md`, `rules.md` and `diagrams.md` (all inside `level-3.md`), and `ontology.jsonld` unless an app needs it. Keep the sources, `statements.md`, the level views, `ontology.owl.ttl`, `rules.shacl.ttl`, `taxonomy.skos.ttl`, and `glossary.tbx` if a terminology tool is planned. Removing a generated file changes spec 0002 (its file list and AC-1), so it goes through a spec change.
+**Effect:** Way-of-working diagram and file table added to `data/AcmeDataPlatform/README.md`; no files removed.
+
+### 2026-11-14 · idea · Q81
+**Asked by:** Claude
+**Q:** [Claude] `working_level` is still 1. Is level 1 complete, so the working level moves to 2 (Q37)?
+**Options offered:** free answer (in chat)
+**A:** "Level 1 is complete."
+**Effect:** `working_level: 2`; statements from S51 on are recorded at level 2; README updated.
+
+### 2026-11-14 · idea · Q82
+**Asked by:** Claude
+**Q:** [Claude] Does a user principal also need an approved subscription request before looking at another team's dashboard?
+**Options offered:** free answer (in chat)
+**A:** "Level-2: users also need a subscription. When a product owner creates a subscription for his/her new consumer application/platform resource, he/she can include some/all of the team members to get access as well. Level-3: the access for users can be differentiated per environment. e.g.: Grant SELECT permission on the tables/view for users in EXP, DEV and ACC environments. But not in PRD where sensitive/PII data is stored. Level-3: developers of the consumer application can request time-limited elevated permissions and run SELECT commands on the tables/views in their data product or in the parent data products in case of an incident resolution or for debugging purposes."
+**Effect:** Recorded as S51–S53. Level 2: `memberOf` now from any employee; relation `includesMember`; R70 (derivation: approved request gives included members' user principals access), R71 (included members belong to the consumer's owner team), R72 (draft: a user consumes another team's resource only with access; own team exempt). Level 3: concepts Developer, Permission, ElevatedPermission, Privilege (SELECT), Purpose (incident resolution, debugging); relations developerOf, grantedTo, permissionOn, inEnvironment, grantsPrivilege, forPurpose; property validUntil; rules R73–R75, R76 (draft: no regular permission in PRD). Users still consume only dashboards at level 2 (R49); table access is a level-3 permission.
+
+### 2026-11-14 · idea · Q83
+**Asked by:** Claude
+**Q:** [Claude] R3 (created with at least one platform service) applies to sub-resources too. Is that right for every nested resource?
+**Options offered:** free answer (in chat)
+**A:** "Yes, each (top-level or nested) platform resource is created via a platform service. e.g.: tables and views are created via Databricks/Snowflake or other EDW/analytical services."
+**Effect:** Recorded as S54. R3 reworded and cites S54.
+
+### 2026-11-14 · idea · Q84
+**Asked by:** Claude
+**Q:** [Claude] Draft R72 exempts the owner team's own members (a user reads their own team's resources without a request). Right? Draft R76: is "no regular permission in PRD" a general rule?
+**Options offered:** free answer (in chat)
+**A:** "R72: level-3 info: by default, the team members of the owning team of a platform resource can read their own platform resources. The product owner may limit this intentionally. E.g.: Developers can run SELECT commands or view the dashboard in the EXP, DEV, ACC environments, but not in the PRD environment which contains sensitive/PII information." / "R76: no general rule. Product owner decides for each case."
+**Effect:** Recorded as S55, S56. R72 confirmed. R76 removed. Level 3: concept AccessRestriction, relations restricts, restrictedIn, setBy; rules R77 (set by the resource's product owner) and R78 (where a resource is restricted, users get only elevated permissions on its tables/views).
+
+### 2026-11-14 · idea · Q85
+**Asked by:** Claude
+**Q:** [Claude] R78 covers SELECT on tables/views, not viewing a dashboard in a restricted environment. Add a level-3 permission to view dashboards, so the same restriction applies?
+**Options offered:** yes; no
+**A:** "R78: yes, same restrictions to dashboards as well."
+**Effect:** Recorded as S57. Level 3: privilege VIEW, relation `viewPermissionOn` (Permission → Dashboard), rule R79 (in a restricted environment, users get only elevated permissions to view the dashboard, also a dashboard nested in the restricted resource).

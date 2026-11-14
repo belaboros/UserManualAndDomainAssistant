@@ -1,0 +1,8 @@
+# R77: a restriction set by someone other than the resource's product owner.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesOwner a adp:DataProductOwner .
+adp:hrOwner a adp:ProductOwner .
+adp:crmCustomers a adp:DataProduct ; adp:hasProductOwner adp:salesOwner .
+adp:crmCustomersAsset a adp:DataAsset ; adp:belongsTo adp:crmCustomers .
+adp:restriction1 a adp:AccessRestriction ; adp:restricts adp:crmCustomers ; adp:restrictedIn adp:PRD ; adp:setBy adp:hrOwner .

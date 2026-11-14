@@ -1,0 +1,17 @@
+# R43: a dashboard consuming a data product nested in another application.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:svcStorage a adp:PlatformService ; adp:serviceOwnedBy adp:storageTeam .
+adp:storageTeam a adp:PlatformTeam .
+adp:salesTeam a adp:ProductTeam .
+adp:hrTeam a adp:ProductTeam .
+adp:orderManagement a adp:DataSource .
+adp:salesApp a adp:AIAnalyticalApplication ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV .
+adp:salesAppData a adp:DataProduct, adp:SubPlatformResource ; adp:belongsTo adp:salesApp ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesAppDataContract a adp:DataContract, adp:SubPlatformResource ; adp:belongsTo adp:salesAppData ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesAppDataPipeline a adp:IngestionDataPipeline, adp:SubPlatformResource ; adp:belongsTo adp:salesAppData ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:ingestsFrom adp:orderManagement ; adp:populates adp:salesAppDataAsset .
+adp:salesAppDataCluster a adp:ComputeClusterDefinition, adp:SubPlatformResource ; adp:belongsTo adp:salesAppData ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesAppDataWorkspace a adp:WorkspaceInfraDefinition, adp:SubPlatformResource ; adp:belongsTo adp:salesAppData ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:salesAppDataAsset a adp:DataAsset, adp:SubPlatformResource ; adp:belongsTo adp:salesAppData ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage ; adp:inLayer adp:RAW .
+adp:salesAppDataHealth a adp:Dashboard, adp:SubPlatformResource ; adp:belongsTo adp:salesAppData ; adp:createdBy adp:salesTeam ; adp:resourceOwnedBy adp:salesTeam ; adp:createdWith adp:svcStorage .
+adp:hrDashboard a adp:Dashboard ; adp:createdBy adp:hrTeam ; adp:resourceOwnedBy adp:hrTeam ; adp:createdWith adp:svcStorage ; adp:createdIn adp:DEV ; adp:consumes adp:salesAppData .

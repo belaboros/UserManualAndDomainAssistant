@@ -1,0 +1,6 @@
+# R64: a child data product consuming a parent of the same team without a subscription request (S47).
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesTeam a adp:ProductTeam .
+adp:crmCustomers a adp:DataProduct ; adp:resourceOwnedBy adp:salesTeam .
+adp:salesOrders a adp:DataProduct ; adp:resourceOwnedBy adp:salesTeam ; adp:dependsOn adp:crmCustomers .

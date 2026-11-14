@@ -1,0 +1,8 @@
+# R67: a request for an external application created by someone other than its product owner.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:billingOwner a adp:ProductOwner .
+adp:hrOwner a adp:ProductOwner .
+adp:externalBilling a adp:ExternalApplication ; adp:externalAppOwner adp:billingOwner .
+adp:salesOrders a adp:DataProduct .
+adp:request1 a adp:SubscriptionRequest ; adp:requestedBy adp:hrOwner ; adp:requestFor adp:salesOrders ; adp:requestConsumer adp:externalBilling .

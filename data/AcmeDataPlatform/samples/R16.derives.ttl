@@ -1,0 +1,6 @@
+# R16: a nested dashboard is promoted with its parent.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesTeam a adp:ProductTeam .
+adp:salesApp a adp:AIAnalyticalApplication ; adp:createdIn adp:DEV ; adp:promotedTo adp:ACC .
+adp:salesDash a adp:Dashboard, adp:SubPlatformResource ; adp:belongsTo adp:salesApp .

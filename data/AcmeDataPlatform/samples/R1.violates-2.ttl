@@ -1,0 +1,6 @@
+# R1: a platform service with two owners.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:svcCompute a adp:PlatformService ; adp:ownedBy adp:teamA, adp:teamB .
+adp:teamA a adp:PlatformTeam .
+adp:teamB a adp:PlatformTeam .

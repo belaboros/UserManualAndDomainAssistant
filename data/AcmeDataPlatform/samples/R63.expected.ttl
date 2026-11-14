@@ -1,0 +1,4 @@
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:hrDashboard adp:hasAccessTo adp:salesOrders .
+adp:hrTeam adp:subscribesTo adp:salesOrders .

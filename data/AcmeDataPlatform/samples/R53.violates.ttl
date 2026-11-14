@@ -1,0 +1,4 @@
+# R53: a dashboard without a product owner.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:hrDashboard a adp:Dashboard .

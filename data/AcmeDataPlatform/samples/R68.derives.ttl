@@ -1,0 +1,4 @@
+# R68: a data product created in DEV and promoted to ACC is exposed in both catalogs.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesOrders a adp:DataProduct ; adp:createdIn adp:DEV ; adp:promotedTo adp:ACC .

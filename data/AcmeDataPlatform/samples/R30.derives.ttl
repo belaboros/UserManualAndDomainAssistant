@@ -1,0 +1,5 @@
+# R30: salesOrders depends on crmCustomers.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesOrders a adp:DataProduct ; adp:dependsOn adp:crmCustomers .
+adp:crmCustomers a adp:DataProduct .

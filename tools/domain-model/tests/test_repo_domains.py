@@ -35,7 +35,8 @@ def test_acme_domain_passes_check(capsys: Any) -> None:
 
 
 def test_acme_statements_s1_to_s10() -> None:
-    statements = read_yaml(ACME, "statements.yaml")["statements"]
+    """The migrated S1–S10 stay first and verbatim; later statements may follow (modelling continues)."""
+    statements = read_yaml(ACME, "statements.yaml")["statements"][: len(STATEMENTS)]
     assert {s["id"]: s["text"] for s in statements} == STATEMENTS
     assert [s["id"] for s in statements] == list(STATEMENTS)
     assert {(str(s["date"]), s["level"]) for s in statements} == {("2026-11-14", 1)}
