@@ -43,3 +43,52 @@ repos:
         language: script
         pass_filenames: false
         files: ^(docs/architecture/|apps/|shared/)
+
+  # Python quality gate (ADR-0014). Needs uv; every command runs in the locked workspace environment.
+  - repo: local
+    hooks:
+      - id: ruff
+        name: ruff (lint, complexity, security rules)
+        entry: uv run --frozen ruff check --force-exclude
+        language: system
+        types_or: [python, pyi]
+      - id: ruff-format
+        name: ruff format
+        entry: uv run --frozen ruff format --check --force-exclude
+        language: system
+        types_or: [python, pyi]
+      - id: mypy
+        name: mypy (strict)
+        entry: uv run --frozen mypy
+        language: system
+        pass_filenames: false
+        types_or: [python, pyi]
+      - id: qg-boundaries
+        name: python boundaries (components.json, both levels)
+        entry: uv run --frozen qg-boundaries
+        language: system
+        pass_filenames: false
+        files: (\.pyi?$|components\.json$|pyproject\.toml$)
+      - id: pytest
+        name: pytest
+        entry: uv run --frozen pytest
+        language: system
+        pass_filenames: false
+        types_or: [python, pyi]
+      - id: pip-audit
+        name: pip-audit (dependency vulnerabilities)
+        entry: uv run --frozen pip-audit --skip-editable --progress-spinner off
+        language: system
+        pass_filenames: false
+        files: (uv\.lock|pyproject\.toml)$
+
+  # Domain models (ADR-0016, spec 0002): every domain folder is consistent, its generated/ files match
+  # the YAML sources, and the generated SHACL behaves as the samples say.
+  - repo: local
+    hooks:
+      - id: domain-model
+        name: domain models (model, freshness, samples)
+        entry: uv run --frozen domain-model check --all
+        language: system
+        pass_filenames: false
+        files: ^(data/|tools/domain-model/)

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Minimal RELAX NG schema of the TBX core structure (ISO 30042:2019, DCA style), written for the
+  domain-model tests (plan 0002, T10). It checks the structural levels tbx / tbxHeader / text / body /
+  conceptEntry / langSec / termSec / term and the generic data-category elements, not the TBX-Basic
+  data-category values. The official TBXcoreStructV03 schema is not vendored because its licence for
+  redistribution was not confirmed (see tools/domain-model/README.md).
+-->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         ns="urn:iso:std:iso:30042:ed-2"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <element name="tbx">
+      <attribute name="type"/>
+      <attribute name="style"><choice><value>dca</value><value>dct</value></choice></attribute>
+      <attribute name="xml:lang" ns="http://www.w3.org/XML/1998/namespace"/>
+      <element name="tbxHeader">
+        <element name="fileDesc">
+          <optional><element name="titleStmt"><element name="title"><text/></element></element></optional>
+          <element name="sourceDesc"><oneOrMore><element name="p"><text/></element></oneOrMore></element>
+        </element>
+      </element>
+      <element name="text">
+        <element name="body">
+          <zeroOrMore><ref name="conceptEntry"/></zeroOrMore>
+        </element>
+      </element>
+    </element>
+  </start>
+
+  <define name="conceptEntry">
+    <element name="conceptEntry">
+      <attribute name="id"><data type="ID"/></attribute>
+      <zeroOrMore><ref name="dataCategory"/></zeroOrMore>
+      <oneOrMore>
+        <element name="langSec">
+          <attribute name="xml:lang" ns="http://www.w3.org/XML/1998/namespace"/>
+          <zeroOrMore><ref name="dataCategory"/></zeroOrMore>
+          <oneOrMore>
+            <element name="termSec">
+              <element name="term"><text/></element>
+              <zeroOrMore><choice><ref name="dataCategory"/><ref name="termNote"/></choice></zeroOrMore>
+            </element>
+          </oneOrMore>
+        </element>
+      </oneOrMore>
+    </element>
+  </define>
+
+  <define name="dataCategory">
+    <choice>
+      <element name="descrip"><attribute name="type"/><text/></element>
+      <element name="admin"><attribute name="type"/><text/></element>
+      <element name="note"><text/></element>
+      <element name="ref"><attribute name="type"/><optional><attribute name="target"/></optional><text/></element>
+      <element name="xref"><attribute name="type"/><attribute name="target"/><text/></element>
+    </choice>
+  </define>
+
+  <define name="termNote">
+    <element name="termNote"><attribute name="type"/><text/></element>
+  </define>
+</grammar>

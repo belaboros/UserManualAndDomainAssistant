@@ -1,0 +1,5 @@
+@prefix lib: <https://example.org/library#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# R1: a loan without items.
+lib:loan1 a lib:Loan .

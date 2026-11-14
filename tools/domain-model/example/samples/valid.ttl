@@ -1,0 +1,13 @@
+@prefix lib: <https://example.org/library#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# A loan that satisfies every constraint rule.
+lib:loan1 a lib:Loan ;
+    lib:hasItem lib:book1 ;
+    lib:hasBorrower lib:alice ;
+    lib:hasStatus lib:Returned ;
+    lib:startDate "2026-01-01"^^xsd:date ;
+    lib:dueDate "2026-01-15"^^xsd:date ;
+    lib:returnedOn "2026-01-10"^^xsd:date .
+lib:alice a lib:Member ; lib:borrowerOf lib:loan1 .
+lib:book1 a lib:Book ; lib:title "Dune" .

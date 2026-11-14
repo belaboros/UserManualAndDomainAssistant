@@ -19,3 +19,6 @@ New ADRs are created with `/adr` from [../../templates/adr.md](../../templates/a
 | [0011](0011-two-level-documentation-and-architecture.md) | Document the system at the root and each app in its own folder | accepted | 2026-11-13 |
 | [0012](0012-layered-environment-configuration.md) | Layer environment configuration: a base `.env` plus one per app | accepted | 2026-11-13 |
 | [0013](0013-shared-data-through-owned-datasets-and-contracts.md) | Share data through owned datasets with versioned contracts | accepted | 2026-11-13 |
+| [0014](0014-introduce-python-and-its-quality-gate.md) | Introduce Python and its quality gate | accepted | 2026-11-14 |
+| [0015](0015-curated-domain-models-are-versioned-in-data.md) | Version curated, hand-authored domain models in `data/<Domain>/` | accepted | 2026-11-14 |
+| [0016](0016-generate-domain-model-formats-from-yaml-sources.md) | Generate every domain-model format from YAML sources with a repo tool | accepted | 2026-11-14 |

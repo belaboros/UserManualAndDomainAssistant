@@ -1,0 +1,11 @@
+# Additional trees beyond is-a (is-a comes from parent / also_parents in ontology.yaml).
+trees:
+  - id: LibraryPartOf
+    label: Library composition (part-of)
+    relation: part of
+    top:
+      - id: Library
+        children:
+          - id: Branch
+            children:
+              - id: Shelf

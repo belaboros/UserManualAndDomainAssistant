@@ -1,0 +1,5 @@
+@prefix lib: <https://example.org/library#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# R8: returned five days late.
+lib:loan1 a lib:Loan ; lib:dueDate "2026-01-15"^^xsd:date ; lib:returnedOn "2026-01-20"^^xsd:date .

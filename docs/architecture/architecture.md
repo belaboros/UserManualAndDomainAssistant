@@ -72,7 +72,14 @@ flowchart LR
 Measured from the code by `/arch-metrics` at system level: edges between apps and shared components, labelled with reference counts. Any edge between two apps is a violation and is drawn red. Definitions and thresholds: [metrics/README.md](metrics/README.md).
 
 <!-- coupling:begin (generated, do not edit) -->
-_No code has been measured yet._
+```mermaid
+flowchart LR
+    assistant["assistant<br/>0·0·0.0"]
+    downloader["downloader<br/>0·0·0.0"]
+    reviewer["reviewer<br/>0·0·0.0"]
+```
+
+Nodes: `name<br/>Ca·Ce·I`; edges: reference counts; red: boundary violation or cycle.
 <!-- coupling:end -->
 
 ## 6. Key cross-app flows
@@ -90,3 +97,4 @@ _Sequence diagrams for flows that span several apps, typically through a shared 
 | Logging and observability | `LOG_LEVEL` from the base `.env`; _rest TBD_ | |
 | Security and privacy | _TBD_ | |
 | Testing strategy | Test-first, per acceptance criterion; contract tests for every dataset reader | [ADR-0002](adr/0002-specification-driven-development.md), [ADR-0013](adr/0013-shared-data-through-owned-datasets-and-contracts.md) |
+| Domain models | Hand-authored YAML sources per domain folder (curated models in `data/<Domain>/`); every format, diagram and level view is generated into `generated/` by `tools/domain-model/` and checked (model, freshness, SHACL samples) in pre-commit and CI | [ADR-0015](adr/0015-curated-domain-models-are-versioned-in-data.md), [ADR-0016](adr/0016-generate-domain-model-formats-from-yaml-sources.md) |

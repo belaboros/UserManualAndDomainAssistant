@@ -1,0 +1,4 @@
+@prefix lib: <https://example.org/library#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+lib:loan1 lib:servedBy lib:CentralBranch .

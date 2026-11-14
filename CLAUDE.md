@@ -26,6 +26,7 @@ Two levels (ADR-0011): the root describes the **system**, `apps/<app>/` describe
 | [tools/env/with-env.sh](tools/env/with-env.sh) | Runs a command with the layered environment of an app |
 | [tools/monorepo/](tools/monorepo/) | `new.sh` (scaffold apps, shared code, datasets) and `system-map.sh` (check rules, render the system map) |
 | [tools/quality/](tools/quality/) | Language registry and quality-gate hooks |
+| [tools/domain-model/](tools/domain-model/README.md) | Domain-model generator: YAML sources → OWL, SKOS, SHACL, TBX, Markdown, Mermaid; `build` / `check` / `validate` (ADR-0016) |
 | [.pre-commit-config.yaml](.pre-commit-config.yaml), [.github/workflows/security.yml](.github/workflows/security.yml) | Security and quality checks, run locally and in CI (ADR-0008) |
 | [tools/bootstrap-github.sh](tools/bootstrap-github.sh) | Applies branch protection and GitHub security settings (ADR-0009) |
 | [tools/sessions/](tools/sessions/) | `save-session.sh`, run by the `SessionEnd` hook (ADR-0007) |
@@ -63,8 +64,18 @@ idea  ──/idea──▶ docs/ideas/NNNN-slug.md                 (original wor
 
 ## Conventions
 
-- After cloning: `brew install gitleaks pre-commit jq && pre-commit install`, then `cp .env.example .env` and fill it in. Check an app's environment: `tools/env/with-env.sh <app> --check`. Run every check: `pre-commit run --all-files`.
+- After cloning: `brew install gitleaks pre-commit jq uv && pre-commit install && uv sync`, then `cp .env.example .env` and fill it in. Check an app's environment: `tools/env/with-env.sh <app> --check`. Run every check: `pre-commit run --all-files`.
 - GitHub protection (once, after the first push): `tools/bootstrap-github.sh`.
 - This project was generated from [sdd-template-for-monorepo-with-claude](https://github.com/belaboros/sdd-template-for-monorepo-with-claude). Pull template improvements with `copier update --trust` on a clean branch, and review the diff. Never edit `.copier-answers.yml` by hand.
 - Names of apps, shared components and datasets are kebab-case. Dates are absolute (`YYYY-MM-DD`). Diagrams are Mermaid in Markdown (ADR-0004).
-- Tech stack, build, test, lint and metrics commands: _added here (repo-wide) or in `apps/<app>/CLAUDE.md` (per app) by `/add-language` and `/plan`._
+- Tech stack, build, test, lint and metrics commands: repo-wide below; per-app commands in `apps/<app>/CLAUDE.md` (added by `/plan`).
+- **Python** (ADR-0014): CPython 3.15, uv workspace (root `pyproject.toml`, one committed `uv.lock`). Code lives in `<app or shared>/src/<package>/`; a folder with Python code gets its own `pyproject.toml` and is added to `[tool.uv.workspace].members` and its `src` to `[tool.mypy].files` (`qg-boundaries` fails otherwise). Commands, from the repo root:
+  - Install / update the environment: `uv sync` (after changing dependencies: `uv lock`, commit `uv.lock`)
+  - Lint + complexity + security rules: `uv run ruff check .` · format: `uv run ruff format .`
+  - Types: `uv run mypy` (strict) · tests: `uv run pytest`
+  - Boundaries (both `components.json` levels, cycles, workspace): `uv run qg-boundaries`
+  - Dependency audit: `uv run pip-audit --skip-editable`
+  - Metrics snapshot for one level: `uv run qg-metrics <components.json>`; merge + render (used by `/arch-metrics`): `uv run qg-arch-render <system|app> <snapshot.json>...`
+  - Run an app with its environment (ADR-0012): `tools/env/with-env.sh <app> -- uv run <command>`; Python code never loads `.env` files itself.
+- **Domain models** (ADR-0015, ADR-0016; built by spec 0002): edit only the sources of a domain folder (`statements.yaml`, `ontology.yaml`, `taxonomy.yaml`, `ontology.axioms.ttl`, `samples/`), never `generated/`. Format: [tools/domain-model/README.md](tools/domain-model/README.md).
+  - Regenerate: `uv run domain-model build <folder>` · check model, freshness and samples: `uv run domain-model check <folder>` (every domain: `--all`, also run by pre-commit and CI) · SHACL on samples only: `uv run domain-model validate <folder>`

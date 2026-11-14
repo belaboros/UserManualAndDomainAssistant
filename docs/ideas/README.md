@@ -7,4 +7,5 @@ Scope: `system` or the name of one app; decided by `/spec` (until then `TBD`).
 
 | #    | Idea | Scope | Status | Spec / decisions |
 |------|------|-------|--------|------------------|
-| _none yet_ | | | | |
+| [0001](0001-acme-data-platform-domain-model.md) | AcmeDataPlatform domain model (interactive) | TBD | captured | — |
+| [0002](0002-domain-model-generator.md) | Domain-model generator (formats, diagrams, level views) | system | done | [spec](../specs/0002-domain-model-generator/spec.md) · [plan](../specs/0002-domain-model-generator/plan.md) · ADR-0015, ADR-0016 |

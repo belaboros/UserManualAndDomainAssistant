@@ -1,0 +1,6 @@
+# Hand-written OWL axioms that ontology.yaml cannot express; merged into generated/ontology.owl.ttl.
+@prefix lib: <https://example.org/library#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Every agent is a member or a librarian.
+lib:Agent owl:equivalentClass [ a owl:Class ; owl:unionOf ( lib:Member lib:Librarian ) ] .

@@ -1,0 +1,1005 @@
+{
+  "@context": {
+    "brick": "https://brickschema.org/schema/Brick#",
+    "csvw": "http://www.w3.org/ns/csvw#",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "dcam": "http://purl.org/dc/dcam/",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcmitype": "http://purl.org/dc/dcmitype/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "doap": "http://usefulinc.com/ns/doap#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "geo": "http://www.opengis.net/ont/geosparql#",
+    "lib": "https://example.org/library#",
+    "odrl": "http://www.w3.org/ns/odrl/2/",
+    "org": "http://www.w3.org/ns/org#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "prof": "http://www.w3.org/ns/dx/prof/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "qb": "http://purl.org/linked-data/cube#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "https://schema.org/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "ssn": "http://www.w3.org/ns/ssn/",
+    "time": "http://www.w3.org/2006/time#",
+    "vann": "http://purl.org/vocab/vann/",
+    "void": "http://rdfs.org/ns/void#",
+    "wgs": "https://www.w3.org/2003/01/geo/wgs84_pos#",
+    "xml": "http://www.w3.org/XML/1998/namespace",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "_:cb100ba7e2fba8c0a4a258889ffefac4d4757e1dc4a38b0868cefb81c2b34fd3a68",
+      "@type": "owl:Class",
+      "owl:unionOf": {
+        "@list": [
+          {
+            "@id": "lib:Member"
+          },
+          {
+            "@id": "lib:Librarian"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "_:cb2167840adb2077113a066272caad46c2f1585fdc8558485323231410ceddea3a6",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onDataRange": {
+        "@id": "xsd:boolean"
+      },
+      "owl:onProperty": {
+        "@id": "lib:isReference"
+      }
+    },
+    {
+      "@id": "_:cb2423de65012b8220601171c96f8ddff535eb63fcd2ee46894c3a5f825cc6ad445",
+      "@type": "owl:Restriction",
+      "owl:minQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "2"
+      },
+      "owl:onClass": {
+        "@id": "lib:Shelf"
+      },
+      "owl:onProperty": {
+        "@id": "lib:hasShelf"
+      }
+    },
+    {
+      "@id": "_:cb2459747f1d49dacc0ad5628cce77a858b1c30816833f8fb686eb7b9039faafe65",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onDataRange": {
+        "@id": "xsd:integer"
+      },
+      "owl:onProperty": {
+        "@id": "lib:pageCount"
+      }
+    },
+    {
+      "@id": "_:cb2803cbdd048be5eddfb1a24223c0bba08e7e1488960fa6d6b11c9e989a8bd33cf",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onClass": {
+        "@id": "lib:Branch"
+      },
+      "owl:onProperty": {
+        "@id": "lib:locatedIn"
+      }
+    },
+    {
+      "@id": "_:cb285148f765fdcd4a727e3e0a0c4a1e2204ec6292679d0cc4ff05f6f8353941f5f",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "4"
+      },
+      "owl:onClass": {
+        "@id": "lib:Shelf"
+      },
+      "owl:onProperty": {
+        "@id": "lib:hasShelf"
+      }
+    },
+    {
+      "@id": "_:cb2ae70eba7389be91f511d0a125f3e626756e34bd84638b73c79aa37d31f1c8dd4",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "lib:Library"
+      },
+      "owl:onProperty": {
+        "@id": "lib:branchOf"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb2b18f6e3163a5d21c222bf996079ba567d4ea8be3a116d1c139c3bf0735421f3b",
+      "@type": "owl:Restriction",
+      "owl:onDataRange": {
+        "@id": "xsd:string"
+      },
+      "owl:onProperty": {
+        "@id": "lib:title"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb2bc5e455b6355d382e891f17dab5325748b04adfa3af92ae9b148d5d5f3decef6",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "lib:LoanStatus"
+      },
+      "owl:onProperty": {
+        "@id": "lib:hasStatus"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb2e8ca4ef37e308b9c7d687dd7a1b8551a914a73f6a203a56fef1e61192c1545aa",
+      "@type": "owl:Restriction",
+      "owl:onDataRange": {
+        "@id": "xsd:date"
+      },
+      "owl:onProperty": {
+        "@id": "lib:startDate"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb2ea57c563522728dceb691a4de4403ee1398617c34be936e185be74879cb96e7c",
+      "@type": "owl:Restriction",
+      "owl:minQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onClass": {
+        "@id": "lib:Item"
+      },
+      "owl:onProperty": {
+        "@id": "lib:hasItem"
+      }
+    },
+    {
+      "@id": "_:cb2f45609b14f3664191ca26f153bcf914cf6d757a7d2e8c9d04808fa1ee146380a",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "lib:Member"
+      },
+      "owl:onProperty": {
+        "@id": "lib:hasBorrower"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb3155a311f25b82aa57b9e1eb60fcf3617a3a3b21ca769c1559cc97edf9a9c58df",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onClass": {
+        "@id": "lib:Librarian"
+      },
+      "owl:onProperty": {
+        "@id": "lib:issuedBy"
+      }
+    },
+    {
+      "@id": "_:cb32173c8bc082e6ad6882cef7bca1cee74b76a22b891155513e7c18b562f37b4a4",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onDataRange": {
+        "@id": "xsd:date"
+      },
+      "owl:onProperty": {
+        "@id": "lib:returnedOn"
+      }
+    },
+    {
+      "@id": "_:cb3786b6050fe2c6ff2d5fd4879ed0e81160800fafcd8677b0b11ed9fc649b5c7a1",
+      "@type": "owl:Restriction",
+      "owl:onDataRange": {
+        "@id": "xsd:date"
+      },
+      "owl:onProperty": {
+        "@id": "lib:dueDate"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "dcterms:source",
+      "@type": "owl:AnnotationProperty"
+    },
+    {
+      "@id": "https://example.org/library",
+      "@type": "owl:Ontology",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Library lending ontology"
+      }
+    },
+    {
+      "@id": "lib:Active",
+      "@type": [
+        "lib:LoanStatus",
+        "owl:NamedIndividual"
+      ],
+      "dcterms:source": "S3",
+      "lib:level": 2,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "active"
+      }
+    },
+    {
+      "@id": "lib:Agent",
+      "@type": "owl:Class",
+      "dcterms:source": "S1",
+      "lib:level": 1,
+      "lib:status": "confirmed",
+      "owl:equivalentClass": {
+        "@id": "_:cb100ba7e2fba8c0a4a258889ffefac4d4757e1dc4a38b0868cefb81c2b34fd3a68"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "agent"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A person who takes part in a loan."
+      }
+    },
+    {
+      "@id": "lib:AudioVisualItem",
+      "@type": "owl:Class",
+      "dcterms:source": "S2",
+      "lib:level": 2,
+      "lib:status": "confirmed",
+      "owl:disjointWith": {
+        "@id": "lib:Book"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "audio/visual \"AV\" item"
+      },
+      "rdfs:subClassOf": {
+        "@id": "lib:Item"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A recording on a physical carrier."
+      }
+    },
+    {
+      "@id": "lib:Book",
+      "@type": "owl:Class",
+      "dcterms:source": "S2",
+      "lib:level": 1,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "book"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb2459747f1d49dacc0ad5628cce77a858b1c30816833f8fb686eb7b9039faafe65"
+        },
+        {
+          "@id": "lib:Item"
+        }
+      ],
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A printed item with pages."
+      }
+    },
+    {
+      "@id": "lib:Branch",
+      "@type": "owl:Class",
+      "dcterms:source": "S3",
+      "lib:level": 2,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "branch"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb2423de65012b8220601171c96f8ddff535eb63fcd2ee46894c3a5f825cc6ad445"
+        },
+        {
+          "@id": "_:cb285148f765fdcd4a727e3e0a0c4a1e2204ec6292679d0cc4ff05f6f8353941f5f"
+        },
+        {
+          "@id": "_:cb2ae70eba7389be91f511d0a125f3e626756e34bd84638b73c79aa37d31f1c8dd4"
+        }
+      ]
+    },
+    {
+      "@id": "lib:CentralBranch",
+      "@type": [
+        "lib:Branch",
+        "owl:NamedIndividual"
+      ],
+      "dcterms:source": "S3",
+      "lib:branchOf": {
+        "@id": "lib:MainLibrary"
+      },
+      "lib:level": 2,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "central branch"
+      }
+    },
+    {
+      "@id": "lib:DigitalResource",
+      "@type": "owl:Class",
+      "dcterms:source": "S2",
+      "lib:level": 2,
+      "lib:status": "draft",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "digital resource"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Anything that exists only as a file."
+      }
+    },
+    {
+      "@id": "lib:EBook",
+      "@type": "owl:Class",
+      "dcterms:source": "S2",
+      "lib:level": 2,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "e-book"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "lib:Book"
+        },
+        {
+          "@id": "lib:DigitalResource"
+        }
+      ],
+      "skos:altLabel": {
+        "@language": "en",
+        "@value": "electronic book"
+      }
+    },
+    {
+      "@id": "lib:HobbitCopy",
+      "@type": [
+        "lib:Book",
+        "owl:NamedIndividual"
+      ],
+      "dcterms:source": "S4",
+      "lib:isReference": false,
+      "lib:level": 3,
+      "lib:locatedIn": {
+        "@id": "lib:CentralBranch"
+      },
+      "lib:pageCount": 310,
+      "lib:status": "draft",
+      "lib:title": "The Hobbit",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "copy of The Hobbit"
+      },
+      "skos:altLabel": {
+        "@language": "en",
+        "@value": "Hobbit"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A sample book."
+      }
+    },
+    {
+      "@id": "lib:Item",
+      "@type": "owl:Class",
+      "dcterms:source": "S1",
+      "lib:level": 1,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "item"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb2167840adb2077113a066272caad46c2f1585fdc8558485323231410ceddea3a6"
+        },
+        {
+          "@id": "_:cb2803cbdd048be5eddfb1a24223c0bba08e7e1488960fa6d6b11c9e989a8bd33cf"
+        },
+        {
+          "@id": "_:cb2b18f6e3163a5d21c222bf996079ba567d4ea8be3a116d1c139c3bf0735421f3b"
+        }
+      ],
+      "skos:altLabel": [
+        {
+          "@language": "en",
+          "@value": "holding"
+        },
+        {
+          "@language": "en",
+          "@value": "library item"
+        }
+      ],
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Something a library lends."
+      }
+    },
+    {
+      "@id": "lib:LateLoan",
+      "@type": "owl:Class",
+      "dcterms:source": "S4",
+      "lib:level": 3,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "late loan"
+      },
+      "rdfs:subClassOf": {
+        "@id": "lib:Loan"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A loan returned after its due date (derived by rule R8)."
+      }
+    },
+    {
+      "@id": "lib:Librarian",
+      "@type": "owl:Class",
+      "dcterms:source": "S3",
+      "lib:level": 2,
+      "lib:status": "draft",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "librarian"
+      },
+      "rdfs:subClassOf": {
+        "@id": "lib:Agent"
+      }
+    },
+    {
+      "@id": "lib:Library",
+      "@type": "owl:Class",
+      "dcterms:source": "S1",
+      "lib:level": 1,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "library"
+      },
+      "skos:altLabel": {
+        "@language": "en",
+        "@value": "lending library"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "An organisation that lends items to its members."
+      }
+    },
+    {
+      "@id": "lib:Loan",
+      "@type": "owl:Class",
+      "dcterms:source": "S1",
+      "lib:level": 1,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "loan"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb2bc5e455b6355d382e891f17dab5325748b04adfa3af92ae9b148d5d5f3decef6"
+        },
+        {
+          "@id": "_:cb2e8ca4ef37e308b9c7d687dd7a1b8551a914a73f6a203a56fef1e61192c1545aa"
+        },
+        {
+          "@id": "_:cb2ea57c563522728dceb691a4de4403ee1398617c34be936e185be74879cb96e7c"
+        },
+        {
+          "@id": "_:cb2f45609b14f3664191ca26f153bcf914cf6d757a7d2e8c9d04808fa1ee146380a"
+        },
+        {
+          "@id": "_:cb3155a311f25b82aa57b9e1eb60fcf3617a3a3b21ca769c1559cc97edf9a9c58df"
+        },
+        {
+          "@id": "_:cb32173c8bc082e6ad6882cef7bca1cee74b76a22b891155513e7c18b562f37b4a4"
+        },
+        {
+          "@id": "_:cb3786b6050fe2c6ff2d5fd4879ed0e81160800fafcd8677b0b11ed9fc649b5c7a1"
+        }
+      ],
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The record of items a member borrowed."
+      }
+    },
+    {
+      "@id": "lib:LoanStatus",
+      "@type": "owl:Class",
+      "dcterms:source": "S3",
+      "lib:level": 2,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "loan status"
+      }
+    },
+    {
+      "@id": "lib:MainLibrary",
+      "@type": [
+        "lib:Library",
+        "owl:NamedIndividual"
+      ],
+      "dcterms:source": "S1",
+      "lib:level": 1,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "main library"
+      }
+    },
+    {
+      "@id": "lib:Member",
+      "@type": "owl:Class",
+      "dcterms:source": "S1",
+      "lib:level": 1,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "member"
+      },
+      "rdfs:subClassOf": {
+        "@id": "lib:Agent"
+      },
+      "skos:altLabel": [
+        {
+          "@language": "en",
+          "@value": "borrower"
+        },
+        {
+          "@language": "en",
+          "@value": "patron"
+        }
+      ],
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A person registered to borrow items."
+      }
+    },
+    {
+      "@id": "lib:OpenLoan",
+      "@type": "owl:Class",
+      "dcterms:source": "S3",
+      "lib:level": 2,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "open loan"
+      },
+      "rdfs:subClassOf": {
+        "@id": "lib:Loan"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A loan whose status is active (derived by rule R5)."
+      }
+    },
+    {
+      "@id": "lib:Returned",
+      "@type": [
+        "lib:LoanStatus",
+        "owl:NamedIndividual"
+      ],
+      "dcterms:source": "S3",
+      "lib:level": 2,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "returned"
+      }
+    },
+    {
+      "@id": "lib:Shelf",
+      "@type": "owl:Class",
+      "dcterms:source": "S4",
+      "lib:level": 3,
+      "lib:status": "confirmed",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "shelf"
+      }
+    },
+    {
+      "@id": "lib:borrowerOf",
+      "@type": [
+        "owl:InverseFunctionalProperty",
+        "owl:ObjectProperty"
+      ],
+      "dcterms:source": "S1",
+      "lib:level": 2,
+      "lib:status": "confirmed",
+      "owl:inverseOf": {
+        "@id": "lib:hasBorrower"
+      },
+      "rdfs:domain": {
+        "@id": "lib:Member"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "borrower of"
+      },
+      "rdfs:range": {
+        "@id": "lib:Loan"
+      }
+    },
+    {
+      "@id": "lib:branchOf",
+      "@type": [
+        "owl:AsymmetricProperty",
+        "owl:IrreflexiveProperty",
+        "owl:ObjectProperty"
+      ],
+      "dcterms:source": "S3",
+      "lib:level": 2,
+      "lib:status": "confirmed",
+      "rdfs:domain": {
+        "@id": "lib:Branch"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "branch of"
+      },
+      "rdfs:range": {
+        "@id": "lib:Library"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Links a branch to the library it belongs to."
+      }
+    },
+    {
+      "@id": "lib:dueDate",
+      "@type": "owl:DatatypeProperty",
+      "dcterms:source": "S1",
+      "lib:level": 1,
+      "lib:status": "confirmed",
+      "rdfs:domain": {
+        "@id": "lib:Loan"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "due date"
+      },
+      "rdfs:range": {
+        "@id": "xsd:date"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The day by which the items must be back."
+      }
+    },
+    {
+      "@id": "lib:hasBorrower",
+      "@type": [
+        "owl:FunctionalProperty",
+        "owl:ObjectProperty"
+      ],
+      "dcterms:source": "S1",
+      "lib:level": 1,
+      "lib:status": "confirmed",
+      "rdfs:domain": {
+        "@id": "lib:Loan"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has borrower"
+      },
+      "rdfs:range": {
+        "@id": "lib:Member"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "lib:hasParticipant"
+      }
+    },
+    {
+      "@id": "lib:hasItem",
+      "@type": "owl:ObjectProperty",
+      "dcterms:source": [
+        "S1",
+        "S2"
+      ],
+      "lib:level": 1,
+      "lib:status": "confirmed",
+      "rdfs:domain": {
+        "@id": "lib:Loan"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has item"
+      },
+      "rdfs:range": {
+        "@id": "lib:Item"
+      },
+      "skos:altLabel": {
+        "@language": "en",
+        "@value": "includes"
+      }
+    },
+    {
+      "@id": "lib:hasParticipant",
+      "@type": "owl:ObjectProperty",
+      "dcterms:source": "S1",
+      "lib:level": 1,
+      "lib:status": "confirmed",
+      "rdfs:domain": {
+        "@id": "lib:Loan"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has participant"
+      },
+      "rdfs:range": {
+        "@id": "lib:Agent"
+      }
+    },
+    {
+      "@id": "lib:hasShelf",
+      "@type": "owl:ObjectProperty",
+      "dcterms:source": "S4",
+      "lib:level": 3,
+      "lib:status": "confirmed",
+      "rdfs:domain": {
+        "@id": "lib:Branch"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has shelf"
+      },
+      "rdfs:range": {
+        "@id": "lib:Shelf"
+      }
+    },
+    {
+      "@id": "lib:hasStatus",
+      "@type": "owl:ObjectProperty",
+      "dcterms:source": "S3",
+      "lib:level": 2,
+      "lib:status": "confirmed",
+      "rdfs:domain": {
+        "@id": "lib:Loan"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has status"
+      },
+      "rdfs:range": {
+        "@id": "lib:LoanStatus"
+      }
+    },
+    {
+      "@id": "lib:isReference",
+      "@type": "owl:DatatypeProperty",
+      "dcterms:source": "S4",
+      "lib:level": 3,
+      "lib:status": "draft",
+      "rdfs:domain": {
+        "@id": "lib:Item"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "is reference"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Reference items are not lent out."
+      }
+    },
+    {
+      "@id": "lib:issuedBy",
+      "@type": "owl:ObjectProperty",
+      "dcterms:source": "S3",
+      "lib:level": 2,
+      "lib:status": "draft",
+      "rdfs:domain": {
+        "@id": "lib:Loan"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "issued by"
+      },
+      "rdfs:range": {
+        "@id": "lib:Librarian"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "lib:hasParticipant"
+      }
+    },
+    {
+      "@id": "lib:level",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "learnability level"
+      },
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      }
+    },
+    {
+      "@id": "lib:locatedIn",
+      "@type": "owl:ObjectProperty",
+      "dcterms:source": "S4",
+      "lib:level": 3,
+      "lib:status": "confirmed",
+      "rdfs:domain": {
+        "@id": "lib:Item"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "located in"
+      },
+      "rdfs:range": {
+        "@id": "lib:Branch"
+      }
+    },
+    {
+      "@id": "lib:pageCount",
+      "@type": "owl:DatatypeProperty",
+      "dcterms:source": "S4",
+      "lib:level": 3,
+      "lib:status": "confirmed",
+      "rdfs:domain": {
+        "@id": "lib:Book"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "page count"
+      },
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      }
+    },
+    {
+      "@id": "lib:returnedOn",
+      "@type": "owl:DatatypeProperty",
+      "dcterms:source": "S3",
+      "lib:level": 2,
+      "lib:status": "confirmed",
+      "rdfs:domain": {
+        "@id": "lib:Loan"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "returned on"
+      },
+      "rdfs:range": {
+        "@id": "xsd:date"
+      }
+    },
+    {
+      "@id": "lib:servedBy",
+      "@type": "owl:ObjectProperty",
+      "dcterms:source": "S4",
+      "lib:level": 3,
+      "lib:status": "confirmed",
+      "rdfs:domain": {
+        "@id": "lib:Loan"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "served by"
+      },
+      "rdfs:range": {
+        "@id": "lib:Branch"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The branches holding the items of a loan (rule R6)."
+      }
+    },
+    {
+      "@id": "lib:startDate",
+      "@type": "owl:DatatypeProperty",
+      "dcterms:source": "S1",
+      "lib:level": 1,
+      "lib:status": "confirmed",
+      "rdfs:domain": {
+        "@id": "lib:Loan"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "start date"
+      },
+      "rdfs:range": {
+        "@id": "xsd:date"
+      }
+    },
+    {
+      "@id": "lib:status",
+      "@type": "owl:AnnotationProperty",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "status (confirmed or draft)"
+      }
+    },
+    {
+      "@id": "lib:title",
+      "@type": "owl:DatatypeProperty",
+      "dcterms:source": "S1",
+      "lib:level": 1,
+      "lib:status": "confirmed",
+      "rdfs:domain": {
+        "@id": "lib:Item"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "title"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:altLabel": {
+        "@language": "en",
+        "@value": "name"
+      }
+    },
+    {
+      "@id": "skos:altLabel",
+      "@type": "owl:AnnotationProperty"
+    },
+    {
+      "@id": "skos:definition",
+      "@type": "owl:AnnotationProperty"
+    }
+  ]
+}

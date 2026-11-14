@@ -1,0 +1,6 @@
+@prefix lib: <https://example.org/library#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# R4: the loan names alice, but bob is recorded as its borrower.
+lib:loan1 a lib:Loan ; lib:hasBorrower lib:alice .
+lib:bob lib:borrowerOf lib:loan1 .

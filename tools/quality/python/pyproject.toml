@@ -1,0 +1,18 @@
+[project]
+name = "quality-gate"
+version = "0.1.0"
+description = "Python quality gate: boundary checker, metrics collector and snapshot renderer (ADR-0014)."
+requires-python = ">=3.15"
+dependencies = [
+  "grimp==3.20",
+  "radon==6.0.1",
+]
+
+[project.scripts]
+qg-boundaries = "quality_gate.boundaries:main"
+qg-metrics = "quality_gate.metrics:main"
+qg-arch-render = "quality_gate.render:main"
+
+[build-system]
+requires = ["uv_build>=0.13.8,<0.14"]
+build-backend = "uv_build"

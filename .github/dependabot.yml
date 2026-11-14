@@ -10,3 +10,14 @@ updates:
     groups:
       actions:
         patterns: ["*"]
+
+  # Python workspace (ADR-0014): uv.lock at the repository root covers every member.
+  - package-ecosystem: uv
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      python:
+        patterns: ["*"]

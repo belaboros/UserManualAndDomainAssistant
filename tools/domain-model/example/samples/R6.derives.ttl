@@ -1,0 +1,6 @@
+@prefix lib: <https://example.org/library#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# R6: the loaned book is located in the central branch.
+lib:loan1 a lib:Loan ; lib:hasItem lib:book1 .
+lib:book1 lib:locatedIn lib:CentralBranch .

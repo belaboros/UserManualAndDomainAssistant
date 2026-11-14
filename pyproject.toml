@@ -1,0 +1,94 @@
+# Python workspace root and quality gate (ADR-0014). Virtual: nothing here is installed itself.
+# Every Python package (app, shared component, tool) is a workspace member, so one `uv run ...`
+# lints, type-checks, tests and audits all of them. A new app or shared component with Python code
+# adds its folder to [tool.uv.workspace].members; `qg-boundaries` fails if one is missing.
+[project]
+name = "usermanual-and-domain-assistant"
+version = "0.0.0"
+requires-python = ">=3.15"
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["tools/quality/python", "tools/domain-model"]
+
+[tool.uv.sources]
+quality-gate = { workspace = true }
+domain-model = { workspace = true }
+
+[dependency-groups]
+dev = [
+  "quality-gate",
+  "domain-model",
+  "ruff==0.17.5",
+  "mypy==2.4.1",
+  "pytest==9.2.0",
+  "pip-audit==2.10.1",
+  "types-PyYAML==6.0.12.20250915",
+  "lxml==6.1.3",
+  "lxml-stubs==0.5.1",
+]
+
+# ---------------------------------------------------------------- ruff (lint, complexity, security)
+[tool.ruff]
+target-version = "py315"
+line-length = 110
+extend-exclude = ["docs/sessions"]
+
+[tool.ruff.lint]
+preview = true          # PLR1702 (nesting depth) is a preview rule
+explicit-preview-rules = true
+select = [
+  "E", "W", "F",        # pycodestyle, pyflakes
+  "I",                  # import order
+  "B",                  # bugbear
+  "UP",                 # pyupgrade
+  "N",                  # naming
+  "SIM",                # simplify
+  "S",                  # bandit security rules (ADR-0008)
+  "C901",               # McCabe cyclomatic complexity
+  "PLR0912",            # too many branches
+  "PLR0913",            # too many arguments
+  "PLR0915",            # too many statements
+  "PLR1702",            # too many nested blocks
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 15     # fail above 15 (ADR-0005); 11-15 is the warn band, reported by qg-metrics
+
+[tool.ruff.lint.pylint]
+max-args = 5
+max-branches = 15
+max-statements = 50
+max-nested-blocks = 4
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S101"]   # assert is how pytest works
+
+# ---------------------------------------------------------------- mypy
+[tool.mypy]
+strict = true
+python_version = "3.15"
+files = [
+  "tools/quality/python/src", "tools/quality/python/tests",
+  "tools/domain-model/src", "tools/domain-model/tests",
+]
+mypy_path = [
+  "tools/quality/python/src", "tools/quality/python/tests",
+  "tools/domain-model/src", "tools/domain-model/tests",
+]
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = ["radon.*", "pyshacl.*", "owlrl.*"]
+ignore_missing_imports = true
+
+# ---------------------------------------------------------------- pytest
+[tool.pytest.ini_options]
+# Test module names are unique across the workspace (no second conftest.py), so the default
+# import mode works with several tests/ folders (plan 0002, T1).
+testpaths = ["tools/quality/python/tests", "tools/domain-model/tests"]
+addopts = "-q"
+# rdflib's own JSON-LD parser uses its deprecated ConjunctiveGraph (not our code).
+filterwarnings = ["ignore:ConjunctiveGraph is deprecated:DeprecationWarning"]

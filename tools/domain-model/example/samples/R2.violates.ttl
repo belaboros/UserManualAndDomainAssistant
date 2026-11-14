@@ -1,0 +1,5 @@
+@prefix lib: <https://example.org/library#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# R2: a status that is neither active nor returned.
+lib:loan1 a lib:Loan ; lib:hasStatus lib:Lost .

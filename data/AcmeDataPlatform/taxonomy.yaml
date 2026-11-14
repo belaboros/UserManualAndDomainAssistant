@@ -1,0 +1,3 @@
+# Additional trees over the concepts in ontology.yaml (e.g. part-of); levels come from ontology.yaml.
+# The is-a taxonomy is derived from parent / also_parents in ontology.yaml, not written here.
+trees: []

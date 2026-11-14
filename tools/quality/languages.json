@@ -1,4 +1,13 @@
 {
   "$comment": "Languages with a working quality gate. Written only by /add-language. Entry: {name, extensions, added, adr, lint, metrics}.",
-  "languages": []
+  "languages": [
+    {
+      "name": "python",
+      "extensions": ["py", "pyi", "ipynb"],
+      "added": "2026-11-14",
+      "adr": "docs/architecture/adr/0014-introduce-python-and-its-quality-gate.md",
+      "lint": "uv run --frozen ruff check . && uv run --frozen ruff format --check . && uv run --frozen mypy && uv run --frozen qg-boundaries",
+      "metrics": "uv run --frozen qg-metrics <components.json>"
+    }
+  ]
 }

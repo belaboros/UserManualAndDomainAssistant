@@ -8,4 +8,4 @@ This table indexes **every** spec, at both levels.
 
 | #  | Spec | Scope | Status |
 |----|------|-------|--------|
-| _none yet_ | | | |
+| [0002](0002-domain-model-generator/spec.md) | Domain-model generator (formats, diagrams, level views) | system | implemented ([plan](0002-domain-model-generator/plan.md)) |

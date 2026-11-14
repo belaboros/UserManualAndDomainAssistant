@@ -1,0 +1,5 @@
+@prefix lib: <https://example.org/library#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# R3: a returned loan without a return date.
+lib:loan1 a lib:Loan ; lib:hasStatus lib:Returned .

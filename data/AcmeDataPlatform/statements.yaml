@@ -1,0 +1,43 @@
+# The domain expert's statements, verbatim, in the order given (idea 0001). Items in ontology.yaml
+# cite them in `source`. Format: tools/domain-model/README.md.
+statements:
+  - id: S1
+    date: 2026-11-14
+    level: 1
+    text: "Core concepts: AcmeDataPlatform; platform service; platform resource; platform team; product team; environments: EXP, DEV, ACC, PRD"
+  - id: S2
+    date: 2026-11-14
+    level: 1
+    text: "AcmeDataPlatform consists of \"platform services\"."
+  - id: S3
+    date: 2026-11-14
+    level: 1
+    text: "Each platform service is owned by a platform team."
+  - id: S4
+    date: 2026-11-14
+    level: 1
+    text: "Platform services are used by product teams to create platform resources."
+  - id: S5
+    date: 2026-11-14
+    level: 1
+    text: "Each platform resource is owned by the product team which created it."
+  - id: S6
+    date: 2026-11-14
+    level: 1
+    text: "Platform services can be deployed to the environments."
+  - id: S7
+    date: 2026-11-14
+    level: 1
+    text: "Platform resources can be created in the EXP or in the DEV environment."
+  - id: S8
+    date: 2026-11-14
+    level: 1
+    text: "Platform resources can be promoted to upper environments in 2 ways: EXP->DEV->ACC->PRD or DEV->ACC->PRD"
+  - id: S9
+    date: 2026-11-14
+    level: 1
+    text: "Platform resource can be one of those: \"data product\", dashboard, \"ML model\", \"AI model\", \"AI/analytical application\""
+  - id: S10
+    date: 2026-11-14
+    level: 1
+    text: "(answers to Q44-Q46) A platform resource is created with one or more platform services. Platform team and product team are two kinds of \"team\". A platform service can be deployed to any environment, independently."

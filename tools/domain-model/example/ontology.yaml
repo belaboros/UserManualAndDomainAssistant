@@ -1,0 +1,156 @@
+# Example domain for the domain-model tool (spec 0002): small, neutral, and using every field and
+# every rule pattern. The tests build it; its generated/ folder is committed. Format: ../README.md.
+namespace: https://example.org/library#
+prefix: lib
+label: Library lending
+language: en
+working_level: 3
+levels:
+  1: {name: core, audience: "anyone: understand library lending in 5 minutes"}
+  2: {name: main, audience: "a new librarian: run the lending desk"}
+  3: {name: detailed, audience: "everything in the domain"}
+
+concepts:
+  - {id: Library, label: library, level: 1, status: confirmed, source: [S1],
+     definition: "An organisation that lends items to its members.", synonyms: [lending library]}
+  - {id: Item, label: item, level: 1, status: confirmed, source: [S1],
+     definition: "Something a library lends.", synonyms: [holding, library item]}
+  - {id: Book, label: book, level: 1, status: confirmed, source: [S2], parent: Item,
+     definition: "A printed item with pages."}
+  - {id: AudioVisualItem, label: 'audio/visual "AV" item', level: 2, status: confirmed, source: [S2],
+     parent: Item, definition: "A recording on a physical carrier.", disjoint_with: [Book]}
+  - {id: DigitalResource, label: digital resource, level: 2, status: draft, source: [S2],
+     definition: "Anything that exists only as a file."}
+  - {id: EBook, label: e-book, level: 2, status: confirmed, source: [S2],
+     parent: Book, also_parents: [DigitalResource], synonyms: [electronic book]}
+  - {id: Agent, label: agent, level: 1, status: confirmed, source: [S1],
+     definition: "A person who takes part in a loan."}
+  - {id: Member, label: member, level: 1, status: confirmed, source: [S1], parent: Agent,
+     definition: "A person registered to borrow items.", synonyms: [borrower, patron]}
+  - {id: Librarian, label: librarian, level: 2, status: draft, source: [S3], parent: Agent}
+  - {id: Loan, label: loan, level: 1, status: confirmed, source: [S1],
+     definition: "The record of items a member borrowed."}
+  - {id: LoanStatus, label: loan status, level: 2, status: confirmed, source: [S3]}
+  - {id: OpenLoan, label: open loan, level: 2, status: confirmed, source: [S3], parent: Loan,
+     definition: "A loan whose status is active (derived by rule R5)."}
+  - {id: LateLoan, label: late loan, level: 3, status: confirmed, source: [S4], parent: Loan,
+     definition: "A loan returned after its due date (derived by rule R8)."}
+  - {id: Branch, label: branch, level: 2, status: confirmed, source: [S3]}
+  - {id: Shelf, label: shelf, level: 3, status: confirmed, source: [S4]}
+
+individuals:
+  - {id: MainLibrary, label: main library, level: 1, status: confirmed, source: [S1], types: [Library]}
+  - {id: CentralBranch, label: central branch, level: 2, status: confirmed, source: [S3],
+     types: [Branch], facts: {branchOf: [MainLibrary]}}
+  - {id: Active, label: active, level: 2, status: confirmed, source: [S3], types: [LoanStatus]}
+  - {id: Returned, label: returned, level: 2, status: confirmed, source: [S3], types: [LoanStatus]}
+  - {id: HobbitCopy, label: copy of The Hobbit, level: 3, status: draft, source: [S4], types: [Book],
+     definition: "A sample book.", synonyms: [Hobbit], facts: {locatedIn: [CentralBranch]},
+     values: {title: The Hobbit, pageCount: 310, isReference: false}}
+
+relations:
+  - {id: hasParticipant, label: has participant, level: 1, status: confirmed, source: [S1],
+     domain: Loan, range: Agent}
+  - {id: hasBorrower, label: has borrower, level: 1, status: confirmed, source: [S1],
+     domain: Loan, range: Member, parent: hasParticipant, cardinality: "1", characteristics: [functional]}
+  - {id: hasItem, label: has item, level: 1, status: confirmed, source: [S1, S2],
+     domain: Loan, range: Item, cardinality: "1..*", synonyms: [includes]}
+  - {id: borrowerOf, label: borrower of, level: 2, status: confirmed, source: [S1],
+     domain: Member, range: Loan, inverse: hasBorrower, characteristics: [inverse_functional]}
+  - {id: issuedBy, label: issued by, level: 2, status: draft, source: [S3],
+     domain: Loan, range: Librarian, parent: hasParticipant, cardinality: "0..1"}
+  - {id: hasStatus, label: has status, level: 2, status: confirmed, source: [S3],
+     domain: Loan, range: LoanStatus, cardinality: "1"}
+  - {id: branchOf, label: branch of, level: 2, status: confirmed, source: [S3],
+     domain: Branch, range: Library, cardinality: "1", characteristics: [asymmetric, irreflexive],
+     definition: "Links a branch to the library it belongs to."}
+  - {id: hasShelf, label: has shelf, level: 3, status: confirmed, source: [S4],
+     domain: Branch, range: Shelf, cardinality: "2..4"}
+  - {id: locatedIn, label: located in, level: 3, status: confirmed, source: [S4],
+     domain: Item, range: Branch, cardinality: "0..1"}
+  - {id: servedBy, label: served by, level: 3, status: confirmed, source: [S4],
+     domain: Loan, range: Branch, definition: "The branches holding the items of a loan (rule R6)."}
+
+properties:
+  - {id: title, label: title, level: 1, status: confirmed, source: [S1], domain: Item, datatype: string,
+     cardinality: "1", synonyms: [name]}
+  - {id: startDate, label: start date, level: 1, status: confirmed, source: [S1], domain: Loan,
+     datatype: date, cardinality: "1"}
+  - {id: dueDate, label: due date, level: 1, status: confirmed, source: [S1], domain: Loan,
+     datatype: date, cardinality: "1", definition: "The day by which the items must be back."}
+  - {id: returnedOn, label: returned on, level: 2, status: confirmed, source: [S3], domain: Loan,
+     datatype: date, cardinality: "0..1"}
+  - {id: pageCount, label: page count, level: 3, status: confirmed, source: [S4], domain: Book,
+     datatype: integer, cardinality: "0..1"}
+  - {id: isReference, label: is reference, level: 3, status: draft, source: [S4], domain: Item,
+     datatype: boolean, cardinality: "0..1", definition: "Reference items are not lent out."}
+
+rules:
+  - id: R1
+    level: 1
+    status: confirmed
+    source: [S2]
+    statement: "A loan has between 1 and 5 items."
+    cardinality: {focus: Loan, path: hasItem, min: 1, max: 5}
+  - id: R2
+    level: 2
+    status: confirmed
+    source: [S3]
+    statement: "The status of a loan is active or returned."
+    values: {focus: Loan, path: hasStatus, in: [Active, Returned]}
+  - id: R3
+    level: 2
+    status: confirmed
+    source: [S3]
+    statement: "A returned loan has a return date."
+    implies:
+      focus: Loan
+      if: {path: hasStatus, has_value: Returned}
+      then: {path: returnedOn, min: 1}
+  - id: R4
+    level: 2
+    status: draft
+    source: [S1]
+    statement: "The borrower of a loan is the member recorded as its borrower."
+    equal: {focus: Loan, left: hasBorrower, right: ^borrowerOf}
+  - id: R5
+    level: 2
+    status: confirmed
+    source: [S3]
+    statement: "An active loan is an open loan."
+    derive:
+      focus: Loan
+      if: {path: hasStatus, has_value: Active}
+      add: {predicate: a, object: OpenLoan}
+  - id: R6
+    level: 3
+    status: confirmed
+    source: [S4]
+    statement: "A loan is served by the branches where its items are located."
+    derive:
+      focus: Loan
+      add: {predicate: servedBy, object: hasItem/locatedIn}
+  - id: R7
+    level: 1
+    status: confirmed
+    source: [S2]
+    statement: "The due date of a loan is after its start date."
+    sparql:
+      focus: Loan
+      select: |
+        SELECT $this WHERE {
+          $this lib:startDate ?start ; lib:dueDate ?due .
+          FILTER (?due <= ?start)
+        }
+  - id: R8
+    level: 3
+    status: confirmed
+    source: [S4]
+    statement: "A loan returned after its due date is a late loan."
+    sparql:
+      focus: Loan
+      construct: |
+        CONSTRUCT { $this a lib:LateLoan . } WHERE {
+          $this lib:returnedOn ?returned ; lib:dueDate ?due .
+          FILTER (?returned > ?due)
+        }

@@ -1,0 +1,5 @@
+@prefix lib: <https://example.org/library#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# R7: due before it started.
+lib:loan1 a lib:Loan ; lib:startDate "2026-01-15"^^xsd:date ; lib:dueDate "2026-01-01"^^xsd:date .

@@ -1,0 +1,16 @@
+# Source of truth for concepts (classes), individuals, relations (object properties), properties
+# (data properties) and rules of AcmeDataPlatform (idea 0001). Format: tools/domain-model/README.md.
+# level: 1 core | 2 main | 3 detailed (cumulative). New items get working_level.
+# status: confirmed = the expert's own words; draft = wording proposed by Claude, not yet confirmed.
+# Modelling of level 1 resumes in the idea-0001 session (S1–S10 are recorded, not yet modelled).
+namespace: https://example.org/acme/data-platform#
+prefix: adp
+label: AcmeDataPlatform
+language: en
+working_level: 1
+
+concepts: []
+individuals: []
+relations: []
+properties: []
+rules: []

@@ -52,5 +52,6 @@ jobs:
       - run: pip install pre-commit==4.7.0
       - name: Run hooks
         env:
-          SKIP: gitleaks-system   # covered by the full-history job above
+          # gitleaks: covered by the full-history job above; Python hooks: covered by python.yml (needs uv)
+          SKIP: gitleaks-system,ruff,ruff-format,mypy,qg-boundaries,pytest,pip-audit
         run: pre-commit run --all-files --show-diff-on-failure
