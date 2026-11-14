@@ -1,0 +1,6 @@
+# R87: a productionization that stops in ACC.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesOrders a adp:DataProduct .
+adp:prod1 a adp:Productionization ; adp:productionizes adp:salesOrders ; adp:promotionStep adp:toAcc .
+adp:toAcc a adp:Promotion ; adp:promotionOf adp:salesOrders ; adp:fromEnvironment adp:DEV ; adp:toEnvironment adp:ACC .

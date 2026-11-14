@@ -6,11 +6,76 @@ For **anyone: understand the domain in 5–10 minutes**. Levels are cumulative: 
 
 Contents: 12 concepts, 5 individuals, 11 relations, 0 properties, 12 rules. Items marked _(draft)_ are proposed wording, not yet confirmed.
 
+## Diagrams
+
+### Taxonomy (is-a)
+
+```mermaid
+flowchart BT
+    PlatformResource["platform resource"]
+    DataProduct["data product"]
+    Dashboard["dashboard"]
+    MLModel["ML model"]
+    AIModel["AI model"]
+    AIAnalyticalApplication["AI/analytical application"]
+    Team["team"]
+    PlatformTeam["platform team"]
+    ProductTeam["product team"]
+    PlatformService["platform service"]
+    DataPlatform["data platform"]
+    Environment["environment"]
+    DataProduct --> PlatformResource
+    Dashboard --> PlatformResource
+    MLModel --> PlatformResource
+    AIModel --> PlatformResource
+    AIAnalyticalApplication --> PlatformResource
+    PlatformTeam --> Team
+    ProductTeam --> Team
+    Team ~~~ DataProduct
+    PlatformService ~~~ PlatformTeam
+    DataPlatform ~~~ PlatformService
+```
+
+### Ontology graph
+
+```mermaid
+flowchart LR
+    DataPlatform["data platform"]
+    PlatformService["platform service"]
+    PlatformResource["platform resource"]
+    DataProduct["data product"]
+    Dashboard["dashboard"]
+    MLModel["ML model"]
+    AIModel["AI model"]
+    AIAnalyticalApplication["AI/analytical application"]
+    Team["team"]
+    PlatformTeam["platform team"]
+    ProductTeam["product team"]
+    Environment["environment"]
+    DataPlatform -->|"consists of"| PlatformService
+    PlatformService -->|"owned by"| PlatformTeam
+    PlatformResource -->|"owned by"| ProductTeam
+    ProductTeam -->|"uses"| PlatformService
+    ProductTeam -->|"subscribes to"| PlatformResource
+    PlatformResource -->|"created by"| ProductTeam
+    PlatformResource -->|"created with"| PlatformService
+    PlatformService -->|"deployed to"| Environment
+    PlatformResource -->|"created in"| Environment
+    PlatformResource -->|"promoted to"| Environment
+    DataProduct -.->|"is a"| PlatformResource
+    Dashboard -.->|"is a"| PlatformResource
+    MLModel -.->|"is a"| PlatformResource
+    AIModel -.->|"is a"| PlatformResource
+    AIAnalyticalApplication -.->|"is a"| PlatformResource
+    PlatformTeam -.->|"is a"| Team
+    ProductTeam -.->|"is a"| Team
+```
+
 ## Glossary
 
 | Term | Id | Kind | Synonyms | Definition | Level | Status | Sources |
 |---|---|---|---|---|---|---|---|
-| ACC | `ACC` | individual |  |  | 1 | confirmed | S1, S8, S13, S14 |
+| ACC | `ACC` | individual |  | The production-like environment, fully automated (deployment only via CI/CD pipeline), to prepare the deployment and UAT tests of the next MAJOR/MINOR versions and collect consumer feedback; less freedom than DEV. | 1 | confirmed | S1, S8, S13, S14, S60 |
 | AcmeDataPlatform | `AcmeDataPlatform` | individual |  |  | 1 | confirmed | S1, S2 |
 | AI model | `AIModel` | concept |  |  | 1 | confirmed | S9, S18 |
 | AI/analytical application | `AIAnalyticalApplication` | concept |  |  | 1 | confirmed | S9 |
@@ -22,9 +87,9 @@ Contents: 12 concepts, 5 individuals, 11 relations, 0 properties, 12 rules. Item
 | data platform | `DataPlatform` | concept |  | The kind of thing AcmeDataPlatform is. | 1 | confirmed | S1 |
 | data product | `DataProduct` | concept |  |  | 1 | confirmed | S9, S18 |
 | deployed to | `deployedTo` | relation |  |  | 1 | confirmed | S6, S10 |
-| DEV | `DEV` | individual |  |  | 1 | confirmed | S1, S7, S8, S11 |
+| DEV | `DEV` | individual |  | The environment where platform resources are created via repeatable automation, so they can be deployed to upper environments reliably; less freedom than EXP. | 1 | confirmed | S1, S7, S8, S11, S59 |
 | environment | `Environment` | concept |  |  | 1 | confirmed | S1, S6, S7, S8 |
-| EXP | `EXP` | individual |  | The environment for experimentation. | 1 | confirmed | S1, S7, S8, S11, S12 |
+| EXP | `EXP` | individual |  | The environment for experimentation and learning, with the highest degree of freedom: start experimenting in minutes, without prior approval for permission or budget. | 1 | confirmed | S1, S7, S8, S11, S12, S58 |
 | ML model | `MLModel` | concept |  |  | 1 | confirmed | S9, S18 |
 | owned by | `ownedBy` | relation |  | The team that owns a platform service (a platform team) or a platform resource (the product team that created it). | 1 | confirmed | S3, S5 |
 | owned by | `resourceOwnedBy` | relation |  | The product team that owns a platform resource: the team which created it. | 1 | confirmed | S5 |
@@ -32,7 +97,7 @@ Contents: 12 concepts, 5 individuals, 11 relations, 0 properties, 12 rules. Item
 | platform resource | `PlatformResource` | concept |  |  | 1 | confirmed | S1, S4, S5, S7, S8, S9, S11, S14, S15 |
 | platform service | `PlatformService` | concept |  |  | 1 | confirmed | S1, S2, S3, S4, S6 |
 | platform team | `PlatformTeam` | concept |  |  | 1 | confirmed | S1, S3, S10 |
-| PRD | `PRD` | individual |  |  | 1 | confirmed | S1, S8, S14 |
+| PRD | `PRD` | individual |  | The live environment, with the least freedom: maximum protection via policies, limited access and audit log. | 1 | confirmed | S1, S8, S14, S61 |
 | product team | `ProductTeam` | concept |  |  | 1 | confirmed | S1, S4, S5, S10 |
 | promoted to | `promotedTo` | relation |  |  | 1 | confirmed | S8 |
 | subscribes to | `subscribesTo` | relation |  |  | 1 | confirmed | S21 |
@@ -144,65 +209,3 @@ SELECT $this WHERE { $this adp:createdBy ?team . ?team a adp:PlatformTeam . }
 - **Kind:** constraint · **Pattern:** `implies` · **Level:** 1 · **Status:** confirmed · **Sources:** S8, S11, S14
 - if a `PlatformResource` has `PRD` as `promotedTo`, then it has `ACC` as `promotedTo`
 
-
-## Diagrams
-
-### Taxonomy (is-a)
-
-```mermaid
-flowchart BT
-    DataPlatform["data platform"]
-    PlatformService["platform service"]
-    PlatformResource["platform resource"]
-    DataProduct["data product"]
-    Dashboard["dashboard"]
-    MLModel["ML model"]
-    AIModel["AI model"]
-    AIAnalyticalApplication["AI/analytical application"]
-    Team["team"]
-    PlatformTeam["platform team"]
-    ProductTeam["product team"]
-    Environment["environment"]
-    DataProduct --> PlatformResource
-    Dashboard --> PlatformResource
-    MLModel --> PlatformResource
-    AIModel --> PlatformResource
-    AIAnalyticalApplication --> PlatformResource
-    PlatformTeam --> Team
-    ProductTeam --> Team
-```
-
-### Ontology graph
-
-```mermaid
-flowchart LR
-    DataPlatform["data platform"]
-    PlatformService["platform service"]
-    PlatformResource["platform resource"]
-    DataProduct["data product"]
-    Dashboard["dashboard"]
-    MLModel["ML model"]
-    AIModel["AI model"]
-    AIAnalyticalApplication["AI/analytical application"]
-    Team["team"]
-    PlatformTeam["platform team"]
-    ProductTeam["product team"]
-    Environment["environment"]
-    DataPlatform -->|"consists of"| PlatformService
-    PlatformService -->|"owned by"| PlatformTeam
-    PlatformResource -->|"owned by"| ProductTeam
-    ProductTeam -->|"uses"| PlatformService
-    ProductTeam -->|"subscribes to"| PlatformResource
-    PlatformResource -->|"created by"| ProductTeam
-    PlatformResource -->|"created with"| PlatformService
-    PlatformService -->|"deployed to"| Environment
-    PlatformResource -->|"created in"| Environment
-    PlatformResource -->|"promoted to"| Environment
-    DataProduct -.->|"is a"| PlatformResource
-    Dashboard -.->|"is a"| PlatformResource
-    MLModel -.->|"is a"| PlatformResource
-    AIModel -.->|"is a"| PlatformResource
-    AIAnalyticalApplication -.->|"is a"| PlatformResource
-    PlatformTeam -.->|"is a"| Team
-    ProductTeam -.->|"is a"| Team
-```

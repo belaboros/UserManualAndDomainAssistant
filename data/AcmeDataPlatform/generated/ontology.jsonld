@@ -47,6 +47,76 @@
       }
     },
     {
+      "@id": "_:cb1868e7a402584e80eadf13492c220031f3fa9113ceb5a9f61ecb717f7d860e94a",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:PreApprovedBudget"
+      },
+      "owl:onProperty": {
+        "@id": "adp:adjustmentOf"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb18f93699c085d7139babd962310d4a0b2f3b41a15b4b2078ad156e3c5cbc12a9c",
+      "@type": "owl:Restriction",
+      "owl:onDataRange": {
+        "@id": "xsd:boolean"
+      },
+      "owl:onProperty": {
+        "@id": "adp:reviewAccepted"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb1bdc58b551b9b055385bf3d4c4f0fd923de52924db0b515266fef293ef24cc013",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:Team"
+      },
+      "owl:onProperty": {
+        "@id": "adp:sentTo"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb1d9628bbb96253f9cd6879ddae1a481bc37321f177766876ae5928cebaf5b4c19",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:Team"
+      },
+      "owl:onProperty": {
+        "@id": "adp:adjustmentRequestedBy"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb1e553c1a2b74fde72d1707c58cc325a3da8fe996acbb8833973d093b2525f5aa6",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onDataRange": {
+        "@id": "xsd:boolean"
+      },
+      "owl:onProperty": {
+        "@id": "adp:requiresManualApproval"
+      }
+    },
+    {
       "@id": "_:cb1f4d795353ef381483d92c9226ca8d4ab6ab37bc160ad4e3c97d38a1a81fecb0a",
       "@type": "owl:Restriction",
       "owl:onClass": {
@@ -54,6 +124,20 @@
       },
       "owl:onProperty": {
         "@id": "adp:serviceOwnedBy"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb1f5e05c1bd5d41fbbd5a80ab04bd854c995ca1d9c9a1197d37b9fa223eda6f169",
+      "@type": "owl:Restriction",
+      "owl:onDataRange": {
+        "@id": "xsd:boolean"
+      },
+      "owl:onProperty": {
+        "@id": "adp:gatePassed"
       },
       "owl:qualifiedCardinality": {
         "@type": "xsd:nonNegativeInteger",
@@ -103,6 +187,20 @@
       }
     },
     {
+      "@id": "_:cb211387d74ae058c0b328d7bbaa2fecc957edbcac56195e8ca847698116b127bf0",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:Environment"
+      },
+      "owl:onProperty": {
+        "@id": "adp:toEnvironment"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
       "@id": "_:cb21b2ab47b5d1192889435751d2600ccc800810f78436bef1dde6e452815606799",
       "@type": "owl:Restriction",
       "owl:onClass": {
@@ -110,6 +208,34 @@
       },
       "owl:onProperty": {
         "@id": "adp:forPurpose"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb22769e9ec8418f5031507bde2dffcf4b19f8e60c0313bdb648cc8d62fe1236bed",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onDataRange": {
+        "@id": "xsd:boolean"
+      },
+      "owl:onProperty": {
+        "@id": "adp:gateMandatory"
+      }
+    },
+    {
+      "@id": "_:cb2281ca4018b7ca1140c2496a3b8680aac7fd9ab54955cf880651cc5576b4acb45",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:Department"
+      },
+      "owl:onProperty": {
+        "@id": "adp:adjustmentRequestedFrom"
       },
       "owl:qualifiedCardinality": {
         "@type": "xsd:nonNegativeInteger",
@@ -131,6 +257,34 @@
       }
     },
     {
+      "@id": "_:cb2368d72442f470c165fcef15ef3620ed53b7958a4f57d73cd61ae9997966dde9f",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onClass": {
+        "@id": "adp:Environment"
+      },
+      "owl:onProperty": {
+        "@id": "adp:requestedIn"
+      }
+    },
+    {
+      "@id": "_:cb2384d415424fb584794a1ff7d2e07cb6167b3aeaddb8cc114d987f8a0d256651a",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:Environment"
+      },
+      "owl:onProperty": {
+        "@id": "adp:gatesPromotionTo"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
       "@id": "_:cb240dac7a4c3a342704f7c8e2ced9d934dbbfddc60051ec636d86dae0398152c6a",
       "@type": "owl:Restriction",
       "owl:onClass": {
@@ -145,6 +299,34 @@
       }
     },
     {
+      "@id": "_:cb2472284f084f5e1c49c5bdc3715611e7f51838ecaafa6ffdbe17865bb5b77fbd8",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:QualityGate"
+      },
+      "owl:onProperty": {
+        "@id": "adp:resultOf"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb24f096f8c6a9d9aa1cbea4235e79a9c09e827a8f42e27cc4c9479c962b7476307",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onDataRange": {
+        "@id": "xsd:boolean"
+      },
+      "owl:onProperty": {
+        "@id": "adp:sliFailing"
+      }
+    },
+    {
       "@id": "_:cb251f86fb4de596918267198954400b809117850825f786fe6d662ecb4e1a533c3",
       "@type": "owl:Restriction",
       "owl:onClass": {
@@ -152,6 +334,20 @@
       },
       "owl:onProperty": {
         "@id": "adp:restricts"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb25560240ed4326a5a0e731fb4d28040d5c48b27992898c692cbe7fce0c06e5267",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:Team"
+      },
+      "owl:onProperty": {
+        "@id": "adp:defendedBy"
       },
       "owl:qualifiedCardinality": {
         "@type": "xsd:nonNegativeInteger",
@@ -212,6 +408,34 @@
       }
     },
     {
+      "@id": "_:cb27fc7c29e942bd5d74950270bb6cd6e5f3de207733fdb9748c2fdfd5b9fee447c",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:Environment"
+      },
+      "owl:onProperty": {
+        "@id": "adp:fromEnvironment"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb281df2c7fd2eb8a6825c25aa8fb96957823614517cecf93b168eb126a38cea2b1",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:Department"
+      },
+      "owl:onProperty": {
+        "@id": "adp:providedBy"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
       "@id": "_:cb286844fd5428f7f97290df8490af0c7ad5320cc4f4ff318c8233a279483a366d8",
       "@type": "owl:Restriction",
       "owl:onClass": {
@@ -219,6 +443,20 @@
       },
       "owl:onProperty": {
         "@id": "adp:catalogOf"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb28c44e85872612d7cd2d683ccc0b749a419dcf6c22455d1e897713122ff9cecff",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:BusinessCase"
+      },
+      "owl:onProperty": {
+        "@id": "adp:reservedFor"
       },
       "owl:qualifiedCardinality": {
         "@type": "xsd:nonNegativeInteger",
@@ -282,6 +520,34 @@
       }
     },
     {
+      "@id": "_:cb2a94c965b8ec8044f3dc0ae790fdaab93f02e1b3fd64694a449078c074118377c",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onDataRange": {
+        "@id": "xsd:boolean"
+      },
+      "owl:onProperty": {
+        "@id": "adp:breakingChange"
+      }
+    },
+    {
+      "@id": "_:cb2abdd36cd968a046c5c472eaad72dc1c79e59bee7fc5f1f8672432247df12ff77",
+      "@type": "owl:Restriction",
+      "owl:minQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onClass": {
+        "@id": "adp:Environment"
+      },
+      "owl:onProperty": {
+        "@id": "adp:limitationIn"
+      }
+    },
+    {
       "@id": "_:cb2ad1289c43fd9955b4746ece5bd3132ce4fbe6fb691295c5846e6055d94cea234",
       "@type": "owl:Restriction",
       "owl:onClass": {
@@ -338,6 +604,34 @@
       }
     },
     {
+      "@id": "_:cb2e559aec625ff9cccbb4760ec628c6695e9b0a7f9ec03d19425f301a02e985805",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onClass": {
+        "@id": "adp:VersionUpgrade"
+      },
+      "owl:onProperty": {
+        "@id": "adp:hasVersionUpgrade"
+      }
+    },
+    {
+      "@id": "_:cb2ec06f0cf5bb61b4483dc50312494a4cdc3a350f4c32bbc30e04c1ff5f9ee3e05",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:ProductTeam"
+      },
+      "owl:onProperty": {
+        "@id": "adp:budgetOfTeam"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
       "@id": "_:cb2f3a1598f6bc1d7470684546054457f8a991e92368dc1ec41302a83f961a4aab6",
       "@type": "owl:Restriction",
       "owl:onClass": {
@@ -345,6 +639,62 @@
       },
       "owl:onProperty": {
         "@id": "adp:createdIn"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb2f3d3b936e7845ea0b01eb5655f65b2ad86d2fac67114d0f0ff71046ac7b77adc",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:Environment"
+      },
+      "owl:onProperty": {
+        "@id": "adp:monitoredIn"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb301b3e2feb4eb75248105ea2ac0615c58845c77bc431323b299fcc990b5954c88",
+      "@type": "owl:Restriction",
+      "owl:minQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onClass": {
+        "@id": "adp:ServiceLevelIndicator"
+      },
+      "owl:onProperty": {
+        "@id": "adp:triggeredBy"
+      }
+    },
+    {
+      "@id": "_:cb30654138c0281c138c1436c68bb5ee6ebd161bb100ec037db6f48138bebc0c089",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:PlatformResource"
+      },
+      "owl:onProperty": {
+        "@id": "adp:promotionOf"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb30b51b912dc07a01c2f08da7b2d05060fdc642aec2cdaf6b489d6e85bfef88968",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:GateSeverity"
+      },
+      "owl:onProperty": {
+        "@id": "adp:hasSeverity"
       },
       "owl:qualifiedCardinality": {
         "@type": "xsd:nonNegativeInteger",
@@ -363,6 +713,20 @@
       },
       "owl:onProperty": {
         "@id": "adp:externallyShared"
+      }
+    },
+    {
+      "@id": "_:cb31606e7c5d5d0a83332a62be2ee80e9b0ee6c2e6f1eba6b0029693fa599190309",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:PlatformResource"
+      },
+      "owl:onProperty": {
+        "@id": "adp:productionizes"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
       }
     },
     {
@@ -394,6 +758,20 @@
       }
     },
     {
+      "@id": "_:cb339ad6eec8563dc483ca9ab23bed9db0bcb7bc1eefbb15478e89c9f18c6ac9e09",
+      "@type": "owl:Restriction",
+      "owl:minQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onClass": {
+        "@id": "adp:Promotion"
+      },
+      "owl:onProperty": {
+        "@id": "adp:promotionStep"
+      }
+    },
+    {
       "@id": "_:cb33ac99742d57b61e634de0e6bd8efa38c66b9b9f748fb6e478b2972e037575a68",
       "@type": "owl:Restriction",
       "owl:maxQualifiedCardinality": {
@@ -405,6 +783,20 @@
       },
       "owl:onProperty": {
         "@id": "adp:hasProductOwner"
+      }
+    },
+    {
+      "@id": "_:cb342aab8f8942d527039fc3fb9a98a2568fb59d92e6ce6611329f1521d02110d28",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onClass": {
+        "@id": "adp:Department"
+      },
+      "owl:onProperty": {
+        "@id": "adp:belongsToDepartment"
       }
     },
     {
@@ -422,6 +814,20 @@
       }
     },
     {
+      "@id": "_:cb35174dd3e5e55dbbac34e7fdf4e62c07e0f15ba862fc15ce4979900591ee0ca4c",
+      "@type": "owl:Restriction",
+      "owl:minQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onClass": {
+        "@id": "adp:Environment"
+      },
+      "owl:onProperty": {
+        "@id": "adp:offeredIn"
+      }
+    },
+    {
       "@id": "_:cb351fee52cb73997c954687f77244dceed709154976911379f15917029b94f447c",
       "@type": "owl:Restriction",
       "owl:minQualifiedCardinality": {
@@ -433,6 +839,48 @@
       },
       "owl:onProperty": {
         "@id": "adp:createdWith"
+      }
+    },
+    {
+      "@id": "_:cb36063b9e0635240d5c085635ddb5d787369240286cfff60cb245eef1a70d95dd4",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onClass": {
+        "@id": "adp:BusinessCase"
+      },
+      "owl:onProperty": {
+        "@id": "adp:hasBusinessCase"
+      }
+    },
+    {
+      "@id": "_:cb37d12ce7e5f3f1a39ff5f9c4dbc1adad8c8cb1f9542e14ee067ee16da6056135f",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:PlatformResource"
+      },
+      "owl:onProperty": {
+        "@id": "adp:feedbackOn"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      }
+    },
+    {
+      "@id": "_:cb39e29c4ed42cc66b56d39321477d1a697a918c92a164ad1997081e32961146619",
+      "@type": "owl:Restriction",
+      "owl:maxQualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
+      },
+      "owl:onClass": {
+        "@id": "adp:BusinessCase"
+      },
+      "owl:onProperty": {
+        "@id": "adp:provesCase"
       }
     },
     {
@@ -461,6 +909,20 @@
       },
       "owl:onProperty": {
         "@id": "adp:permissionOn"
+      }
+    },
+    {
+      "@id": "_:cb3d482c4d5ba26ecbb249ab91b982c2bb0a8de47a3ea0a1f2cce05417a3443ab98",
+      "@type": "owl:Restriction",
+      "owl:onClass": {
+        "@id": "adp:ServiceLevelObjective"
+      },
+      "owl:onProperty": {
+        "@id": "adp:measures"
+      },
+      "owl:qualifiedCardinality": {
+        "@type": "xsd:nonNegativeInteger",
+        "@value": "1"
       }
     },
     {
@@ -527,11 +989,16 @@
         "S1",
         "S13",
         "S14",
+        "S60",
         "S8"
       ],
       "rdfs:label": {
         "@language": "en",
         "@value": "ACC"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The production-like environment, fully automated (deployment only via CI/CD pipeline), to prepare the deployment and UAT tests of the next MAJOR/MINOR versions and collect consumer feedback; less freedom than DEV."
       }
     },
     {
@@ -546,6 +1013,27 @@
       },
       "rdfs:subClassOf": {
         "@id": "adp:PlatformResource"
+      }
+    },
+    {
+      "@id": "adp:AIAssistant",
+      "@type": [
+        "adp:Tool",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:offeredIn": {
+        "@id": "adp:EXP"
+      },
+      "adp:status": "confirmed",
+      "dcterms:source": "S58",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "AI assistant"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Helps to build platform resources quickly."
       }
     },
     {
@@ -626,6 +1114,154 @@
       "rdfs:label": {
         "@language": "en",
         "@value": "approved"
+      }
+    },
+    {
+      "@id": "adp:AutomatedTesting",
+      "@type": [
+        "adp:Tool",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:offeredIn": {
+        "@id": "adp:DEV"
+      },
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "automated testing"
+      }
+    },
+    {
+      "@id": "adp:Blocked",
+      "@type": [
+        "adp:GateSeverity",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "BLOCKED"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A failed gate always stops the promotion; no manual review can override it."
+      }
+    },
+    {
+      "@id": "adp:Blocking",
+      "@type": [
+        "adp:GateSeverity",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "BLOCKING"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A failed gate stops the promotion until a manual review accepts it."
+      }
+    },
+    {
+      "@id": "adp:Budget",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S58",
+        "S59",
+        "S60",
+        "S65"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "budget"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "There are 2 kinds: the department-level pre-allocated budget (EXP) and the pre-approved budget of a product team (DEV/ACC/PRD)."
+      }
+    },
+    {
+      "@id": "adp:BudgetAdjustmentRequest",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S63",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "budget adjustment request"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb1868e7a402584e80eadf13492c220031f3fa9113ceb5a9f61ecb717f7d860e94a"
+        },
+        {
+          "@id": "_:cb1d9628bbb96253f9cd6879ddae1a481bc37321f177766876ae5928cebaf5b4c19"
+        },
+        {
+          "@id": "_:cb2281ca4018b7ca1140c2496a3b8680aac7fd9ab54955cf880651cc5576b4acb45"
+        }
+      ],
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A request by the owner team to its department to adjust the pre-approved development budget, if needed."
+      }
+    },
+    {
+      "@id": "adp:BusinessCase",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S58",
+        "S59"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "business case"
+      },
+      "skos:altLabel": {
+        "@language": "en",
+        "@value": "use case"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The approved reason for building a platform resource; an outcome of EXP, needed to work in DEV."
+      }
+    },
+    {
+      "@id": "adp:CICDPipeline",
+      "@type": [
+        "adp:Tool",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:offeredIn": {
+        "@id": "adp:ACC"
+      },
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S13",
+        "S60"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "CI/CD pipeline"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The only way to deploy to ACC."
       }
     },
     {
@@ -804,12 +1440,17 @@
       "dcterms:source": [
         "S1",
         "S11",
+        "S59",
         "S7",
         "S8"
       ],
       "rdfs:label": {
         "@language": "en",
         "@value": "DEV"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The environment where platform resources are created via repeatable automation, so they can be deployed to upper environments reliably; less freedom than EXP."
       }
     },
     {
@@ -1016,9 +1657,14 @@
         "@language": "en",
         "@value": "data product"
       },
-      "rdfs:subClassOf": {
-        "@id": "adp:PlatformResource"
-      }
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb1e553c1a2b74fde72d1707c58cc325a3da8fe996acbb8833973d093b2525f5aa6"
+        },
+        {
+          "@id": "adp:PlatformResource"
+        }
+      ]
     },
     {
       "@id": "adp:DataProductOwner",
@@ -1036,6 +1682,20 @@
       "skos:definition": {
         "@language": "en",
         "@value": "The product owner of a data product."
+      }
+    },
+    {
+      "@id": "adp:DataQualityRule",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "data quality rule"
       }
     },
     {
@@ -1072,6 +1732,21 @@
       }
     },
     {
+      "@id": "adp:Department",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S58",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "department"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "An organisational unit whose product teams build on the AcmeDataPlatform; it provides the EXP budget for them."
+      }
+    },
+    {
       "@id": "adp:Developer",
       "@type": "owl:Class",
       "adp:level": 3,
@@ -1101,6 +1776,7 @@
         "S1",
         "S11",
         "S12",
+        "S58",
         "S7",
         "S8"
       ],
@@ -1110,7 +1786,7 @@
       },
       "skos:definition": {
         "@language": "en",
-        "@value": "The environment for experimentation."
+        "@value": "The environment for experimentation and learning, with the highest degree of freedom: start experimenting in minutes, without prior approval for permission or budget."
       }
     },
     {
@@ -1174,6 +1850,45 @@
       }
     },
     {
+      "@id": "adp:ExperimentationBudget",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S58",
+        "S65"
+      ],
+      "owl:disjointWith": {
+        "@id": "adp:PreApprovedBudget"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "department budget"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb281df2c7fd2eb8a6825c25aa8fb96957823614517cecf93b168eb126a38cea2b1"
+        },
+        {
+          "@id": "adp:Budget"
+        }
+      ],
+      "skos:altLabel": [
+        {
+          "@language": "en",
+          "@value": "department-level pre-allocated budget"
+        },
+        {
+          "@language": "en",
+          "@value": "experimentation budget"
+        }
+      ],
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The EXP budget: pre-allocated by a department upfront, collectively for each month, for all its product teams and their platform resources."
+      }
+    },
+    {
       "@id": "adp:ExternalApplication",
       "@type": "owl:Class",
       "adp:level": 3,
@@ -1189,6 +1904,383 @@
       "skos:definition": {
         "@language": "en",
         "@value": "An application that runs outside of the data platform and consumes the externally exposed/shared platform resources."
+      }
+    },
+    {
+      "@id": "adp:Feedback",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S60",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "feedback"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb1bdc58b551b9b055385bf3d4c4f0fd923de52924db0b515266fef293ef24cc013"
+        },
+        {
+          "@id": "_:cb37d12ce7e5f3f1a39ff5f9c4dbc1adad8c8cb1f9542e14ee067ee16da6056135f"
+        }
+      ],
+      "skos:definition": {
+        "@language": "en",
+        "@value": "What consumers send to the owner team after testing the next MAJOR/MINOR version in ACC."
+      }
+    },
+    {
+      "@id": "adp:GateBudgetTestDev",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gateMandatory": false,
+      "adp:gatesPromotionTo": {
+        "@id": "adp:ACC"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Blocking"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S63",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "budget test in DEV: costs fit into the pre-approved budget"
+      }
+    },
+    {
+      "@id": "adp:GateCompatibilityTests",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gatesPromotionTo": {
+        "@id": "adp:PRD"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Blocking"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S60",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "compatibility tests pass (e.g. no breaking change in a MINOR version upgrade)"
+      }
+    },
+    {
+      "@id": "adp:GateCostsWithinBudget",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gateMandatory": true,
+      "adp:gatesPromotionTo": {
+        "@id": "adp:PRD"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Blocking"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S60",
+        "S63"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "budget test in ACC: costs under prod-like load fit into the pre-approved budget"
+      }
+    },
+    {
+      "@id": "adp:GateDataQualityRulesDefined",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gatesPromotionTo": {
+        "@id": "adp:ACC"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Warning"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "data quality rules defined for a data product"
+      }
+    },
+    {
+      "@id": "adp:GateDataQualityRulesPass",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gatesPromotionTo": {
+        "@id": "adp:PRD"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Blocking"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S60",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "data quality rules pass"
+      }
+    },
+    {
+      "@id": "adp:GateImmutabilityBackfillTests",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gatesPromotionTo": {
+        "@id": "adp:ACC"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Warning"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "green tests for immutability and backfill"
+      }
+    },
+    {
+      "@id": "adp:GateIncrementalPipelineTests",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gatesPromotionTo": {
+        "@id": "adp:ACC"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Blocking"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "green performance and scalability tests proving the data pipeline is incremental"
+      }
+    },
+    {
+      "@id": "adp:GateMetadataContract",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gatesPromotionTo": {
+        "@id": "adp:ACC"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Warning"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "metadata and a non-empty contract"
+      }
+    },
+    {
+      "@id": "adp:GateNoNotebookPipeline",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gatesPromotionTo": {
+        "@id": "adp:ACC"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Blocked"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "data pipelines are not notebooks (imperative/declarative definitions)"
+      }
+    },
+    {
+      "@id": "adp:GateSLIsPass",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gatesPromotionTo": {
+        "@id": "adp:PRD"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Warning"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S60",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "SLIs pass"
+      }
+    },
+    {
+      "@id": "adp:GateSLOsAndSLIs",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gatesPromotionTo": {
+        "@id": "adp:ACC"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Blocking"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "SLOs and automatically monitored SLIs"
+      }
+    },
+    {
+      "@id": "adp:GateSchemaCompatibility",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gatesPromotionTo": {
+        "@id": "adp:ACC"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Blocking"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "schema compatibility guarantees"
+      }
+    },
+    {
+      "@id": "adp:GateSecurityTests",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gatesPromotionTo": {
+        "@id": "adp:PRD"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Blocking"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S60",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "security tests pass"
+      }
+    },
+    {
+      "@id": "adp:GateSeverity",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "gate severity"
+      }
+    },
+    {
+      "@id": "adp:GateStandardTemplate",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gatesPromotionTo": {
+        "@id": "adp:ACC"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Warning"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "uses one of the standard templates"
+      }
+    },
+    {
+      "@id": "adp:GateTestCoverage",
+      "@type": [
+        "adp:QualityGate",
+        "owl:NamedIndividual"
+      ],
+      "adp:gatesPromotionTo": {
+        "@id": "adp:ACC"
+      },
+      "adp:hasSeverity": {
+        "@id": "adp:Warning"
+      },
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "sufficient test coverage"
+      }
+    },
+    {
+      "@id": "adp:IaCTool",
+      "@type": [
+        "adp:Tool",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:offeredIn": {
+        "@id": "adp:DEV"
+      },
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "IaC tool"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Infrastructure as code, e.g. Terraform."
+      }
+    },
+    {
+      "@id": "adp:Incident",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S61",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "incident"
+      },
+      "rdfs:subClassOf": {
+        "@id": "_:cb301b3e2feb4eb75248105ea2ac0615c58845c77bc431323b299fcc990b5954c88"
       }
     },
     {
@@ -1235,6 +2327,69 @@
       }
     },
     {
+      "@id": "adp:InternalDeveloperPortal",
+      "@type": [
+        "adp:Tool",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:offeredIn": [
+        {
+          "@id": "adp:DEV"
+        },
+        {
+          "@id": "adp:EXP"
+        }
+      ],
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S58",
+        "S59"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "internal developer portal"
+      }
+    },
+    {
+      "@id": "adp:MAJOR",
+      "@type": [
+        "adp:VersionUpgrade",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "MAJOR"
+      }
+    },
+    {
+      "@id": "adp:MINOR",
+      "@type": [
+        "adp:VersionUpgrade",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "MINOR"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A version upgrade without breaking changes."
+      }
+    },
+    {
       "@id": "adp:MLModel",
       "@type": "owl:Class",
       "adp:level": 1,
@@ -1260,6 +2415,29 @@
       }
     },
     {
+      "@id": "adp:ManualReview",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "manual review"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb18f93699c085d7139babd962310d4a0b2f3b41a15b4b2078ad156e3c5cbc12a9c"
+        },
+        {
+          "@id": "_:cb25560240ed4326a5a0e731fb4d28040d5c48b27992898c692cbe7fce0c06e5267"
+        }
+      ],
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The review a failed BLOCKING quality gate requires, in which the owning team defends why its solution does not use the available standard solutions."
+      }
+    },
+    {
       "@id": "adp:MedallionLayer",
       "@type": "owl:Class",
       "adp:level": 2,
@@ -1274,6 +2452,35 @@
       }
     },
     {
+      "@id": "adp:Notebook",
+      "@type": [
+        "adp:Tool",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:offeredIn": [
+        {
+          "@id": "adp:DEV"
+        },
+        {
+          "@id": "adp:EXP"
+        }
+      ],
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S58",
+        "S59"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "notebook"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Used to create data pipelines; a pipeline defined in a notebook cannot be promoted to ACC."
+      }
+    },
+    {
       "@id": "adp:PRD",
       "@type": [
         "adp:Environment",
@@ -1284,11 +2491,16 @@
       "dcterms:source": [
         "S1",
         "S14",
+        "S61",
         "S8"
       ],
       "rdfs:label": {
         "@language": "en",
         "@value": "PRD"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The live environment, with the least freedom: maximum protection via policies, limited access and audit log."
       }
     },
     {
@@ -1400,6 +2612,9 @@
         },
         {
           "@id": "_:cb351fee52cb73997c954687f77244dceed709154976911379f15917029b94f447c"
+        },
+        {
+          "@id": "_:cb36063b9e0635240d5c085635ddb5d787369240286cfff60cb245eef1a70d95dd4"
         }
       ]
     },
@@ -1442,6 +2657,48 @@
       },
       "rdfs:subClassOf": {
         "@id": "adp:Team"
+      }
+    },
+    {
+      "@id": "adp:PreApprovedBudget",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S58",
+        "S59",
+        "S60",
+        "S63",
+        "S65"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "pre-approved budget"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb28c44e85872612d7cd2d683ccc0b749a419dcf6c22455d1e897713122ff9cecff"
+        },
+        {
+          "@id": "_:cb2ec06f0cf5bb61b4483dc50312494a4cdc3a350f4c32bbc30e04c1ff5f9ee3e05"
+        },
+        {
+          "@id": "adp:Budget"
+        }
+      ],
+      "skos:altLabel": [
+        {
+          "@language": "en",
+          "@value": "development budget"
+        },
+        {
+          "@language": "en",
+          "@value": "reserved budget"
+        }
+      ],
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The DEV/ACC/PRD budget for the use case / platform resource of one product team (an outcome of EXP); automated budget tests validate that the costs fit into it, and the owner team may request an adjustment from its department."
       }
     },
     {
@@ -1530,8 +2787,114 @@
         "@language": "en",
         "@value": "product team"
       },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb342aab8f8942d527039fc3fb9a98a2568fb59d92e6ce6611329f1521d02110d28"
+        },
+        {
+          "@id": "adp:Team"
+        }
+      ]
+    },
+    {
+      "@id": "adp:Productionization",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S62",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "productionization"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb31606e7c5d5d0a83332a62be2ee80e9b0ee6c2e6f1eba6b0029693fa599190309"
+        },
+        {
+          "@id": "_:cb339ad6eec8563dc483ca9ab23bed9db0bcb7bc1eefbb15478e89c9f18c6ac9e09"
+        }
+      ],
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The promotion and approval process to deploy platform resources from lower environments to upper environments till PRD."
+      }
+    },
+    {
+      "@id": "adp:Promotion",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S62",
+        "S8"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "promotion"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb211387d74ae058c0b328d7bbaa2fecc957edbcac56195e8ca847698116b127bf0"
+        },
+        {
+          "@id": "_:cb27fc7c29e942bd5d74950270bb6cd6e5f3de207733fdb9748c2fdfd5b9fee447c"
+        },
+        {
+          "@id": "_:cb2a94c965b8ec8044f3dc0ae790fdaab93f02e1b3fd64694a449078c074118377c"
+        },
+        {
+          "@id": "_:cb2e559aec625ff9cccbb4760ec628c6695e9b0a7f9ec03d19425f301a02e985805"
+        },
+        {
+          "@id": "_:cb30654138c0281c138c1436c68bb5ee6ebd161bb100ec037db6f48138bebc0c089"
+        }
+      ],
+      "skos:definition": {
+        "@language": "en",
+        "@value": "One step of a productionization: a platform resource is deployed from one environment to the next upper environment."
+      }
+    },
+    {
+      "@id": "adp:PromotionConversionTool",
+      "@type": [
+        "adp:Tool",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:offeredIn": {
+        "@id": "adp:EXP"
+      },
+      "adp:status": "confirmed",
+      "dcterms:source": "S58",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "promotion/conversion tool"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Promotes/converts platform resources from EXP to DEV automatically."
+      }
+    },
+    {
+      "@id": "adp:ProofOfConcept",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S58",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "proof of concept"
+      },
       "rdfs:subClassOf": {
-        "@id": "adp:Team"
+        "@id": "_:cb39e29c4ed42cc66b56d39321477d1a697a918c92a164ad1997081e32961146619"
+      },
+      "skos:altLabel": {
+        "@language": "en",
+        "@value": "POC"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The outcome of experimentation in EXP: fit for the purpose, with knowledge about the expected costs."
       }
     },
     {
@@ -1543,6 +2906,61 @@
       "rdfs:label": {
         "@language": "en",
         "@value": "purpose"
+      }
+    },
+    {
+      "@id": "adp:QualityGate",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "quality gate"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb22769e9ec8418f5031507bde2dffcf4b19f8e60c0313bdb648cc8d62fe1236bed"
+        },
+        {
+          "@id": "_:cb2384d415424fb584794a1ff7d2e07cb6167b3aeaddb8cc114d987f8a0d256651a"
+        },
+        {
+          "@id": "_:cb30b51b912dc07a01c2f08da7b2d05060fdc642aec2cdaf6b489d6e85bfef88968"
+        }
+      ],
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A check a platform resource must pass to be promoted to an environment; it is BLOCKED, BLOCKING or a WARNING."
+      }
+    },
+    {
+      "@id": "adp:QualityGateResult",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "quality gate result"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb1f5e05c1bd5d41fbbd5a80ab04bd854c995ca1d9c9a1197d37b9fa223eda6f169"
+        },
+        {
+          "@id": "_:cb2472284f084f5e1c49c5bdc3715611e7f51838ecaafa6ffdbe17865bb5b77fbd8"
+        }
+      ],
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The outcome (passed or failed) of one quality gate for one promotion."
       }
     },
     {
@@ -1577,6 +2995,38 @@
       }
     },
     {
+      "@id": "adp:ResourceLimitation",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S58",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "resource limitation"
+      },
+      "rdfs:subClassOf": {
+        "@id": "_:cb2abdd36cd968a046c5c472eaad72dc1c79e59bee7fc5f1f8672432247df12ff77"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A limit on platform resources in EXP that avoids production usage."
+      }
+    },
+    {
+      "@id": "adp:ReuseLimitation",
+      "@type": [
+        "adp:ResourceLimitation",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S58",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "reuse limitation"
+      }
+    },
+    {
       "@id": "adp:SELECT",
       "@type": [
         "adp:Privilege",
@@ -1608,6 +3058,55 @@
       }
     },
     {
+      "@id": "adp:ServiceLevelIndicator",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60",
+        "S61"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "service level indicator"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "_:cb24f096f8c6a9d9aa1cbea4235e79a9c09e827a8f42e27cc4c9479c962b7476307"
+        },
+        {
+          "@id": "_:cb2f3d3b936e7845ea0b01eb5655f65b2ad86d2fac67114d0f0ff71046ac7b77adc"
+        },
+        {
+          "@id": "_:cb3d482c4d5ba26ecbb249ab91b982c2bb0a8de47a3ea0a1f2cce05417a3443ab98"
+        }
+      ],
+      "skos:altLabel": {
+        "@language": "en",
+        "@value": "SLI"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "An automatically monitored measure of a service level objective, in one environment."
+      }
+    },
+    {
+      "@id": "adp:ServiceLevelObjective",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "service level objective"
+      },
+      "skos:altLabel": {
+        "@language": "en",
+        "@value": "SLO"
+      }
+    },
+    {
       "@id": "adp:ServicePrincipal",
       "@type": "owl:Class",
       "adp:level": 2,
@@ -1630,6 +3129,41 @@
       "skos:definition": {
         "@language": "en",
         "@value": "The identity of an application, data pipeline or other automation which is not performed by a human."
+      }
+    },
+    {
+      "@id": "adp:SizeLimitation",
+      "@type": [
+        "adp:ResourceLimitation",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S58",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "size limitation"
+      }
+    },
+    {
+      "@id": "adp:SkeletonApplication",
+      "@type": [
+        "adp:Tool",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:offeredIn": {
+        "@id": "adp:DEV"
+      },
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "skeleton application"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A starting point for one of various use cases."
       }
     },
     {
@@ -1673,6 +3207,9 @@
         "@value": "subscription request"
       },
       "rdfs:subClassOf": [
+        {
+          "@id": "_:cb2368d72442f470c165fcef15ef3620ed53b7958a4f57d73cd61ae9997966dde9f"
+        },
         {
           "@id": "_:cb240dac7a4c3a342704f7c8e2ced9d934dbbfddc60051ec636d86dae0398152c6a"
         },
@@ -1734,6 +3271,41 @@
       }
     },
     {
+      "@id": "adp:TimeLimitation",
+      "@type": [
+        "adp:ResourceLimitation",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S58",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "time limitation"
+      }
+    },
+    {
+      "@id": "adp:Tool",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S58",
+        "S59"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "tool"
+      },
+      "rdfs:subClassOf": {
+        "@id": "_:cb35174dd3e5e55dbbac34e7fdf4e62c07e0f15ba862fc15ce4979900591ee0ca4c"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Tooling offered to the teams in an environment, e.g. the internal developer portal in EXP or IaC tools in DEV."
+      }
+    },
+    {
       "@id": "adp:UserPrincipal",
       "@type": "owl:Class",
       "adp:level": 2,
@@ -1779,6 +3351,24 @@
       }
     },
     {
+      "@id": "adp:VersionUpgrade",
+      "@type": "owl:Class",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "version upgrade"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The kind of new version a promotion delivers: MAJOR or MINOR; decided in DEV."
+      }
+    },
+    {
       "@id": "adp:View",
       "@type": "owl:Class",
       "adp:level": 3,
@@ -1790,6 +3380,27 @@
       },
       "rdfs:subClassOf": {
         "@id": "adp:DataAsset"
+      }
+    },
+    {
+      "@id": "adp:Warning",
+      "@type": [
+        "adp:GateSeverity",
+        "owl:NamedIndividual"
+      ],
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "WARNING"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "A failed gate is reported but does not stop the promotion."
       }
     },
     {
@@ -1827,6 +3438,57 @@
       }
     },
     {
+      "@id": "adp:adjustmentOf",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S63",
+      "rdfs:domain": {
+        "@id": "adp:BudgetAdjustmentRequest"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "adjustment of"
+      },
+      "rdfs:range": {
+        "@id": "adp:PreApprovedBudget"
+      }
+    },
+    {
+      "@id": "adp:adjustmentRequestedBy",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S63",
+      "rdfs:domain": {
+        "@id": "adp:BudgetAdjustmentRequest"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "requested by"
+      },
+      "rdfs:range": {
+        "@id": "adp:Team"
+      }
+    },
+    {
+      "@id": "adp:adjustmentRequestedFrom",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S63",
+      "rdfs:domain": {
+        "@id": "adp:BudgetAdjustmentRequest"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "requested from"
+      },
+      "rdfs:range": {
+        "@id": "adp:Department"
+      }
+    },
+    {
       "@id": "adp:belongsTo",
       "@type": [
         "owl:FunctionalProperty",
@@ -1848,6 +3510,81 @@
       },
       "rdfs:range": {
         "@id": "adp:PlatformResource"
+      }
+    },
+    {
+      "@id": "adp:belongsToDepartment",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S58",
+        "S65"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:ProductTeam"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "belongs to department"
+      },
+      "rdfs:range": {
+        "@id": "adp:Department"
+      }
+    },
+    {
+      "@id": "adp:breakingChange",
+      "@type": "owl:DatatypeProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S60",
+      "rdfs:domain": {
+        "@id": "adp:Promotion"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "breaking change"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "adp:budgetForResource",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S60",
+        "S63",
+        "S65"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:PreApprovedBudget"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "budget for"
+      },
+      "rdfs:range": {
+        "@id": "adp:PlatformResource"
+      }
+    },
+    {
+      "@id": "adp:budgetOfTeam",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S65",
+      "rdfs:domain": {
+        "@id": "adp:PreApprovedBudget"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "budget of"
+      },
+      "rdfs:range": {
+        "@id": "adp:ProductTeam"
       }
     },
     {
@@ -1977,6 +3714,23 @@
       },
       "rdfs:range": {
         "@id": "adp:PlatformService"
+      }
+    },
+    {
+      "@id": "adp:defendedBy",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:domain": {
+        "@id": "adp:ManualReview"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "defended by"
+      },
+      "rdfs:range": {
+        "@id": "adp:Team"
       }
     },
     {
@@ -2138,6 +3892,23 @@
       }
     },
     {
+      "@id": "adp:feedbackOn",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S60",
+      "rdfs:domain": {
+        "@id": "adp:Feedback"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "feedback on"
+      },
+      "rdfs:range": {
+        "@id": "adp:PlatformResource"
+      }
+    },
+    {
       "@id": "adp:forPurpose",
       "@type": "owl:ObjectProperty",
       "adp:level": 3,
@@ -2152,6 +3923,87 @@
       },
       "rdfs:range": {
         "@id": "adp:Purpose"
+      }
+    },
+    {
+      "@id": "adp:fromEnvironment",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S62",
+        "S8"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:Promotion"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "from environment"
+      },
+      "rdfs:range": {
+        "@id": "adp:Environment"
+      }
+    },
+    {
+      "@id": "adp:gateMandatory",
+      "@type": "owl:DatatypeProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S63",
+      "rdfs:domain": {
+        "@id": "adp:QualityGate"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "mandatory"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Whether the gate must run (true) or is optional (false), e.g. the budget test is mandatory in ACC and optional in DEV."
+      }
+    },
+    {
+      "@id": "adp:gatePassed",
+      "@type": "owl:DatatypeProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:QualityGateResult"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "passed"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "adp:gatesPromotionTo",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:QualityGate"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "gates promotion to"
+      },
+      "rdfs:range": {
+        "@id": "adp:Environment"
       }
     },
     {
@@ -2216,6 +4068,77 @@
       }
     },
     {
+      "@id": "adp:hasBusinessCase",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:domain": {
+        "@id": "adp:PlatformResource"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has business case"
+      },
+      "rdfs:range": {
+        "@id": "adp:BusinessCase"
+      }
+    },
+    {
+      "@id": "adp:hasDataQualityRule",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:domain": {
+        "@id": "adp:DataProduct"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has data quality rule"
+      },
+      "rdfs:range": {
+        "@id": "adp:DataQualityRule"
+      }
+    },
+    {
+      "@id": "adp:hasGateResult",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:Promotion"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has gate result"
+      },
+      "rdfs:range": {
+        "@id": "adp:QualityGateResult"
+      }
+    },
+    {
+      "@id": "adp:hasManualReview",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:domain": {
+        "@id": "adp:Promotion"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has manual review"
+      },
+      "rdfs:range": {
+        "@id": "adp:ManualReview"
+      }
+    },
+    {
       "@id": "adp:hasProductOwner",
       "@type": "owl:ObjectProperty",
       "adp:level": 2,
@@ -2233,6 +4156,43 @@
       },
       "rdfs:range": {
         "@id": "adp:ProductOwner"
+      }
+    },
+    {
+      "@id": "adp:hasSLO",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:domain": {
+        "@id": "adp:PlatformResource"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has SLO"
+      },
+      "rdfs:range": {
+        "@id": "adp:ServiceLevelObjective"
+      }
+    },
+    {
+      "@id": "adp:hasSeverity",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:QualityGate"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has severity"
+      },
+      "rdfs:range": {
+        "@id": "adp:GateSeverity"
       }
     },
     {
@@ -2291,6 +4251,26 @@
       },
       "rdfs:range": {
         "@id": "adp:UserPrincipal"
+      }
+    },
+    {
+      "@id": "adp:hasVersionUpgrade",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:Promotion"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has version upgrade"
+      },
+      "rdfs:range": {
+        "@id": "adp:VersionUpgrade"
       }
     },
     {
@@ -2391,6 +4371,40 @@
       }
     },
     {
+      "@id": "adp:limitationIn",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S58",
+      "rdfs:domain": {
+        "@id": "adp:ResourceLimitation"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "applies in"
+      },
+      "rdfs:range": {
+        "@id": "adp:Environment"
+      }
+    },
+    {
+      "@id": "adp:measures",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:domain": {
+        "@id": "adp:ServiceLevelIndicator"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "measures"
+      },
+      "rdfs:range": {
+        "@id": "adp:ServiceLevelObjective"
+      }
+    },
+    {
       "@id": "adp:memberOf",
       "@type": "owl:ObjectProperty",
       "adp:level": 2,
@@ -2412,6 +4426,26 @@
       }
     },
     {
+      "@id": "adp:monitoredIn",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S60",
+        "S61"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:ServiceLevelIndicator"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "monitored in"
+      },
+      "rdfs:range": {
+        "@id": "adp:Environment"
+      }
+    },
+    {
       "@id": "adp:nextLayer",
       "@type": "owl:ObjectProperty",
       "adp:level": 2,
@@ -2426,6 +4460,27 @@
       },
       "rdfs:range": {
         "@id": "adp:MedallionLayer"
+      }
+    },
+    {
+      "@id": "adp:offeredIn",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S58",
+        "S59",
+        "S60"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:Tool"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "offered in"
+      },
+      "rdfs:range": {
+        "@id": "adp:Environment"
       }
     },
     {
@@ -2487,6 +4542,23 @@
       }
     },
     {
+      "@id": "adp:productionizes",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S62",
+      "rdfs:domain": {
+        "@id": "adp:Productionization"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "productionizes"
+      },
+      "rdfs:range": {
+        "@id": "adp:PlatformResource"
+      }
+    },
+    {
       "@id": "adp:promotedTo",
       "@type": "owl:ObjectProperty",
       "adp:level": 1,
@@ -2501,6 +4573,80 @@
       },
       "rdfs:range": {
         "@id": "adp:Environment"
+      }
+    },
+    {
+      "@id": "adp:promotionOf",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S62",
+        "S8"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:Promotion"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "promotion of"
+      },
+      "rdfs:range": {
+        "@id": "adp:PlatformResource"
+      }
+    },
+    {
+      "@id": "adp:promotionStep",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S62",
+      "rdfs:domain": {
+        "@id": "adp:Productionization"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has promotion step"
+      },
+      "rdfs:range": {
+        "@id": "adp:Promotion"
+      }
+    },
+    {
+      "@id": "adp:provesCase",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S58",
+      "rdfs:domain": {
+        "@id": "adp:ProofOfConcept"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "proves"
+      },
+      "rdfs:range": {
+        "@id": "adp:BusinessCase"
+      }
+    },
+    {
+      "@id": "adp:providedBy",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S58",
+        "S65"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:ExperimentationBudget"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "provided by"
+      },
+      "rdfs:range": {
+        "@id": "adp:Department"
       }
     },
     {
@@ -2593,6 +4739,65 @@
       }
     },
     {
+      "@id": "adp:requestedIn",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S58",
+      "rdfs:domain": {
+        "@id": "adp:SubscriptionRequest"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "requested in"
+      },
+      "rdfs:range": {
+        "@id": "adp:Environment"
+      }
+    },
+    {
+      "@id": "adp:requiresManualApproval",
+      "@type": "owl:DatatypeProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S64",
+      "rdfs:domain": {
+        "@id": "adp:DataProduct"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "requires manual approval"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "Set by the data product owner, per data product, for reasons such as security or an intentionally limited audience: subscription requests need his/her manual approval, also in EXP."
+      }
+    },
+    {
+      "@id": "adp:reservedFor",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S65",
+      "rdfs:domain": {
+        "@id": "adp:PreApprovedBudget"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "reserved for"
+      },
+      "rdfs:range": {
+        "@id": "adp:BusinessCase"
+      },
+      "skos:definition": {
+        "@language": "en",
+        "@value": "The use case (business case) the pre-approved budget is for."
+      }
+    },
+    {
       "@id": "adp:resourceOwnedBy",
       "@type": "owl:ObjectProperty",
       "adp:level": 1,
@@ -2648,6 +4853,60 @@
       },
       "rdfs:range": {
         "@id": "adp:PlatformResource"
+      }
+    },
+    {
+      "@id": "adp:resultOf",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S59",
+        "S60"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:QualityGateResult"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "result of"
+      },
+      "rdfs:range": {
+        "@id": "adp:QualityGate"
+      }
+    },
+    {
+      "@id": "adp:reviewAccepted",
+      "@type": "owl:DatatypeProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S59",
+      "rdfs:domain": {
+        "@id": "adp:ManualReview"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "accepted"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "adp:sentTo",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S60",
+      "rdfs:domain": {
+        "@id": "adp:Feedback"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "sent to"
+      },
+      "rdfs:range": {
+        "@id": "adp:Team"
       }
     },
     {
@@ -2712,6 +4971,26 @@
       }
     },
     {
+      "@id": "adp:sliFailing",
+      "@type": "owl:DatatypeProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S60",
+        "S61"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:ServiceLevelIndicator"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "failing"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      }
+    },
+    {
       "@id": "adp:status",
       "@type": "owl:AnnotationProperty",
       "rdfs:label": {
@@ -2734,6 +5013,43 @@
       },
       "rdfs:range": {
         "@id": "adp:PlatformResource"
+      }
+    },
+    {
+      "@id": "adp:toEnvironment",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": [
+        "S62",
+        "S8"
+      ],
+      "rdfs:domain": {
+        "@id": "adp:Promotion"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "to environment"
+      },
+      "rdfs:range": {
+        "@id": "adp:Environment"
+      }
+    },
+    {
+      "@id": "adp:triggeredBy",
+      "@type": "owl:ObjectProperty",
+      "adp:level": 3,
+      "adp:status": "confirmed",
+      "dcterms:source": "S61",
+      "rdfs:domain": {
+        "@id": "adp:Incident"
+      },
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "triggered by"
+      },
+      "rdfs:range": {
+        "@id": "adp:ServiceLevelIndicator"
       }
     },
     {

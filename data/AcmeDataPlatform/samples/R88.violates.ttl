@@ -1,0 +1,7 @@
+# R88: a productionization of salesOrders with a promotion of another resource.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesOrders a adp:DataProduct .
+adp:crmCustomers a adp:DataProduct .
+adp:prod1 a adp:Productionization ; adp:productionizes adp:salesOrders ; adp:promotionStep adp:toPrd .
+adp:toPrd a adp:Promotion ; adp:promotionOf adp:crmCustomers ; adp:fromEnvironment adp:ACC ; adp:toEnvironment adp:PRD .

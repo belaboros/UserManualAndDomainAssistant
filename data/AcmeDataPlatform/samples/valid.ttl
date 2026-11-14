@@ -109,3 +109,16 @@ adp:restriction2 a adp:AccessRestriction ; adp:restricts adp:hrDashboard ; adp:r
 adp:permission3 a adp:Permission ; adp:grantedTo adp:alice ; adp:viewPermissionOn adp:hrDashboard ;
     adp:inEnvironment adp:ACC ; adp:grantsPrivilege adp:VIEW .
 
+
+# Level 3 (S58-S62): the productionization of salesOrders (created in DEV) to PRD. The failed
+# BLOCKING gate in DEV->ACC was accepted in a manual review; the MINOR upgrade has no breaking change.
+adp:salesOrdersProd a adp:Productionization ; adp:productionizes adp:salesOrders ; adp:promotionStep adp:toAcc, adp:toPrd .
+adp:toAcc a adp:Promotion ; adp:promotionOf adp:salesOrders ; adp:fromEnvironment adp:DEV ; adp:toEnvironment adp:ACC ;
+    adp:hasVersionUpgrade adp:MINOR ; adp:breakingChange false ; adp:hasGateResult adp:toAccSchema ; adp:hasManualReview adp:toAccReview .
+adp:toAccSchema a adp:QualityGateResult ; adp:resultOf adp:GateSchemaCompatibility ; adp:gatePassed false .
+adp:toAccReview a adp:ManualReview ; adp:defendedBy adp:salesTeam ; adp:reviewAccepted true .
+adp:toPrd a adp:Promotion ; adp:promotionOf adp:salesOrders ; adp:fromEnvironment adp:ACC ; adp:toEnvironment adp:PRD ;
+    adp:hasGateResult adp:toPrdSlis .
+adp:toPrdSlis a adp:QualityGateResult ; adp:resultOf adp:GateSLIsPass ; adp:gatePassed false .
+adp:salesOrdersLatency a adp:ServiceLevelIndicator ; adp:monitoredIn adp:PRD ; adp:sliFailing true .
+adp:incident1 a adp:Incident ; adp:triggeredBy adp:salesOrdersLatency .

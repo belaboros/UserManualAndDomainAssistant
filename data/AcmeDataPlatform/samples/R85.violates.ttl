@@ -1,0 +1,4 @@
+# R85: a failing SLI in PRD without an incident.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:latency a adp:ServiceLevelIndicator ; adp:monitoredIn adp:PRD ; adp:sliFailing true .

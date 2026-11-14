@@ -6,6 +6,91 @@ For **everything in the domain**. Levels are cumulative: this view holds the who
 
 Contents: 15 concepts, 5 individuals, 10 relations, 6 properties, 8 rules. Items marked _(draft)_ are proposed wording, not yet confirmed.
 
+## Diagrams
+
+### Taxonomy (is-a)
+
+```mermaid
+flowchart BT
+    Item["item"]
+    Book["book"]
+    AudioVisualItem["audio/visual #quot;AV#quot; item"]
+    DigitalResource["digital resource (draft)"]
+    EBook["e-book"]
+    Loan["loan"]
+    OpenLoan["open loan"]
+    LateLoan["late loan"]
+    Agent["agent"]
+    Member["member"]
+    Librarian["librarian (draft)"]
+    LoanStatus["loan status"]
+    Library["library"]
+    Branch["branch"]
+    Shelf["shelf"]
+    Book --> Item
+    AudioVisualItem --> Item
+    EBook --> Book
+    EBook --> DigitalResource
+    Member --> Agent
+    Librarian --> Agent
+    OpenLoan --> Loan
+    LateLoan --> Loan
+    Loan ~~~ AudioVisualItem
+    LoanStatus ~~~ Member
+    Library ~~~ LoanStatus
+    Branch ~~~ Library
+```
+
+### Library composition (part-of)
+
+```mermaid
+flowchart BT
+    Library["library"]
+    Branch["branch"]
+    Shelf["shelf"]
+    Branch -->|"part of"| Library
+    Shelf -->|"part of"| Branch
+```
+
+### Ontology graph
+
+```mermaid
+flowchart LR
+    Library["library"]
+    Item["item"]
+    Book["book"]
+    AudioVisualItem["audio/visual #quot;AV#quot; item"]
+    DigitalResource["digital resource (draft)"]
+    EBook["e-book"]
+    Agent["agent"]
+    Member["member"]
+    Librarian["librarian (draft)"]
+    Loan["loan"]
+    LoanStatus["loan status"]
+    OpenLoan["open loan"]
+    LateLoan["late loan"]
+    Branch["branch"]
+    Shelf["shelf"]
+    Loan -->|"has participant"| Agent
+    Loan -->|"has borrower"| Member
+    Loan -->|"has item"| Item
+    Member -->|"borrower of"| Loan
+    Loan -->|"issued by (draft)"| Librarian
+    Loan -->|"has status"| LoanStatus
+    Branch -->|"branch of"| Library
+    Branch -->|"has shelf"| Shelf
+    Item -->|"located in"| Branch
+    Loan -->|"served by"| Branch
+    Book -.->|"is a"| Item
+    AudioVisualItem -.->|"is a"| Item
+    EBook -.->|"is a"| Book
+    EBook -.->|"is a"| DigitalResource
+    Member -.->|"is a"| Agent
+    Librarian -.->|"is a"| Agent
+    OpenLoan -.->|"is a"| Loan
+    LateLoan -.->|"is a"| Loan
+```
+
 ## Glossary
 
 | Term | Id | Kind | Synonyms | Definition | Level | Status | Sources |
@@ -154,84 +239,3 @@ CONSTRUCT { $this a lib:LateLoan . } WHERE {
 }
 ```
 
-
-## Diagrams
-
-### Taxonomy (is-a)
-
-```mermaid
-flowchart BT
-    Library["library"]
-    Item["item"]
-    Book["book"]
-    AudioVisualItem["audio/visual #quot;AV#quot; item"]
-    DigitalResource["digital resource (draft)"]
-    EBook["e-book"]
-    Agent["agent"]
-    Member["member"]
-    Librarian["librarian (draft)"]
-    Loan["loan"]
-    LoanStatus["loan status"]
-    OpenLoan["open loan"]
-    LateLoan["late loan"]
-    Branch["branch"]
-    Shelf["shelf"]
-    Book --> Item
-    AudioVisualItem --> Item
-    EBook --> Book
-    EBook --> DigitalResource
-    Member --> Agent
-    Librarian --> Agent
-    OpenLoan --> Loan
-    LateLoan --> Loan
-```
-
-### Library composition (part-of)
-
-```mermaid
-flowchart BT
-    Library["library"]
-    Branch["branch"]
-    Shelf["shelf"]
-    Branch -->|"part of"| Library
-    Shelf -->|"part of"| Branch
-```
-
-### Ontology graph
-
-```mermaid
-flowchart LR
-    Library["library"]
-    Item["item"]
-    Book["book"]
-    AudioVisualItem["audio/visual #quot;AV#quot; item"]
-    DigitalResource["digital resource (draft)"]
-    EBook["e-book"]
-    Agent["agent"]
-    Member["member"]
-    Librarian["librarian (draft)"]
-    Loan["loan"]
-    LoanStatus["loan status"]
-    OpenLoan["open loan"]
-    LateLoan["late loan"]
-    Branch["branch"]
-    Shelf["shelf"]
-    Loan -->|"has participant"| Agent
-    Loan -->|"has borrower"| Member
-    Loan -->|"has item"| Item
-    Member -->|"borrower of"| Loan
-    Loan -->|"issued by (draft)"| Librarian
-    Loan -->|"has status"| LoanStatus
-    Branch -->|"branch of"| Library
-    Branch -->|"has shelf"| Shelf
-    Item -->|"located in"| Branch
-    Loan -->|"served by"| Branch
-    Book -.->|"is a"| Item
-    AudioVisualItem -.->|"is a"| Item
-    EBook -.->|"is a"| Book
-    EBook -.->|"is a"| DigitalResource
-    Member -.->|"is a"| Agent
-    Librarian -.->|"is a"| Agent
-    OpenLoan -.->|"is a"| Loan
-    LateLoan -.->|"is a"| Loan
-```

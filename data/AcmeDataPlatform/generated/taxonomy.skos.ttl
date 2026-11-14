@@ -32,6 +32,26 @@ adp:AccessRestriction a skos:Concept ;
     adp:level 3 ;
     adp:status "confirmed" .
 
+adp:BudgetAdjustmentRequest a skos:Concept ;
+    dct:source "S63" ;
+    skos:definition "A request by the owner team to its department to adjust the pre-approved development budget, if needed."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "budget adjustment request"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:BusinessCase a skos:Concept ;
+    dct:source "S58",
+        "S59" ;
+    skos:altLabel "use case"@en ;
+    skos:definition "The approved reason for building a platform resource; an outcome of EXP, needed to work in DEV."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "business case"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:Catalog a skos:Concept ;
     dct:source "S38",
         "S49" ;
@@ -95,6 +115,15 @@ adp:DataProductOwner a skos:Concept ;
     adp:level 2 ;
     adp:status "confirmed" .
 
+adp:DataQualityRule a skos:Concept ;
+    dct:source "S59",
+        "S60" ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "data quality rule"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:DataSource a skos:Concept ;
     dct:source "S25" ;
     skos:altLabel "source service"@en ;
@@ -103,6 +132,15 @@ adp:DataSource a skos:Concept ;
     skos:prefLabel "data source"@en ;
     skos:topConceptOf adp:_isAScheme ;
     adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:Department a skos:Concept ;
+    dct:source "S58" ;
+    skos:definition "An organisational unit whose product teams build on the AcmeDataPlatform; it provides the EXP budget for them."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "department"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:Developer a skos:Concept ;
@@ -134,11 +172,49 @@ adp:Environment a skos:Concept ;
     adp:level 1 ;
     adp:status "confirmed" .
 
+adp:ExperimentationBudget a skos:Concept ;
+    dct:source "S58",
+        "S65" ;
+    skos:altLabel "department-level pre-allocated budget"@en,
+        "experimentation budget"@en ;
+    skos:broader adp:Budget ;
+    skos:definition "The EXP budget: pre-allocated by a department upfront, collectively for each month, for all its product teams and their platform resources."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "department budget"@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:ExternalApplication a skos:Concept ;
     dct:source "S35" ;
     skos:definition "An application that runs outside of the data platform and consumes the externally exposed/shared platform resources."@en ;
     skos:inScheme adp:_isAScheme ;
     skos:prefLabel "external application"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:Feedback a skos:Concept ;
+    dct:source "S60" ;
+    skos:definition "What consumers send to the owner team after testing the next MAJOR/MINOR version in ACC."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "feedback"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateSeverity a skos:Concept ;
+    dct:source "S59",
+        "S60" ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "gate severity"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:Incident a skos:Concept ;
+    dct:source "S61" ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "incident"@en ;
     skos:topConceptOf adp:_isAScheme ;
     adp:level 3 ;
     adp:status "confirmed" .
@@ -160,6 +236,15 @@ adp:MLModel a skos:Concept ;
     skos:inScheme adp:_isAScheme ;
     skos:prefLabel "ML model"@en ;
     adp:level 1 ;
+    adp:status "confirmed" .
+
+adp:ManualReview a skos:Concept ;
+    dct:source "S59" ;
+    skos:definition "The review a failed BLOCKING quality gate requires, in which the owning team defends why its solution does not use the available standard solutions."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "manual review"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:MedallionLayer a skos:Concept ;
@@ -202,6 +287,21 @@ adp:PlatformTeam a skos:Concept ;
     adp:level 1 ;
     adp:status "confirmed" .
 
+adp:PreApprovedBudget a skos:Concept ;
+    dct:source "S58",
+        "S59",
+        "S60",
+        "S63",
+        "S65" ;
+    skos:altLabel "development budget"@en,
+        "reserved budget"@en ;
+    skos:broader adp:Budget ;
+    skos:definition "The DEV/ACC/PRD budget for the use case / platform resource of one product team (an outcome of EXP); automated budget tests validate that the costs fit into it, and the owner team may request an adjustment from its department."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "pre-approved budget"@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:Privilege a skos:Concept ;
     dct:source "S52",
         "S53" ;
@@ -232,10 +332,89 @@ adp:ProductTeam a skos:Concept ;
     adp:level 1 ;
     adp:status "confirmed" .
 
+adp:Productionization a skos:Concept ;
+    dct:source "S62" ;
+    skos:definition "The promotion and approval process to deploy platform resources from lower environments to upper environments till PRD."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "productionization"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:Promotion a skos:Concept ;
+    dct:source "S62",
+        "S8" ;
+    skos:definition "One step of a productionization: a platform resource is deployed from one environment to the next upper environment."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "promotion"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:ProofOfConcept a skos:Concept ;
+    dct:source "S58" ;
+    skos:altLabel "POC"@en ;
+    skos:definition "The outcome of experimentation in EXP: fit for the purpose, with knowledge about the expected costs."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "proof of concept"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:Purpose a skos:Concept ;
     dct:source "S53" ;
     skos:inScheme adp:_isAScheme ;
     skos:prefLabel "purpose"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:QualityGate a skos:Concept ;
+    dct:source "S59",
+        "S60" ;
+    skos:definition "A check a platform resource must pass to be promoted to an environment; it is BLOCKED, BLOCKING or a WARNING."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "quality gate"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:QualityGateResult a skos:Concept ;
+    dct:source "S59",
+        "S60" ;
+    skos:definition "The outcome (passed or failed) of one quality gate for one promotion."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "quality gate result"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:ResourceLimitation a skos:Concept ;
+    dct:source "S58" ;
+    skos:definition "A limit on platform resources in EXP that avoids production usage."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "resource limitation"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:ServiceLevelIndicator a skos:Concept ;
+    dct:source "S59",
+        "S60",
+        "S61" ;
+    skos:altLabel "SLI"@en ;
+    skos:definition "An automatically monitored measure of a service level objective, in one environment."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "service level indicator"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:ServiceLevelObjective a skos:Concept ;
+    dct:source "S59" ;
+    skos:altLabel "SLO"@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "service level objective"@en ;
     skos:topConceptOf adp:_isAScheme ;
     adp:level 3 ;
     adp:status "confirmed" .
@@ -277,6 +456,16 @@ adp:Table a skos:Concept ;
     adp:level 3 ;
     adp:status "confirmed" .
 
+adp:Tool a skos:Concept ;
+    dct:source "S58",
+        "S59" ;
+    skos:definition "Tooling offered to the teams in an environment, e.g. the internal developer portal in EXP or IaC tools in DEV."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "tool"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:UserPrincipal a skos:Concept ;
     dct:source "S33",
         "S34" ;
@@ -286,6 +475,16 @@ adp:UserPrincipal a skos:Concept ;
     skos:inScheme adp:_isAScheme ;
     skos:prefLabel "user principal"@en ;
     adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:VersionUpgrade a skos:Concept ;
+    dct:source "S59",
+        "S60" ;
+    skos:definition "The kind of new version a promotion delivers: MAJOR or MINOR; decided in DEV."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:prefLabel "version upgrade"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:View a skos:Concept ;
@@ -323,6 +522,20 @@ adp:ProductOwner a skos:Concept ;
     skos:narrower adp:DataProductOwner ;
     skos:prefLabel "product owner"@en ;
     adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:Budget a skos:Concept ;
+    dct:source "S58",
+        "S59",
+        "S60",
+        "S65" ;
+    skos:definition "There are 2 kinds: the department-level pre-allocated budget (EXP) and the pre-approved budget of a product team (DEV/ACC/PRD)."@en ;
+    skos:inScheme adp:_isAScheme ;
+    skos:narrower adp:ExperimentationBudget,
+        adp:PreApprovedBudget ;
+    skos:prefLabel "budget"@en ;
+    skos:topConceptOf adp:_isAScheme ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:DataAsset a skos:Concept ;
@@ -428,21 +641,40 @@ adp:PlatformResource a skos:Concept ;
 
 adp:_isAScheme a skos:ConceptScheme ;
     skos:hasTopConcept adp:AccessRestriction,
+        adp:Budget,
+        adp:BudgetAdjustmentRequest,
+        adp:BusinessCase,
         adp:Catalog,
         adp:DataPlatform,
+        adp:DataQualityRule,
         adp:DataSource,
+        adp:Department,
         adp:Employee,
         adp:Environment,
         adp:ExternalApplication,
+        adp:Feedback,
+        adp:GateSeverity,
+        adp:Incident,
+        adp:ManualReview,
         adp:MedallionLayer,
         adp:Permission,
         adp:PlatformResource,
         adp:PlatformService,
         adp:Principal,
         adp:Privilege,
+        adp:Productionization,
+        adp:Promotion,
+        adp:ProofOfConcept,
         adp:Purpose,
+        adp:QualityGate,
+        adp:QualityGateResult,
+        adp:ResourceLimitation,
+        adp:ServiceLevelIndicator,
+        adp:ServiceLevelObjective,
         adp:SubscriptionRequest,
         adp:SubscriptionStatus,
-        adp:Team ;
+        adp:Team,
+        adp:Tool,
+        adp:VersionUpgrade ;
     skos:prefLabel "AcmeDataPlatform concepts (is-a)"@en .
 

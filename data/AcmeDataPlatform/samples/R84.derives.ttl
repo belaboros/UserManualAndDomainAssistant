@@ -1,0 +1,5 @@
+# R84: a subscription request in EXP for a data product without manual approval.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesOrders a adp:DataProduct .
+adp:expRequest a adp:SubscriptionRequest ; adp:requestedIn adp:EXP ; adp:requestFor adp:salesOrders .

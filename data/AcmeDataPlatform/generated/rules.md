@@ -638,3 +638,103 @@ SELECT $this WHERE {
   FILTER NOT EXISTS { $this a adp:ElevatedPermission }
 }
 ```
+
+### R80 · A quality gate is BLOCKED, BLOCKING or a WARNING.
+
+- **Kind:** constraint · **Pattern:** `values` · **Level:** 3 · **Status:** confirmed · **Sources:** S59, S60
+- every `hasSeverity` value of a `QualityGate` is one of `Blocked`, `Blocking`, `Warning`
+
+### R81 · A promotion goes from an environment to the next upper one: EXP to DEV, DEV to ACC or ACC to PRD.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S8, S62
+- SPARQL SELECT (each result is a violation) on each `Promotion`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:fromEnvironment ?from ; adp:toEnvironment ?to .
+  FILTER (!((?from = adp:EXP && ?to = adp:DEV) || (?from = adp:DEV && ?to = adp:ACC) || (?from = adp:ACC && ?to = adp:PRD)))
+}
+```
+
+### R82 · A promotion with a failed BLOCKING quality gate needs an accepted manual review, in which the owning team defends its solution.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S59
+- SPARQL SELECT (each result is a violation) on each `Promotion`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:hasGateResult ?result .
+  ?result adp:gatePassed false ; adp:resultOf ?gate .
+  ?gate adp:hasSeverity adp:Blocking .
+  FILTER NOT EXISTS { $this adp:hasManualReview ?review . ?review adp:reviewAccepted true }
+}
+```
+
+### R83 · A MINOR version upgrade contains no breaking change.
+
+- **Kind:** constraint · **Pattern:** `implies` · **Level:** 3 · **Status:** confirmed · **Sources:** S60
+- if a `Promotion` has `MINOR` as `hasVersionUpgrade`, then it has `False` as `breakingChange`
+
+### R84 · A subscription request in EXP is approved automatically, unless the data product owner requires manual approval for that data product.
+
+- **Kind:** derivation · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S58, S64
+- SPARQL CONSTRUCT (derived triples) on each `SubscriptionRequest`
+
+```sparql
+CONSTRUCT { $this adp:hasStatus adp:Approved . }
+WHERE {
+  $this adp:requestedIn adp:EXP ; adp:requestFor ?resource .
+  FILTER NOT EXISTS { ?resource adp:requiresManualApproval true }
+}
+```
+
+### R85 · In PRD a failing SLI triggers an incident.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S61
+- SPARQL SELECT (each result is a violation) on each `ServiceLevelIndicator`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:sliFailing true ; adp:monitoredIn adp:PRD .
+  FILTER NOT EXISTS { ?incident adp:triggeredBy $this }
+}
+```
+
+### R86 · A promotion of a platform resource to an environment means the platform resource is promoted to that environment.
+
+- **Kind:** derivation · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S8, S62
+- SPARQL CONSTRUCT (derived triples) on each `Promotion`
+
+```sparql
+CONSTRUCT { ?resource adp:promotedTo ?environment . }
+WHERE { $this adp:promotionOf ?resource ; adp:toEnvironment ?environment . }
+```
+
+### R87 · A productionization ends in PRD: one of its promotions goes to PRD.
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S62
+- SPARQL SELECT (each result is a violation) on each `Productionization`
+
+```sparql
+SELECT $this WHERE {
+  FILTER NOT EXISTS { $this adp:promotionStep/adp:toEnvironment adp:PRD }
+}
+```
+
+### R88 · Every promotion of a productionization promotes the platform resource the productionization is for.
+
+- **Kind:** constraint · **Pattern:** `equal` · **Level:** 3 · **Status:** confirmed · **Sources:** S62
+- for each `Productionization`, `productionizes` and `promotionStep/promotionOf` have the same values
+
+### R89 · A promotion with a failed BLOCKED quality gate is not allowed, not even after a manual review (e.g. a data pipeline defined in a notebook is never promoted to ACC).
+
+- **Kind:** constraint · **Pattern:** `sparql` · **Level:** 3 · **Status:** confirmed · **Sources:** S59
+- SPARQL SELECT (each result is a violation) on each `Promotion`
+
+```sparql
+SELECT $this WHERE {
+  $this adp:hasGateResult ?result .
+  ?result adp:gatePassed false ; adp:resultOf ?gate .
+  ?gate adp:hasSeverity adp:Blocked .
+}
+```

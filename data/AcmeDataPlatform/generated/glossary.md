@@ -6,17 +6,35 @@ Every concept, individual, relation and property, sorted by term.
 
 | Term | Id | Kind | Synonyms | Definition | Level | Status | Sources |
 |---|---|---|---|---|---|---|---|
-| ACC | `ACC` | individual |  |  | 1 | confirmed | S1, S8, S13, S14 |
+| ACC | `ACC` | individual |  | The production-like environment, fully automated (deployment only via CI/CD pipeline), to prepare the deployment and UAT tests of the next MAJOR/MINOR versions and collect consumer feedback; less freedom than DEV. | 1 | confirmed | S1, S8, S13, S14, S60 |
 | ACC catalog | `CatalogACC` | individual |  |  | 2 | confirmed | S49 |
+| accepted | `reviewAccepted` | property |  |  | 3 | confirmed | S59 |
 | access restriction | `AccessRestriction` | concept |  | A limit a product owner intentionally sets on the default read access of the owner team's members to their own platform resource, in some environments (e.g. not in PRD, which contains sensitive/PII information). | 3 | confirmed | S55, S56 |
 | AcmeDataPlatform | `AcmeDataPlatform` | individual |  |  | 1 | confirmed | S1, S2 |
+| adjustment of | `adjustmentOf` | relation |  |  | 3 | confirmed | S63 |
+| AI assistant | `AIAssistant` | individual |  | Helps to build platform resources quickly. | 3 | confirmed | S58 |
 | AI model | `AIModel` | concept |  |  | 1 | confirmed | S9, S18 |
 | AI/analytical application | `AIAnalyticalApplication` | concept |  |  | 1 | confirmed | S9 |
+| applies in | `limitationIn` | relation |  |  | 3 | confirmed | S58 |
 | approved | `Approved` | individual |  |  | 2 | confirmed | S41 |
+| automated testing | `AutomatedTesting` | individual |  |  | 3 | confirmed | S59 |
 | belongs to | `belongsTo` | relation |  |  | 2 | confirmed | S18 |
+| belongs to department | `belongsToDepartment` | relation |  |  | 3 | confirmed | S58, S65 |
+| BLOCKED | `Blocked` | individual |  | A failed gate always stops the promotion; no manual review can override it. | 3 | confirmed | S59 |
+| BLOCKING | `Blocking` | individual |  | A failed gate stops the promotion until a manual review accepts it. | 3 | confirmed | S59, S60 |
+| breaking change | `breakingChange` | property |  |  | 3 | confirmed | S60 |
+| budget | `Budget` | concept |  | There are 2 kinds: the department-level pre-allocated budget (EXP) and the pre-approved budget of a product team (DEV/ACC/PRD). | 3 | confirmed | S58, S59, S60, S65 |
+| budget adjustment request | `BudgetAdjustmentRequest` | concept |  | A request by the owner team to its department to adjust the pre-approved development budget, if needed. | 3 | confirmed | S63 |
+| budget for | `budgetForResource` | relation |  |  | 3 | confirmed | S60, S63, S65 |
+| budget of | `budgetOfTeam` | relation |  |  | 3 | confirmed | S65 |
+| budget test in ACC: costs under prod-like load fit into the pre-approved budget | `GateCostsWithinBudget` | individual |  |  | 3 | confirmed | S60, S63 |
+| budget test in DEV: costs fit into the pre-approved budget | `GateBudgetTestDev` | individual |  |  | 3 | confirmed | S63 |
+| business case | `BusinessCase` | concept | use case | The approved reason for building a platform resource; an outcome of EXP, needed to work in DEV. | 3 | confirmed | S58, S59 |
 | catalog | `Catalog` | concept |  | Where the platform resources of one environment are exposed (findable) for anyone inside ACME company; there is a catalog per environment. | 2 | confirmed | S38, S49 |
 | catalog of | `catalogOf` | relation |  |  | 2 | confirmed | S49 |
 | child data product | `ChildDataProduct` | concept | downstream data product | A data product that depends on one or more parent data products. | 2 | confirmed | S24 |
+| CI/CD pipeline | `CICDPipeline` | individual |  | The only way to deploy to ACC. | 3 | confirmed | S13, S60 |
+| compatibility tests pass (e.g. no breaking change in a MINOR version upgrade) | `GateCompatibilityTests` | individual |  |  | 3 | confirmed | S60 |
 | compute cluster definition | `ComputeClusterDefinition` | concept |  |  | 2 | confirmed | S20 |
 | consists of | `consistsOf` | relation |  |  | 1 | confirmed | S2 |
 | consists of | `hasSubResource` | relation | has sub platform resource |  | 2 | confirmed | S18 |
@@ -33,87 +51,159 @@ Every concept, individual, relation and property, sorted by term.
 | dashboard | `Dashboard` | concept |  |  | 1 | confirmed | S9, S18 |
 | data asset | `DataAsset` | concept |  | A part of a data product holding its data; typically tables and views in case of structured data products. | 2 | confirmed | S20 |
 | data pipeline | `DataPipeline` | concept |  |  | 2 | confirmed | S20 |
+| data pipelines are not notebooks (imperative/declarative definitions) | `GateNoNotebookPipeline` | individual |  |  | 3 | confirmed | S59 |
 | data platform | `DataPlatform` | concept |  | The kind of thing AcmeDataPlatform is. | 1 | confirmed | S1 |
 | data product | `DataProduct` | concept |  |  | 1 | confirmed | S9, S18 |
 | data product owner | `DataProductOwner` | concept |  | The product owner of a data product. | 2 | confirmed | S36 |
+| data quality rule | `DataQualityRule` | concept |  |  | 3 | confirmed | S59, S60 |
+| data quality rules defined for a data product | `GateDataQualityRulesDefined` | individual |  |  | 3 | confirmed | S59 |
+| data quality rules pass | `GateDataQualityRulesPass` | individual |  |  | 3 | confirmed | S60 |
 | data source | `DataSource` | concept | source service | An internal or external service or data source that an ingestion data pipeline ingests data from. | 2 | confirmed | S25 |
 | debugging | `Debugging` | individual |  |  | 3 | confirmed | S53 |
+| defended by | `defendedBy` | relation |  |  | 3 | confirmed | S59 |
+| department | `Department` | concept |  | An organisational unit whose product teams build on the AcmeDataPlatform; it provides the EXP budget for them. | 3 | confirmed | S58 |
+| department budget | `ExperimentationBudget` | concept | experimentation budget, department-level pre-allocated budget | The EXP budget: pre-allocated by a department upfront, collectively for each month, for all its product teams and their platform resources. | 3 | confirmed | S58, S65 |
 | depends on | `dependsOn` | relation | lineage | The lineage between data products: a child (downstream) data product depends on its parent (upstream) data products. | 2 | confirmed | S24, S29 |
 | deployed to | `deployedTo` | relation |  |  | 1 | confirmed | S6, S10 |
-| DEV | `DEV` | individual |  |  | 1 | confirmed | S1, S7, S8, S11 |
+| DEV | `DEV` | individual |  | The environment where platform resources are created via repeatable automation, so they can be deployed to upper environments reliably; less freedom than EXP. | 1 | confirmed | S1, S7, S8, S11, S59 |
 | DEV catalog | `CatalogDEV` | individual |  |  | 2 | confirmed | S49 |
 | developer | `Developer` | concept |  | An employee who develops a consumer application or other platform resource. | 3 | confirmed | S53 |
 | developer of | `developerOf` | relation |  |  | 3 | confirmed | S53 |
 | elevated permission | `ElevatedPermission` | concept |  | A time-limited permission a developer of the consumer application requests to run SELECT commands on tables/views in their data product or in the parent data products, for incident resolution or debugging. | 3 | confirmed | S53 |
 | employee | `Employee` | concept |  | A person working for ACME company, e.g. a product owner or data product owner. | 2 | confirmed | S50 |
 | environment | `Environment` | concept |  |  | 1 | confirmed | S1, S6, S7, S8 |
-| EXP | `EXP` | individual |  | The environment for experimentation. | 1 | confirmed | S1, S7, S8, S11, S12 |
+| EXP | `EXP` | individual |  | The environment for experimentation and learning, with the highest degree of freedom: start experimenting in minutes, without prior approval for permission or budget. | 1 | confirmed | S1, S7, S8, S11, S12, S58 |
 | EXP catalog | `CatalogEXP` | individual |  |  | 2 | confirmed | S49 |
 | exposed in | `exposedIn` | relation | findable in |  | 2 | confirmed | S38, S49 |
 | exposed in catalog | `exposedInCatalog` | property |  | Whether a platform resource is exposed in the catalogs of its environments: yes by default, can be turned off. | 2 | confirmed | S38, S49 |
 | external application | `ExternalApplication` | concept |  | An application that runs outside of the data platform and consumes the externally exposed/shared platform resources. | 3 | confirmed | S35 |
 | externally shared | `externallyShared` | property | externally exposed | Whether a platform resource is exposed/shared to external applications. | 3 | confirmed | S35 |
+| failing | `sliFailing` | property |  |  | 3 | confirmed | S60, S61 |
+| feedback | `Feedback` | concept |  | What consumers send to the owner team after testing the next MAJOR/MINOR version in ACC. | 3 | confirmed | S60 |
+| feedback on | `feedbackOn` | relation |  |  | 3 | confirmed | S60 |
 | for purpose | `forPurpose` | relation |  |  | 3 | confirmed | S53 |
+| from environment | `fromEnvironment` | relation |  |  | 3 | confirmed | S8, S62 |
+| gate severity | `GateSeverity` | concept |  |  | 3 | confirmed | S59, S60 |
+| gates promotion to | `gatesPromotionTo` | relation |  |  | 3 | confirmed | S59, S60 |
 | granted to | `grantedTo` | relation |  |  | 3 | confirmed | S52, S53 |
 | grants | `grantsPrivilege` | relation |  |  | 3 | confirmed | S52, S53 |
+| green performance and scalability tests proving the data pipeline is incremental | `GateIncrementalPipelineTests` | individual |  |  | 3 | confirmed | S59 |
+| green tests for immutability and backfill | `GateImmutabilityBackfillTests` | individual |  |  | 3 | confirmed | S59 |
 | has access to | `hasAccessTo` | relation |  | A consumer application (or platform resource) that may use/consume/access a platform resource after an approved subscription request. | 2 | confirmed | S39, S42 |
+| has business case | `hasBusinessCase` | relation |  |  | 3 | confirmed | S59 |
+| has data quality rule | `hasDataQualityRule` | relation |  |  | 3 | confirmed | S59 |
+| has gate result | `hasGateResult` | relation |  |  | 3 | confirmed | S59, S60 |
+| has manual review | `hasManualReview` | relation |  |  | 3 | confirmed | S59 |
 | has product owner | `externalAppOwner` | relation |  |  | 3 | confirmed | S48 |
 | has product owner | `hasProductOwner` | relation |  |  | 2 | confirmed | S36, S37 |
+| has promotion step | `promotionStep` | relation |  |  | 3 | confirmed | S62 |
+| has severity | `hasSeverity` | relation |  |  | 3 | confirmed | S59, S60 |
+| has SLO | `hasSLO` | relation |  |  | 3 | confirmed | S59 |
 | has status | `hasStatus` | relation |  |  | 2 | confirmed | S41 |
 | has user principal | `hasUserPrincipal` | relation |  |  | 2 | confirmed | S50 |
+| has version upgrade | `hasVersionUpgrade` | relation |  |  | 3 | confirmed | S59, S60 |
+| IaC tool | `IaCTool` | individual |  | Infrastructure as code, e.g. Terraform. | 3 | confirmed | S59 |
 | in environment | `inEnvironment` | relation |  |  | 3 | confirmed | S52 |
 | in layer | `inLayer` | relation |  |  | 2 | confirmed | S25 |
+| incident | `Incident` | concept |  |  | 3 | confirmed | S61 |
 | incident resolution | `IncidentResolution` | individual |  |  | 3 | confirmed | S53 |
 | includes | `includesMember` | relation |  | The team members a product owner includes in a subscription request, so that they get access as well. | 2 | confirmed | S51 |
 | ingestion data pipeline | `IngestionDataPipeline` | concept |  | A data pipeline that ingests data from an (internal or external) source service or data source and stores it unchanged in the RAW layer. | 2 | confirmed | S25, S30 |
 | ingests from | `ingestsFrom` | relation |  |  | 2 | confirmed | S25 |
+| internal developer portal | `InternalDeveloperPortal` | individual |  |  | 3 | confirmed | S58, S59 |
+| MAJOR | `MAJOR` | individual |  |  | 3 | confirmed | S59, S60 |
+| mandatory | `gateMandatory` | property |  | Whether the gate must run (true) or is optional (false), e.g. the budget test is mandatory in ACC and optional in DEV. | 3 | confirmed | S63 |
+| manual review | `ManualReview` | concept |  | The review a failed BLOCKING quality gate requires, in which the owning team defends why its solution does not use the available standard solutions. | 3 | confirmed | S59 |
+| measures | `measures` | relation |  |  | 3 | confirmed | S59 |
 | medallion layer | `MedallionLayer` | concept |  |  | 2 | confirmed | S25 |
 | member of | `memberOf` | relation |  |  | 2 | confirmed | S36, S37, S51 |
+| metadata and a non-empty contract | `GateMetadataContract` | individual |  |  | 3 | confirmed | S59 |
+| MINOR | `MINOR` | individual |  | A version upgrade without breaking changes. | 3 | confirmed | S59, S60 |
 | ML model | `MLModel` | concept |  |  | 1 | confirmed | S9, S18 |
+| monitored in | `monitoredIn` | relation |  |  | 3 | confirmed | S60, S61 |
 | next layer | `nextLayer` | relation |  |  | 2 | confirmed | S25 |
+| notebook | `Notebook` | individual |  | Used to create data pipelines; a pipeline defined in a notebook cannot be promoted to ACC. | 3 | confirmed | S58, S59 |
+| offered in | `offeredIn` | relation |  |  | 3 | confirmed | S58, S59, S60 |
 | on | `permissionOn` | relation |  |  | 3 | confirmed | S52, S53 |
 | owned by | `ownedBy` | relation |  | The team that owns a platform service (a platform team) or a platform resource (the product team that created it). | 1 | confirmed | S3, S5 |
 | owned by | `resourceOwnedBy` | relation |  | The product team that owns a platform resource: the team which created it. | 1 | confirmed | S5 |
 | owned by | `serviceOwnedBy` | relation |  | The platform team that owns a platform service. | 1 | confirmed | S3 |
 | parent data product | `ParentDataProduct` | concept | upstream data product | A data product another data product depends on. | 2 | confirmed | S24 |
+| passed | `gatePassed` | property |  |  | 3 | confirmed | S59, S60 |
 | pending | `Pending` | individual |  |  | 2 | confirmed | S41 |
 | permission | `Permission` | concept |  | Access for a user principal to tables/views in one environment, e.g. SELECT; access for users can be differentiated per environment. | 3 | confirmed | S52 |
 | platform resource | `PlatformResource` | concept |  |  | 1 | confirmed | S1, S4, S5, S7, S8, S9, S11, S14, S15 |
 | platform service | `PlatformService` | concept |  |  | 1 | confirmed | S1, S2, S3, S4, S6 |
 | platform team | `PlatformTeam` | concept |  |  | 1 | confirmed | S1, S3, S10 |
 | populates | `populates` | relation |  |  | 2 | confirmed | S24 |
-| PRD | `PRD` | individual |  |  | 1 | confirmed | S1, S8, S14 |
+| PRD | `PRD` | individual |  | The live environment, with the least freedom: maximum protection via policies, limited access and audit log. | 1 | confirmed | S1, S8, S14, S61 |
 | PRD catalog | `CatalogPRD` | individual |  |  | 2 | confirmed | S49 |
+| pre-approved budget | `PreApprovedBudget` | concept | development budget, reserved budget | The DEV/ACC/PRD budget for the use case / platform resource of one product team (an outcome of EXP); automated budget tests validate that the costs fit into it, and the owner team may request an adjustment from its department. | 3 | confirmed | S58, S59, S60, S63, S65 |
 | principal | `Principal` | concept |  | Someone or something that consumes platform resources: a user principal or a service principal. | 2 | confirmed | S33 |
 | privilege | `Privilege` | concept |  |  | 3 | confirmed | S52, S53 |
 | processing data pipeline | `ProcessingDataPipeline` | concept |  | A data pipeline that performs transformations (cleansing, curation, filtering, enrichment, aggregation) across the RAW->CURATED->SERVING medallion layers. | 2 | confirmed | S25, S30 |
 | product owner | `ProductOwner` | concept |  | The member of the owner product team who owns a platform resource on its behalf. | 2 | confirmed | S37, S50 |
 | product team | `ProductTeam` | concept |  |  | 1 | confirmed | S1, S4, S5, S10 |
+| productionization | `Productionization` | concept |  | The promotion and approval process to deploy platform resources from lower environments to upper environments till PRD. | 3 | confirmed | S62 |
+| productionizes | `productionizes` | relation |  |  | 3 | confirmed | S62 |
 | promoted to | `promotedTo` | relation |  |  | 1 | confirmed | S8 |
+| promotion | `Promotion` | concept |  | One step of a productionization: a platform resource is deployed from one environment to the next upper environment. | 3 | confirmed | S8, S62 |
+| promotion of | `promotionOf` | relation |  |  | 3 | confirmed | S8, S62 |
+| promotion/conversion tool | `PromotionConversionTool` | individual |  | Promotes/converts platform resources from EXP to DEV automatically. | 3 | confirmed | S58 |
+| proof of concept | `ProofOfConcept` | concept | POC | The outcome of experimentation in EXP: fit for the purpose, with knowledge about the expected costs. | 3 | confirmed | S58 |
+| proves | `provesCase` | relation |  |  | 3 | confirmed | S58 |
+| provided by | `providedBy` | relation |  |  | 3 | confirmed | S58, S65 |
 | purpose | `Purpose` | concept |  |  | 3 | confirmed | S53 |
+| quality gate | `QualityGate` | concept |  | A check a platform resource must pass to be promoted to an environment; it is BLOCKED, BLOCKING or a WARNING. | 3 | confirmed | S59, S60 |
+| quality gate result | `QualityGateResult` | concept |  | The outcome (passed or failed) of one quality gate for one promotion. | 3 | confirmed | S59, S60 |
 | RAW | `RAW` | individual |  |  | 2 | confirmed | S25 |
 | reads | `reads` | relation |  |  | 2 | confirmed | S24 |
 | received by | `receivedBy` | relation |  |  | 2 | confirmed | S41 |
 | rejected | `Rejected` | individual |  |  | 2 | confirmed | S41 |
 | represents the identity of | `identityOf` | relation |  |  | 3 | confirmed | S34 |
+| requested by | `adjustmentRequestedBy` | relation |  |  | 3 | confirmed | S63 |
+| requested from | `adjustmentRequestedFrom` | relation |  |  | 3 | confirmed | S63 |
+| requested in | `requestedIn` | relation |  |  | 3 | confirmed | S58 |
+| requires manual approval | `requiresManualApproval` | property |  | Set by the data product owner, per data product, for reasons such as security or an intentionally limited audience: subscription requests need his/her manual approval, also in EXP. | 3 | confirmed | S64 |
+| reserved for | `reservedFor` | relation |  | The use case (business case) the pre-approved budget is for. | 3 | confirmed | S65 |
+| resource limitation | `ResourceLimitation` | concept |  | A limit on platform resources in EXP that avoids production usage. | 3 | confirmed | S58 |
 | restricted in | `restrictedIn` | relation |  |  | 3 | confirmed | S55 |
 | restricts | `restricts` | relation |  |  | 3 | confirmed | S55 |
+| result of | `resultOf` | relation |  |  | 3 | confirmed | S59, S60 |
+| reuse limitation | `ReuseLimitation` | individual |  |  | 3 | confirmed | S58 |
+| schema compatibility guarantees | `GateSchemaCompatibility` | individual |  |  | 3 | confirmed | S59 |
+| security tests pass | `GateSecurityTests` | individual |  |  | 3 | confirmed | S60 |
 | SELECT | `SELECT` | individual |  |  | 3 | confirmed | S52, S53 |
+| sent to | `sentTo` | relation |  |  | 3 | confirmed | S60 |
+| service level indicator | `ServiceLevelIndicator` | concept | SLI | An automatically monitored measure of a service level objective, in one environment. | 3 | confirmed | S59, S60, S61 |
+| service level objective | `ServiceLevelObjective` | concept | SLO |  | 3 | confirmed | S59 |
 | service principal | `ServicePrincipal` | concept | application consumer | The identity of an application, data pipeline or other automation which is not performed by a human. | 2 | confirmed | S33, S34 |
 | SERVING | `SERVING` | individual |  |  | 2 | confirmed | S25 |
 | set by | `setBy` | relation |  |  | 3 | confirmed | S55, S56 |
+| size limitation | `SizeLimitation` | individual |  |  | 3 | confirmed | S58 |
+| skeleton application | `SkeletonApplication` | individual |  | A starting point for one of various use cases. | 3 | confirmed | S59 |
+| SLIs pass | `GateSLIsPass` | individual |  |  | 3 | confirmed | S60 |
+| SLOs and automatically monitored SLIs | `GateSLOsAndSLIs` | individual |  |  | 3 | confirmed | S59 |
 | sub platform resource | `SubPlatformResource` | concept | nested platform resource | A platform resource that belongs to a parent platform resource and cannot live on its own. | 2 | confirmed | S18 |
 | subscribes to | `requestFor` | relation |  |  | 2 | confirmed | S40 |
 | subscribes to | `subscribesTo` | relation |  |  | 1 | confirmed | S21 |
 | subscription request | `SubscriptionRequest` | concept |  | A request by a product owner to consume an existing platform resource, to build a new platform resource or to consume it by another application. | 2 | confirmed | S40, S41 |
 | subscription status | `SubscriptionStatus` | concept |  |  | 2 | confirmed | S41 |
+| sufficient test coverage | `GateTestCoverage` | individual |  |  | 3 | confirmed | S59 |
 | table | `Table` | concept |  |  | 3 | confirmed | S20 |
 | team | `Team` | concept |  |  | 1 | confirmed | S10 |
+| time limitation | `TimeLimitation` | individual |  |  | 3 | confirmed | S58 |
+| to environment | `toEnvironment` | relation |  |  | 3 | confirmed | S8, S62 |
 | to view | `viewPermissionOn` | relation |  |  | 3 | confirmed | S55, S57 |
+| tool | `Tool` | concept |  | Tooling offered to the teams in an environment, e.g. the internal developer portal in EXP or IaC tools in DEV. | 3 | confirmed | S58, S59 |
+| triggered by | `triggeredBy` | relation |  |  | 3 | confirmed | S61 |
 | user principal | `UserPrincipal` | concept | human user | The identity of a user or group of users who can look at dashboards and use AI/analytical applications. | 2 | confirmed | S33, S34 |
 | uses | `userUses` | relation |  |  | 3 | confirmed | S34 |
 | uses | `uses` | relation |  |  | 1 | confirmed | S4 |
+| uses one of the standard templates | `GateStandardTemplate` | individual |  |  | 3 | confirmed | S59 |
 | valid until | `validUntil` | property |  |  | 3 | confirmed | S53 |
+| version upgrade | `VersionUpgrade` | concept |  | The kind of new version a promotion delivers: MAJOR or MINOR; decided in DEV. | 3 | confirmed | S59, S60 |
 | VIEW | `VIEW` | individual |  |  | 3 | confirmed | S55, S57 |
 | view | `View` | concept |  |  | 3 | confirmed | S20 |
+| WARNING | `Warning` | individual |  | A failed gate is reported but does not stop the promotion. | 3 | confirmed | S59, S60 |
 | workspace infra definition | `WorkspaceInfraDefinition` | concept |  |  | 2 | confirmed | S20 |

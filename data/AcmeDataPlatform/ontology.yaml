@@ -327,6 +327,159 @@ concepts:
     status: confirmed
     source: [S1, S6, S7, S8]
 
+  # --- Level 3: environments in detail and productionization (S58-S62) ---
+  - id: Productionization
+    label: productionization
+    definition: "The promotion and approval process to deploy platform resources from lower environments to upper environments till PRD."
+    level: 3
+    status: confirmed
+    source: [S62]
+
+  - id: Promotion
+    label: promotion
+    definition: "One step of a productionization: a platform resource is deployed from one environment to the next upper environment."
+    level: 3
+    status: confirmed
+    source: [S8, S62]
+
+  - id: VersionUpgrade
+    label: version upgrade
+    definition: "The kind of new version a promotion delivers: MAJOR or MINOR; decided in DEV."
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: QualityGate
+    label: quality gate
+    definition: "A check a platform resource must pass to be promoted to an environment; it is BLOCKED, BLOCKING or a WARNING."
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: GateSeverity
+    label: gate severity
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: QualityGateResult
+    label: quality gate result
+    definition: "The outcome (passed or failed) of one quality gate for one promotion."
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: ManualReview
+    label: manual review
+    definition: "The review a failed BLOCKING quality gate requires, in which the owning team defends why its solution does not use the available standard solutions."
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: Tool
+    label: tool
+    definition: "Tooling offered to the teams in an environment, e.g. the internal developer portal in EXP or IaC tools in DEV."
+    level: 3
+    status: confirmed
+    source: [S58, S59]
+
+  - id: ResourceLimitation
+    label: resource limitation
+    definition: "A limit on platform resources in EXP that avoids production usage."
+    level: 3
+    status: confirmed
+    source: [S58]
+
+  - id: Department
+    label: department
+    definition: "An organisational unit whose product teams build on the AcmeDataPlatform; it provides the EXP budget for them."
+    level: 3
+    status: confirmed
+    source: [S58]
+
+  - id: Budget
+    label: budget
+    level: 3
+    status: confirmed
+    definition: "There are 2 kinds: the department-level pre-allocated budget (EXP) and the pre-approved budget of a product team (DEV/ACC/PRD)."
+    source: [S58, S59, S60, S65]
+
+  - id: ExperimentationBudget
+    label: department budget
+    parent: Budget
+    synonyms: [experimentation budget, department-level pre-allocated budget]
+    disjoint_with: [PreApprovedBudget]
+    definition: "The EXP budget: pre-allocated by a department upfront, collectively for each month, for all its product teams and their platform resources."
+    level: 3
+    status: confirmed
+    source: [S58, S65]
+
+  - id: PreApprovedBudget
+    label: pre-approved budget
+    parent: Budget
+    synonyms: [development budget, reserved budget]
+    definition: "The DEV/ACC/PRD budget for the use case / platform resource of one product team (an outcome of EXP); automated budget tests validate that the costs fit into it, and the owner team may request an adjustment from its department."
+    level: 3
+    status: confirmed
+    source: [S58, S59, S60, S63, S65]
+
+  - id: BudgetAdjustmentRequest
+    label: budget adjustment request
+    definition: "A request by the owner team to its department to adjust the pre-approved development budget, if needed."
+    level: 3
+    status: confirmed
+    source: [S63]
+
+  - id: BusinessCase
+    label: business case
+    synonyms: [use case]
+    definition: "The approved reason for building a platform resource; an outcome of EXP, needed to work in DEV."
+    level: 3
+    status: confirmed
+    source: [S58, S59]
+
+  - id: ProofOfConcept
+    label: proof of concept
+    synonyms: [POC]
+    definition: "The outcome of experimentation in EXP: fit for the purpose, with knowledge about the expected costs."
+    level: 3
+    status: confirmed
+    source: [S58]
+
+  - id: ServiceLevelObjective
+    label: service level objective
+    synonyms: [SLO]
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: ServiceLevelIndicator
+    label: service level indicator
+    synonyms: [SLI]
+    definition: "An automatically monitored measure of a service level objective, in one environment."
+    level: 3
+    status: confirmed
+    source: [S59, S60, S61]
+
+  - id: Incident
+    label: incident
+    level: 3
+    status: confirmed
+    source: [S61]
+
+  - id: DataQualityRule
+    label: data quality rule
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: Feedback
+    label: feedback
+    definition: "What consumers send to the owner team after testing the next MAJOR/MINOR version in ACC."
+    level: 3
+    status: confirmed
+    source: [S60]
+
 individuals:
   - id: AcmeDataPlatform
     label: AcmeDataPlatform
@@ -338,31 +491,34 @@ individuals:
   - id: EXP
     label: EXP
     types: [Environment]
-    definition: "The environment for experimentation."
+    definition: "The environment for experimentation and learning, with the highest degree of freedom: start experimenting in minutes, without prior approval for permission or budget."
     level: 1
     status: confirmed
-    source: [S1, S7, S8, S11, S12]
+    source: [S1, S7, S8, S11, S12, S58]
 
   - id: DEV
     label: DEV
     types: [Environment]
+    definition: "The environment where platform resources are created via repeatable automation, so they can be deployed to upper environments reliably; less freedom than EXP."
     level: 1
     status: confirmed
-    source: [S1, S7, S8, S11]
+    source: [S1, S7, S8, S11, S59]
 
   - id: ACC
     label: ACC
     types: [Environment]
+    definition: "The production-like environment, fully automated (deployment only via CI/CD pipeline), to prepare the deployment and UAT tests of the next MAJOR/MINOR versions and collect consumer feedback; less freedom than DEV."
     level: 1
     status: confirmed
-    source: [S1, S8, S13, S14]
+    source: [S1, S8, S13, S14, S60]
 
   - id: PRD
     label: PRD
     types: [Environment]
+    definition: "The live environment, with the least freedom: maximum protection via policies, limited access and audit log."
     level: 1
     status: confirmed
-    source: [S1, S8, S14]
+    source: [S1, S8, S14, S61]
 
   - id: RAW
     label: RAW
@@ -467,6 +623,259 @@ individuals:
     level: 3
     status: confirmed
     source: [S55, S57]
+
+  # --- Level 3 individuals (S58-S62) ---
+  - id: MAJOR
+    label: MAJOR
+    types: [VersionUpgrade]
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: MINOR
+    label: MINOR
+    types: [VersionUpgrade]
+    definition: "A version upgrade without breaking changes."
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: Blocking
+    label: BLOCKING
+    types: [GateSeverity]
+    definition: "A failed gate stops the promotion until a manual review accepts it."
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: Blocked
+    label: BLOCKED
+    types: [GateSeverity]
+    definition: "A failed gate always stops the promotion; no manual review can override it."
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: Warning
+    label: WARNING
+    types: [GateSeverity]
+    definition: "A failed gate is reported but does not stop the promotion."
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: SizeLimitation
+    label: size limitation
+    types: [ResourceLimitation]
+    level: 3
+    status: confirmed
+    source: [S58]
+
+  - id: TimeLimitation
+    label: time limitation
+    types: [ResourceLimitation]
+    level: 3
+    status: confirmed
+    source: [S58]
+
+  - id: ReuseLimitation
+    label: reuse limitation
+    types: [ResourceLimitation]
+    level: 3
+    status: confirmed
+    source: [S58]
+
+  - id: InternalDeveloperPortal
+    label: internal developer portal
+    types: [Tool]
+    facts: {offeredIn: [EXP, DEV]}
+    level: 3
+    status: confirmed
+    source: [S58, S59]
+
+  - id: Notebook
+    label: notebook
+    types: [Tool]
+    facts: {offeredIn: [EXP, DEV]}
+    definition: "Used to create data pipelines; a pipeline defined in a notebook cannot be promoted to ACC."
+    level: 3
+    status: confirmed
+    source: [S58, S59]
+
+  - id: AIAssistant
+    label: AI assistant
+    types: [Tool]
+    facts: {offeredIn: [EXP]}
+    definition: "Helps to build platform resources quickly."
+    level: 3
+    status: confirmed
+    source: [S58]
+
+  - id: PromotionConversionTool
+    label: promotion/conversion tool
+    types: [Tool]
+    facts: {offeredIn: [EXP]}
+    definition: "Promotes/converts platform resources from EXP to DEV automatically."
+    level: 3
+    status: confirmed
+    source: [S58]
+
+  - id: IaCTool
+    label: IaC tool
+    types: [Tool]
+    facts: {offeredIn: [DEV]}
+    definition: "Infrastructure as code, e.g. Terraform."
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: AutomatedTesting
+    label: automated testing
+    types: [Tool]
+    facts: {offeredIn: [DEV]}
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: SkeletonApplication
+    label: skeleton application
+    types: [Tool]
+    facts: {offeredIn: [DEV]}
+    definition: "A starting point for one of various use cases."
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: CICDPipeline
+    label: CI/CD pipeline
+    types: [Tool]
+    facts: {offeredIn: [ACC]}
+    definition: "The only way to deploy to ACC."
+    level: 3
+    status: confirmed
+    source: [S13, S60]
+
+  - id: GateNoNotebookPipeline
+    label: "data pipelines are not notebooks (imperative/declarative definitions)"
+    types: [QualityGate]
+    facts: {hasSeverity: [Blocked], gatesPromotionTo: [ACC]}
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: GateTestCoverage
+    label: "sufficient test coverage"
+    types: [QualityGate]
+    facts: {hasSeverity: [Warning], gatesPromotionTo: [ACC]}
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: GateMetadataContract
+    label: "metadata and a non-empty contract"
+    types: [QualityGate]
+    facts: {hasSeverity: [Warning], gatesPromotionTo: [ACC]}
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: GateImmutabilityBackfillTests
+    label: "green tests for immutability and backfill"
+    types: [QualityGate]
+    facts: {hasSeverity: [Warning], gatesPromotionTo: [ACC]}
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: GateStandardTemplate
+    label: "uses one of the standard templates"
+    types: [QualityGate]
+    facts: {hasSeverity: [Warning], gatesPromotionTo: [ACC]}
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: GateIncrementalPipelineTests
+    label: "green performance and scalability tests proving the data pipeline is incremental"
+    types: [QualityGate]
+    facts: {hasSeverity: [Blocking], gatesPromotionTo: [ACC]}
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: GateDataQualityRulesDefined
+    label: "data quality rules defined for a data product"
+    types: [QualityGate]
+    facts: {hasSeverity: [Warning], gatesPromotionTo: [ACC]}
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: GateSLOsAndSLIs
+    label: "SLOs and automatically monitored SLIs"
+    types: [QualityGate]
+    facts: {hasSeverity: [Blocking], gatesPromotionTo: [ACC]}
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: GateSchemaCompatibility
+    label: "schema compatibility guarantees"
+    types: [QualityGate]
+    facts: {hasSeverity: [Blocking], gatesPromotionTo: [ACC]}
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: GateDataQualityRulesPass
+    label: "data quality rules pass"
+    types: [QualityGate]
+    facts: {hasSeverity: [Blocking], gatesPromotionTo: [PRD]}
+    level: 3
+    status: confirmed
+    source: [S60]
+
+  - id: GateSecurityTests
+    label: "security tests pass"
+    types: [QualityGate]
+    facts: {hasSeverity: [Blocking], gatesPromotionTo: [PRD]}
+    level: 3
+    status: confirmed
+    source: [S60]
+
+  - id: GateCostsWithinBudget
+    label: "budget test in ACC: costs under prod-like load fit into the pre-approved budget"
+    types: [QualityGate]
+    facts: {hasSeverity: [Blocking], gatesPromotionTo: [PRD]}
+    values: {gateMandatory: true}
+    level: 3
+    status: confirmed
+    source: [S60, S63]
+
+  - id: GateBudgetTestDev
+    label: "budget test in DEV: costs fit into the pre-approved budget"
+    types: [QualityGate]
+    facts: {hasSeverity: [Blocking], gatesPromotionTo: [ACC]}
+    values: {gateMandatory: false}
+    level: 3
+    status: confirmed
+    source: [S63]
+
+  - id: GateCompatibilityTests
+    label: "compatibility tests pass (e.g. no breaking change in a MINOR version upgrade)"
+    types: [QualityGate]
+    facts: {hasSeverity: [Blocking], gatesPromotionTo: [PRD]}
+    level: 3
+    status: confirmed
+    source: [S60]
+
+  - id: GateSLIsPass
+    label: "SLIs pass"
+    types: [QualityGate]
+    facts: {hasSeverity: [Warning], gatesPromotionTo: [PRD]}
+    level: 3
+    status: confirmed
+    source: [S60]
 
 relations:
   - id: consistsOf
@@ -901,6 +1310,297 @@ relations:
     status: confirmed
     source: [S55, S57]
 
+  # --- Level 3 relations (S58-S62) ---
+
+  - id: promotionStep
+    label: has promotion step
+    domain: Productionization
+    range: Promotion
+    cardinality: "1..*"
+    level: 3
+    status: confirmed
+    source: [S62]
+
+  - id: productionizes
+    label: productionizes
+    domain: Productionization
+    range: PlatformResource
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S62]
+
+  - id: promotionOf
+    label: promotion of
+    domain: Promotion
+    range: PlatformResource
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S8, S62]
+
+  - id: fromEnvironment
+    label: from environment
+    domain: Promotion
+    range: Environment
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S8, S62]
+
+  - id: toEnvironment
+    label: to environment
+    domain: Promotion
+    range: Environment
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S8, S62]
+
+  - id: hasVersionUpgrade
+    label: has version upgrade
+    domain: Promotion
+    range: VersionUpgrade
+    cardinality: "0..1"
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: hasGateResult
+    label: has gate result
+    domain: Promotion
+    range: QualityGateResult
+    cardinality: "*"
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: resultOf
+    label: result of
+    domain: QualityGateResult
+    range: QualityGate
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: hasManualReview
+    label: has manual review
+    domain: Promotion
+    range: ManualReview
+    cardinality: "*"
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: defendedBy
+    label: defended by
+    domain: ManualReview
+    range: Team
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: hasSeverity
+    label: has severity
+    domain: QualityGate
+    range: GateSeverity
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: gatesPromotionTo
+    label: gates promotion to
+    domain: QualityGate
+    range: Environment
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: offeredIn
+    label: offered in
+    domain: Tool
+    range: Environment
+    cardinality: "1..*"
+    level: 3
+    status: confirmed
+    source: [S58, S59, S60]
+
+  - id: limitationIn
+    label: applies in
+    domain: ResourceLimitation
+    range: Environment
+    cardinality: "1..*"
+    level: 3
+    status: confirmed
+    source: [S58]
+
+  - id: belongsToDepartment
+    label: belongs to department
+    domain: ProductTeam
+    range: Department
+    cardinality: "0..1"
+    level: 3
+    status: confirmed
+    source: [S58, S65]
+
+  - id: providedBy
+    label: provided by
+    domain: ExperimentationBudget
+    range: Department
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S58, S65]
+
+  - id: budgetOfTeam
+    label: budget of
+    domain: PreApprovedBudget
+    range: ProductTeam
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S65]
+
+  - id: reservedFor
+    label: reserved for
+    definition: "The use case (business case) the pre-approved budget is for."
+    domain: PreApprovedBudget
+    range: BusinessCase
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S65]
+
+  - id: budgetForResource
+    label: budget for
+    domain: PreApprovedBudget
+    range: PlatformResource
+    cardinality: "*"
+    level: 3
+    status: confirmed
+    source: [S60, S63, S65]
+
+  - id: adjustmentOf
+    label: adjustment of
+    domain: BudgetAdjustmentRequest
+    range: PreApprovedBudget
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S63]
+
+  - id: adjustmentRequestedBy
+    label: requested by
+    domain: BudgetAdjustmentRequest
+    range: Team
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S63]
+
+  - id: adjustmentRequestedFrom
+    label: requested from
+    domain: BudgetAdjustmentRequest
+    range: Department
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S63]
+
+  - id: hasBusinessCase
+    label: has business case
+    domain: PlatformResource
+    range: BusinessCase
+    cardinality: "0..1"
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: provesCase
+    label: proves
+    domain: ProofOfConcept
+    range: BusinessCase
+    cardinality: "0..1"
+    level: 3
+    status: confirmed
+    source: [S58]
+
+  - id: hasSLO
+    label: has SLO
+    domain: PlatformResource
+    range: ServiceLevelObjective
+    cardinality: "*"
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: measures
+    label: measures
+    domain: ServiceLevelIndicator
+    range: ServiceLevelObjective
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: monitoredIn
+    label: monitored in
+    domain: ServiceLevelIndicator
+    range: Environment
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S60, S61]
+
+  - id: triggeredBy
+    label: triggered by
+    domain: Incident
+    range: ServiceLevelIndicator
+    cardinality: "1..*"
+    level: 3
+    status: confirmed
+    source: [S61]
+
+  - id: hasDataQualityRule
+    label: has data quality rule
+    domain: DataProduct
+    range: DataQualityRule
+    cardinality: "*"
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: feedbackOn
+    label: feedback on
+    domain: Feedback
+    range: PlatformResource
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S60]
+
+  - id: sentTo
+    label: sent to
+    domain: Feedback
+    range: Team
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S60]
+
+  - id: requestedIn
+    label: requested in
+    domain: SubscriptionRequest
+    range: Environment
+    cardinality: "0..1"
+    level: 3
+    status: confirmed
+    source: [S58]
+
 properties:
   - id: externallyShared
     label: externally shared
@@ -930,6 +1630,62 @@ properties:
     level: 3
     status: confirmed
     source: [S53]
+
+  - id: gateMandatory
+    label: mandatory
+    domain: QualityGate
+    datatype: boolean
+    cardinality: "0..1"
+    definition: "Whether the gate must run (true) or is optional (false), e.g. the budget test is mandatory in ACC and optional in DEV."
+    level: 3
+    status: confirmed
+    source: [S63]
+
+  - id: requiresManualApproval
+    label: requires manual approval
+    domain: DataProduct
+    datatype: boolean
+    cardinality: "0..1"
+    definition: "Set by the data product owner, per data product, for reasons such as security or an intentionally limited audience: subscription requests need his/her manual approval, also in EXP."
+    level: 3
+    status: confirmed
+    source: [S64]
+
+  - id: gatePassed
+    label: passed
+    domain: QualityGateResult
+    datatype: boolean
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+
+  - id: breakingChange
+    label: breaking change
+    domain: Promotion
+    datatype: boolean
+    cardinality: "0..1"
+    level: 3
+    status: confirmed
+    source: [S60]
+
+  - id: reviewAccepted
+    label: accepted
+    domain: ManualReview
+    datatype: boolean
+    cardinality: "1"
+    level: 3
+    status: confirmed
+    source: [S59]
+
+  - id: sliFailing
+    label: failing
+    domain: ServiceLevelIndicator
+    datatype: boolean
+    cardinality: "0..1"
+    level: 3
+    status: confirmed
+    source: [S60, S61]
 
 rules:
   - id: R1
@@ -1706,4 +2462,121 @@ rules:
           { ?restriction adp:restricts ?dashboard } UNION { ?dashboard adp:belongsTo ?resource . ?restriction adp:restricts ?resource }
           ?restriction adp:restrictedIn ?environment .
           FILTER NOT EXISTS { $this a adp:ElevatedPermission }
+        }
+
+  # --- Level 3 rules: environments and productionization (S58-S62) ---
+  - id: R80
+    level: 3
+    status: confirmed
+    source: [S59, S60]
+    statement: "A quality gate is BLOCKED, BLOCKING or a WARNING."
+    values: {focus: QualityGate, path: hasSeverity, in: [Blocked, Blocking, Warning]}
+
+  - id: R81
+    level: 3
+    status: confirmed
+    source: [S8, S62]
+    statement: "A promotion goes from an environment to the next upper one: EXP to DEV, DEV to ACC or ACC to PRD."
+    sparql:
+      focus: Promotion
+      select: |
+        SELECT $this WHERE {
+          $this adp:fromEnvironment ?from ; adp:toEnvironment ?to .
+          FILTER (!((?from = adp:EXP && ?to = adp:DEV) || (?from = adp:DEV && ?to = adp:ACC) || (?from = adp:ACC && ?to = adp:PRD)))
+        }
+
+  - id: R82
+    level: 3
+    status: confirmed
+    source: [S59]
+    statement: "A promotion with a failed BLOCKING quality gate needs an accepted manual review, in which the owning team defends its solution."
+    sparql:
+      focus: Promotion
+      select: |
+        SELECT $this WHERE {
+          $this adp:hasGateResult ?result .
+          ?result adp:gatePassed false ; adp:resultOf ?gate .
+          ?gate adp:hasSeverity adp:Blocking .
+          FILTER NOT EXISTS { $this adp:hasManualReview ?review . ?review adp:reviewAccepted true }
+        }
+
+  - id: R83
+    level: 3
+    status: confirmed
+    source: [S60]
+    statement: "A MINOR version upgrade contains no breaking change."
+    implies:
+      focus: Promotion
+      if: {path: hasVersionUpgrade, has_value: MINOR}
+      then: {path: breakingChange, has_value: false}
+
+  - id: R84
+    level: 3
+    status: confirmed
+    source: [S58, S64]
+    statement: "A subscription request in EXP is approved automatically, unless the data product owner requires manual approval for that data product."
+    sparql:
+      focus: SubscriptionRequest
+      construct: |
+        CONSTRUCT { $this adp:hasStatus adp:Approved . }
+        WHERE {
+          $this adp:requestedIn adp:EXP ; adp:requestFor ?resource .
+          FILTER NOT EXISTS { ?resource adp:requiresManualApproval true }
+        }
+
+  - id: R85
+    level: 3
+    status: confirmed
+    source: [S61]
+    statement: "In PRD a failing SLI triggers an incident."
+    sparql:
+      focus: ServiceLevelIndicator
+      select: |
+        SELECT $this WHERE {
+          $this adp:sliFailing true ; adp:monitoredIn adp:PRD .
+          FILTER NOT EXISTS { ?incident adp:triggeredBy $this }
+        }
+
+  - id: R86
+    level: 3
+    status: confirmed
+    source: [S8, S62]
+    statement: "A promotion of a platform resource to an environment means the platform resource is promoted to that environment."
+    sparql:
+      focus: Promotion
+      construct: |
+        CONSTRUCT { ?resource adp:promotedTo ?environment . }
+        WHERE { $this adp:promotionOf ?resource ; adp:toEnvironment ?environment . }
+
+  - id: R87
+    level: 3
+    status: confirmed
+    source: [S62]
+    statement: "A productionization ends in PRD: one of its promotions goes to PRD."
+    sparql:
+      focus: Productionization
+      select: |
+        SELECT $this WHERE {
+          FILTER NOT EXISTS { $this adp:promotionStep/adp:toEnvironment adp:PRD }
+        }
+
+  - id: R88
+    level: 3
+    status: confirmed
+    source: [S62]
+    statement: "Every promotion of a productionization promotes the platform resource the productionization is for."
+    equal: {focus: Productionization, left: productionizes, right: promotionStep/promotionOf}
+
+  - id: R89
+    level: 3
+    status: confirmed
+    source: [S59]
+    statement: "A promotion with a failed BLOCKED quality gate is not allowed, not even after a manual review (e.g. a data pipeline defined in a notebook is never promoted to ACC)."
+    sparql:
+      focus: Promotion
+      select: |
+        SELECT $this WHERE {
+          $this adp:hasGateResult ?result .
+          ?result adp:gatePassed false ; adp:resultOf ?gate .
+          ?gate adp:hasSeverity adp:Blocked .
         }

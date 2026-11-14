@@ -1,0 +1,7 @@
+# R82: a failed BLOCKING gate without an accepted manual review.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesOrders a adp:DataProduct .
+adp:toAcc a adp:Promotion ; adp:promotionOf adp:salesOrders ; adp:fromEnvironment adp:DEV ; adp:toEnvironment adp:ACC ; adp:hasGateResult adp:r1 ; adp:hasManualReview adp:review1 .
+adp:r1 a adp:QualityGateResult ; adp:resultOf adp:GateSLOsAndSLIs ; adp:gatePassed false .
+adp:review1 a adp:ManualReview ; adp:reviewAccepted false .

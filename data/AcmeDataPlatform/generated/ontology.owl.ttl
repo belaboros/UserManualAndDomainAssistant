@@ -17,6 +17,15 @@ skos:definition a owl:AnnotationProperty .
 <https://example.org/acme/data-platform> a owl:Ontology ;
     rdfs:label "AcmeDataPlatform ontology"@en .
 
+adp:AIAssistant a owl:NamedIndividual,
+        adp:Tool ;
+    rdfs:label "AI assistant"@en ;
+    dcterms:source "S58" ;
+    skos:definition "Helps to build platform resources quickly."@en ;
+    adp:level 3 ;
+    adp:offeredIn adp:EXP ;
+    adp:status "confirmed" .
+
 adp:AcmeDataPlatform a owl:NamedIndividual,
         adp:DataPlatform ;
     rdfs:label "AcmeDataPlatform"@en ;
@@ -30,6 +39,24 @@ adp:Approved a owl:NamedIndividual,
     rdfs:label "approved"@en ;
     dcterms:source "S41" ;
     adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:AutomatedTesting a owl:NamedIndividual,
+        adp:Tool ;
+    rdfs:label "automated testing"@en ;
+    dcterms:source "S59" ;
+    adp:level 3 ;
+    adp:offeredIn adp:DEV ;
+    adp:status "confirmed" .
+
+adp:CICDPipeline a owl:NamedIndividual,
+        adp:Tool ;
+    rdfs:label "CI/CD pipeline"@en ;
+    dcterms:source "S13",
+        "S60" ;
+    skos:definition "The only way to deploy to ACC."@en ;
+    adp:level 3 ;
+    adp:offeredIn adp:ACC ;
     adp:status "confirmed" .
 
 adp:CatalogACC a owl:NamedIndividual,
@@ -88,11 +115,196 @@ adp:Debugging a owl:NamedIndividual,
     adp:level 3 ;
     adp:status "confirmed" .
 
+adp:GateBudgetTestDev a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "budget test in DEV: costs fit into the pre-approved budget"@en ;
+    dcterms:source "S63" ;
+    adp:gateMandatory false ;
+    adp:gatesPromotionTo adp:ACC ;
+    adp:hasSeverity adp:Blocking ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateCompatibilityTests a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "compatibility tests pass (e.g. no breaking change in a MINOR version upgrade)"@en ;
+    dcterms:source "S60" ;
+    adp:gatesPromotionTo adp:PRD ;
+    adp:hasSeverity adp:Blocking ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateCostsWithinBudget a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "budget test in ACC: costs under prod-like load fit into the pre-approved budget"@en ;
+    dcterms:source "S60",
+        "S63" ;
+    adp:gateMandatory true ;
+    adp:gatesPromotionTo adp:PRD ;
+    adp:hasSeverity adp:Blocking ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateDataQualityRulesDefined a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "data quality rules defined for a data product"@en ;
+    dcterms:source "S59" ;
+    adp:gatesPromotionTo adp:ACC ;
+    adp:hasSeverity adp:Warning ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateDataQualityRulesPass a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "data quality rules pass"@en ;
+    dcterms:source "S60" ;
+    adp:gatesPromotionTo adp:PRD ;
+    adp:hasSeverity adp:Blocking ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateImmutabilityBackfillTests a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "green tests for immutability and backfill"@en ;
+    dcterms:source "S59" ;
+    adp:gatesPromotionTo adp:ACC ;
+    adp:hasSeverity adp:Warning ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateIncrementalPipelineTests a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "green performance and scalability tests proving the data pipeline is incremental"@en ;
+    dcterms:source "S59" ;
+    adp:gatesPromotionTo adp:ACC ;
+    adp:hasSeverity adp:Blocking ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateMetadataContract a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "metadata and a non-empty contract"@en ;
+    dcterms:source "S59" ;
+    adp:gatesPromotionTo adp:ACC ;
+    adp:hasSeverity adp:Warning ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateNoNotebookPipeline a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "data pipelines are not notebooks (imperative/declarative definitions)"@en ;
+    dcterms:source "S59" ;
+    adp:gatesPromotionTo adp:ACC ;
+    adp:hasSeverity adp:Blocked ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateSLIsPass a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "SLIs pass"@en ;
+    dcterms:source "S60" ;
+    adp:gatesPromotionTo adp:PRD ;
+    adp:hasSeverity adp:Warning ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateSLOsAndSLIs a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "SLOs and automatically monitored SLIs"@en ;
+    dcterms:source "S59" ;
+    adp:gatesPromotionTo adp:ACC ;
+    adp:hasSeverity adp:Blocking ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateSchemaCompatibility a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "schema compatibility guarantees"@en ;
+    dcterms:source "S59" ;
+    adp:gatesPromotionTo adp:ACC ;
+    adp:hasSeverity adp:Blocking ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateSecurityTests a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "security tests pass"@en ;
+    dcterms:source "S60" ;
+    adp:gatesPromotionTo adp:PRD ;
+    adp:hasSeverity adp:Blocking ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateStandardTemplate a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "uses one of the standard templates"@en ;
+    dcterms:source "S59" ;
+    adp:gatesPromotionTo adp:ACC ;
+    adp:hasSeverity adp:Warning ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:GateTestCoverage a owl:NamedIndividual,
+        adp:QualityGate ;
+    rdfs:label "sufficient test coverage"@en ;
+    dcterms:source "S59" ;
+    adp:gatesPromotionTo adp:ACC ;
+    adp:hasSeverity adp:Warning ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:IaCTool a owl:NamedIndividual,
+        adp:Tool ;
+    rdfs:label "IaC tool"@en ;
+    dcterms:source "S59" ;
+    skos:definition "Infrastructure as code, e.g. Terraform."@en ;
+    adp:level 3 ;
+    adp:offeredIn adp:DEV ;
+    adp:status "confirmed" .
+
 adp:IncidentResolution a owl:NamedIndividual,
         adp:Purpose ;
     rdfs:label "incident resolution"@en ;
     dcterms:source "S53" ;
     adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:InternalDeveloperPortal a owl:NamedIndividual,
+        adp:Tool ;
+    rdfs:label "internal developer portal"@en ;
+    dcterms:source "S58",
+        "S59" ;
+    adp:level 3 ;
+    adp:offeredIn adp:DEV,
+        adp:EXP ;
+    adp:status "confirmed" .
+
+adp:MAJOR a owl:NamedIndividual,
+        adp:VersionUpgrade ;
+    rdfs:label "MAJOR"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:MINOR a owl:NamedIndividual,
+        adp:VersionUpgrade ;
+    rdfs:label "MINOR"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    skos:definition "A version upgrade without breaking changes."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:Notebook a owl:NamedIndividual,
+        adp:Tool ;
+    rdfs:label "notebook"@en ;
+    dcterms:source "S58",
+        "S59" ;
+    skos:definition "Used to create data pipelines; a pipeline defined in a notebook cannot be promoted to ACC."@en ;
+    adp:level 3 ;
+    adp:offeredIn adp:DEV,
+        adp:EXP ;
     adp:status "confirmed" .
 
 adp:ParentDataProduct a owl:Class ;
@@ -111,6 +323,15 @@ adp:Pending a owl:NamedIndividual,
     adp:level 2 ;
     adp:status "confirmed" .
 
+adp:PromotionConversionTool a owl:NamedIndividual,
+        adp:Tool ;
+    rdfs:label "promotion/conversion tool"@en ;
+    dcterms:source "S58" ;
+    skos:definition "Promotes/converts platform resources from EXP to DEV automatically."@en ;
+    adp:level 3 ;
+    adp:offeredIn adp:EXP ;
+    adp:status "confirmed" .
+
 adp:RAW a owl:NamedIndividual,
         adp:MedallionLayer ;
     rdfs:label "RAW"@en ;
@@ -126,12 +347,35 @@ adp:Rejected a owl:NamedIndividual,
     adp:level 2 ;
     adp:status "confirmed" .
 
+adp:ReuseLimitation a owl:NamedIndividual,
+        adp:ResourceLimitation ;
+    rdfs:label "reuse limitation"@en ;
+    dcterms:source "S58" ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:SELECT a owl:NamedIndividual,
         adp:Privilege ;
     rdfs:label "SELECT"@en ;
     dcterms:source "S52",
         "S53" ;
     adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:SizeLimitation a owl:NamedIndividual,
+        adp:ResourceLimitation ;
+    rdfs:label "size limitation"@en ;
+    dcterms:source "S58" ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:SkeletonApplication a owl:NamedIndividual,
+        adp:Tool ;
+    rdfs:label "skeleton application"@en ;
+    dcterms:source "S59" ;
+    skos:definition "A starting point for one of various use cases."@en ;
+    adp:level 3 ;
+    adp:offeredIn adp:DEV ;
     adp:status "confirmed" .
 
 adp:Table a owl:Class ;
@@ -142,11 +386,28 @@ adp:Table a owl:Class ;
     adp:level 3 ;
     adp:status "confirmed" .
 
+adp:TimeLimitation a owl:NamedIndividual,
+        adp:ResourceLimitation ;
+    rdfs:label "time limitation"@en ;
+    dcterms:source "S58" ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:VIEW a owl:NamedIndividual,
         adp:Privilege ;
     rdfs:label "VIEW"@en ;
     dcterms:source "S55",
         "S57" ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:budgetForResource a owl:ObjectProperty ;
+    rdfs:label "budget for"@en ;
+    dcterms:source "S60",
+        "S63",
+        "S65" ;
+    rdfs:domain adp:PreApprovedBudget ;
+    rdfs:range adp:PlatformResource ;
     adp:level 3 ;
     adp:status "confirmed" .
 
@@ -196,6 +457,39 @@ adp:hasAccessTo a owl:ObjectProperty ;
     rdfs:range adp:PlatformResource ;
     skos:definition "A consumer application (or platform resource) that may use/consume/access a platform resource after an approved subscription request."@en ;
     adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:hasDataQualityRule a owl:ObjectProperty ;
+    rdfs:label "has data quality rule"@en ;
+    dcterms:source "S59" ;
+    rdfs:domain adp:DataProduct ;
+    rdfs:range adp:DataQualityRule ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:hasGateResult a owl:ObjectProperty ;
+    rdfs:label "has gate result"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    rdfs:domain adp:Promotion ;
+    rdfs:range adp:QualityGateResult ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:hasManualReview a owl:ObjectProperty ;
+    rdfs:label "has manual review"@en ;
+    dcterms:source "S59" ;
+    rdfs:domain adp:Promotion ;
+    rdfs:range adp:ManualReview ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:hasSLO a owl:ObjectProperty ;
+    rdfs:label "has SLO"@en ;
+    dcterms:source "S59" ;
+    rdfs:domain adp:PlatformResource ;
+    rdfs:range adp:ServiceLevelObjective ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:identityOf a owl:ObjectProperty ;
@@ -296,14 +590,12 @@ adp:viewPermissionOn a owl:ObjectProperty ;
     adp:level 3 ;
     adp:status "confirmed" .
 
-adp:ACC a owl:NamedIndividual,
-        adp:Environment ;
-    rdfs:label "ACC"@en ;
-    dcterms:source "S1",
-        "S13",
-        "S14",
-        "S8" ;
-    adp:level 1 ;
+adp:Blocked a owl:NamedIndividual,
+        adp:GateSeverity ;
+    rdfs:label "BLOCKED"@en ;
+    dcterms:source "S59" ;
+    skos:definition "A failed gate always stops the promotion; no manual review can override it."@en ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:CURATED a owl:NamedIndividual,
@@ -312,16 +604,6 @@ adp:CURATED a owl:NamedIndividual,
     dcterms:source "S25" ;
     adp:level 2 ;
     adp:nextLayer adp:SERVING ;
-    adp:status "confirmed" .
-
-adp:DEV a owl:NamedIndividual,
-        adp:Environment ;
-    rdfs:label "DEV"@en ;
-    dcterms:source "S1",
-        "S11",
-        "S7",
-        "S8" ;
-    adp:level 1 ;
     adp:status "confirmed" .
 
 adp:DataContract a owl:Class ;
@@ -340,6 +622,13 @@ adp:DataContract a owl:Class ;
     adp:level 2 ;
     adp:status "confirmed" .
 
+adp:DataQualityRule a owl:Class ;
+    rdfs:label "data quality rule"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:Developer a owl:Class ;
     rdfs:label "developer"@en ;
     dcterms:source "S53" ;
@@ -348,16 +637,20 @@ adp:Developer a owl:Class ;
     adp:level 3 ;
     adp:status "confirmed" .
 
-adp:EXP a owl:NamedIndividual,
-        adp:Environment ;
-    rdfs:label "EXP"@en ;
-    dcterms:source "S1",
-        "S11",
-        "S12",
-        "S7",
-        "S8" ;
-    skos:definition "The environment for experimentation."@en ;
-    adp:level 1 ;
+adp:ExperimentationBudget a owl:Class ;
+    rdfs:label "department budget"@en ;
+    dcterms:source "S58",
+        "S65" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass adp:Department ;
+            owl:onProperty adp:providedBy ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        adp:Budget ;
+    owl:disjointWith adp:PreApprovedBudget ;
+    skos:altLabel "department-level pre-allocated budget"@en,
+        "experimentation budget"@en ;
+    skos:definition "The EXP budget: pre-allocated by a department upfront, collectively for each month, for all its product teams and their platform resources."@en ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:ExternalApplication a owl:Class ;
@@ -371,13 +664,26 @@ adp:ExternalApplication a owl:Class ;
     adp:level 3 ;
     adp:status "confirmed" .
 
-adp:PRD a owl:NamedIndividual,
-        adp:Environment ;
-    rdfs:label "PRD"@en ;
-    dcterms:source "S1",
-        "S14",
-        "S8" ;
-    adp:level 1 ;
+adp:Incident a owl:Class ;
+    rdfs:label "incident"@en ;
+    dcterms:source "S61" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass adp:ServiceLevelIndicator ;
+            owl:onProperty adp:triggeredBy ] ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:ProofOfConcept a owl:Class ;
+    rdfs:label "proof of concept"@en ;
+    dcterms:source "S58" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass adp:BusinessCase ;
+            owl:onProperty adp:provesCase ] ;
+    skos:altLabel "POC"@en ;
+    skos:definition "The outcome of experimentation in EXP: fit for the purpose, with knowledge about the expected costs."@en ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:SERVING a owl:NamedIndividual,
@@ -391,6 +697,55 @@ adp:View a owl:Class ;
     rdfs:label "view"@en ;
     dcterms:source "S20" ;
     rdfs:subClassOf adp:DataAsset ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:adjustmentOf a owl:ObjectProperty ;
+    rdfs:label "adjustment of"@en ;
+    dcterms:source "S63" ;
+    rdfs:domain adp:BudgetAdjustmentRequest ;
+    rdfs:range adp:PreApprovedBudget ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:adjustmentRequestedBy a owl:ObjectProperty ;
+    rdfs:label "requested by"@en ;
+    dcterms:source "S63" ;
+    rdfs:domain adp:BudgetAdjustmentRequest ;
+    rdfs:range adp:Team ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:adjustmentRequestedFrom a owl:ObjectProperty ;
+    rdfs:label "requested from"@en ;
+    dcterms:source "S63" ;
+    rdfs:domain adp:BudgetAdjustmentRequest ;
+    rdfs:range adp:Department ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:belongsToDepartment a owl:ObjectProperty ;
+    rdfs:label "belongs to department"@en ;
+    dcterms:source "S58",
+        "S65" ;
+    rdfs:domain adp:ProductTeam ;
+    rdfs:range adp:Department ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:breakingChange a owl:DatatypeProperty ;
+    rdfs:label "breaking change"@en ;
+    dcterms:source "S60" ;
+    rdfs:domain adp:Promotion ;
+    rdfs:range xsd:boolean ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:budgetOfTeam a owl:ObjectProperty ;
+    rdfs:label "budget of"@en ;
+    dcterms:source "S65" ;
+    rdfs:domain adp:PreApprovedBudget ;
+    rdfs:range adp:ProductTeam ;
     adp:level 3 ;
     adp:status "confirmed" .
 
@@ -450,6 +805,14 @@ adp:createdWith a owl:ObjectProperty ;
     adp:level 1 ;
     adp:status "confirmed" .
 
+adp:defendedBy a owl:ObjectProperty ;
+    rdfs:label "defended by"@en ;
+    dcterms:source "S59" ;
+    rdfs:domain adp:ManualReview ;
+    rdfs:range adp:Team ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:exposedInCatalog a owl:DatatypeProperty ;
     rdfs:label "exposed in catalog"@en ;
     dcterms:source "S38",
@@ -478,11 +841,55 @@ adp:externallyShared a owl:DatatypeProperty ;
     adp:level 3 ;
     adp:status "confirmed" .
 
+adp:feedbackOn a owl:ObjectProperty ;
+    rdfs:label "feedback on"@en ;
+    dcterms:source "S60" ;
+    rdfs:domain adp:Feedback ;
+    rdfs:range adp:PlatformResource ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:forPurpose a owl:ObjectProperty ;
     rdfs:label "for purpose"@en ;
     dcterms:source "S53" ;
     rdfs:domain adp:ElevatedPermission ;
     rdfs:range adp:Purpose ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:fromEnvironment a owl:ObjectProperty ;
+    rdfs:label "from environment"@en ;
+    dcterms:source "S62",
+        "S8" ;
+    rdfs:domain adp:Promotion ;
+    rdfs:range adp:Environment ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:gateMandatory a owl:DatatypeProperty ;
+    rdfs:label "mandatory"@en ;
+    dcterms:source "S63" ;
+    rdfs:domain adp:QualityGate ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Whether the gate must run (true) or is optional (false), e.g. the budget test is mandatory in ACC and optional in DEV."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:gatePassed a owl:DatatypeProperty ;
+    rdfs:label "passed"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    rdfs:domain adp:QualityGateResult ;
+    rdfs:range xsd:boolean ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:gatesPromotionTo a owl:ObjectProperty ;
+    rdfs:label "gates promotion to"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    rdfs:domain adp:QualityGate ;
+    rdfs:range adp:Environment ;
     adp:level 3 ;
     adp:status "confirmed" .
 
@@ -504,6 +911,14 @@ adp:grantsPrivilege a owl:ObjectProperty ;
     adp:level 3 ;
     adp:status "confirmed" .
 
+adp:hasBusinessCase a owl:ObjectProperty ;
+    rdfs:label "has business case"@en ;
+    dcterms:source "S59" ;
+    rdfs:domain adp:PlatformResource ;
+    rdfs:range adp:BusinessCase ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:hasProductOwner a owl:ObjectProperty ;
     rdfs:label "has product owner"@en ;
     dcterms:source "S36",
@@ -511,6 +926,15 @@ adp:hasProductOwner a owl:ObjectProperty ;
     rdfs:domain adp:PlatformResource ;
     rdfs:range adp:ProductOwner ;
     adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:hasSeverity a owl:ObjectProperty ;
+    rdfs:label "has severity"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    rdfs:domain adp:QualityGate ;
+    rdfs:range adp:GateSeverity ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:hasStatus a owl:ObjectProperty ;
@@ -539,6 +963,15 @@ adp:hasUserPrincipal a owl:ObjectProperty ;
     adp:level 2 ;
     adp:status "confirmed" .
 
+adp:hasVersionUpgrade a owl:ObjectProperty ;
+    rdfs:label "has version upgrade"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    rdfs:domain adp:Promotion ;
+    rdfs:range adp:VersionUpgrade ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:inEnvironment a owl:ObjectProperty ;
     rdfs:label "in environment"@en ;
     dcterms:source "S52" ;
@@ -563,12 +996,47 @@ adp:ingestsFrom a owl:ObjectProperty ;
     adp:level 2 ;
     adp:status "confirmed" .
 
+adp:limitationIn a owl:ObjectProperty ;
+    rdfs:label "applies in"@en ;
+    dcterms:source "S58" ;
+    rdfs:domain adp:ResourceLimitation ;
+    rdfs:range adp:Environment ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:measures a owl:ObjectProperty ;
+    rdfs:label "measures"@en ;
+    dcterms:source "S59" ;
+    rdfs:domain adp:ServiceLevelIndicator ;
+    rdfs:range adp:ServiceLevelObjective ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:monitoredIn a owl:ObjectProperty ;
+    rdfs:label "monitored in"@en ;
+    dcterms:source "S60",
+        "S61" ;
+    rdfs:domain adp:ServiceLevelIndicator ;
+    rdfs:range adp:Environment ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:nextLayer a owl:ObjectProperty ;
     rdfs:label "next layer"@en ;
     dcterms:source "S25" ;
     rdfs:domain adp:MedallionLayer ;
     rdfs:range adp:MedallionLayer ;
     adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:offeredIn a owl:ObjectProperty ;
+    rdfs:label "offered in"@en ;
+    dcterms:source "S58",
+        "S59",
+        "S60" ;
+    rdfs:domain adp:Tool ;
+    rdfs:range adp:Environment ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:permissionOn a owl:ObjectProperty ;
@@ -586,6 +1054,48 @@ adp:populates a owl:ObjectProperty ;
     rdfs:domain adp:DataPipeline ;
     rdfs:range adp:DataAsset ;
     adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:productionizes a owl:ObjectProperty ;
+    rdfs:label "productionizes"@en ;
+    dcterms:source "S62" ;
+    rdfs:domain adp:Productionization ;
+    rdfs:range adp:PlatformResource ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:promotionOf a owl:ObjectProperty ;
+    rdfs:label "promotion of"@en ;
+    dcterms:source "S62",
+        "S8" ;
+    rdfs:domain adp:Promotion ;
+    rdfs:range adp:PlatformResource ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:promotionStep a owl:ObjectProperty ;
+    rdfs:label "has promotion step"@en ;
+    dcterms:source "S62" ;
+    rdfs:domain adp:Productionization ;
+    rdfs:range adp:Promotion ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:provesCase a owl:ObjectProperty ;
+    rdfs:label "proves"@en ;
+    dcterms:source "S58" ;
+    rdfs:domain adp:ProofOfConcept ;
+    rdfs:range adp:BusinessCase ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:providedBy a owl:ObjectProperty ;
+    rdfs:label "provided by"@en ;
+    dcterms:source "S58",
+        "S65" ;
+    rdfs:domain adp:ExperimentationBudget ;
+    rdfs:range adp:Department ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:receivedBy a owl:ObjectProperty ;
@@ -621,6 +1131,32 @@ adp:requestedBy a owl:ObjectProperty ;
     adp:level 2 ;
     adp:status "confirmed" .
 
+adp:requestedIn a owl:ObjectProperty ;
+    rdfs:label "requested in"@en ;
+    dcterms:source "S58" ;
+    rdfs:domain adp:SubscriptionRequest ;
+    rdfs:range adp:Environment ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:requiresManualApproval a owl:DatatypeProperty ;
+    rdfs:label "requires manual approval"@en ;
+    dcterms:source "S64" ;
+    rdfs:domain adp:DataProduct ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Set by the data product owner, per data product, for reasons such as security or an intentionally limited audience: subscription requests need his/her manual approval, also in EXP."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:reservedFor a owl:ObjectProperty ;
+    rdfs:label "reserved for"@en ;
+    dcterms:source "S65" ;
+    rdfs:domain adp:PreApprovedBudget ;
+    rdfs:range adp:BusinessCase ;
+    skos:definition "The use case (business case) the pre-approved budget is for."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:resourceOwnedBy a owl:ObjectProperty ;
     rdfs:label "owned by"@en ;
     dcterms:source "S5" ;
@@ -647,6 +1183,31 @@ adp:restricts a owl:ObjectProperty ;
     adp:level 3 ;
     adp:status "confirmed" .
 
+adp:resultOf a owl:ObjectProperty ;
+    rdfs:label "result of"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    rdfs:domain adp:QualityGateResult ;
+    rdfs:range adp:QualityGate ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:reviewAccepted a owl:DatatypeProperty ;
+    rdfs:label "accepted"@en ;
+    dcterms:source "S59" ;
+    rdfs:domain adp:ManualReview ;
+    rdfs:range xsd:boolean ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:sentTo a owl:ObjectProperty ;
+    rdfs:label "sent to"@en ;
+    dcterms:source "S60" ;
+    rdfs:domain adp:Feedback ;
+    rdfs:range adp:Team ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:serviceOwnedBy a owl:ObjectProperty ;
     rdfs:label "owned by"@en ;
     dcterms:source "S3" ;
@@ -666,11 +1227,47 @@ adp:setBy a owl:ObjectProperty ;
     adp:level 3 ;
     adp:status "confirmed" .
 
+adp:sliFailing a owl:DatatypeProperty ;
+    rdfs:label "failing"@en ;
+    dcterms:source "S60",
+        "S61" ;
+    rdfs:domain adp:ServiceLevelIndicator ;
+    rdfs:range xsd:boolean ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:toEnvironment a owl:ObjectProperty ;
+    rdfs:label "to environment"@en ;
+    dcterms:source "S62",
+        "S8" ;
+    rdfs:domain adp:Promotion ;
+    rdfs:range adp:Environment ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:triggeredBy a owl:ObjectProperty ;
+    rdfs:label "triggered by"@en ;
+    dcterms:source "S61" ;
+    rdfs:domain adp:Incident ;
+    rdfs:range adp:ServiceLevelIndicator ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:validUntil a owl:DatatypeProperty ;
     rdfs:label "valid until"@en ;
     dcterms:source "S53" ;
     rdfs:domain adp:ElevatedPermission ;
     rdfs:range xsd:dateTime ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:Budget a owl:Class ;
+    rdfs:label "budget"@en ;
+    dcterms:source "S58",
+        "S59",
+        "S60",
+        "S65" ;
+    skos:definition "There are 2 kinds: the department-level pre-allocated budget (EXP) and the pre-approved budget of a product team (DEV/ACC/PRD)."@en ;
     adp:level 3 ;
     adp:status "confirmed" .
 
@@ -706,6 +1303,21 @@ adp:ElevatedPermission a owl:Class ;
             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
         adp:Permission ;
     skos:definition "A time-limited permission a developer of the consumer application requests to run SELECT commands on tables/views in their data product or in the parent data products, for incident resolution or debugging."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:Feedback a owl:Class ;
+    rdfs:label "feedback"@en ;
+    dcterms:source "S60" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass adp:Team ;
+            owl:onProperty adp:sentTo ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:onClass adp:PlatformResource ;
+            owl:onProperty adp:feedbackOn ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ] ;
+    skos:definition "What consumers send to the owner team after testing the next MAJOR/MINOR version in ACC."@en ;
     adp:level 3 ;
     adp:status "confirmed" .
 
@@ -749,6 +1361,21 @@ adp:ProcessingDataPipeline a owl:Class ;
     adp:level 2 ;
     adp:status "confirmed" .
 
+adp:Productionization a owl:Class ;
+    rdfs:label "productionization"@en ;
+    dcterms:source "S62" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass adp:PlatformResource ;
+            owl:onProperty adp:productionizes ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass adp:Promotion ;
+            owl:onProperty adp:promotionStep ] ;
+    skos:definition "The promotion and approval process to deploy platform resources from lower environments to upper environments till PRD."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:belongsTo a owl:FunctionalProperty,
         owl:IrreflexiveProperty,
         owl:ObjectProperty ;
@@ -789,6 +1416,25 @@ adp:AccessRestriction a owl:Class ;
     adp:level 3 ;
     adp:status "confirmed" .
 
+adp:BudgetAdjustmentRequest a owl:Class ;
+    rdfs:label "budget adjustment request"@en ;
+    dcterms:source "S63" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass adp:PreApprovedBudget ;
+            owl:onProperty adp:adjustmentOf ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:onClass adp:Team ;
+            owl:onProperty adp:adjustmentRequestedBy ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:onClass adp:Department ;
+            owl:onProperty adp:adjustmentRequestedFrom ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ] ;
+    skos:definition "A request by the owner team to its department to adjust the pre-approved development budget, if needed."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:ComputeClusterDefinition a owl:Class ;
     rdfs:label "compute cluster definition"@en ;
     dcterms:source "S20" ;
@@ -803,6 +1449,44 @@ adp:ComputeClusterDefinition a owl:Class ;
     adp:level 2 ;
     adp:status "confirmed" .
 
+adp:ManualReview a owl:Class ;
+    rdfs:label "manual review"@en ;
+    dcterms:source "S59" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:boolean ;
+            owl:onProperty adp:reviewAccepted ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:onClass adp:Team ;
+            owl:onProperty adp:defendedBy ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ] ;
+    skos:definition "The review a failed BLOCKING quality gate requires, in which the owning team defends why its solution does not use the available standard solutions."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:QualityGateResult a owl:Class ;
+    rdfs:label "quality gate result"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:boolean ;
+            owl:onProperty adp:gatePassed ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:onClass adp:QualityGate ;
+            owl:onProperty adp:resultOf ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ] ;
+    skos:definition "The outcome (passed or failed) of one quality gate for one promotion."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:ServiceLevelObjective a owl:Class ;
+    rdfs:label "service level objective"@en ;
+    dcterms:source "S59" ;
+    skos:altLabel "SLO"@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:ServicePrincipal a owl:Class ;
     rdfs:label "service principal"@en ;
     dcterms:source "S33",
@@ -811,12 +1495,6 @@ adp:ServicePrincipal a owl:Class ;
     skos:altLabel "application consumer"@en ;
     skos:definition "The identity of an application, data pipeline or other automation which is not performed by a human."@en ;
     adp:level 2 ;
-    adp:status "confirmed" .
-
-adp:Team a owl:Class ;
-    rdfs:label "team"@en ;
-    dcterms:source "S10" ;
-    adp:level 1 ;
     adp:status "confirmed" .
 
 adp:Privilege a owl:Class ;
@@ -829,6 +1507,25 @@ adp:Privilege a owl:Class ;
 adp:Purpose a owl:Class ;
     rdfs:label "purpose"@en ;
     dcterms:source "S53" ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:ResourceLimitation a owl:Class ;
+    rdfs:label "resource limitation"@en ;
+    dcterms:source "S58" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass adp:Environment ;
+            owl:onProperty adp:limitationIn ] ;
+    skos:definition "A limit on platform resources in EXP that avoids production usage."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:VersionUpgrade a owl:Class ;
+    rdfs:label "version upgrade"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    skos:definition "The kind of new version a promotion delivers: MAJOR or MINOR; decided in DEV."@en ;
     adp:level 3 ;
     adp:status "confirmed" .
 
@@ -845,6 +1542,19 @@ adp:WorkspaceInfraDefinition a owl:Class ;
     adp:level 2 ;
     adp:status "confirmed" .
 
+adp:EXP a owl:NamedIndividual,
+        adp:Environment ;
+    rdfs:label "EXP"@en ;
+    dcterms:source "S1",
+        "S11",
+        "S12",
+        "S58",
+        "S7",
+        "S8" ;
+    skos:definition "The environment for experimentation and learning, with the highest degree of freedom: start experimenting in minutes, without prior approval for permission or budget."@en ;
+    adp:level 1 ;
+    adp:status "confirmed" .
+
 adp:Employee a owl:Class ;
     rdfs:label "employee"@en ;
     dcterms:source "S50" ;
@@ -856,10 +1566,48 @@ adp:Employee a owl:Class ;
     adp:level 2 ;
     adp:status "confirmed" .
 
+adp:GateSeverity a owl:Class ;
+    rdfs:label "gate severity"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:ServiceLevelIndicator a owl:Class ;
+    rdfs:label "service level indicator"@en ;
+    dcterms:source "S59",
+        "S60",
+        "S61" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onDataRange xsd:boolean ;
+            owl:onProperty adp:sliFailing ],
+        [ a owl:Restriction ;
+            owl:onClass adp:Environment ;
+            owl:onProperty adp:monitoredIn ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:onClass adp:ServiceLevelObjective ;
+            owl:onProperty adp:measures ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ] ;
+    skos:altLabel "SLI"@en ;
+    skos:definition "An automatically monitored measure of a service level objective, in one environment."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:SubscriptionStatus a owl:Class ;
     rdfs:label "subscription status"@en ;
     dcterms:source "S41" ;
     adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:BusinessCase a owl:Class ;
+    rdfs:label "business case"@en ;
+    dcterms:source "S58",
+        "S59" ;
+    skos:altLabel "use case"@en ;
+    skos:definition "The approved reason for building a platform resource; an outcome of EXP, needed to work in DEV."@en ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:Catalog a owl:Class ;
@@ -872,6 +1620,18 @@ adp:Catalog a owl:Class ;
             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ] ;
     skos:definition "Where the platform resources of one environment are exposed (findable) for anyone inside ACME company; there is a catalog per environment."@en ;
     adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:DEV a owl:NamedIndividual,
+        adp:Environment ;
+    rdfs:label "DEV"@en ;
+    dcterms:source "S1",
+        "S11",
+        "S59",
+        "S7",
+        "S8" ;
+    skos:definition "The environment where platform resources are created via repeatable automation, so they can be deployed to upper environments reliably; less freedom than EXP."@en ;
+    adp:level 1 ;
     adp:status "confirmed" .
 
 adp:DataPipeline a owl:Class ;
@@ -893,6 +1653,24 @@ adp:DataPipeline a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:unionOf ( adp:IngestionDataPipeline adp:ProcessingDataPipeline ) ] ;
     adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:Department a owl:Class ;
+    rdfs:label "department"@en ;
+    dcterms:source "S58" ;
+    skos:definition "An organisational unit whose product teams build on the AcmeDataPlatform; it provides the EXP budget for them."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:PRD a owl:NamedIndividual,
+        adp:Environment ;
+    rdfs:label "PRD"@en ;
+    dcterms:source "S1",
+        "S14",
+        "S61",
+        "S8" ;
+    skos:definition "The live environment, with the least freedom: maximum protection via policies, limited access and audit log."@en ;
+    adp:level 1 ;
     adp:status "confirmed" .
 
 adp:Permission a owl:Class ;
@@ -918,31 +1696,26 @@ adp:Permission a owl:Class ;
     adp:level 3 ;
     adp:status "confirmed" .
 
-adp:SubscriptionRequest a owl:Class ;
-    rdfs:label "subscription request"@en ;
-    dcterms:source "S40",
-        "S41" ;
+adp:PreApprovedBudget a owl:Class ;
+    rdfs:label "pre-approved budget"@en ;
+    dcterms:source "S58",
+        "S59",
+        "S60",
+        "S63",
+        "S65" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass adp:ProductOwner ;
-            owl:onProperty adp:requestedBy ;
+            owl:onClass adp:BusinessCase ;
+            owl:onProperty adp:reservedFor ;
             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
         [ a owl:Restriction ;
-            owl:cardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty adp:requestConsumer ],
-        [ a owl:Restriction ;
-            owl:onClass adp:PlatformResource ;
-            owl:onProperty adp:requestFor ;
+            owl:onClass adp:ProductTeam ;
+            owl:onProperty adp:budgetOfTeam ;
             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
-        [ a owl:Restriction ;
-            owl:onClass adp:SubscriptionStatus ;
-            owl:onProperty adp:hasStatus ;
-            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
-        [ a owl:Restriction ;
-            owl:onClass adp:ProductOwner ;
-            owl:onProperty adp:receivedBy ;
-            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ] ;
-    skos:definition "A request by a product owner to consume an existing platform resource, to build a new platform resource or to consume it by another application."@en ;
-    adp:level 2 ;
+        adp:Budget ;
+    skos:altLabel "development budget"@en,
+        "reserved budget"@en ;
+    skos:definition "The DEV/ACC/PRD budget for the use case / platform resource of one product team (an outcome of EXP); automated budget tests validate that the costs fit into it, and the owner team may request an adjustment from its department."@en ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:UserPrincipal a owl:Class ;
@@ -954,6 +1727,15 @@ adp:UserPrincipal a owl:Class ;
     skos:altLabel "human user"@en ;
     skos:definition "The identity of a user or group of users who can look at dashboards and use AI/analytical applications."@en ;
     adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:Warning a owl:NamedIndividual,
+        adp:GateSeverity ;
+    rdfs:label "WARNING"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    skos:definition "A failed gate is reported but does not stop the promotion."@en ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:PlatformService a owl:Class ;
@@ -983,6 +1765,46 @@ adp:SubPlatformResource a owl:Class ;
     adp:level 2 ;
     adp:status "confirmed" .
 
+adp:SubscriptionRequest a owl:Class ;
+    rdfs:label "subscription request"@en ;
+    dcterms:source "S40",
+        "S41" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass adp:Environment ;
+            owl:onProperty adp:requestedIn ],
+        [ a owl:Restriction ;
+            owl:onClass adp:ProductOwner ;
+            owl:onProperty adp:requestedBy ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty adp:requestConsumer ],
+        [ a owl:Restriction ;
+            owl:onClass adp:PlatformResource ;
+            owl:onProperty adp:requestFor ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:onClass adp:SubscriptionStatus ;
+            owl:onProperty adp:hasStatus ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:onClass adp:ProductOwner ;
+            owl:onProperty adp:receivedBy ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ] ;
+    skos:definition "A request by a product owner to consume an existing platform resource, to build a new platform resource or to consume it by another application."@en ;
+    adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:Blocking a owl:NamedIndividual,
+        adp:GateSeverity ;
+    rdfs:label "BLOCKING"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    skos:definition "A failed gate stops the promotion until a manual review accepts it."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:MLModel a owl:Class ;
     rdfs:label "ML model"@en ;
     dcterms:source "S18",
@@ -1001,16 +1823,6 @@ adp:MedallionLayer a owl:Class ;
             owl:onClass adp:MedallionLayer ;
             owl:onProperty adp:nextLayer ] ;
     adp:level 2 ;
-    adp:status "confirmed" .
-
-adp:ProductTeam a owl:Class ;
-    rdfs:label "product team"@en ;
-    dcterms:source "S1",
-        "S10",
-        "S4",
-        "S5" ;
-    rdfs:subClassOf adp:Team ;
-    adp:level 1 ;
     adp:status "confirmed" .
 
 adp:AIModel a owl:Class ;
@@ -1033,16 +1845,50 @@ adp:Dashboard a owl:Class ;
     adp:level 1 ;
     adp:status "confirmed" .
 
-adp:DataProduct a owl:Class ;
-    rdfs:label "data product"@en ;
-    dcterms:source "S18",
-        "S9" ;
-    rdfs:subClassOf adp:PlatformResource ;
-    owl:disjointWith adp:AIAnalyticalApplication,
-        adp:AIModel,
-        adp:Dashboard,
-        adp:MLModel ;
+adp:Promotion a owl:Class ;
+    rdfs:label "promotion"@en ;
+    dcterms:source "S62",
+        "S8" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass adp:Environment ;
+            owl:onProperty adp:toEnvironment ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:onClass adp:Environment ;
+            owl:onProperty adp:fromEnvironment ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onDataRange xsd:boolean ;
+            owl:onProperty adp:breakingChange ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass adp:VersionUpgrade ;
+            owl:onProperty adp:hasVersionUpgrade ],
+        [ a owl:Restriction ;
+            owl:onClass adp:PlatformResource ;
+            owl:onProperty adp:promotionOf ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ] ;
+    skos:definition "One step of a productionization: a platform resource is deployed from one environment to the next upper environment."@en ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:Team a owl:Class ;
+    rdfs:label "team"@en ;
+    dcterms:source "S10" ;
     adp:level 1 ;
+    adp:status "confirmed" .
+
+adp:Tool a owl:Class ;
+    rdfs:label "tool"@en ;
+    dcterms:source "S58",
+        "S59" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass adp:Environment ;
+            owl:onProperty adp:offeredIn ] ;
+    skos:definition "Tooling offered to the teams in an environment, e.g. the internal developer portal in EXP or IaC tools in DEV."@en ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:AIAnalyticalApplication a owl:Class ;
@@ -1061,6 +1907,48 @@ adp:ProductOwner a owl:Class ;
     adp:level 2 ;
     adp:status "confirmed" .
 
+adp:ProductTeam a owl:Class ;
+    rdfs:label "product team"@en ;
+    dcterms:source "S1",
+        "S10",
+        "S4",
+        "S5" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass adp:Department ;
+            owl:onProperty adp:belongsToDepartment ],
+        adp:Team ;
+    adp:level 1 ;
+    adp:status "confirmed" .
+
+adp:ACC a owl:NamedIndividual,
+        adp:Environment ;
+    rdfs:label "ACC"@en ;
+    dcterms:source "S1",
+        "S13",
+        "S14",
+        "S60",
+        "S8" ;
+    skos:definition "The production-like environment, fully automated (deployment only via CI/CD pipeline), to prepare the deployment and UAT tests of the next MAJOR/MINOR versions and collect consumer feedback; less freedom than DEV."@en ;
+    adp:level 1 ;
+    adp:status "confirmed" .
+
+adp:DataProduct a owl:Class ;
+    rdfs:label "data product"@en ;
+    dcterms:source "S18",
+        "S9" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onDataRange xsd:boolean ;
+            owl:onProperty adp:requiresManualApproval ],
+        adp:PlatformResource ;
+    owl:disjointWith adp:AIAnalyticalApplication,
+        adp:AIModel,
+        adp:Dashboard,
+        adp:MLModel ;
+    adp:level 1 ;
+    adp:status "confirmed" .
+
 adp:DataAsset a owl:Class ;
     rdfs:label "data asset"@en ;
     dcterms:source "S20" ;
@@ -1076,6 +1964,26 @@ adp:DataAsset a owl:Class ;
         adp:MLModel ;
     skos:definition "A part of a data product holding its data; typically tables and views in case of structured data products."@en ;
     adp:level 2 ;
+    adp:status "confirmed" .
+
+adp:QualityGate a owl:Class ;
+    rdfs:label "quality gate"@en ;
+    dcterms:source "S59",
+        "S60" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onDataRange xsd:boolean ;
+            owl:onProperty adp:gateMandatory ],
+        [ a owl:Restriction ;
+            owl:onClass adp:Environment ;
+            owl:onProperty adp:gatesPromotionTo ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:onClass adp:GateSeverity ;
+            owl:onProperty adp:hasSeverity ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ] ;
+    skos:definition "A check a platform resource must pass to be promoted to an environment; it is BLOCKED, BLOCKING or a WARNING."@en ;
+    adp:level 3 ;
     adp:status "confirmed" .
 
 adp:Environment a owl:Class ;
@@ -1125,7 +2033,11 @@ adp:PlatformResource a owl:Class ;
         [ a owl:Restriction ;
             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onClass adp:PlatformService ;
-            owl:onProperty adp:createdWith ] ;
+            owl:onProperty adp:createdWith ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass adp:BusinessCase ;
+            owl:onProperty adp:hasBusinessCase ] ;
     owl:equivalentClass [ a owl:Class ;
             owl:unionOf ( adp:DataProduct adp:Dashboard adp:MLModel adp:AIModel adp:AIAnalyticalApplication adp:DataContract adp:DataPipeline adp:ComputeClusterDefinition adp:WorkspaceInfraDefinition adp:DataAsset ) ] ;
     adp:level 1 ;

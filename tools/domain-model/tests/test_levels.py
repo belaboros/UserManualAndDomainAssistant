@@ -53,13 +53,21 @@ def test_level_view_has_all_sections_and_diagrams(domain: Domain, level: int) ->
     assert domain.ontology.level_info(level).audience in text
 
 
+@pytest.mark.parametrize("level", [1, 2, 3])
+def test_level_view_shows_diagrams_first(domain: Domain, level: int) -> None:
+    """Diagrams come right after the intro, before every text section: they are read faster."""
+    text = level_md(domain, level)
+    diagrams = text.index("\n## Diagrams\n")
+    assert all(diagrams < text.index(f"\n{heading}\n") for heading in SECTIONS if heading != "## Diagrams")
+
+
 def test_level_3_is_the_whole_domain(domain: Domain) -> None:
     text = level_md(domain, 3)
     assert all(f"| `{i.id}` |" in text for i in domain.ontology.items)
 
 
 def test_multi_parent_concept_listed_under_each_parent(domain: Domain) -> None:
-    tree = level_md(domain, 3).split("## Taxonomy (is-a)", 1)[1].split("\n## ", 1)[0]
+    tree = level_md(domain, 3).split("\n## Taxonomy (is-a)\n", 1)[1].split("\n## ", 1)[0]
     assert tree.count("`EBook`") == 2
 
 

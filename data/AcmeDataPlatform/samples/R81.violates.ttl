@@ -1,0 +1,5 @@
+# R81: a promotion that skips ACC.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesOrders a adp:DataProduct .
+adp:skip a adp:Promotion ; adp:promotionOf adp:salesOrders ; adp:fromEnvironment adp:DEV ; adp:toEnvironment adp:PRD .

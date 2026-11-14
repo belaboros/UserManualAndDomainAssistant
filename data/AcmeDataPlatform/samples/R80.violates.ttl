@@ -1,0 +1,4 @@
+# R80: a quality gate with an unknown severity.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:gateX a adp:QualityGate ; adp:hasSeverity adp:Approved ; adp:gatesPromotionTo adp:ACC .

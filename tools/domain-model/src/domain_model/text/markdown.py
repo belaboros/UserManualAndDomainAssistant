@@ -273,10 +273,14 @@ def _diagrams(domain: Domain, n: int) -> list[str]:
 
 
 def level_md(domain: Domain, n: int) -> str:
-    """The cumulative view of level ``n``: every section, filtered to items with level ≤ n (FR-8)."""
+    """The cumulative view of level ``n``: every section, filtered to items with level ≤ n (FR-8).
+
+    The diagrams come first, right after the intro: they are understood faster than the text sections.
+    """
     onto = domain.ontology
     concepts = _up_to(onto.concepts, n)
-    lines = [HEADER, "", *_intro(onto, n), "", "## Glossary", "", *glossary_rows(onto, n)]
+    lines = [HEADER, "", *_intro(onto, n), *_diagrams(domain, n)]
+    lines += ["", "## Glossary", "", *glossary_rows(onto, n)]
     lines += ["", "## Taxonomy (is-a)", "", *(_is_a_list(concepts, None, 0, ()) or ["_No concepts yet._"])]
     lines += _trees(domain.taxonomy.trees, onto, n)
     lines += [
@@ -292,5 +296,4 @@ def level_md(domain: Domain, n: int) -> str:
         *(_properties(onto, n) if _up_to(onto.properties, n) else ["_None yet._"]),
     ]
     lines += ["", "## Rules", "", *rule_sections(onto, n)]
-    lines += _diagrams(domain, n)
     return "\n".join(lines) + "\n"

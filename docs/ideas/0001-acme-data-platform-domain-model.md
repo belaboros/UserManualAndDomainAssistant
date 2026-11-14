@@ -655,3 +655,73 @@
 **Options offered:** yes; no
 **A:** "R78: yes, same restrictions to dashboards as well."
 **Effect:** Recorded as S57. Level 3: privilege VIEW, relation `viewPermissionOn` (Permission → Dashboard), rule R79 (in a restricted environment, users get only elevated permissions to view the dashboard, also a dashboard nested in the restricted resource).
+
+### 2026-11-14 · idea · Q86
+**Asked by:** Claude
+**Q:** [Claude] Should "productionization" be a term in the model? If it means promoting a platform resource to PRD, give a statement defining it and its level.
+**Options offered:** free answer (in chat)
+**A:** "Productionization: - the promotion and approval process to deploy platform resources from lower environments to upper environments till PRD" (marked level-3), given together with level-3 details of the EXP, DEV, ACC and PRD environments.
+**Effect:** Recorded as S62 (productionization) and S58–S61 (environments). EXP, DEV, ACC, PRD got definitions. Level 3: concepts Productionization, Promotion (draft), VersionUpgrade (MAJOR, MINOR), QualityGate with GateSeverity (BLOCKING, WARNING) and 14 gate individuals (9 for promotion to ACC; 5 for promotion to PRD, draft), QualityGateResult (draft), ManualReview, Tool (8 tools with the environments they are offered in), ResourceLimitation (size, time, reuse), Department, Budget (experimentation, development, reserved), BusinessCase (draft), ProofOfConcept, SLO, SLI, Incident, DataQualityRule, Feedback; 28 relations and 4 properties. Rules R80 (gate severity), R81 (draft: one step up at a time), R82 (failed BLOCKING gate needs an accepted manual review), R83 (no breaking change in a MINOR upgrade), R84 (subscription requests in EXP approved automatically), R85 (failing SLI in PRD triggers an incident), R86–R88 (drafts linking promotions, `promotedTo` and the productionization).
+
+### 2026-11-14 · idea · Q87
+**Asked by:** Claude
+**Q:** [Claude] The ACC quality gates (data quality, security, costs, compatibility, SLIs): do they decide whether a platform resource can be promoted from ACC to PRD?
+**Options offered:** Yes, ACC → PRD; No, they run in ACC
+**A:** Yes, ACC → PRD
+**Effect:** The five ACC gates (`gatesPromotionTo PRD`) are confirmed.
+
+### 2026-11-14 · idea · Q88
+**Asked by:** Claude
+**Q:** [Claude] The notebook gate is "BLOCKED" and the others are "BLOCKING". Can a manual review override a notebook pipeline, or is it a hard stop?
+**Options offered:** Same as BLOCKING; Hard stop
+**A:** Hard stop
+**Effect:** New gate severity BLOCKED (a failed gate always stops the promotion); GateNoNotebookPipeline is BLOCKED; R80 lists BLOCKED, BLOCKING, WARNING; new rule R89 (a failed BLOCKED gate is not allowed, not even after a manual review).
+
+### 2026-11-14 · idea · Q89
+**Asked by:** Claude
+**Q:** [Claude] S59's manual review for a failed BLOCKING gate was said for the DEV gates. Does it also apply to a failed BLOCKING gate in ACC, e.g. failing security tests?
+**Options offered:** Yes, same review; No, ACC is a hard stop
+**A:** Yes, same review
+**Effect:** R82 applies to every failed BLOCKING gate, ACC → PRD included; unchanged.
+
+### 2026-11-14 · idea · Q90
+**Asked by:** Claude
+**Q:** [Claude] Are the "approved use-case" (outcome of EXP, S58) and the "approved business case" (needed for DEV, S59) the same thing?
+**Options offered:** Same thing; Different
+**A:** Same thing
+**Effect:** One concept BusinessCase (synonym "use case"), now confirmed.
+
+### 2026-11-14 · idea · Q91
+**Asked by:** Claude
+**Q:** [Claude] Is the reserved budget checked in ACC (S60) the same as the pre-approved development budget (S59)?
+**Options offered:** free answer (in chat)
+**A:** "pre-approved development budget is typically the same. Automated tests validate that the costs fit into the pre-approved budget. Owner team may request budget adjustment from their department if needed. Failing budget test blocks promoting to the upper environment. Budget test is mandatory in ACC, and optional in DEV envirfonment"
+**Effect:** Recorded as S63. ReservedBudget merged into DevelopmentBudget (synonyms: pre-approved budget, reserved budget). New concept BudgetAdjustmentRequest (relations adjustmentOf, adjustmentRequestedBy, adjustmentRequestedFrom). Property `gateMandatory`; the ACC budget test (GateCostsWithinBudget) is BLOCKING and mandatory; new gate GateBudgetTestDev (DEV → ACC, BLOCKING, optional).
+
+### 2026-11-14 · idea · Q92
+**Asked by:** Claude
+**Q:** [Claude] EXP subscription requests are approved "by default". When is one not approved automatically?
+**Options offered:** free answer (in chat)
+**A:** "DataProductOwner may decide to require manual approval by him/her per data product due to various reasons: security, intentionally limited audience"
+**Effect:** Recorded as S64. Property `requiresManualApproval` on DataProduct; R84 reworded: approved automatically in EXP unless the data product owner requires manual approval for that data product.
+
+### 2026-11-14 · idea · Q93
+**Asked by:** Claude
+**Q:** [Claude] PRD's "policies, limited access, audit log": should these be concepts, or is the definition text enough?
+**Options offered:** free answer (in chat)
+**A:** "They are just normal text and part of the definition of PRD env."
+**Effect:** None; they stay in PRD's definition.
+
+### 2026-11-14 · idea · Q94
+**Asked by:** Claude
+**Q:** [Claude] You gave level-3 details while the working level is 2. Is level 2 complete, so the working level should move to 3?
+**Options offered:** free answer (in chat)
+**A:** "Let's keep both level-2 and level-3 open."
+**Effect:** `working_level` stays 2; levels 2 and 3 both stay open, and items keep the level the expert names.
+
+### 2026-11-14 · idea · Q95
+**Asked by:** Claude
+**Q:** [Claude] Review the 24 draft items (A1–A10 productionization structure incl. R81, R86–R88; B1–B7 quality gate results, manual reviews, WARNING; C1–C6 inferred relations): approve all, or name the ones to correct or reject.
+**Options offered:** approve all; approve with corrections or rejections by number
+**A:** "I approve the drafts."
+**Effect:** All 24 drafts set to `confirmed`; no drafts remain. (Also before this: S65 split budgets into the department budget (EXP) and the pre-approved budget of one product team (DEV/ACC/PRD).)

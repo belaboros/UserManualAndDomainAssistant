@@ -8,8 +8,6 @@ The whole domain (all levels).
 
 ```mermaid
 flowchart BT
-    DataPlatform["data platform"]
-    PlatformService["platform service"]
     PlatformResource["platform resource"]
     DataProduct["data product"]
     Dashboard["dashboard"]
@@ -28,28 +26,51 @@ flowchart BT
     View["view"]
     IngestionDataPipeline["ingestion data pipeline"]
     ProcessingDataPipeline["processing data pipeline"]
-    DataSource["data source"]
-    MedallionLayer["medallion layer"]
+    ProductOwner["product owner"]
+    DataProductOwner["data product owner"]
+    Employee["employee"]
+    Developer["developer"]
+    Budget["budget"]
+    ExperimentationBudget["department budget"]
+    PreApprovedBudget["pre-approved budget"]
     Principal["principal"]
     UserPrincipal["user principal"]
     ServicePrincipal["service principal"]
-    ExternalApplication["external application"]
-    ProductOwner["product owner"]
-    DataProductOwner["data product owner"]
-    Catalog["catalog"]
-    SubscriptionRequest["subscription request"]
-    SubscriptionStatus["subscription status"]
-    Employee["employee"]
-    Developer["developer"]
-    Permission["permission"]
-    ElevatedPermission["elevated permission"]
-    Privilege["privilege"]
-    Purpose["purpose"]
-    AccessRestriction["access restriction"]
     Team["team"]
     PlatformTeam["platform team"]
     ProductTeam["product team"]
+    Permission["permission"]
+    ElevatedPermission["elevated permission"]
+    BudgetAdjustmentRequest["budget adjustment request"]
+    ServiceLevelObjective["service level objective"]
+    ServiceLevelIndicator["service level indicator"]
+    ExternalApplication["external application"]
+    SubscriptionRequest["subscription request"]
+    SubscriptionStatus["subscription status"]
+    QualityGateResult["quality gate result"]
+    ResourceLimitation["resource limitation"]
+    AccessRestriction["access restriction"]
+    Productionization["productionization"]
+    DataQualityRule["data quality rule"]
+    PlatformService["platform service"]
+    ProofOfConcept["proof of concept"]
+    MedallionLayer["medallion layer"]
+    VersionUpgrade["version upgrade"]
+    DataPlatform["data platform"]
+    GateSeverity["gate severity"]
+    ManualReview["manual review"]
+    BusinessCase["business case"]
+    QualityGate["quality gate"]
+    DataSource["data source"]
     Environment["environment"]
+    Department["department"]
+    Privilege["privilege"]
+    Promotion["promotion"]
+    Incident["incident"]
+    Feedback["feedback"]
+    Catalog["catalog"]
+    Purpose["purpose"]
+    Tool["tool"]
     DataProduct --> PlatformResource
     Dashboard --> PlatformResource
     MLModel --> PlatformResource
@@ -75,6 +96,41 @@ flowchart BT
     ElevatedPermission --> Permission
     PlatformTeam --> Team
     ProductTeam --> Team
+    ExperimentationBudget --> Budget
+    PreApprovedBudget --> Budget
+    Employee ~~~ Dashboard
+    Budget ~~~ DataProductOwner
+    Principal ~~~ ExperimentationBudget
+    Team ~~~ UserPrincipal
+    Permission ~~~ PlatformTeam
+    BudgetAdjustmentRequest ~~~ ElevatedPermission
+    ServiceLevelObjective ~~~ BudgetAdjustmentRequest
+    ServiceLevelIndicator ~~~ ServiceLevelObjective
+    ExternalApplication ~~~ ServiceLevelIndicator
+    SubscriptionStatus ~~~ SubscriptionRequest
+    QualityGateResult ~~~ SubscriptionStatus
+    ResourceLimitation ~~~ QualityGateResult
+    AccessRestriction ~~~ ResourceLimitation
+    Productionization ~~~ AccessRestriction
+    DataQualityRule ~~~ Productionization
+    PlatformService ~~~ DataQualityRule
+    ProofOfConcept ~~~ PlatformService
+    MedallionLayer ~~~ ProofOfConcept
+    VersionUpgrade ~~~ MedallionLayer
+    DataPlatform ~~~ VersionUpgrade
+    GateSeverity ~~~ DataPlatform
+    ManualReview ~~~ GateSeverity
+    BusinessCase ~~~ ManualReview
+    QualityGate ~~~ BusinessCase
+    DataSource ~~~ QualityGate
+    Environment ~~~ DataSource
+    Department ~~~ Environment
+    Promotion ~~~ Privilege
+    Incident ~~~ Promotion
+    Feedback ~~~ Incident
+    Catalog ~~~ Feedback
+    Purpose ~~~ Catalog
+    Tool ~~~ Purpose
 ```
 
 ## Ontology graph
@@ -123,6 +179,27 @@ flowchart LR
     PlatformTeam["platform team"]
     ProductTeam["product team"]
     Environment["environment"]
+    Productionization["productionization"]
+    Promotion["promotion"]
+    VersionUpgrade["version upgrade"]
+    QualityGate["quality gate"]
+    GateSeverity["gate severity"]
+    QualityGateResult["quality gate result"]
+    ManualReview["manual review"]
+    Tool["tool"]
+    ResourceLimitation["resource limitation"]
+    Department["department"]
+    Budget["budget"]
+    ExperimentationBudget["department budget"]
+    PreApprovedBudget["pre-approved budget"]
+    BudgetAdjustmentRequest["budget adjustment request"]
+    BusinessCase["business case"]
+    ProofOfConcept["proof of concept"]
+    ServiceLevelObjective["service level objective"]
+    ServiceLevelIndicator["service level indicator"]
+    Incident["incident"]
+    DataQualityRule["data quality rule"]
+    Feedback["feedback"]
     DataPlatform -->|"consists of"| PlatformService
     PlatformService -->|"owned by"| PlatformTeam
     PlatformResource -->|"owned by"| ProductTeam
@@ -166,6 +243,38 @@ flowchart LR
     AccessRestriction -->|"restricted in"| Environment
     AccessRestriction -->|"set by"| ProductOwner
     Permission -->|"to view"| Dashboard
+    Productionization -->|"has promotion step"| Promotion
+    Productionization -->|"productionizes"| PlatformResource
+    Promotion -->|"promotion of"| PlatformResource
+    Promotion -->|"from environment"| Environment
+    Promotion -->|"to environment"| Environment
+    Promotion -->|"has version upgrade"| VersionUpgrade
+    Promotion -->|"has gate result"| QualityGateResult
+    QualityGateResult -->|"result of"| QualityGate
+    Promotion -->|"has manual review"| ManualReview
+    ManualReview -->|"defended by"| Team
+    QualityGate -->|"has severity"| GateSeverity
+    QualityGate -->|"gates promotion to"| Environment
+    Tool -->|"offered in"| Environment
+    ResourceLimitation -->|"applies in"| Environment
+    ProductTeam -->|"belongs to department"| Department
+    ExperimentationBudget -->|"provided by"| Department
+    PreApprovedBudget -->|"budget of"| ProductTeam
+    PreApprovedBudget -->|"reserved for"| BusinessCase
+    PreApprovedBudget -->|"budget for"| PlatformResource
+    BudgetAdjustmentRequest -->|"adjustment of"| PreApprovedBudget
+    BudgetAdjustmentRequest -->|"requested by"| Team
+    BudgetAdjustmentRequest -->|"requested from"| Department
+    PlatformResource -->|"has business case"| BusinessCase
+    ProofOfConcept -->|"proves"| BusinessCase
+    PlatformResource -->|"has SLO"| ServiceLevelObjective
+    ServiceLevelIndicator -->|"measures"| ServiceLevelObjective
+    ServiceLevelIndicator -->|"monitored in"| Environment
+    Incident -->|"triggered by"| ServiceLevelIndicator
+    DataProduct -->|"has data quality rule"| DataQualityRule
+    Feedback -->|"feedback on"| PlatformResource
+    Feedback -->|"sent to"| Team
+    SubscriptionRequest -->|"requested in"| Environment
     DataProduct -.->|"is a"| PlatformResource
     Dashboard -.->|"is a"| PlatformResource
     MLModel -.->|"is a"| PlatformResource
@@ -191,4 +300,6 @@ flowchart LR
     ElevatedPermission -.->|"is a"| Permission
     PlatformTeam -.->|"is a"| Team
     ProductTeam -.->|"is a"| Team
+    ExperimentationBudget -.->|"is a"| Budget
+    PreApprovedBudget -.->|"is a"| Budget
 ```

@@ -562,6 +562,307 @@
           </termSec>
         </langSec>
       </conceptEntry>
+      <conceptEntry id="Productionization">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S62</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The promotion and approval process to deploy platform resources from lower environments to upper environments till PRD.</descrip>
+          <termSec>
+            <term>productionization</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Promotion">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S8, S62</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">One step of a productionization: a platform resource is deployed from one environment to the next upper environment.</descrip>
+          <termSec>
+            <term>promotion</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="VersionUpgrade">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The kind of new version a promotion delivers: MAJOR or MINOR; decided in DEV.</descrip>
+          <termSec>
+            <term>version upgrade</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="QualityGate">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A check a platform resource must pass to be promoted to an environment; it is BLOCKED, BLOCKING or a WARNING.</descrip>
+          <termSec>
+            <term>quality gate</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateSeverity">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>gate severity</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="QualityGateResult">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The outcome (passed or failed) of one quality gate for one promotion.</descrip>
+          <termSec>
+            <term>quality gate result</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ManualReview">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The review a failed BLOCKING quality gate requires, in which the owning team defends why its solution does not use the available standard solutions.</descrip>
+          <termSec>
+            <term>manual review</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Tool">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58, S59</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">Tooling offered to the teams in an environment, e.g. the internal developer portal in EXP or IaC tools in DEV.</descrip>
+          <termSec>
+            <term>tool</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ResourceLimitation">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A limit on platform resources in EXP that avoids production usage.</descrip>
+          <termSec>
+            <term>resource limitation</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Department">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">An organisational unit whose product teams build on the AcmeDataPlatform; it provides the EXP budget for them.</descrip>
+          <termSec>
+            <term>department</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Budget">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58, S59, S60, S65</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">There are 2 kinds: the department-level pre-allocated budget (EXP) and the pre-approved budget of a product team (DEV/ACC/PRD).</descrip>
+          <termSec>
+            <term>budget</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ExperimentationBudget">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58, S65</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The EXP budget: pre-allocated by a department upfront, collectively for each month, for all its product teams and their platform resources.</descrip>
+          <termSec>
+            <term>department budget</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>experimentation budget</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>department-level pre-allocated budget</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="PreApprovedBudget">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58, S59, S60, S63, S65</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The DEV/ACC/PRD budget for the use case / platform resource of one product team (an outcome of EXP); automated budget tests validate that the costs fit into it, and the owner team may request an adjustment from its department.</descrip>
+          <termSec>
+            <term>pre-approved budget</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>development budget</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>reserved budget</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="BudgetAdjustmentRequest">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S63</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A request by the owner team to its department to adjust the pre-approved development budget, if needed.</descrip>
+          <termSec>
+            <term>budget adjustment request</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="BusinessCase">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58, S59</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The approved reason for building a platform resource; an outcome of EXP, needed to work in DEV.</descrip>
+          <termSec>
+            <term>business case</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>use case</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ProofOfConcept">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The outcome of experimentation in EXP: fit for the purpose, with knowledge about the expected costs.</descrip>
+          <termSec>
+            <term>proof of concept</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>POC</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ServiceLevelObjective">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>service level objective</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>SLO</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ServiceLevelIndicator">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60, S61</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">An automatically monitored measure of a service level objective, in one environment.</descrip>
+          <termSec>
+            <term>service level indicator</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+          <termSec>
+            <term>SLI</term>
+            <termNote type="administrativeStatus">admittedTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Incident">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S61</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>incident</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="DataQualityRule">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>data quality rule</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Feedback">
+        <note>kind: concept</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S60</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">What consumers send to the owner team after testing the next MAJOR/MINOR version in ACC.</descrip>
+          <termSec>
+            <term>feedback</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
       <conceptEntry id="AcmeDataPlatform">
         <note>kind: individual</note>
         <note>level: 1</note>
@@ -578,9 +879,9 @@
         <note>kind: individual</note>
         <note>level: 1</note>
         <note>status: confirmed</note>
-        <note>source: S1, S7, S8, S11, S12</note>
+        <note>source: S1, S7, S8, S11, S12, S58</note>
         <langSec xml:lang="en">
-          <descrip type="definition">The environment for experimentation.</descrip>
+          <descrip type="definition">The environment for experimentation and learning, with the highest degree of freedom: start experimenting in minutes, without prior approval for permission or budget.</descrip>
           <termSec>
             <term>EXP</term>
             <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
@@ -591,8 +892,9 @@
         <note>kind: individual</note>
         <note>level: 1</note>
         <note>status: confirmed</note>
-        <note>source: S1, S7, S8, S11</note>
+        <note>source: S1, S7, S8, S11, S59</note>
         <langSec xml:lang="en">
+          <descrip type="definition">The environment where platform resources are created via repeatable automation, so they can be deployed to upper environments reliably; less freedom than EXP.</descrip>
           <termSec>
             <term>DEV</term>
             <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
@@ -603,8 +905,9 @@
         <note>kind: individual</note>
         <note>level: 1</note>
         <note>status: confirmed</note>
-        <note>source: S1, S8, S13, S14</note>
+        <note>source: S1, S8, S13, S14, S60</note>
         <langSec xml:lang="en">
+          <descrip type="definition">The production-like environment, fully automated (deployment only via CI/CD pipeline), to prepare the deployment and UAT tests of the next MAJOR/MINOR versions and collect consumer feedback; less freedom than DEV.</descrip>
           <termSec>
             <term>ACC</term>
             <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
@@ -615,8 +918,9 @@
         <note>kind: individual</note>
         <note>level: 1</note>
         <note>status: confirmed</note>
-        <note>source: S1, S8, S14</note>
+        <note>source: S1, S8, S14, S61</note>
         <langSec xml:lang="en">
+          <descrip type="definition">The live environment, with the least freedom: maximum protection via policies, limited access and audit log.</descrip>
           <termSec>
             <term>PRD</term>
             <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
@@ -787,6 +1091,388 @@
         <langSec xml:lang="en">
           <termSec>
             <term>VIEW</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="MAJOR">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>MAJOR</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="MINOR">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A version upgrade without breaking changes.</descrip>
+          <termSec>
+            <term>MINOR</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Blocking">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A failed gate stops the promotion until a manual review accepts it.</descrip>
+          <termSec>
+            <term>BLOCKING</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Blocked">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A failed gate always stops the promotion; no manual review can override it.</descrip>
+          <termSec>
+            <term>BLOCKED</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Warning">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A failed gate is reported but does not stop the promotion.</descrip>
+          <termSec>
+            <term>WARNING</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="SizeLimitation">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>size limitation</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="TimeLimitation">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>time limitation</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="ReuseLimitation">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>reuse limitation</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="InternalDeveloperPortal">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58, S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>internal developer portal</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="Notebook">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58, S59</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">Used to create data pipelines; a pipeline defined in a notebook cannot be promoted to ACC.</descrip>
+          <termSec>
+            <term>notebook</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="AIAssistant">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">Helps to build platform resources quickly.</descrip>
+          <termSec>
+            <term>AI assistant</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="PromotionConversionTool">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">Promotes/converts platform resources from EXP to DEV automatically.</descrip>
+          <termSec>
+            <term>promotion/conversion tool</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="IaCTool">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">Infrastructure as code, e.g. Terraform.</descrip>
+          <termSec>
+            <term>IaC tool</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="AutomatedTesting">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>automated testing</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="SkeletonApplication">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">A starting point for one of various use cases.</descrip>
+          <termSec>
+            <term>skeleton application</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="CICDPipeline">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S13, S60</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The only way to deploy to ACC.</descrip>
+          <termSec>
+            <term>CI/CD pipeline</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateNoNotebookPipeline">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>data pipelines are not notebooks (imperative/declarative definitions)</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateTestCoverage">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>sufficient test coverage</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateMetadataContract">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>metadata and a non-empty contract</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateImmutabilityBackfillTests">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>green tests for immutability and backfill</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateStandardTemplate">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>uses one of the standard templates</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateIncrementalPipelineTests">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>green performance and scalability tests proving the data pipeline is incremental</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateDataQualityRulesDefined">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>data quality rules defined for a data product</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateSLOsAndSLIs">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>SLOs and automatically monitored SLIs</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateSchemaCompatibility">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>schema compatibility guarantees</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateDataQualityRulesPass">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>data quality rules pass</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateSecurityTests">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>security tests pass</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateCostsWithinBudget">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S60, S63</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>budget test in ACC: costs under prod-like load fit into the pre-approved budget</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateBudgetTestDev">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S63</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>budget test in DEV: costs fit into the pre-approved budget</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateCompatibilityTests">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>compatibility tests pass (e.g. no breaking change in a MINOR version upgrade)</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="GateSLIsPass">
+        <note>kind: individual</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>SLIs pass</term>
             <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
           </termSec>
         </langSec>
@@ -1383,6 +2069,391 @@
           </termSec>
         </langSec>
       </conceptEntry>
+      <conceptEntry id="promotionStep">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S62</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>has promotion step</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="productionizes">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S62</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>productionizes</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="promotionOf">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S8, S62</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>promotion of</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="fromEnvironment">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S8, S62</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>from environment</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="toEnvironment">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S8, S62</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>to environment</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="hasVersionUpgrade">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>has version upgrade</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="hasGateResult">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>has gate result</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="resultOf">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>result of</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="hasManualReview">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>has manual review</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="defendedBy">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>defended by</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="hasSeverity">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>has severity</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="gatesPromotionTo">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>gates promotion to</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="offeredIn">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58, S59, S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>offered in</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="limitationIn">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>applies in</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="belongsToDepartment">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58, S65</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>belongs to department</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="providedBy">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58, S65</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>provided by</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="budgetOfTeam">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S65</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>budget of</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="reservedFor">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S65</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">The use case (business case) the pre-approved budget is for.</descrip>
+          <termSec>
+            <term>reserved for</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="budgetForResource">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S60, S63, S65</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>budget for</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="adjustmentOf">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S63</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>adjustment of</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="adjustmentRequestedBy">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S63</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>requested by</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="adjustmentRequestedFrom">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S63</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>requested from</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="hasBusinessCase">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>has business case</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="provesCase">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>proves</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="hasSLO">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>has SLO</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="measures">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>measures</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="monitoredIn">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S60, S61</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>monitored in</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="triggeredBy">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S61</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>triggered by</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="hasDataQualityRule">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>has data quality rule</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="feedbackOn">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>feedback on</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="sentTo">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>sent to</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="requestedIn">
+        <note>kind: relation</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S58</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>requested in</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
       <conceptEntry id="externallyShared">
         <note>kind: property</note>
         <note>level: 3</note>
@@ -1421,6 +2492,80 @@
         <langSec xml:lang="en">
           <termSec>
             <term>valid until</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="gateMandatory">
+        <note>kind: property</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S63</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">Whether the gate must run (true) or is optional (false), e.g. the budget test is mandatory in ACC and optional in DEV.</descrip>
+          <termSec>
+            <term>mandatory</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="requiresManualApproval">
+        <note>kind: property</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S64</note>
+        <langSec xml:lang="en">
+          <descrip type="definition">Set by the data product owner, per data product, for reasons such as security or an intentionally limited audience: subscription requests need his/her manual approval, also in EXP.</descrip>
+          <termSec>
+            <term>requires manual approval</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="gatePassed">
+        <note>kind: property</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59, S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>passed</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="breakingChange">
+        <note>kind: property</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S60</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>breaking change</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="reviewAccepted">
+        <note>kind: property</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S59</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>accepted</term>
+            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+          </termSec>
+        </langSec>
+      </conceptEntry>
+      <conceptEntry id="sliFailing">
+        <note>kind: property</note>
+        <note>level: 3</note>
+        <note>status: confirmed</note>
+        <note>source: S60, S61</note>
+        <langSec xml:lang="en">
+          <termSec>
+            <term>failing</term>
             <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
           </termSec>
         </langSec>

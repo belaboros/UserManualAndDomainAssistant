@@ -1,0 +1,5 @@
+# R83: a MINOR version upgrade with a breaking change.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:salesOrders a adp:DataProduct .
+adp:toAcc a adp:Promotion ; adp:promotionOf adp:salesOrders ; adp:fromEnvironment adp:DEV ; adp:toEnvironment adp:ACC ; adp:hasVersionUpgrade adp:MINOR ; adp:breakingChange true .

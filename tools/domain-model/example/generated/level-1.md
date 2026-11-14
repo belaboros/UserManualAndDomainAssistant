@@ -6,6 +6,47 @@ For **anyone: understand library lending in 5 minutes**. Levels are cumulative: 
 
 Contents: 6 concepts, 1 individuals, 3 relations, 3 properties, 2 rules. Items marked _(draft)_ are proposed wording, not yet confirmed.
 
+## Diagrams
+
+### Taxonomy (is-a)
+
+```mermaid
+flowchart BT
+    Agent["agent"]
+    Member["member"]
+    Item["item"]
+    Book["book"]
+    Library["library"]
+    Loan["loan"]
+    Book --> Item
+    Member --> Agent
+    Loan ~~~ Library
+```
+
+### Library composition (part-of)
+
+```mermaid
+flowchart BT
+    Library["library"]
+```
+
+### Ontology graph
+
+```mermaid
+flowchart LR
+    Library["library"]
+    Item["item"]
+    Book["book"]
+    Agent["agent"]
+    Member["member"]
+    Loan["loan"]
+    Loan -->|"has participant"| Agent
+    Loan -->|"has borrower"| Member
+    Loan -->|"has item"| Item
+    Book -.->|"is a"| Item
+    Member -.->|"is a"| Agent
+```
+
 ## Glossary
 
 | Term | Id | Kind | Synonyms | Definition | Level | Status | Sources |
@@ -72,43 +113,3 @@ SELECT $this WHERE {
 }
 ```
 
-
-## Diagrams
-
-### Taxonomy (is-a)
-
-```mermaid
-flowchart BT
-    Library["library"]
-    Item["item"]
-    Book["book"]
-    Agent["agent"]
-    Member["member"]
-    Loan["loan"]
-    Book --> Item
-    Member --> Agent
-```
-
-### Library composition (part-of)
-
-```mermaid
-flowchart BT
-    Library["library"]
-```
-
-### Ontology graph
-
-```mermaid
-flowchart LR
-    Library["library"]
-    Item["item"]
-    Book["book"]
-    Agent["agent"]
-    Member["member"]
-    Loan["loan"]
-    Loan -->|"has participant"| Agent
-    Loan -->|"has borrower"| Member
-    Loan -->|"has item"| Item
-    Book -.->|"is a"| Item
-    Member -.->|"is a"| Agent
-```

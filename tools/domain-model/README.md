@@ -170,4 +170,4 @@ TBX (`glossary.tbx`): TBX-Basic, DCA style; one `conceptEntry` per item with `no
 
 ## Code
 
-`src/domain_model/`: `model.py` (schema) → `load.py` → `paths.py` → `consistency.py` → `rdf/` (OWL, SKOS, SHACL, serialisation) and `text/` (Markdown, Mermaid, TBX) → `build.py`, `freshness.py`, `validate.py`, `discover.py` → `cli.py`. Tests: `tests/` (one module per acceptance criterion, see the [plan](../../docs/specs/0002-domain-model-generator/plan.md#verification-map)).
+`src/domain_model/`: `model.py` (schema) → `load.py` → `paths.py` → `consistency.py` → `rdf/` (OWL, SKOS, SHACL, serialisation) and `text/` (Markdown, Mermaid with `layout.py` packing the is-a diagram towards 16:9, TBX) → `build.py`, `freshness.py`, `validate.py`, `discover.py` → `cli.py`. Tests: `tests/` (one module per acceptance criterion, see the [plan](../../docs/specs/0002-domain-model-generator/plan.md#verification-map)).

@@ -8,19 +8,19 @@ The whole domain (all levels).
 
 ```mermaid
 flowchart BT
-    Library["library"]
     Item["item"]
     Book["book"]
     AudioVisualItem["audio/visual #quot;AV#quot; item"]
     DigitalResource["digital resource (draft)"]
     EBook["e-book"]
+    Loan["loan"]
+    OpenLoan["open loan"]
+    LateLoan["late loan"]
     Agent["agent"]
     Member["member"]
     Librarian["librarian (draft)"]
-    Loan["loan"]
     LoanStatus["loan status"]
-    OpenLoan["open loan"]
-    LateLoan["late loan"]
+    Library["library"]
     Branch["branch"]
     Shelf["shelf"]
     Book --> Item
@@ -31,6 +31,10 @@ flowchart BT
     Librarian --> Agent
     OpenLoan --> Loan
     LateLoan --> Loan
+    Loan ~~~ AudioVisualItem
+    LoanStatus ~~~ Member
+    Library ~~~ LoanStatus
+    Branch ~~~ Library
 ```
 
 ## Library composition (part-of)

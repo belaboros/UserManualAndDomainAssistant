@@ -6,11 +6,174 @@ For **an adopter: use the domain for the simplest use cases**. Levels are cumula
 
 Contents: 33 concepts, 15 individuals, 34 relations, 1 properties, 67 rules. Items marked _(draft)_ are proposed wording, not yet confirmed.
 
+## Diagrams
+
+### Taxonomy (is-a)
+
+```mermaid
+flowchart BT
+    PlatformResource["platform resource"]
+    DataProduct["data product"]
+    Dashboard["dashboard"]
+    MLModel["ML model"]
+    AIModel["AI model"]
+    AIAnalyticalApplication["AI/analytical application"]
+    SubPlatformResource["sub platform resource"]
+    DataContract["contract"]
+    DataPipeline["data pipeline"]
+    ComputeClusterDefinition["compute cluster definition"]
+    WorkspaceInfraDefinition["workspace infra definition"]
+    DataAsset["data asset"]
+    ParentDataProduct["parent data product"]
+    ChildDataProduct["child data product"]
+    IngestionDataPipeline["ingestion data pipeline"]
+    ProcessingDataPipeline["processing data pipeline"]
+    ProductOwner["product owner"]
+    DataProductOwner["data product owner"]
+    Employee["employee"]
+    Principal["principal"]
+    UserPrincipal["user principal"]
+    ServicePrincipal["service principal"]
+    Team["team"]
+    PlatformTeam["platform team"]
+    ProductTeam["product team"]
+    SubscriptionRequest["subscription request"]
+    SubscriptionStatus["subscription status"]
+    PlatformService["platform service"]
+    MedallionLayer["medallion layer"]
+    DataPlatform["data platform"]
+    DataSource["data source"]
+    Environment["environment"]
+    Catalog["catalog"]
+    DataProduct --> PlatformResource
+    Dashboard --> PlatformResource
+    MLModel --> PlatformResource
+    AIModel --> PlatformResource
+    AIAnalyticalApplication --> PlatformResource
+    SubPlatformResource --> PlatformResource
+    DataContract --> SubPlatformResource
+    DataPipeline --> SubPlatformResource
+    ComputeClusterDefinition --> SubPlatformResource
+    WorkspaceInfraDefinition --> SubPlatformResource
+    DataAsset --> SubPlatformResource
+    ParentDataProduct --> DataProduct
+    ChildDataProduct --> DataProduct
+    IngestionDataPipeline --> DataPipeline
+    ProcessingDataPipeline --> DataPipeline
+    UserPrincipal --> Principal
+    ServicePrincipal --> Principal
+    ProductOwner --> Employee
+    DataProductOwner --> ProductOwner
+    PlatformTeam --> Team
+    ProductTeam --> Team
+    Employee ~~~ Dashboard
+    Principal ~~~ DataProductOwner
+    Team ~~~ UserPrincipal
+    SubscriptionRequest ~~~ PlatformTeam
+    SubscriptionStatus ~~~ SubscriptionRequest
+    PlatformService ~~~ SubscriptionStatus
+    MedallionLayer ~~~ PlatformService
+    DataPlatform ~~~ MedallionLayer
+    DataSource ~~~ DataPlatform
+    Catalog ~~~ Environment
+```
+
+### Ontology graph
+
+```mermaid
+flowchart LR
+    DataPlatform["data platform"]
+    PlatformService["platform service"]
+    PlatformResource["platform resource"]
+    DataProduct["data product"]
+    Dashboard["dashboard"]
+    MLModel["ML model"]
+    AIModel["AI model"]
+    AIAnalyticalApplication["AI/analytical application"]
+    SubPlatformResource["sub platform resource"]
+    DataContract["contract"]
+    DataPipeline["data pipeline"]
+    ComputeClusterDefinition["compute cluster definition"]
+    WorkspaceInfraDefinition["workspace infra definition"]
+    DataAsset["data asset"]
+    ParentDataProduct["parent data product"]
+    ChildDataProduct["child data product"]
+    IngestionDataPipeline["ingestion data pipeline"]
+    ProcessingDataPipeline["processing data pipeline"]
+    DataSource["data source"]
+    MedallionLayer["medallion layer"]
+    Principal["principal"]
+    UserPrincipal["user principal"]
+    ServicePrincipal["service principal"]
+    ProductOwner["product owner"]
+    DataProductOwner["data product owner"]
+    Catalog["catalog"]
+    SubscriptionRequest["subscription request"]
+    SubscriptionStatus["subscription status"]
+    Employee["employee"]
+    Team["team"]
+    PlatformTeam["platform team"]
+    ProductTeam["product team"]
+    Environment["environment"]
+    DataPlatform -->|"consists of"| PlatformService
+    PlatformService -->|"owned by"| PlatformTeam
+    PlatformResource -->|"owned by"| ProductTeam
+    ProductTeam -->|"uses"| PlatformService
+    ProductTeam -->|"subscribes to"| PlatformResource
+    PlatformResource -->|"created by"| ProductTeam
+    PlatformResource -->|"created with"| PlatformService
+    PlatformService -->|"deployed to"| Environment
+    PlatformResource -->|"created in"| Environment
+    PlatformResource -->|"promoted to"| Environment
+    PlatformResource -->|"consists of"| SubPlatformResource
+    SubPlatformResource -->|"belongs to"| PlatformResource
+    DataProduct -->|"depends on"| DataProduct
+    DataPipeline -->|"populates"| DataAsset
+    DataPipeline -->|"reads"| DataAsset
+    IngestionDataPipeline -->|"ingests from"| DataSource
+    DataAsset -->|"in layer"| MedallionLayer
+    MedallionLayer -->|"next layer"| MedallionLayer
+    PlatformResource -->|"consumes"| PlatformResource
+    UserPrincipal -->|"consumes"| Dashboard
+    ServicePrincipal -->|"consumes"| PlatformResource
+    PlatformResource -->|"has product owner"| ProductOwner
+    Employee -->|"member of"| ProductTeam
+    PlatformResource -->|"exposed in"| Catalog
+    SubscriptionRequest -->|"created by"| ProductOwner
+    SubscriptionRequest -->|"subscribes to"| PlatformResource
+    SubscriptionRequest -->|"received by"| ProductOwner
+    SubscriptionRequest -->|"has status"| SubscriptionStatus
+    Catalog -->|"catalog of"| Environment
+    Employee -->|"has user principal"| UserPrincipal
+    SubscriptionRequest -->|"includes"| Employee
+    DataProduct -.->|"is a"| PlatformResource
+    Dashboard -.->|"is a"| PlatformResource
+    MLModel -.->|"is a"| PlatformResource
+    AIModel -.->|"is a"| PlatformResource
+    AIAnalyticalApplication -.->|"is a"| PlatformResource
+    SubPlatformResource -.->|"is a"| PlatformResource
+    DataContract -.->|"is a"| SubPlatformResource
+    DataPipeline -.->|"is a"| SubPlatformResource
+    ComputeClusterDefinition -.->|"is a"| SubPlatformResource
+    WorkspaceInfraDefinition -.->|"is a"| SubPlatformResource
+    DataAsset -.->|"is a"| SubPlatformResource
+    ParentDataProduct -.->|"is a"| DataProduct
+    ChildDataProduct -.->|"is a"| DataProduct
+    IngestionDataPipeline -.->|"is a"| DataPipeline
+    ProcessingDataPipeline -.->|"is a"| DataPipeline
+    UserPrincipal -.->|"is a"| Principal
+    ServicePrincipal -.->|"is a"| Principal
+    ProductOwner -.->|"is a"| Employee
+    DataProductOwner -.->|"is a"| ProductOwner
+    PlatformTeam -.->|"is a"| Team
+    ProductTeam -.->|"is a"| Team
+```
+
 ## Glossary
 
 | Term | Id | Kind | Synonyms | Definition | Level | Status | Sources |
 |---|---|---|---|---|---|---|---|
-| ACC | `ACC` | individual |  |  | 1 | confirmed | S1, S8, S13, S14 |
+| ACC | `ACC` | individual |  | The production-like environment, fully automated (deployment only via CI/CD pipeline), to prepare the deployment and UAT tests of the next MAJOR/MINOR versions and collect consumer feedback; less freedom than DEV. | 1 | confirmed | S1, S8, S13, S14, S60 |
 | ACC catalog | `CatalogACC` | individual |  |  | 2 | confirmed | S49 |
 | AcmeDataPlatform | `AcmeDataPlatform` | individual |  |  | 1 | confirmed | S1, S2 |
 | AI model | `AIModel` | concept |  |  | 1 | confirmed | S9, S18 |
@@ -42,11 +205,11 @@ Contents: 33 concepts, 15 individuals, 34 relations, 1 properties, 67 rules. Ite
 | data source | `DataSource` | concept | source service | An internal or external service or data source that an ingestion data pipeline ingests data from. | 2 | confirmed | S25 |
 | depends on | `dependsOn` | relation | lineage | The lineage between data products: a child (downstream) data product depends on its parent (upstream) data products. | 2 | confirmed | S24, S29 |
 | deployed to | `deployedTo` | relation |  |  | 1 | confirmed | S6, S10 |
-| DEV | `DEV` | individual |  |  | 1 | confirmed | S1, S7, S8, S11 |
+| DEV | `DEV` | individual |  | The environment where platform resources are created via repeatable automation, so they can be deployed to upper environments reliably; less freedom than EXP. | 1 | confirmed | S1, S7, S8, S11, S59 |
 | DEV catalog | `CatalogDEV` | individual |  |  | 2 | confirmed | S49 |
 | employee | `Employee` | concept |  | A person working for ACME company, e.g. a product owner or data product owner. | 2 | confirmed | S50 |
 | environment | `Environment` | concept |  |  | 1 | confirmed | S1, S6, S7, S8 |
-| EXP | `EXP` | individual |  | The environment for experimentation. | 1 | confirmed | S1, S7, S8, S11, S12 |
+| EXP | `EXP` | individual |  | The environment for experimentation and learning, with the highest degree of freedom: start experimenting in minutes, without prior approval for permission or budget. | 1 | confirmed | S1, S7, S8, S11, S12, S58 |
 | EXP catalog | `CatalogEXP` | individual |  |  | 2 | confirmed | S49 |
 | exposed in | `exposedIn` | relation | findable in |  | 2 | confirmed | S38, S49 |
 | exposed in catalog | `exposedInCatalog` | property |  | Whether a platform resource is exposed in the catalogs of its environments: yes by default, can be turned off. | 2 | confirmed | S38, S49 |
@@ -71,7 +234,7 @@ Contents: 33 concepts, 15 individuals, 34 relations, 1 properties, 67 rules. Ite
 | platform service | `PlatformService` | concept |  |  | 1 | confirmed | S1, S2, S3, S4, S6 |
 | platform team | `PlatformTeam` | concept |  |  | 1 | confirmed | S1, S3, S10 |
 | populates | `populates` | relation |  |  | 2 | confirmed | S24 |
-| PRD | `PRD` | individual |  |  | 1 | confirmed | S1, S8, S14 |
+| PRD | `PRD` | individual |  | The live environment, with the least freedom: maximum protection via policies, limited access and audit log. | 1 | confirmed | S1, S8, S14, S61 |
 | PRD catalog | `CatalogPRD` | individual |  |  | 2 | confirmed | S49 |
 | principal | `Principal` | concept |  | Someone or something that consumes platform resources: a user principal or a service principal. | 2 | confirmed | S33 |
 | processing data pipeline | `ProcessingDataPipeline` | concept |  | A data pipeline that performs transformations (cleansing, curation, filtering, enrichment, aggregation) across the RAW->CURATED->SERVING medallion layers. | 2 | confirmed | S25, S30 |
@@ -711,156 +874,3 @@ SELECT $this WHERE {
 }
 ```
 
-
-## Diagrams
-
-### Taxonomy (is-a)
-
-```mermaid
-flowchart BT
-    DataPlatform["data platform"]
-    PlatformService["platform service"]
-    PlatformResource["platform resource"]
-    DataProduct["data product"]
-    Dashboard["dashboard"]
-    MLModel["ML model"]
-    AIModel["AI model"]
-    AIAnalyticalApplication["AI/analytical application"]
-    SubPlatformResource["sub platform resource"]
-    DataContract["contract"]
-    DataPipeline["data pipeline"]
-    ComputeClusterDefinition["compute cluster definition"]
-    WorkspaceInfraDefinition["workspace infra definition"]
-    DataAsset["data asset"]
-    ParentDataProduct["parent data product"]
-    ChildDataProduct["child data product"]
-    IngestionDataPipeline["ingestion data pipeline"]
-    ProcessingDataPipeline["processing data pipeline"]
-    DataSource["data source"]
-    MedallionLayer["medallion layer"]
-    Principal["principal"]
-    UserPrincipal["user principal"]
-    ServicePrincipal["service principal"]
-    ProductOwner["product owner"]
-    DataProductOwner["data product owner"]
-    Catalog["catalog"]
-    SubscriptionRequest["subscription request"]
-    SubscriptionStatus["subscription status"]
-    Employee["employee"]
-    Team["team"]
-    PlatformTeam["platform team"]
-    ProductTeam["product team"]
-    Environment["environment"]
-    DataProduct --> PlatformResource
-    Dashboard --> PlatformResource
-    MLModel --> PlatformResource
-    AIModel --> PlatformResource
-    AIAnalyticalApplication --> PlatformResource
-    SubPlatformResource --> PlatformResource
-    DataContract --> SubPlatformResource
-    DataPipeline --> SubPlatformResource
-    ComputeClusterDefinition --> SubPlatformResource
-    WorkspaceInfraDefinition --> SubPlatformResource
-    DataAsset --> SubPlatformResource
-    ParentDataProduct --> DataProduct
-    ChildDataProduct --> DataProduct
-    IngestionDataPipeline --> DataPipeline
-    ProcessingDataPipeline --> DataPipeline
-    UserPrincipal --> Principal
-    ServicePrincipal --> Principal
-    ProductOwner --> Employee
-    DataProductOwner --> ProductOwner
-    PlatformTeam --> Team
-    ProductTeam --> Team
-```
-
-### Ontology graph
-
-```mermaid
-flowchart LR
-    DataPlatform["data platform"]
-    PlatformService["platform service"]
-    PlatformResource["platform resource"]
-    DataProduct["data product"]
-    Dashboard["dashboard"]
-    MLModel["ML model"]
-    AIModel["AI model"]
-    AIAnalyticalApplication["AI/analytical application"]
-    SubPlatformResource["sub platform resource"]
-    DataContract["contract"]
-    DataPipeline["data pipeline"]
-    ComputeClusterDefinition["compute cluster definition"]
-    WorkspaceInfraDefinition["workspace infra definition"]
-    DataAsset["data asset"]
-    ParentDataProduct["parent data product"]
-    ChildDataProduct["child data product"]
-    IngestionDataPipeline["ingestion data pipeline"]
-    ProcessingDataPipeline["processing data pipeline"]
-    DataSource["data source"]
-    MedallionLayer["medallion layer"]
-    Principal["principal"]
-    UserPrincipal["user principal"]
-    ServicePrincipal["service principal"]
-    ProductOwner["product owner"]
-    DataProductOwner["data product owner"]
-    Catalog["catalog"]
-    SubscriptionRequest["subscription request"]
-    SubscriptionStatus["subscription status"]
-    Employee["employee"]
-    Team["team"]
-    PlatformTeam["platform team"]
-    ProductTeam["product team"]
-    Environment["environment"]
-    DataPlatform -->|"consists of"| PlatformService
-    PlatformService -->|"owned by"| PlatformTeam
-    PlatformResource -->|"owned by"| ProductTeam
-    ProductTeam -->|"uses"| PlatformService
-    ProductTeam -->|"subscribes to"| PlatformResource
-    PlatformResource -->|"created by"| ProductTeam
-    PlatformResource -->|"created with"| PlatformService
-    PlatformService -->|"deployed to"| Environment
-    PlatformResource -->|"created in"| Environment
-    PlatformResource -->|"promoted to"| Environment
-    PlatformResource -->|"consists of"| SubPlatformResource
-    SubPlatformResource -->|"belongs to"| PlatformResource
-    DataProduct -->|"depends on"| DataProduct
-    DataPipeline -->|"populates"| DataAsset
-    DataPipeline -->|"reads"| DataAsset
-    IngestionDataPipeline -->|"ingests from"| DataSource
-    DataAsset -->|"in layer"| MedallionLayer
-    MedallionLayer -->|"next layer"| MedallionLayer
-    PlatformResource -->|"consumes"| PlatformResource
-    UserPrincipal -->|"consumes"| Dashboard
-    ServicePrincipal -->|"consumes"| PlatformResource
-    PlatformResource -->|"has product owner"| ProductOwner
-    Employee -->|"member of"| ProductTeam
-    PlatformResource -->|"exposed in"| Catalog
-    SubscriptionRequest -->|"created by"| ProductOwner
-    SubscriptionRequest -->|"subscribes to"| PlatformResource
-    SubscriptionRequest -->|"received by"| ProductOwner
-    SubscriptionRequest -->|"has status"| SubscriptionStatus
-    Catalog -->|"catalog of"| Environment
-    Employee -->|"has user principal"| UserPrincipal
-    SubscriptionRequest -->|"includes"| Employee
-    DataProduct -.->|"is a"| PlatformResource
-    Dashboard -.->|"is a"| PlatformResource
-    MLModel -.->|"is a"| PlatformResource
-    AIModel -.->|"is a"| PlatformResource
-    AIAnalyticalApplication -.->|"is a"| PlatformResource
-    SubPlatformResource -.->|"is a"| PlatformResource
-    DataContract -.->|"is a"| SubPlatformResource
-    DataPipeline -.->|"is a"| SubPlatformResource
-    ComputeClusterDefinition -.->|"is a"| SubPlatformResource
-    WorkspaceInfraDefinition -.->|"is a"| SubPlatformResource
-    DataAsset -.->|"is a"| SubPlatformResource
-    ParentDataProduct -.->|"is a"| DataProduct
-    ChildDataProduct -.->|"is a"| DataProduct
-    IngestionDataPipeline -.->|"is a"| DataPipeline
-    ProcessingDataPipeline -.->|"is a"| DataPipeline
-    UserPrincipal -.->|"is a"| Principal
-    ServicePrincipal -.->|"is a"| Principal
-    ProductOwner -.->|"is a"| Employee
-    DataProductOwner -.->|"is a"| ProductOwner
-    PlatformTeam -.->|"is a"| Team
-    ProductTeam -.->|"is a"| Team
-```

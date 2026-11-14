@@ -1024,6 +1024,158 @@ adp:R7_shape a sh:NodeShape ;
     adp:level 1 ;
     adp:status "confirmed" .
 
+adp:R80_shape a sh:NodeShape ;
+    rdfs:label "A quality gate is BLOCKED, BLOCKING or a WARNING."@en ;
+    dct:source "S59",
+        "S60" ;
+    sh:message "A quality gate is BLOCKED, BLOCKING or a WARNING."@en ;
+    sh:property adp:R80_shape_property ;
+    sh:targetClass adp:QualityGate ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:R81_shape a sh:NodeShape ;
+    rdfs:label "A promotion goes from an environment to the next upper one: EXP to DEV, DEV to ACC or ACC to PRD."@en ;
+    dct:source "S62",
+        "S8" ;
+    sh:message "A promotion goes from an environment to the next upper one: EXP to DEV, DEV to ACC or ACC to PRD."@en ;
+    sh:sparql [ a sh:SPARQLConstraint ;
+            sh:message "A promotion goes from an environment to the next upper one: EXP to DEV, DEV to ACC or ACC to PRD."@en ;
+            sh:prefixes adp:_prefixes ;
+            sh:select """SELECT $this WHERE {
+  $this adp:fromEnvironment ?from ; adp:toEnvironment ?to .
+  FILTER (!((?from = adp:EXP && ?to = adp:DEV) || (?from = adp:DEV && ?to = adp:ACC) || (?from = adp:ACC && ?to = adp:PRD)))
+}
+""" ] ;
+    sh:targetClass adp:Promotion ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:R82_shape a sh:NodeShape ;
+    rdfs:label "A promotion with a failed BLOCKING quality gate needs an accepted manual review, in which the owning team defends its solution."@en ;
+    dct:source "S59" ;
+    sh:message "A promotion with a failed BLOCKING quality gate needs an accepted manual review, in which the owning team defends its solution."@en ;
+    sh:sparql [ a sh:SPARQLConstraint ;
+            sh:message "A promotion with a failed BLOCKING quality gate needs an accepted manual review, in which the owning team defends its solution."@en ;
+            sh:prefixes adp:_prefixes ;
+            sh:select """SELECT $this WHERE {
+  $this adp:hasGateResult ?result .
+  ?result adp:gatePassed false ; adp:resultOf ?gate .
+  ?gate adp:hasSeverity adp:Blocking .
+  FILTER NOT EXISTS { $this adp:hasManualReview ?review . ?review adp:reviewAccepted true }
+}
+""" ] ;
+    sh:targetClass adp:Promotion ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:R83_shape a sh:NodeShape ;
+    rdfs:label "A MINOR version upgrade contains no breaking change."@en ;
+    dct:source "S60" ;
+    sh:message "A MINOR version upgrade contains no breaking change."@en ;
+    sh:or ( [ sh:not [ a sh:PropertyShape ;
+                        sh:hasValue adp:MINOR ;
+                        sh:path adp:hasVersionUpgrade ] ] [ a sh:PropertyShape ;
+                sh:hasValue false ;
+                sh:path adp:breakingChange ] ) ;
+    sh:targetClass adp:Promotion ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:R84_shape a sh:NodeShape ;
+    rdfs:label "A subscription request in EXP is approved automatically, unless the data product owner requires manual approval for that data product."@en ;
+    dct:source "S58",
+        "S64" ;
+    sh:message "A subscription request in EXP is approved automatically, unless the data product owner requires manual approval for that data product."@en ;
+    sh:rule [ a sh:SPARQLRule ;
+            sh:construct """CONSTRUCT { $this adp:hasStatus adp:Approved . }
+WHERE {
+  $this adp:requestedIn adp:EXP ; adp:requestFor ?resource .
+  FILTER NOT EXISTS { ?resource adp:requiresManualApproval true }
+}
+""" ;
+            sh:prefixes adp:_prefixes ] ;
+    sh:targetClass adp:SubscriptionRequest ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:R85_shape a sh:NodeShape ;
+    rdfs:label "In PRD a failing SLI triggers an incident."@en ;
+    dct:source "S61" ;
+    sh:message "In PRD a failing SLI triggers an incident."@en ;
+    sh:sparql [ a sh:SPARQLConstraint ;
+            sh:message "In PRD a failing SLI triggers an incident."@en ;
+            sh:prefixes adp:_prefixes ;
+            sh:select """SELECT $this WHERE {
+  $this adp:sliFailing true ; adp:monitoredIn adp:PRD .
+  FILTER NOT EXISTS { ?incident adp:triggeredBy $this }
+}
+""" ] ;
+    sh:targetClass adp:ServiceLevelIndicator ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:R86_shape a sh:NodeShape ;
+    rdfs:label "A promotion of a platform resource to an environment means the platform resource is promoted to that environment."@en ;
+    dct:source "S62",
+        "S8" ;
+    sh:message "A promotion of a platform resource to an environment means the platform resource is promoted to that environment."@en ;
+    sh:rule [ a sh:SPARQLRule ;
+            sh:construct """CONSTRUCT { ?resource adp:promotedTo ?environment . }
+WHERE { $this adp:promotionOf ?resource ; adp:toEnvironment ?environment . }
+""" ;
+            sh:prefixes adp:_prefixes ] ;
+    sh:targetClass adp:Promotion ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:R87_shape a sh:NodeShape ;
+    rdfs:label "A productionization ends in PRD: one of its promotions goes to PRD."@en ;
+    dct:source "S62" ;
+    sh:message "A productionization ends in PRD: one of its promotions goes to PRD."@en ;
+    sh:sparql [ a sh:SPARQLConstraint ;
+            sh:message "A productionization ends in PRD: one of its promotions goes to PRD."@en ;
+            sh:prefixes adp:_prefixes ;
+            sh:select """SELECT $this WHERE {
+  FILTER NOT EXISTS { $this adp:promotionStep/adp:toEnvironment adp:PRD }
+}
+""" ] ;
+    sh:targetClass adp:Productionization ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:R88_shape a sh:NodeShape ;
+    rdfs:label "Every promotion of a productionization promotes the platform resource the productionization is for."@en ;
+    dct:source "S62" ;
+    sh:message "Every promotion of a productionization promotes the platform resource the productionization is for."@en ;
+    sh:sparql [ a sh:SPARQLConstraint ;
+            sh:message "Every promotion of a productionization promotes the platform resource the productionization is for."@en ;
+            sh:prefixes adp:_prefixes ;
+            sh:select """SELECT $this ?value WHERE {
+  { $this adp:productionizes ?value . FILTER NOT EXISTS { $this adp:promotionStep/adp:promotionOf ?value } }
+  UNION { $this adp:promotionStep/adp:promotionOf ?value . FILTER NOT EXISTS { $this adp:productionizes ?value } }
+}""" ] ;
+    sh:targetClass adp:Productionization ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
+adp:R89_shape a sh:NodeShape ;
+    rdfs:label "A promotion with a failed BLOCKED quality gate is not allowed, not even after a manual review (e.g. a data pipeline defined in a notebook is never promoted to ACC)."@en ;
+    dct:source "S59" ;
+    sh:message "A promotion with a failed BLOCKED quality gate is not allowed, not even after a manual review (e.g. a data pipeline defined in a notebook is never promoted to ACC)."@en ;
+    sh:sparql [ a sh:SPARQLConstraint ;
+            sh:message "A promotion with a failed BLOCKED quality gate is not allowed, not even after a manual review (e.g. a data pipeline defined in a notebook is never promoted to ACC)."@en ;
+            sh:prefixes adp:_prefixes ;
+            sh:select """SELECT $this WHERE {
+  $this adp:hasGateResult ?result .
+  ?result adp:gatePassed false ; adp:resultOf ?gate .
+  ?gate adp:hasSeverity adp:Blocked .
+}
+""" ] ;
+    sh:targetClass adp:Promotion ;
+    adp:level 3 ;
+    adp:status "confirmed" .
+
 adp:R8_shape a sh:NodeShape ;
     rdfs:label "A platform resource is created in the EXP or in the DEV environment."@en ;
     dct:source "S11",
@@ -1202,6 +1354,11 @@ adp:R7_shape_property a sh:PropertyShape ;
     sh:message "A platform resource is created in exactly one environment."@en ;
     sh:minCount 1 ;
     sh:path adp:createdIn .
+
+adp:R80_shape_property a sh:PropertyShape ;
+    sh:in ( adp:Blocked adp:Blocking adp:Warning ) ;
+    sh:message "A quality gate is BLOCKED, BLOCKING or a WARNING."@en ;
+    sh:path adp:hasSeverity .
 
 adp:R8_shape_property a sh:PropertyShape ;
     sh:in ( adp:EXP adp:DEV ) ;

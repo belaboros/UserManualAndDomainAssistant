@@ -1,0 +1,5 @@
+# R86: a promotion of hrDashboard from EXP to DEV.
+@prefix adp: <https://example.org/acme/data-platform#> .
+
+adp:hrDashboard a adp:Dashboard ; adp:createdIn adp:EXP .
+adp:toDev a adp:Promotion ; adp:promotionOf adp:hrDashboard ; adp:fromEnvironment adp:EXP ; adp:toEnvironment adp:DEV .
