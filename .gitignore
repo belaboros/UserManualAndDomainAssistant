@@ -33,3 +33,7 @@ gitleaks.tar.gz
 
 # Local archives (any folder)
 archive-*.zip
+
+# Python bytecode (ADR-0014); the tool caches (.venv, .mypy_cache, .ruff_cache, .pytest_cache) ignore themselves
+__pycache__/
+*.py[cod]
